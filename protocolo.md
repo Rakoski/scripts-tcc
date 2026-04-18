@@ -42,6 +42,8 @@ de dívida por arquétipo, α = 0,05, com a ordem `google < apache < descentrali
 fixada *a priori* a partir da literatura de governança (ver §3.1) **antes** de
 qualquer coleta de dados.
 
+
+
 **Teste de existência complementar:** Brown-Forsythe (Levene com `center='median'`)
 sobre homogeneidade de variâncias. Brown-Forsythe testa se as variâncias diferem;
 Jonckheere-Terpstra testa se diferem **na ordem prevista**. Os dois respondem
@@ -108,7 +110,7 @@ mais Java ativo que os outros três) e será:
 1. **Linguagem:** ≥ 70% Java segundo a API do GitHub (`languages` endpoint).
 2. **Tamanho:** 10k ≤ NCLOC ≤ 1M linhas Java não-comentadas no commit selecionado.
 3. **Idade:** ≥ 3 anos entre primeiro commit e 2026-01-01.
-4. **Contribuidores:** ≥ 10 contribuidores distintos no histórico.
+4. **Contribuidores:** ≥ 25 contribuidores distintos no histórico.
 5. **Release:** possui pelo menos um tag de release estável antes de 2026-01-01.
 6. **Build:** compilável localmente com Maven ou Gradle (Bazel será tratado na §7.2).
 
