@@ -1,0 +1,219 @@
+Downloading https://services.gradle.org/distributions/gradle-8.2.1-bin.zip
+............10%............20%............30%.............40%............50%............60%............70%.............80%............90%............100%
+
+Welcome to Gradle 8.2.1!
+
+Here are the highlights of this release:
+ - Kotlin DSL: new reference documentation, assignment syntax by default
+ - Kotlin DSL is now the default with Gradle init
+ - Improved suggestions to resolve errors in console output
+ - Reduced sync memory consumption
+
+For more details see https://docs.gradle.org/8.2.1/release-notes.html
+
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.2.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+Kotlin DSL property assignment is an incubating feature.
+Path for java installation '/usr/lib/jvm/openjdk-17' (Common Linux Locations) does not contain a java executable
+> Task :assemble UP-TO-DATE
+> Task :android:assemble UP-TO-DATE
+> Task :autodispose:processResources
+> Task :autodispose-interop:assemble UP-TO-DATE
+> Task :autodispose-lifecycle:processResources NO-SOURCE
+> Task :sample:preBuild UP-TO-DATE
+> Task :sample:preDebugBuild UP-TO-DATE
+> Task :sample:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :android:autodispose-android:preBuild UP-TO-DATE
+> Task :android:autodispose-android:preReleaseBuild UP-TO-DATE
+> Task :android:autodispose-androidx-lifecycle:preBuild UP-TO-DATE
+> Task :android:autodispose-androidx-lifecycle:preReleaseBuild UP-TO-DATE
+> Task :android:autodispose-android:writeReleaseAarMetadata
+> Task :android:autodispose-androidx-lifecycle:writeReleaseAarMetadata
+> Task :android:autodispose-android:generateReleaseEmptyResourceFiles
+> Task :autodispose:compileKotlin
+> Task :sample:checkDebugAarMetadata
+> Task :autodispose:compileJava
+> Task :autodispose:classes
+> Task :autodispose:jar
+> Task :autodispose:assemble
+> Task :autodispose-lifecycle:compileKotlin NO-SOURCE
+
+> Task :autodispose-lifecycle:compileJava
+Note: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/AutoDispose/autodispose-lifecycle/src/main/java/autodispose2/lifecycle/LifecycleScopes.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :autodispose-lifecycle:classes
+> Task :autodispose-lifecycle:jar
+> Task :autodispose-lifecycle:assemble
+> Task :android:autodispose-androidx-lifecycle:generateReleaseEmptyResourceFiles
+> Task :sample:mapDebugSourceSetPaths
+> Task :sample:generateDebugResources UP-TO-DATE
+> Task :sample:packageDebugResources
+> Task :sample:mergeDebugResources
+> Task :sample:createDebugCompatibleScreenManifests
+> Task :sample:extractDeepLinksDebug
+> Task :android:autodispose-androidx-lifecycle:processReleaseManifest
+> Task :android:autodispose-android:processReleaseManifest
+> Task :sample:parseDebugLocalResources
+> Task :sample:processDebugMainManifest
+> Task :sample:processDebugManifest
+> Task :android:autodispose-android:javaPreCompileRelease
+> Task :android:autodispose-android:compileReleaseKotlin
+> Task :android:autodispose-androidx-lifecycle:javaPreCompileRelease
+
+> Task :android:autodispose-android:compileReleaseJavaWithJavac
+warning: [options] source value 8 is obsolete and will be removed in a future release
+warning: [options] target value 8 is obsolete and will be removed in a future release
+warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+3 warnings
+
+> Task :sample:generateDebugAssets UP-TO-DATE
+> Task :android:autodispose-android:generateReleaseAssets UP-TO-DATE
+> Task :sample:javaPreCompileDebug
+> Task :android:autodispose-android:bundleLibCompileToJarRelease
+> Task :android:autodispose-android:packageReleaseAssets
+> Task :android:autodispose-androidx-lifecycle:generateReleaseAssets UP-TO-DATE
+> Task :sample:processDebugManifestForPackage
+> Task :android:autodispose-androidx-lifecycle:compileReleaseKotlin
+> Task :sample:processDebugResources
+
+> Task :android:autodispose-androidx-lifecycle:compileReleaseJavaWithJavac
+warning: [options] source value 8 is obsolete and will be removed in a future release
+warning: [options] target value 8 is obsolete and will be removed in a future release
+warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+Note: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/AutoDispose/android/autodispose-androidx-lifecycle/src/main/java/autodispose2/androidx/lifecycle/LifecycleEventsObservable.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+3 warnings
+
+> Task :android:autodispose-androidx-lifecycle:bundleLibCompileToJarRelease
+> Task :android:autodispose-androidx-lifecycle:packageReleaseAssets
+> Task :sample:mergeDebugAssets
+> Task :sample:compressDebugAssets
+> Task :sample:processDebugJavaRes NO-SOURCE
+> Task :android:autodispose-android:processReleaseJavaRes NO-SOURCE
+> Task :android:autodispose-androidx-lifecycle:processReleaseJavaRes NO-SOURCE
+> Task :android:autodispose-android:bundleLibResRelease
+> Task :android:autodispose-androidx-lifecycle:bundleLibResRelease
+> Task :android:autodispose-androidx-lifecycle:bundleLibRuntimeToJarRelease
+> Task :android:autodispose-android:bundleLibRuntimeToJarRelease
+> Task :sample:checkDebugDuplicateClasses
+> Task :sample:desugarDebugFileDependencies
+> Task :sample:mergeDebugJniLibFolders
+> Task :android:autodispose-android:mergeReleaseJniLibFolders
+> Task :android:autodispose-android:mergeReleaseNativeLibs NO-SOURCE
+> Task :android:autodispose-androidx-lifecycle:mergeReleaseJniLibFolders
+> Task :android:autodispose-android:copyReleaseJniLibsProjectOnly
+> Task :android:autodispose-androidx-lifecycle:mergeReleaseNativeLibs NO-SOURCE
+> Task :android:autodispose-androidx-lifecycle:copyReleaseJniLibsProjectOnly
+> Task :sample:validateSigningDebug
+> Task :sample:mergeDebugNativeLibs NO-SOURCE
+> Task :sample:stripDebugDebugSymbols NO-SOURCE
+> Task :sample:writeDebugAppMetadata
+> Task :sample:writeDebugSigningConfigVersions
+> Task :static-analysis:assemble UP-TO-DATE
+> Task :test-utils:compileKotlin NO-SOURCE
+> Task :sample:compileDebugKotlin
+
+> Task :test-utils:compileJava
+Note: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/AutoDispose/test-utils/src/main/java/autodispose2/test/RecordingObserver.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :sample:compileDebugJavaWithJavac
+warning: [options] source value 8 is obsolete and will be removed in a future release
+warning: [options] target value 8 is obsolete and will be removed in a future release
+warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+Note: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/AutoDispose/sample/src/main/java/autodispose2/recipes/AutoDisposeFragment.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+3 warnings
+
+> Task :sample:mergeDebugJavaResource
+> Task :sample:dexBuilderDebug
+> Task :test-utils:processResources NO-SOURCE
+> Task :test-utils:classes
+> Task :test-utils:jar
+> Task :test-utils:assemble
+> Task :android:autodispose-android:stripReleaseDebugSymbols NO-SOURCE
+> Task :android:autodispose-android:copyReleaseJniLibsProjectAndLocalJars
+> Task :sample:mergeDexDebug
+> Task :android:autodispose-android:extractReleaseAnnotations
+> Task :android:autodispose-android:mergeReleaseGeneratedProguardFiles
+
+> Task :android:autodispose-android:mergeReleaseConsumerProguardFiles
+Supplied consumer proguard configuration does not exist: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/AutoDispose/android/autodispose-android/consumer-proguard-rules.txt
+
+> Task :android:autodispose-android:prepareReleaseArtProfile
+> Task :android:autodispose-androidx-lifecycle:stripReleaseDebugSymbols NO-SOURCE
+> Task :android:autodispose-androidx-lifecycle:copyReleaseJniLibsProjectAndLocalJars
+> Task :android:autodispose-android:mergeReleaseJavaResource
+> Task :android:autodispose-androidx-lifecycle:extractReleaseAnnotations
+> Task :android:autodispose-android:syncReleaseLibJars
+> Task :android:autodispose-androidx-lifecycle:mergeReleaseGeneratedProguardFiles
+> Task :android:autodispose-androidx-lifecycle:mergeReleaseConsumerProguardFiles
+> Task :android:autodispose-androidx-lifecycle:prepareReleaseArtProfile
+> Task :android:autodispose-androidx-lifecycle-test:preBuild UP-TO-DATE
+> Task :android:autodispose-androidx-lifecycle-test:preReleaseBuild UP-TO-DATE
+> Task :android:autodispose-androidx-lifecycle:mergeReleaseJavaResource
+> Task :android:autodispose-androidx-lifecycle-test:mergeReleaseJniLibFolders
+> Task :android:autodispose-androidx-lifecycle:syncReleaseLibJars
+> Task :android:autodispose-androidx-lifecycle-test:mergeReleaseNativeLibs NO-SOURCE
+> Task :android:autodispose-androidx-lifecycle-test:stripReleaseDebugSymbols NO-SOURCE
+> Task :android:autodispose-androidx-lifecycle-test:copyReleaseJniLibsProjectAndLocalJars
+> Task :android:autodispose-androidx-lifecycle-test:generateReleaseEmptyResourceFiles
+> Task :android:autodispose-androidx-lifecycle-test:generateReleaseAssets UP-TO-DATE
+> Task :android:autodispose-androidx-lifecycle-test:javaPreCompileRelease
+> Task :android:autodispose-androidx-lifecycle-test:packageReleaseAssets
+> Task :android:autodispose-androidx-lifecycle-test:prepareReleaseArtProfile
+> Task :android:autodispose-androidx-lifecycle-test:prepareLintJarForPublish
+> Task :android:autodispose-androidx-lifecycle-test:processReleaseJavaRes NO-SOURCE
+> Task :android:autodispose-androidx-lifecycle-test:writeReleaseAarMetadata
+> Task :android:autodispose-androidx-lifecycle-test:processReleaseManifest
+> Task :android:autodispose-androidx-lifecycle-test:compileReleaseKotlin
+> Task :static-analysis:autodispose-lint:kspKotlin
+> Task :static-analysis:autodispose-lint:processResources
+> Task :android:autodispose-androidx-lifecycle-test:extractReleaseAnnotations
+
+> Task :android:autodispose-androidx-lifecycle-test:compileReleaseJavaWithJavac
+warning: [options] source value 8 is obsolete and will be removed in a future release
+warning: [options] target value 8 is obsolete and will be removed in a future release
+warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+3 warnings
+
+> Task :android:autodispose-androidx-lifecycle-test:mergeReleaseGeneratedProguardFiles
+> Task :android:autodispose-androidx-lifecycle-test:mergeReleaseConsumerProguardFiles
+> Task :autodispose-interop:coroutines:processResources NO-SOURCE
+> Task :android:autodispose-androidx-lifecycle-test:mergeReleaseJavaResource
+> Task :autodispose-interop:coroutines:compileKotlin
+> Task :static-analysis:autodispose-lint:compileKotlin
+> Task :static-analysis:autodispose-error-prone:compileJava
+> Task :static-analysis:autodispose-lint:compileJava NO-SOURCE
+> Task :static-analysis:autodispose-lint:classes
+> Task :static-analysis:autodispose-lint:jar
+> Task :android:autodispose-android:prepareLintJarForPublish
+> Task :android:autodispose-androidx-lifecycle:prepareLintJarForPublish
+> Task :android:autodispose-android:bundleReleaseAar
+> Task :android:autodispose-android:assembleRelease
+> Task :android:autodispose-android:assemble
+> Task :android:autodispose-androidx-lifecycle:bundleReleaseAar
+> Task :android:autodispose-androidx-lifecycle:assembleRelease
+> Task :android:autodispose-androidx-lifecycle:assemble
+> Task :android:autodispose-androidx-lifecycle-test:syncReleaseLibJars
+> Task :android:autodispose-androidx-lifecycle-test:bundleReleaseAar
+> Task :android:autodispose-androidx-lifecycle-test:assembleRelease
+> Task :android:autodispose-androidx-lifecycle-test:assemble
+> Task :autodispose-interop:coroutines:compileJava NO-SOURCE
+> Task :autodispose-interop:coroutines:classes UP-TO-DATE
+> Task :autodispose-interop:coroutines:jar
+> Task :autodispose-interop:coroutines:assemble
+> Task :static-analysis:autodispose-error-prone:processResources NO-SOURCE
+> Task :static-analysis:autodispose-error-prone:classes
+> Task :static-analysis:autodispose-error-prone:jar
+> Task :static-analysis:autodispose-error-prone:sourcesJar
+> Task :static-analysis:autodispose-error-prone:assemble
+> Task :static-analysis:autodispose-lint:assemble
+> Task :sample:packageDebug
+> Task :sample:createDebugApkListingFileRedirect
+> Task :sample:assembleDebug
+> Task :sample:assemble
+
+BUILD SUCCESSFUL in 7m 43s
+103 actionable tasks: 103 executed

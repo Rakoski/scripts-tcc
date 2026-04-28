@@ -1,0 +1,122 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;33mWARNING[m] The project com.google.testing.compile:compile-testing:jar:0.23.0 uses prerequisites which is only intended for maven-plugin projects but not for non maven-plugin projects. For such purposes you should use the maven-enforcer-plugin. See https://maven.apache.org/enforcer/enforcer-rules/requireMavenVersion.html
+[[1;33mWARNING[m] The artifact org.codehaus.mojo:sonar-maven-plugin:jar:4.0.0.4121 has been relocated to org.sonarsource.scanner.maven:sonar-maven-plugin:jar:4.0.0.4121: SonarQube plugin was moved to SonarSource organisation
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m-------------< [0;36mcom.google.testing.compile:compile-testing[0;1m >-------------[m
+[[1;34mINFO[m] [1mBuilding Compile Testing 0.23.0[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32msonar-maven-plugin:4.0.0.4121:sonar[m [1m(default-cli)[m @ [36mcompile-testing[0;1m ---[m
+[[1;33mWARNING[m] 21:54:52.642 Using an unspecified version instead of an explicit plugin version may introduce breaking analysis changes at an unwanted time. It is highly recommended to use an explicit version, e.g. 'org.sonarsource.scanner.maven:sonar-maven-plugin:4.0.0.4121'.
+[[1;34mINFO[m] 21:54:52.648 Java 21.0.6 Oracle Corporation (64-bit)
+[[1;34mINFO[m] 21:54:52.648 Linux 6.12.74+deb12-amd64 (amd64)
+[[1;34mINFO[m] 21:54:52.759 User cache: /home/mateus/.sonar/cache
+[[1;34mINFO[m] 21:54:52.816 Communicating with SonarQube Server 26.2.0.119303
+[[1;34mINFO[m] 21:54:52.828 Default locale: "pt_BR", source code encoding: "UTF-8" (analysis is platform dependent)
+[[1;34mINFO[m] 21:54:53.380 Load global settings
+[[1;34mINFO[m] 21:54:53.452 Load global settings (done) | time=73ms
+[[1;34mINFO[m] 21:54:53.462 Server id: 147B411E-AZxiei4aNYKBggPWvmPT
+[[1;34mINFO[m] 21:54:53.467 Loading required plugins
+[[1;34mINFO[m] 21:54:53.467 Load plugins index
+[[1;34mINFO[m] 21:54:53.496 Load plugins index (done) | time=29ms
+[[1;34mINFO[m] 21:54:53.496 Load/download plugins
+[[1;34mINFO[m] 21:54:53.504 Load/download plugins (done) | time=8ms
+[[1;34mINFO[m] 21:54:53.738 Process project properties
+[[1;34mINFO[m] 21:54:53.748 Process project properties (done) | time=10ms
+[[1;34mINFO[m] 21:54:53.756 Project key: google-compile-testing-13
+[[1;34mINFO[m] 21:54:53.756 Base dir: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/compile-testing
+[[1;34mINFO[m] 21:54:53.756 Working dir: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/compile-testing/target/sonar
+[[1;34mINFO[m] 21:54:53.762 Load project settings for component key: 'google-compile-testing-13'
+[[1;34mINFO[m] 21:54:53.780 Load quality profiles
+[[1;34mINFO[m] 21:54:53.845 Load quality profiles (done) | time=65ms
+[[1;34mINFO[m] 21:54:53.867 Load active rules
+[[1;34mINFO[m] 21:54:54.110 Load active rules (done) | time=243ms
+[[1;34mINFO[m] 21:54:54.116 Load analysis cache
+[[1;34mINFO[m] 21:54:54.122 Load analysis cache (404) | time=6ms
+[[1;34mINFO[m] 21:54:54.232 Preprocessing files...
+[[1;34mINFO[m] 21:54:54.263 2 languages detected in 47 preprocessed files (done) | time=30ms
+[[1;34mINFO[m] 21:54:54.265 Loading plugins for detected languages
+[[1;34mINFO[m] 21:54:54.265 Load/download plugins
+[[1;34mINFO[m] 21:54:54.271 Load/download plugins (done) | time=6ms
+[[1;34mINFO[m] 21:54:54.359 Load project repositories
+[[1;34mINFO[m] 21:54:54.363 Load project repositories (done) | time=4ms
+[[1;34mINFO[m] 21:54:54.379 Indexing files...
+[[1;34mINFO[m] 21:54:54.379 Project configuration:
+[[1;34mINFO[m] 21:54:54.388 47 files indexed (done) | time=9ms
+[[1;34mINFO[m] 21:54:54.389 Quality profile for java: Sonar way
+[[1;34mINFO[m] 21:54:54.389 Quality profile for xml: Sonar way
+[[1;34mINFO[m] 21:54:54.389 ------------- Run sensors on module compile-testing
+[[1;34mINFO[m] 21:54:54.432 Load metrics repository
+[[1;34mINFO[m] 21:54:54.451 Load metrics repository (done) | time=19ms
+[[1;34mINFO[m] 21:54:54.989 Sensor JavaSensor [java]
+[[1;34mINFO[m] 21:54:54.992 Configured Java source version (sonar.java.source): 8, preview features enabled (sonar.java.enablePreview): false
+[[1;34mINFO[m] 21:54:55.005 Server-side caching is enabled. The Java analyzer will not try to leverage data from a previous analysis.
+[[1;34mINFO[m] 21:54:55.006 Using ECJ batch to parse 24 Main java source files with batch size 390 KB.
+[[1;34mINFO[m] 21:54:55.227 Starting batch processing.
+[[1;34mINFO[m] 21:54:55.768 The Java analyzer cannot skip unchanged files in this context. A full analysis is performed for all files.
+[[1;34mINFO[m] 21:54:58.341 100% analyzed
+[[1;34mINFO[m] 21:54:58.341 Batch processing: Done.
+[[1;34mINFO[m] 21:54:58.342 Did not optimize analysis for any files, performed a full analysis for all 24 files.
+[[1;34mINFO[m] 21:54:58.343 Using ECJ batch to parse 22 Test java source files with batch size 390 KB.
+[[1;34mINFO[m] 21:54:58.358 Starting batch processing.
+[[1;34mINFO[m] 21:54:58.918 100% analyzed
+[[1;34mINFO[m] 21:54:58.919 Batch processing: Done.
+[[1;34mINFO[m] 21:54:58.919 Did not optimize analysis for any files, performed a full analysis for all 22 files.
+[[1;34mINFO[m] 21:54:58.919 No "Generated" source files to scan.
+[[1;34mINFO[m] 21:54:58.921 Sensor JavaSensor [java] (done) | time=3932ms
+[[1;34mINFO[m] 21:54:58.921 Sensor SurefireSensor [java]
+[[1;34mINFO[m] 21:54:58.922 parsing [/home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/compile-testing/target/surefire-reports]
+[[1;34mINFO[m] 21:54:58.922 Sensor SurefireSensor [java] (done) | time=1ms
+[[1;34mINFO[m] 21:54:58.922 Sensor XML Sensor [xml]
+[[1;34mINFO[m] 21:54:58.928 1 source file to be analyzed
+[[1;34mINFO[m] 21:54:59.057 1/1 source file has been analyzed
+[[1;34mINFO[m] 21:54:59.058 Sensor XML Sensor [xml] (done) | time=136ms
+[[1;34mINFO[m] 21:54:59.058 Sensor JaCoCo XML Report Importer [jacoco]
+[[1;34mINFO[m] 21:54:59.059 'sonar.coverage.jacoco.xmlReportPaths' is not defined. Using default locations: target/site/jacoco/jacoco.xml,target/site/jacoco-it/jacoco.xml,build/reports/jacoco/test/jacocoTestReport.xml
+[[1;34mINFO[m] 21:54:59.059 No report imported, no coverage information will be imported by JaCoCo XML Report Importer
+[[1;34mINFO[m] 21:54:59.059 Sensor JaCoCo XML Report Importer [jacoco] (done) | time=1ms
+[[1;34mINFO[m] 21:54:59.059 Sensor IaC hadolint report Sensor [iac]
+[[1;34mINFO[m] 21:54:59.060 Sensor IaC hadolint report Sensor [iac] (done) | time=1ms
+[[1;34mINFO[m] 21:54:59.060 Sensor Java Config Sensor [iac]
+[[1;34mINFO[m] 21:54:59.064 There are no files to be analyzed for the Java language
+[[1;34mINFO[m] 21:54:59.065 Sensor Java Config Sensor [iac] (done) | time=5ms
+[[1;34mINFO[m] 21:54:59.065 Sensor IaC Docker Sensor [iac]
+[[1;34mINFO[m] 21:54:59.066 There are no files to be analyzed for the Docker language
+[[1;34mINFO[m] 21:54:59.066 Sensor IaC Docker Sensor [iac] (done) | time=1ms
+[[1;34mINFO[m] 21:54:59.066 Sensor TextAndSecretsSensor [text]
+[[1;34mINFO[m] 21:54:59.073 Available processors: 16
+[[1;34mINFO[m] 21:54:59.073 Using 16 threads for analysis.
+[[1;34mINFO[m] 21:54:59.322 Start fetching files for the text and secrets analysis
+[[1;34mINFO[m] 21:54:59.328 Using Git CLI to retrieve dirty files
+[[1;34mINFO[m] 21:54:59.337 Retrieving language associated files and files included via "sonar.text.inclusions" that are tracked by git
+[[1;34mINFO[m] 21:54:59.338 Starting the text and secrets analysis
+[[1;34mINFO[m] 21:54:59.340 47 source files to be analyzed for the text and secrets analysis
+[[1;34mINFO[m] 21:54:59.448 47/47 source files have been analyzed for the text and secrets analysis
+[[1;34mINFO[m] 21:54:59.450 Sensor TextAndSecretsSensor [text] (done) | time=384ms
+[[1;34mINFO[m] 21:54:59.453 ------------- Run sensors on project
+[[1;34mINFO[m] 21:54:59.553 Sensor JavaProjectSensor [java]
+[[1;34mINFO[m] 21:54:59.555 Sensor JavaProjectSensor [java] (done) | time=2ms
+[[1;34mINFO[m] 21:54:59.555 Sensor Zero Coverage Sensor
+[[1;34mINFO[m] 21:54:59.569 Sensor Zero Coverage Sensor (done) | time=14ms
+[[1;34mINFO[m] 21:54:59.569 Sensor Java CPD Block Indexer
+[[1;34mINFO[m] 21:54:59.619 Sensor Java CPD Block Indexer (done) | time=50ms
+[[1;34mINFO[m] 21:54:59.619 ------------- Gather SCA dependencies on project
+[[1;34mINFO[m] 21:54:59.622 Dependency analysis skipped
+[[1;34mINFO[m] 21:54:59.623 SCM Publisher is disabled
+[[1;34mINFO[m] 21:54:59.628 CPD Executor 7 files had no CPD blocks
+[[1;34mINFO[m] 21:54:59.628 CPD Executor Calculating CPD for 17 files
+[[1;34mINFO[m] 21:54:59.635 CPD Executor CPD calculation finished (done) | time=7ms
+[[1;34mINFO[m] 21:54:59.782 Analysis report generated in 138ms, dir size=884.3 kB
+[[1;34mINFO[m] 21:54:59.855 Analysis report compressed in 73ms, zip size=259.3 kB
+[[1;34mINFO[m] 21:55:00.402 Analysis report uploaded in 546ms
+[[1;34mINFO[m] 21:55:00.404 ANALYSIS SUCCESSFUL, you can find the results at: http://localhost:9000/dashboard?id=google-compile-testing-13
+[[1;34mINFO[m] 21:55:00.404 Note that you will be able to access the updated dashboard once the server has processed the submitted analysis report
+[[1;34mINFO[m] 21:55:00.404 More about the report processing at http://localhost:9000/api/ce/task?id=9f15b2b8-7e18-44ad-9546-6339fa5ceed0
+[[1;34mINFO[m] 21:55:00.418 Analysis total time: 6.868 s
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;32mBUILD SUCCESS[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  8.170 s
+[[1;34mINFO[m] Finished at: 2026-04-22T21:55:00-03:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[0m[0m

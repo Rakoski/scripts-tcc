@@ -1,0 +1,697 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] Some problems were encountered while building the effective model for com.google.http-client:google-http-client:jar:2.0.3
+[[1;33mWARNING[m] 'build.pluginManagement.plugins.plugin.(groupId:artifactId)' must be unique but found duplicate declaration of plugin org.apache.maven.plugins:maven-source-plugin @ com.google.http-client:google-http-client-parent:2.0.3, /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/google-http-java-client/pom.xml, line 397, column 17
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] Some problems were encountered while building the effective model for com.google.http-client:google-http-client-parent:pom:2.0.3
+[[1;33mWARNING[m] 'build.pluginManagement.plugins.plugin.(groupId:artifactId)' must be unique but found duplicate declaration of plugin org.apache.maven.plugins:maven-source-plugin @ line 397, column 17
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] It is highly recommended to fix these problems because they threaten the stability of your build.
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] For this reason, future Maven versions might no longer support building such malformed projects.
+[[1;33mWARNING[m] 
+[[1;34mINFO[m] Inspecting build with total of 15 modules...
+[[1;34mINFO[m] Installing Nexus Staging features:
+[[1;34mINFO[m]   ... total of 15 executions of maven-deploy-plugin replaced with nexus-staging-maven-plugin
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] Detecting the operating system and CPU architecture
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] os.detected.name: linux
+[[1;34mINFO[m] os.detected.arch: x86_64
+[[1;34mINFO[m] os.detected.bitness: 64
+[[1;34mINFO[m] os.detected.version: 6.12
+[[1;34mINFO[m] os.detected.version.major: 6
+[[1;34mINFO[m] os.detected.version.minor: 12
+[[1;34mINFO[m] os.detected.release: debian
+[[1;34mINFO[m] os.detected.release.version: 12
+[[1;34mINFO[m] os.detected.release.like.debian: true
+[[1;34mINFO[m] os.detected.classifier: linux-x86_64
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1mReactor Build Order:[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] Parent for the Google HTTP Client Library for Java                 [pom]
+[[1;34mINFO[m] Google HTTP Client Library for Java                                [jar]
+[[1;34mINFO[m] Android Platform Extensions to the Google HTTP Client Library for Java. [jar]
+[[1;34mINFO[m] Apache HTTP transport v2 for the Google HTTP Client Library for Java. [jar]
+[[1;34mINFO[m] Shared classes used for testing of artifacts in the Google HTTP Client Library for Java. [jar]
+[[1;34mINFO[m] Google App Engine extensions to the Google HTTP Client Library for Java. [jar]
+[[1;34mINFO[m] GSON extensions to the Google HTTP Client Library for Java.        [jar]
+[[1;34mINFO[m] Jackson 2 extensions to the Google HTTP Client Library for Java.   [jar]
+[[1;34mINFO[m] Protocol Buffer extensions to the Google HTTP Client Library for Java. [jar]
+[[1;34mINFO[m] XML extensions to the Google HTTP Client Library for Java.         [jar]
+[[1;34mINFO[m] Assembly for the Google HTTP Client Library for Java               [pom]
+[[1;34mINFO[m] Apache HTTP transport v5 for the Google HTTP Client Library for Java. [jar]
+[[1;34mINFO[m] Google APIs Client Library Findbugs custom plugin.                 [jar]
+[[1;34mINFO[m] Simple example for the Dailymotion API.                            [jar]
+[[1;34mINFO[m] Google HTTP Client Library for Java BOM                            [pom]
+[[1;33mWARNING[m] The artifact org.codehaus.mojo:sonar-maven-plugin:jar:4.0.0.4121 has been relocated to org.sonarsource.scanner.maven:sonar-maven-plugin:jar:4.0.0.4121: SonarQube plugin was moved to SonarSource organisation
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m----------< [0;36mcom.google.http-client:google-http-client-parent[0;1m >----------[m
+[[1;34mINFO[m] [1mBuilding Parent for the Google HTTP Client Library for Java 2.0.3 [1/15][m
+[[1;34mINFO[m] [1m--------------------------------[ pom ]---------------------------------[m
+Downloading from central: https://repo.maven.apache.org/maven2/com/google/http-client/google-http-client/2.0.3/google-http-client-2.0.3.jar
+Progress (1): 2.3/297 kBProgress (1): 5.0/297 kBProgress (1): 7.7/297 kBProgress (1): 10/297 kB Progress (1): 14/297 kBProgress (1): 16/297 kBProgress (1): 19/297 kBProgress (1): 22/297 kBProgress (1): 25/297 kBProgress (1): 27/297 kBProgress (1): 30/297 kBProgress (1): 33/297 kBProgress (1): 36/297 kBProgress (1): 38/297 kBProgress (1): 41/297 kBProgress (1): 44/297 kBProgress (1): 47/297 kBProgress (1): 49/297 kBProgress (1): 52/297 kBProgress (1): 55/297 kBProgress (1): 59/297 kBProgress (1): 63/297 kBProgress (1): 67/297 kBProgress (1): 71/297 kBProgress (1): 75/297 kBProgress (1): 79/297 kBProgress (1): 83/297 kBProgress (1): 87/297 kBProgress (1): 92/297 kBProgress (1): 96/297 kBProgress (1): 100/297 kBProgress (1): 104/297 kBProgress (1): 108/297 kBProgress (1): 112/297 kBProgress (1): 116/297 kBProgress (1): 120/297 kBProgress (1): 122/297 kBProgress (1): 126/297 kBProgress (1): 131/297 kBProgress (1): 135/297 kBProgress (1): 139/297 kBProgress (1): 143/297 kBProgress (1): 147/297 kBProgress (1): 151/297 kBProgress (1): 155/297 kBProgress (1): 159/297 kBProgress (1): 163/297 kBProgress (1): 167/297 kBProgress (1): 172/297 kBProgress (1): 176/297 kBProgress (1): 180/297 kBProgress (1): 182/297 kBProgress (1): 186/297 kBProgress (1): 190/297 kBProgress (1): 194/297 kBProgress (1): 198/297 kBProgress (1): 202/297 kBProgress (1): 206/297 kBProgress (1): 210/297 kBProgress (1): 215/297 kBProgress (1): 219/297 kBProgress (1): 223/297 kBProgress (1): 227/297 kBProgress (1): 231/297 kBProgress (1): 235/297 kBProgress (1): 239/297 kBProgress (1): 243/297 kBProgress (1): 247/297 kBProgress (1): 251/297 kBProgress (1): 256/297 kBProgress (1): 260/297 kBProgress (1): 262/297 kBProgress (1): 266/297 kBProgress (1): 269/297 kBProgress (1): 273/297 kBProgress (1): 277/297 kBProgress (1): 281/297 kBProgress (1): 285/297 kBProgress (1): 290/297 kBProgress (1): 294/297 kBProgress (1): 297 kB                        Downloaded from central: https://repo.maven.apache.org/maven2/com/google/http-client/google-http-client/2.0.3/google-http-client-2.0.3.jar (297 kB at 407 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/com/google/http-client/google-http-client-test/2.0.3/google-http-client-test-2.0.3.jar
+Progress (1): 4.1/61 kBProgress (1): 7.7/61 kBProgress (1): 12/61 kB Progress (1): 16/61 kBProgress (1): 20/61 kBProgress (1): 24/61 kBProgress (1): 28/61 kBProgress (1): 32/61 kBProgress (1): 36/61 kBProgress (1): 40/61 kBProgress (1): 45/61 kBProgress (1): 49/61 kBProgress (1): 53/61 kBProgress (1): 57/61 kBProgress (1): 61/61 kBProgress (1): 61 kB                      Downloaded from central: https://repo.maven.apache.org/maven2/com/google/http-client/google-http-client-test/2.0.3/google-http-client-test-2.0.3.jar (61 kB at 178 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/com/google/http-client/google-http-client-jackson2/2.0.3/google-http-client-jackson2-2.0.3.jar
+Downloading from central: https://repo.maven.apache.org/maven2/com/google/http-client/google-http-client-gson/2.0.3/google-http-client-gson-2.0.3.jar
+Downloading from central: https://repo.maven.apache.org/maven2/com/google/http-client/google-http-client-apache-v2/2.0.3/google-http-client-apache-v2-2.0.3.jar
+Downloading from central: https://repo.maven.apache.org/maven2/com/google/http-client/google-http-client-appengine/2.0.3/google-http-client-appengine-2.0.3.jar
+Downloading from central: https://repo.maven.apache.org/maven2/com/google/http-client/google-http-client-android/2.0.3/google-http-client-android-2.0.3.jar
+Progress (1): 4.1/13 kBProgress (1): 7.7/13 kBProgress (1): 12/13 kB Progress (1): 13 kB                      Downloaded from central: https://repo.maven.apache.org/maven2/com/google/http-client/google-http-client-gson/2.0.3/google-http-client-gson-2.0.3.jar (13 kB at 85 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/com/google/http-client/google-http-client-protobuf/2.0.3/google-http-client-protobuf-2.0.3.jar
+Progress (1): 2.3/20 kBProgress (1): 5.0/20 kBProgress (1): 7.7/20 kBProgress (1): 10/20 kB Progress (1): 13/20 kBProgress (1): 16/20 kBProgress (1): 18/20 kBProgress (1): 20 kB   Progress (2): 20 kB | 2.7/9.7 kBProgress (2): 20 kB | 5.5/9.7 kBProgress (2): 20 kB | 8.2/9.7 kBProgress (2): 20 kB | 9.7 kB    Progress (3): 20 kB | 9.7 kB | 2.3/12 kBProgress (3): 20 kB | 9.7 kB | 4.7/12 kBProgress (3): 20 kB | 9.7 kB | 7.5/12 kBProgress (3): 20 kB | 9.7 kB | 10/12 kB Progress (3): 20 kB | 9.7 kB | 12 kB                                       Downloaded from central: https://repo.maven.apache.org/maven2/com/google/http-client/google-http-client-appengine/2.0.3/google-http-client-appengine-2.0.3.jar (20 kB at 99 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/com/google/http-client/google-http-client-xml/2.0.3/google-http-client-xml-2.0.3.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/com/google/http-client/google-http-client-apache-v2/2.0.3/google-http-client-apache-v2-2.0.3.jar (12 kB at 47 kB/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/com/google/http-client/google-http-client-jackson2/2.0.3/google-http-client-jackson2-2.0.3.jar (9.7 kB at 39 kB/s)
+Progress (1): 2.3/17 kBProgress (1): 5.0/17 kBProgress (1): 7.7/17 kBProgress (1): 10/17 kB Progress (1): 13/17 kBProgress (1): 16/17 kBProgress (2): 16/17 kB | 4.1/8.2 kBProgress (2): 17 kB | 4.1/8.2 kB   Progress (2): 17 kB | 7.7/8.2 kBProgress (2): 17 kB | 8.2 kB                                Downloaded from central: https://repo.maven.apache.org/maven2/com/google/http-client/google-http-client-android/2.0.3/google-http-client-android-2.0.3.jar (17 kB at 38 kB/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/com/google/http-client/google-http-client-protobuf/2.0.3/google-http-client-protobuf-2.0.3.jar (8.2 kB at 18 kB/s)
+Progress (1): 2.7/32 kBProgress (1): 5.5/32 kBProgress (1): 8.2/32 kBProgress (1): 11/32 kB Progress (1): 14/32 kBProgress (1): 17/32 kBProgress (1): 20/32 kBProgress (1): 22/32 kBProgress (1): 25/32 kBProgress (1): 28/32 kBProgress (1): 31/32 kBProgress (1): 32 kB                      Downloaded from central: https://repo.maven.apache.org/maven2/com/google/http-client/google-http-client-xml/2.0.3/google-http-client-xml-2.0.3.jar (32 kB at 52 kB/s)
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32msonar-maven-plugin:4.0.0.4121:sonar[m [1m(default-cli)[m @ [36mgoogle-http-client-parent[0;1m ---[m
+[[1;33mWARNING[m] 21:52:40.911 Using an unspecified version instead of an explicit plugin version may introduce breaking analysis changes at an unwanted time. It is highly recommended to use an explicit version, e.g. 'org.sonarsource.scanner.maven:sonar-maven-plugin:4.0.0.4121'.
+[[1;34mINFO[m] 21:52:40.917 Java 21.0.6 Oracle Corporation (64-bit)
+[[1;34mINFO[m] 21:52:40.917 Linux 6.12.74+deb12-amd64 (amd64)
+[[1;34mINFO[m] 21:52:40.939 User cache: /home/mateus/.sonar/cache
+[[1;34mINFO[m] 21:52:40.971 Communicating with SonarQube Server 26.2.0.119303
+[[1;34mINFO[m] 21:52:41.026 Default locale: "pt_BR", source code encoding: "UTF-8"
+[[1;34mINFO[m] 21:52:41.483 Load global settings
+[[1;34mINFO[m] 21:52:41.559 Load global settings (done) | time=77ms
+[[1;34mINFO[m] 21:52:41.567 Server id: 147B411E-AZxiei4aNYKBggPWvmPT
+[[1;34mINFO[m] 21:52:41.571 Loading required plugins
+[[1;34mINFO[m] 21:52:41.572 Load plugins index
+[[1;34mINFO[m] 21:52:41.603 Load plugins index (done) | time=31ms
+[[1;34mINFO[m] 21:52:41.603 Load/download plugins
+[[1;34mINFO[m] 21:52:41.621 Load/download plugins (done) | time=18ms
+[[1;34mINFO[m] 21:52:41.805 Process project properties
+[[1;34mINFO[m] 21:52:41.818 Process project properties (done) | time=13ms
+[[1;34mINFO[m] 21:52:41.825 Project key: google-http-java-client-10
+[[1;34mINFO[m] 21:52:41.825 Base dir: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/google-http-java-client
+[[1;34mINFO[m] 21:52:41.825 Working dir: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/google-http-java-client/target/sonar
+[[1;34mINFO[m] 21:52:41.830 Load project settings for component key: 'google-http-java-client-10'
+[[1;34mINFO[m] 21:52:41.860 Load quality profiles
+[[1;34mINFO[m] 21:52:41.913 Load quality profiles (done) | time=53ms
+[[1;34mINFO[m] 21:52:41.936 Load active rules
+[[1;34mINFO[m] 21:52:42.271 Load active rules (done) | time=335ms
+[[1;34mINFO[m] 21:52:42.279 Load analysis cache
+[[1;34mINFO[m] 21:52:42.284 Load analysis cache (404) | time=5ms
+[[1;34mINFO[m] 21:52:42.401 Preprocessing files...
+[[1;34mINFO[m] 21:52:42.495 2 languages detected in 323 preprocessed files (done) | time=92ms
+[[1;34mINFO[m] 21:52:42.496 Loading plugins for detected languages
+[[1;34mINFO[m] 21:52:42.496 Load/download plugins
+[[1;34mINFO[m] 21:52:42.501 Load/download plugins (done) | time=5ms
+[[1;34mINFO[m] 21:52:42.573 Load project repositories
+[[1;34mINFO[m] 21:52:42.578 Load project repositories (done) | time=5ms
+[[1;34mINFO[m] 21:52:42.589 Indexing files...
+[[1;34mINFO[m] 21:52:42.589 Project configuration:
+[[1;34mINFO[m] 21:52:42.590 Indexing files of module 'google-http-java-client'
+[[1;34mINFO[m] 21:52:42.590   Base dir: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/google-http-java-client/samples/dailymotion-simple-cmdline-sample
+[[1;34mINFO[m] 21:52:42.591   Source paths: pom.xml, src/main/java
+[[1;34mINFO[m] 21:52:42.594 Indexing files of module 'google-http-java-client'
+[[1;34mINFO[m] 21:52:42.594   Base dir: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/google-http-java-client/google-http-client
+[[1;34mINFO[m] 21:52:42.594   Source paths: pom.xml, src/main/java
+[[1;34mINFO[m] 21:52:42.594   Test paths: src/test/java
+[[1;34mINFO[m] 21:52:42.600 Indexing files of module 'google-http-java-client'
+[[1;34mINFO[m] 21:52:42.600   Base dir: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/google-http-java-client/google-http-client-android
+[[1;34mINFO[m] 21:52:42.600   Source paths: pom.xml, src/main/java
+[[1;34mINFO[m] 21:52:42.601 Indexing files of module 'google-http-java-client'
+[[1;34mINFO[m] 21:52:42.601   Base dir: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/google-http-java-client/google-http-client-apache-v2
+[[1;34mINFO[m] 21:52:42.601   Source paths: pom.xml, src/main/java
+[[1;34mINFO[m] 21:52:42.601   Test paths: src/test/java
+[[1;34mINFO[m] 21:52:42.601 Indexing files of module 'google-http-java-client'
+[[1;34mINFO[m] 21:52:42.601   Base dir: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/google-http-java-client/google-http-client-apache-v5
+[[1;34mINFO[m] 21:52:42.601   Source paths: pom.xml, src/main/java
+[[1;34mINFO[m] 21:52:42.601   Test paths: src/test/java
+[[1;34mINFO[m] 21:52:42.602 Indexing files of module 'google-http-java-client'
+[[1;34mINFO[m] 21:52:42.602   Base dir: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/google-http-java-client/google-http-client-appengine
+[[1;34mINFO[m] 21:52:42.602   Source paths: pom.xml, src/main/java
+[[1;34mINFO[m] 21:52:42.602   Test paths: src/test/java
+[[1;34mINFO[m] 21:52:42.602 Indexing files of module 'google-http-java-client'
+[[1;34mINFO[m] 21:52:42.603   Base dir: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/google-http-java-client/google-http-client-assembly
+[[1;34mINFO[m] 21:52:42.603   Source paths: pom.xml
+[[1;34mINFO[m] 21:52:42.603 Indexing files of module 'google-http-java-client'
+[[1;34mINFO[m] 21:52:42.603   Base dir: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/google-http-java-client/google-http-client-bom
+[[1;34mINFO[m] 21:52:42.603   Source paths: pom.xml
+[[1;34mINFO[m] 21:52:42.603 Indexing files of module 'google-http-java-client'
+[[1;34mINFO[m] 21:52:42.603   Base dir: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/google-http-java-client/google-http-client-findbugs
+[[1;34mINFO[m] 21:52:42.603   Source paths: pom.xml, src/main/java
+[[1;34mINFO[m] 21:52:42.604 Indexing files of module 'google-http-java-client'
+[[1;34mINFO[m] 21:52:42.604   Base dir: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/google-http-java-client/google-http-client-gson
+[[1;34mINFO[m] 21:52:42.604   Source paths: pom.xml, src/main/java
+[[1;34mINFO[m] 21:52:42.604   Test paths: src/test/java
+[[1;34mINFO[m] 21:52:42.604 Indexing files of module 'google-http-java-client'
+[[1;34mINFO[m] 21:52:42.604   Base dir: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/google-http-java-client/google-http-client-jackson2
+[[1;34mINFO[m] 21:52:42.604   Source paths: pom.xml, src/main/java
+[[1;34mINFO[m] 21:52:42.604   Test paths: src/test/java
+[[1;34mINFO[m] 21:52:42.605 Indexing files of module 'google-http-java-client'
+[[1;34mINFO[m] 21:52:42.605   Base dir: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/google-http-java-client/google-http-client-protobuf
+[[1;34mINFO[m] 21:52:42.605   Source paths: pom.xml, src/main/java
+[[1;34mINFO[m] 21:52:42.605   Test paths: src/test/java
+[[1;34mINFO[m] 21:52:42.605 Indexing files of module 'google-http-java-client'
+[[1;34mINFO[m] 21:52:42.605   Base dir: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/google-http-java-client/google-http-client-test
+[[1;34mINFO[m] 21:52:42.605   Source paths: pom.xml, src/main/java
+[[1;34mINFO[m] 21:52:42.605   Test paths: src/test/java
+[[1;34mINFO[m] 21:52:42.606 Indexing files of module 'google-http-java-client'
+[[1;34mINFO[m] 21:52:42.606   Base dir: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/google-http-java-client/google-http-client-xml
+[[1;34mINFO[m] 21:52:42.606   Source paths: pom.xml, src/main/java
+[[1;34mINFO[m] 21:52:42.606   Test paths: src/test/java
+[[1;34mINFO[m] 21:52:42.606 Indexing files of module 'google-http-java-client'
+[[1;34mINFO[m] 21:52:42.606   Base dir: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/google-http-java-client
+[[1;34mINFO[m] 21:52:42.606   Source paths: pom.xml
+[[1;34mINFO[m] 21:52:42.607 323 files indexed (done) | time=18ms
+[[1;34mINFO[m] 21:52:42.607 Quality profile for java: Sonar way
+[[1;34mINFO[m] 21:52:42.607 Quality profile for xml: Sonar way
+[[1;34mINFO[m] 21:52:42.607 ------------- Run sensors on module google-http-java-client
+[[1;34mINFO[m] 21:52:42.638 Load metrics repository
+[[1;34mINFO[m] 21:52:42.656 Load metrics repository (done) | time=18ms
+[[1;34mINFO[m] 21:52:43.136 Sensor XML Sensor [xml]
+[[1;34mINFO[m] 21:52:43.142 1 source file to be analyzed
+[[1;34mINFO[m] 21:52:43.270 1/1 source file has been analyzed
+[[1;34mINFO[m] 21:52:43.270 Sensor XML Sensor [xml] (done) | time=134ms
+[[1;34mINFO[m] 21:52:43.270 Sensor JaCoCo XML Report Importer [jacoco]
+[[1;34mINFO[m] 21:52:43.271 'sonar.coverage.jacoco.xmlReportPaths' is not defined. Using default locations: target/site/jacoco/jacoco.xml,target/site/jacoco-it/jacoco.xml,build/reports/jacoco/test/jacocoTestReport.xml
+[[1;34mINFO[m] 21:52:43.271 No report imported, no coverage information will be imported by JaCoCo XML Report Importer
+[[1;34mINFO[m] 21:52:43.271 Sensor JaCoCo XML Report Importer [jacoco] (done) | time=1ms
+[[1;34mINFO[m] 21:52:43.271 Sensor IaC hadolint report Sensor [iac]
+[[1;34mINFO[m] 21:52:43.272 Sensor IaC hadolint report Sensor [iac] (done) | time=1ms
+[[1;34mINFO[m] 21:52:43.272 Sensor Java Config Sensor [iac]
+[[1;34mINFO[m] 21:52:43.275 There are no files to be analyzed for the Java language
+[[1;34mINFO[m] 21:52:43.275 Sensor Java Config Sensor [iac] (done) | time=3ms
+[[1;34mINFO[m] 21:52:43.275 Sensor IaC Docker Sensor [iac]
+[[1;34mINFO[m] 21:52:43.275 There are no files to be analyzed for the Docker language
+[[1;34mINFO[m] 21:52:43.275 Sensor IaC Docker Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:43.277 ------------- Run sensors on module google-http-java-client
+[[1;34mINFO[m] 21:52:43.326 Sensor JavaSensor [java]
+[[1;34mINFO[m] 21:52:43.328 Configured Java source version (sonar.java.source): 8, preview features enabled (sonar.java.enablePreview): false
+[[1;34mINFO[m] 21:52:43.337 Server-side caching is enabled. The Java analyzer will not try to leverage data from a previous analysis.
+[[1;34mINFO[m] 21:52:43.337 Using ECJ batch to parse 14 Main java source files with batch size 390 KB.
+[[1;34mINFO[m] 21:52:43.493 Starting batch processing.
+[[1;34mINFO[m] 21:52:43.769 The Java analyzer cannot skip unchanged files in this context. A full analysis is performed for all files.
+[[1;34mINFO[m] 21:52:45.233 100% analyzed
+[[1;34mINFO[m] 21:52:45.233 Batch processing: Done.
+[[1;34mINFO[m] 21:52:45.234 Did not optimize analysis for any files, performed a full analysis for all 14 files.
+[[1;34mINFO[m] 21:52:45.235 Using ECJ batch to parse 7 Test java source files with batch size 390 KB.
+[[1;34mINFO[m] 21:52:45.245 Starting batch processing.
+[[1;34mINFO[m] 21:52:45.557 100% analyzed
+[[1;34mINFO[m] 21:52:45.557 Batch processing: Done.
+[[1;34mINFO[m] 21:52:45.557 Did not optimize analysis for any files, performed a full analysis for all 7 files.
+[[1;34mINFO[m] 21:52:45.557 No "Generated" source files to scan.
+[[1;34mINFO[m] 21:52:45.558 Sensor JavaSensor [java] (done) | time=2232ms
+[[1;34mINFO[m] 21:52:45.558 Sensor SurefireSensor [java]
+[[1;34mINFO[m] 21:52:45.558 parsing [/home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/google-http-java-client/google-http-client-xml/target/surefire-reports]
+[[1;34mINFO[m] 21:52:45.559 Sensor SurefireSensor [java] (done) | time=1ms
+[[1;34mINFO[m] 21:52:45.559 Sensor XML Sensor [xml]
+[[1;34mINFO[m] 21:52:45.559 1 source file to be analyzed
+[[1;34mINFO[m] 21:52:45.569 1/1 source file has been analyzed
+[[1;34mINFO[m] 21:52:45.569 Sensor XML Sensor [xml] (done) | time=10ms
+[[1;34mINFO[m] 21:52:45.569 Sensor JaCoCo XML Report Importer [jacoco]
+[[1;34mINFO[m] 21:52:45.569 'sonar.coverage.jacoco.xmlReportPaths' is not defined. Using default locations: target/site/jacoco/jacoco.xml,target/site/jacoco-it/jacoco.xml,build/reports/jacoco/test/jacocoTestReport.xml
+[[1;34mINFO[m] 21:52:45.570 No report imported, no coverage information will be imported by JaCoCo XML Report Importer
+[[1;34mINFO[m] 21:52:45.570 Sensor JaCoCo XML Report Importer [jacoco] (done) | time=1ms
+[[1;34mINFO[m] 21:52:45.570 Sensor IaC hadolint report Sensor [iac]
+[[1;34mINFO[m] 21:52:45.570 Sensor IaC hadolint report Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:45.570 Sensor Java Config Sensor [iac]
+[[1;34mINFO[m] 21:52:45.571 There are no files to be analyzed for the Java language
+[[1;34mINFO[m] 21:52:45.571 Sensor Java Config Sensor [iac] (done) | time=1ms
+[[1;34mINFO[m] 21:52:45.571 Sensor IaC Docker Sensor [iac]
+[[1;34mINFO[m] 21:52:45.571 There are no files to be analyzed for the Docker language
+[[1;34mINFO[m] 21:52:45.571 Sensor IaC Docker Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:45.572 ------------- Run sensors on module google-http-java-client
+[[1;34mINFO[m] 21:52:45.611 Sensor JavaSensor [java]
+[[1;34mINFO[m] 21:52:45.611 Configured Java source version (sonar.java.source): 8, preview features enabled (sonar.java.enablePreview): false
+[[1;34mINFO[m] 21:52:45.613 Server-side caching is enabled. The Java analyzer will not try to leverage data from a previous analysis.
+[[1;34mINFO[m] 21:52:45.614 Using ECJ batch to parse 2 Main java source files with batch size 390 KB.
+[[1;34mINFO[m] 21:52:45.615 Starting batch processing.
+[[1;34mINFO[m] 21:52:45.623 The Java analyzer cannot skip unchanged files in this context. A full analysis is performed for all files.
+[[1;34mINFO[m] 21:52:45.718 100% analyzed
+[[1;34mINFO[m] 21:52:45.718 Batch processing: Done.
+[[1;34mINFO[m] 21:52:45.718 Did not optimize analysis for any files, performed a full analysis for all 2 files.
+[[1;34mINFO[m] 21:52:45.719 No "Test" source files to scan.
+[[1;34mINFO[m] 21:52:45.719 No "Generated" source files to scan.
+[[1;34mINFO[m] 21:52:45.719 Sensor JavaSensor [java] (done) | time=108ms
+[[1;34mINFO[m] 21:52:45.719 Sensor SurefireSensor [java]
+[[1;34mINFO[m] 21:52:45.719 parsing [/home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/google-http-java-client/google-http-client-findbugs/target/surefire-reports]
+[[1;34mINFO[m] 21:52:45.719 Sensor SurefireSensor [java] (done) | time=0ms
+[[1;34mINFO[m] 21:52:45.719 Sensor XML Sensor [xml]
+[[1;34mINFO[m] 21:52:45.720 1 source file to be analyzed
+[[1;34mINFO[m] 21:52:45.726 1/1 source file has been analyzed
+[[1;34mINFO[m] 21:52:45.726 Sensor XML Sensor [xml] (done) | time=7ms
+[[1;34mINFO[m] 21:52:45.726 Sensor JaCoCo XML Report Importer [jacoco]
+[[1;34mINFO[m] 21:52:45.726 'sonar.coverage.jacoco.xmlReportPaths' is not defined. Using default locations: target/site/jacoco/jacoco.xml,target/site/jacoco-it/jacoco.xml,build/reports/jacoco/test/jacocoTestReport.xml
+[[1;34mINFO[m] 21:52:45.726 No report imported, no coverage information will be imported by JaCoCo XML Report Importer
+[[1;34mINFO[m] 21:52:45.726 Sensor JaCoCo XML Report Importer [jacoco] (done) | time=0ms
+[[1;34mINFO[m] 21:52:45.726 Sensor IaC hadolint report Sensor [iac]
+[[1;34mINFO[m] 21:52:45.726 Sensor IaC hadolint report Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:45.726 Sensor Java Config Sensor [iac]
+[[1;34mINFO[m] 21:52:45.727 There are no files to be analyzed for the Java language
+[[1;34mINFO[m] 21:52:45.727 Sensor Java Config Sensor [iac] (done) | time=1ms
+[[1;34mINFO[m] 21:52:45.727 Sensor IaC Docker Sensor [iac]
+[[1;34mINFO[m] 21:52:45.727 There are no files to be analyzed for the Docker language
+[[1;34mINFO[m] 21:52:45.727 Sensor IaC Docker Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:45.727 ------------- Run sensors on module google-http-java-client
+[[1;34mINFO[m] 21:52:45.757 Sensor JavaSensor [java]
+[[1;34mINFO[m] 21:52:45.757 Configured Java source version (sonar.java.source): 8, preview features enabled (sonar.java.enablePreview): false
+[[1;34mINFO[m] 21:52:45.758 Server-side caching is enabled. The Java analyzer will not try to leverage data from a previous analysis.
+[[1;34mINFO[m] 21:52:45.758 Using ECJ batch to parse 9 Main java source files with batch size 390 KB.
+[[1;34mINFO[m] 21:52:45.760 Starting batch processing.
+[[1;34mINFO[m] 21:52:45.772 The Java analyzer cannot skip unchanged files in this context. A full analysis is performed for all files.
+[[1;34mINFO[m] 21:52:45.957 100% analyzed
+[[1;34mINFO[m] 21:52:45.957 Batch processing: Done.
+[[1;34mINFO[m] 21:52:45.957 Did not optimize analysis for any files, performed a full analysis for all 9 files.
+[[1;34mINFO[m] 21:52:45.957 No "Test" source files to scan.
+[[1;34mINFO[m] 21:52:45.957 No "Generated" source files to scan.
+[[1;34mINFO[m] 21:52:45.958 Sensor JavaSensor [java] (done) | time=201ms
+[[1;34mINFO[m] 21:52:45.958 Sensor SurefireSensor [java]
+[[1;34mINFO[m] 21:52:45.958 parsing [/home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/google-http-java-client/google-http-client-android/target/surefire-reports]
+[[1;34mINFO[m] 21:52:45.958 Sensor SurefireSensor [java] (done) | time=0ms
+[[1;34mINFO[m] 21:52:45.958 Sensor XML Sensor [xml]
+[[1;34mINFO[m] 21:52:45.958 1 source file to be analyzed
+[[1;34mINFO[m] 21:52:45.963 1/1 source file has been analyzed
+[[1;34mINFO[m] 21:52:45.963 Sensor XML Sensor [xml] (done) | time=5ms
+[[1;34mINFO[m] 21:52:45.963 Sensor JaCoCo XML Report Importer [jacoco]
+[[1;34mINFO[m] 21:52:45.963 'sonar.coverage.jacoco.xmlReportPaths' is not defined. Using default locations: target/site/jacoco/jacoco.xml,target/site/jacoco-it/jacoco.xml,build/reports/jacoco/test/jacocoTestReport.xml
+[[1;34mINFO[m] 21:52:45.963 No report imported, no coverage information will be imported by JaCoCo XML Report Importer
+[[1;34mINFO[m] 21:52:45.964 Sensor JaCoCo XML Report Importer [jacoco] (done) | time=1ms
+[[1;34mINFO[m] 21:52:45.964 Sensor IaC hadolint report Sensor [iac]
+[[1;34mINFO[m] 21:52:45.964 Sensor IaC hadolint report Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:45.964 Sensor Java Config Sensor [iac]
+[[1;34mINFO[m] 21:52:45.964 There are no files to be analyzed for the Java language
+[[1;34mINFO[m] 21:52:45.964 Sensor Java Config Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:45.964 Sensor IaC Docker Sensor [iac]
+[[1;34mINFO[m] 21:52:45.964 There are no files to be analyzed for the Docker language
+[[1;34mINFO[m] 21:52:45.964 Sensor IaC Docker Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:45.965 ------------- Run sensors on module google-http-java-client
+[[1;34mINFO[m] 21:52:45.997 Sensor JavaSensor [java]
+[[1;34mINFO[m] 21:52:45.997 Configured Java source version (sonar.java.source): 8, preview features enabled (sonar.java.enablePreview): false
+[[1;34mINFO[m] 21:52:45.998 Server-side caching is enabled. The Java analyzer will not try to leverage data from a previous analysis.
+[[1;34mINFO[m] 21:52:45.998 Using ECJ batch to parse 4 Main java source files with batch size 390 KB.
+[[1;34mINFO[m] 21:52:45.999 Starting batch processing.
+[[1;34mINFO[m] 21:52:46.006 The Java analyzer cannot skip unchanged files in this context. A full analysis is performed for all files.
+[[1;34mINFO[m] 21:52:46.107 100% analyzed
+[[1;34mINFO[m] 21:52:46.107 Batch processing: Done.
+[[1;34mINFO[m] 21:52:46.107 Did not optimize analysis for any files, performed a full analysis for all 4 files.
+[[1;34mINFO[m] 21:52:46.107 Using ECJ batch to parse 3 Test java source files with batch size 390 KB.
+[[1;34mINFO[m] 21:52:46.108 Starting batch processing.
+[[1;34mINFO[m] 21:52:46.139 100% analyzed
+[[1;34mINFO[m] 21:52:46.139 Batch processing: Done.
+[[1;34mINFO[m] 21:52:46.139 Did not optimize analysis for any files, performed a full analysis for all 3 files.
+[[1;34mINFO[m] 21:52:46.139 No "Generated" source files to scan.
+[[1;34mINFO[m] 21:52:46.140 Sensor JavaSensor [java] (done) | time=144ms
+[[1;34mINFO[m] 21:52:46.140 Sensor SurefireSensor [java]
+[[1;34mINFO[m] 21:52:46.140 parsing [/home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/google-http-java-client/google-http-client-gson/target/surefire-reports]
+[[1;34mINFO[m] 21:52:46.140 Sensor SurefireSensor [java] (done) | time=0ms
+[[1;34mINFO[m] 21:52:46.140 Sensor XML Sensor [xml]
+[[1;34mINFO[m] 21:52:46.140 1 source file to be analyzed
+[[1;34mINFO[m] 21:52:46.145 1/1 source file has been analyzed
+[[1;34mINFO[m] 21:52:46.145 Sensor XML Sensor [xml] (done) | time=5ms
+[[1;34mINFO[m] 21:52:46.145 Sensor JaCoCo XML Report Importer [jacoco]
+[[1;34mINFO[m] 21:52:46.145 'sonar.coverage.jacoco.xmlReportPaths' is not defined. Using default locations: target/site/jacoco/jacoco.xml,target/site/jacoco-it/jacoco.xml,build/reports/jacoco/test/jacocoTestReport.xml
+[[1;34mINFO[m] 21:52:46.146 No report imported, no coverage information will be imported by JaCoCo XML Report Importer
+[[1;34mINFO[m] 21:52:46.146 Sensor JaCoCo XML Report Importer [jacoco] (done) | time=1ms
+[[1;34mINFO[m] 21:52:46.146 Sensor IaC hadolint report Sensor [iac]
+[[1;34mINFO[m] 21:52:46.146 Sensor IaC hadolint report Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:46.146 Sensor Java Config Sensor [iac]
+[[1;34mINFO[m] 21:52:46.146 There are no files to be analyzed for the Java language
+[[1;34mINFO[m] 21:52:46.146 Sensor Java Config Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:46.146 Sensor IaC Docker Sensor [iac]
+[[1;34mINFO[m] 21:52:46.147 There are no files to be analyzed for the Docker language
+[[1;34mINFO[m] 21:52:46.147 Sensor IaC Docker Sensor [iac] (done) | time=1ms
+[[1;34mINFO[m] 21:52:46.147 ------------- Run sensors on module google-http-java-client
+[[1;34mINFO[m] 21:52:46.176 Sensor JavaSensor [java]
+[[1;34mINFO[m] 21:52:46.176 Configured Java source version (sonar.java.source): 8, preview features enabled (sonar.java.enablePreview): false
+[[1;34mINFO[m] 21:52:46.177 Server-side caching is enabled. The Java analyzer will not try to leverage data from a previous analysis.
+[[1;34mINFO[m] 21:52:46.177 Using ECJ batch to parse 6 Main java source files with batch size 390 KB.
+[[1;34mINFO[m] 21:52:46.179 Starting batch processing.
+[[1;34mINFO[m] 21:52:46.198 The Java analyzer cannot skip unchanged files in this context. A full analysis is performed for all files.
+[[1;34mINFO[m] 21:52:46.348 100% analyzed
+[[1;34mINFO[m] 21:52:46.348 Batch processing: Done.
+[[1;34mINFO[m] 21:52:46.348 Did not optimize analysis for any files, performed a full analysis for all 6 files.
+[[1;34mINFO[m] 21:52:46.348 Using ECJ batch to parse 3 Test java source files with batch size 390 KB.
+[[1;34mINFO[m] 21:52:46.349 Starting batch processing.
+[[1;34mINFO[m] 21:52:46.371 100% analyzed
+[[1;34mINFO[m] 21:52:46.371 Batch processing: Done.
+[[1;34mINFO[m] 21:52:46.373 Did not optimize analysis for any files, performed a full analysis for all 3 files.
+[[1;34mINFO[m] 21:52:46.373 No "Generated" source files to scan.
+[[1;34mINFO[m] 21:52:46.373 Sensor JavaSensor [java] (done) | time=197ms
+[[1;34mINFO[m] 21:52:46.373 Sensor SurefireSensor [java]
+[[1;34mINFO[m] 21:52:46.373 parsing [/home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/google-http-java-client/google-http-client-appengine/target/surefire-reports]
+[[1;34mINFO[m] 21:52:46.373 Sensor SurefireSensor [java] (done) | time=0ms
+[[1;34mINFO[m] 21:52:46.373 Sensor XML Sensor [xml]
+[[1;34mINFO[m] 21:52:46.374 1 source file to be analyzed
+[[1;34mINFO[m] 21:52:46.380 1/1 source file has been analyzed
+[[1;34mINFO[m] 21:52:46.380 Sensor XML Sensor [xml] (done) | time=7ms
+[[1;34mINFO[m] 21:52:46.380 Sensor JaCoCo XML Report Importer [jacoco]
+[[1;34mINFO[m] 21:52:46.380 'sonar.coverage.jacoco.xmlReportPaths' is not defined. Using default locations: target/site/jacoco/jacoco.xml,target/site/jacoco-it/jacoco.xml,build/reports/jacoco/test/jacocoTestReport.xml
+[[1;34mINFO[m] 21:52:46.380 No report imported, no coverage information will be imported by JaCoCo XML Report Importer
+[[1;34mINFO[m] 21:52:46.380 Sensor JaCoCo XML Report Importer [jacoco] (done) | time=0ms
+[[1;34mINFO[m] 21:52:46.380 Sensor IaC hadolint report Sensor [iac]
+[[1;34mINFO[m] 21:52:46.380 Sensor IaC hadolint report Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:46.380 Sensor Java Config Sensor [iac]
+[[1;34mINFO[m] 21:52:46.381 There are no files to be analyzed for the Java language
+[[1;34mINFO[m] 21:52:46.381 Sensor Java Config Sensor [iac] (done) | time=1ms
+[[1;34mINFO[m] 21:52:46.381 Sensor IaC Docker Sensor [iac]
+[[1;34mINFO[m] 21:52:46.381 There are no files to be analyzed for the Docker language
+[[1;34mINFO[m] 21:52:46.381 Sensor IaC Docker Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:46.381 ------------- Run sensors on module google-http-java-client
+[[1;34mINFO[m] 21:52:46.408 Sensor JavaSensor [java]
+[[1;34mINFO[m] 21:52:46.408 Configured Java source version (sonar.java.source): 8, preview features enabled (sonar.java.enablePreview): false
+[[1;34mINFO[m] 21:52:46.409 Server-side caching is enabled. The Java analyzer will not try to leverage data from a previous analysis.
+[[1;34mINFO[m] 21:52:46.409 Using ECJ batch to parse 6 Main java source files with batch size 390 KB.
+[[1;34mINFO[m] 21:52:46.411 Starting batch processing.
+[[1;34mINFO[m] 21:52:46.421 The Java analyzer cannot skip unchanged files in this context. A full analysis is performed for all files.
+[[1;34mINFO[m] 21:52:46.518 100% analyzed
+[[1;34mINFO[m] 21:52:46.518 Batch processing: Done.
+[[1;34mINFO[m] 21:52:46.518 Did not optimize analysis for any files, performed a full analysis for all 6 files.
+[[1;34mINFO[m] 21:52:46.518 Using ECJ batch to parse 6 Test java source files with batch size 390 KB.
+[[1;34mINFO[m] 21:52:46.520 Starting batch processing.
+[[1;34mINFO[m] 21:52:46.682 100% analyzed
+[[1;34mINFO[m] 21:52:46.682 Batch processing: Done.
+[[1;34mINFO[m] 21:52:46.682 Did not optimize analysis for any files, performed a full analysis for all 6 files.
+[[1;34mINFO[m] 21:52:46.683 No "Generated" source files to scan.
+[[1;34mINFO[m] 21:52:46.683 Sensor JavaSensor [java] (done) | time=275ms
+[[1;34mINFO[m] 21:52:46.683 Sensor SurefireSensor [java]
+[[1;34mINFO[m] 21:52:46.683 parsing [/home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/google-http-java-client/google-http-client-apache-v5/target/surefire-reports]
+[[1;34mINFO[m] 21:52:46.683 Sensor SurefireSensor [java] (done) | time=0ms
+[[1;34mINFO[m] 21:52:46.683 Sensor XML Sensor [xml]
+[[1;34mINFO[m] 21:52:46.683 1 source file to be analyzed
+[[1;34mINFO[m] 21:52:46.688 1/1 source file has been analyzed
+[[1;34mINFO[m] 21:52:46.688 Sensor XML Sensor [xml] (done) | time=5ms
+[[1;34mINFO[m] 21:52:46.688 Sensor JaCoCo XML Report Importer [jacoco]
+[[1;34mINFO[m] 21:52:46.688 'sonar.coverage.jacoco.xmlReportPaths' is not defined. Using default locations: target/site/jacoco/jacoco.xml,target/site/jacoco-it/jacoco.xml,build/reports/jacoco/test/jacocoTestReport.xml
+[[1;34mINFO[m] 21:52:46.688 No report imported, no coverage information will be imported by JaCoCo XML Report Importer
+[[1;34mINFO[m] 21:52:46.688 Sensor JaCoCo XML Report Importer [jacoco] (done) | time=0ms
+[[1;34mINFO[m] 21:52:46.688 Sensor IaC hadolint report Sensor [iac]
+[[1;34mINFO[m] 21:52:46.688 Sensor IaC hadolint report Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:46.688 Sensor Java Config Sensor [iac]
+[[1;34mINFO[m] 21:52:46.689 There are no files to be analyzed for the Java language
+[[1;34mINFO[m] 21:52:46.689 Sensor Java Config Sensor [iac] (done) | time=1ms
+[[1;34mINFO[m] 21:52:46.689 Sensor IaC Docker Sensor [iac]
+[[1;34mINFO[m] 21:52:46.689 There are no files to be analyzed for the Docker language
+[[1;34mINFO[m] 21:52:46.689 Sensor IaC Docker Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:46.689 ------------- Run sensors on module google-http-java-client
+[[1;34mINFO[m] 21:52:46.715 Sensor JavaSensor [java]
+[[1;34mINFO[m] 21:52:46.715 Configured Java source version (sonar.java.source): 8, preview features enabled (sonar.java.enablePreview): false
+[[1;34mINFO[m] 21:52:46.716 Server-side caching is enabled. The Java analyzer will not try to leverage data from a previous analysis.
+[[1;34mINFO[m] 21:52:46.716 Using ECJ batch to parse 6 Main java source files with batch size 390 KB.
+[[1;34mINFO[m] 21:52:46.717 Starting batch processing.
+[[1;34mINFO[m] 21:52:46.727 The Java analyzer cannot skip unchanged files in this context. A full analysis is performed for all files.
+[[1;34mINFO[m] 21:52:46.808 100% analyzed
+[[1;34mINFO[m] 21:52:46.808 Batch processing: Done.
+[[1;34mINFO[m] 21:52:46.808 Did not optimize analysis for any files, performed a full analysis for all 6 files.
+[[1;34mINFO[m] 21:52:46.808 Using ECJ batch to parse 2 Test java source files with batch size 390 KB.
+[[1;34mINFO[m] 21:52:46.809 Starting batch processing.
+[[1;34mINFO[m] 21:52:46.855 100% analyzed
+[[1;34mINFO[m] 21:52:46.855 Batch processing: Done.
+[[1;34mINFO[m] 21:52:46.856 Did not optimize analysis for any files, performed a full analysis for all 2 files.
+[[1;34mINFO[m] 21:52:46.856 No "Generated" source files to scan.
+[[1;34mINFO[m] 21:52:46.856 Sensor JavaSensor [java] (done) | time=141ms
+[[1;34mINFO[m] 21:52:46.856 Sensor SurefireSensor [java]
+[[1;34mINFO[m] 21:52:46.856 parsing [/home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/google-http-java-client/google-http-client-apache-v2/target/surefire-reports]
+[[1;34mINFO[m] 21:52:46.856 Sensor SurefireSensor [java] (done) | time=0ms
+[[1;34mINFO[m] 21:52:46.856 Sensor XML Sensor [xml]
+[[1;34mINFO[m] 21:52:46.856 1 source file to be analyzed
+[[1;34mINFO[m] 21:52:46.861 1/1 source file has been analyzed
+[[1;34mINFO[m] 21:52:46.861 Sensor XML Sensor [xml] (done) | time=5ms
+[[1;34mINFO[m] 21:52:46.861 Sensor JaCoCo XML Report Importer [jacoco]
+[[1;34mINFO[m] 21:52:46.861 'sonar.coverage.jacoco.xmlReportPaths' is not defined. Using default locations: target/site/jacoco/jacoco.xml,target/site/jacoco-it/jacoco.xml,build/reports/jacoco/test/jacocoTestReport.xml
+[[1;34mINFO[m] 21:52:46.861 No report imported, no coverage information will be imported by JaCoCo XML Report Importer
+[[1;34mINFO[m] 21:52:46.861 Sensor JaCoCo XML Report Importer [jacoco] (done) | time=0ms
+[[1;34mINFO[m] 21:52:46.861 Sensor IaC hadolint report Sensor [iac]
+[[1;34mINFO[m] 21:52:46.861 Sensor IaC hadolint report Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:46.861 Sensor Java Config Sensor [iac]
+[[1;34mINFO[m] 21:52:46.861 There are no files to be analyzed for the Java language
+[[1;34mINFO[m] 21:52:46.861 Sensor Java Config Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:46.861 Sensor IaC Docker Sensor [iac]
+[[1;34mINFO[m] 21:52:46.861 There are no files to be analyzed for the Docker language
+[[1;34mINFO[m] 21:52:46.861 Sensor IaC Docker Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:46.862 ------------- Run sensors on module google-http-java-client
+[[1;34mINFO[m] 21:52:46.888 Sensor JavaSensor [java]
+[[1;34mINFO[m] 21:52:46.888 Configured Java source version (sonar.java.source): 8, preview features enabled (sonar.java.enablePreview): false
+[[1;34mINFO[m] 21:52:46.889 Server-side caching is enabled. The Java analyzer will not try to leverage data from a previous analysis.
+[[1;34mINFO[m] 21:52:46.889 Using ECJ batch to parse 4 Main java source files with batch size 390 KB.
+[[1;34mINFO[m] 21:52:46.890 Starting batch processing.
+[[1;34mINFO[m] 21:52:46.902 The Java analyzer cannot skip unchanged files in this context. A full analysis is performed for all files.
+[[1;34mINFO[m] 21:52:46.958 100% analyzed
+[[1;34mINFO[m] 21:52:46.958 Batch processing: Done.
+[[1;34mINFO[m] 21:52:46.958 Did not optimize analysis for any files, performed a full analysis for all 4 files.
+[[1;34mINFO[m] 21:52:46.958 Using ECJ batch to parse 3 Test java source files with batch size 390 KB.
+[[1;34mINFO[m] 21:52:46.959 Starting batch processing.
+[[1;34mINFO[m] 21:52:46.987 100% analyzed
+[[1;34mINFO[m] 21:52:46.987 Batch processing: Done.
+[[1;34mINFO[m] 21:52:46.987 Did not optimize analysis for any files, performed a full analysis for all 3 files.
+[[1;34mINFO[m] 21:52:46.987 No "Generated" source files to scan.
+[[1;34mINFO[m] 21:52:46.987 Sensor JavaSensor [java] (done) | time=99ms
+[[1;34mINFO[m] 21:52:46.987 Sensor SurefireSensor [java]
+[[1;34mINFO[m] 21:52:46.987 parsing [/home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/google-http-java-client/google-http-client-jackson2/target/surefire-reports]
+[[1;34mINFO[m] 21:52:46.987 Sensor SurefireSensor [java] (done) | time=0ms
+[[1;34mINFO[m] 21:52:46.987 Sensor XML Sensor [xml]
+[[1;34mINFO[m] 21:52:46.987 1 source file to be analyzed
+[[1;34mINFO[m] 21:52:46.991 1/1 source file has been analyzed
+[[1;34mINFO[m] 21:52:46.992 Sensor XML Sensor [xml] (done) | time=4ms
+[[1;34mINFO[m] 21:52:46.992 Sensor JaCoCo XML Report Importer [jacoco]
+[[1;34mINFO[m] 21:52:46.992 'sonar.coverage.jacoco.xmlReportPaths' is not defined. Using default locations: target/site/jacoco/jacoco.xml,target/site/jacoco-it/jacoco.xml,build/reports/jacoco/test/jacocoTestReport.xml
+[[1;34mINFO[m] 21:52:46.992 No report imported, no coverage information will be imported by JaCoCo XML Report Importer
+[[1;34mINFO[m] 21:52:46.992 Sensor JaCoCo XML Report Importer [jacoco] (done) | time=0ms
+[[1;34mINFO[m] 21:52:46.992 Sensor IaC hadolint report Sensor [iac]
+[[1;34mINFO[m] 21:52:46.992 Sensor IaC hadolint report Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:46.992 Sensor Java Config Sensor [iac]
+[[1;34mINFO[m] 21:52:46.992 There are no files to be analyzed for the Java language
+[[1;34mINFO[m] 21:52:46.992 Sensor Java Config Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:46.992 Sensor IaC Docker Sensor [iac]
+[[1;34mINFO[m] 21:52:46.992 There are no files to be analyzed for the Docker language
+[[1;34mINFO[m] 21:52:46.992 Sensor IaC Docker Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:46.992 ------------- Run sensors on module google-http-java-client
+[[1;34mINFO[m] 21:52:47.039 Sensor JavaSensor [java]
+[[1;34mINFO[m] 21:52:47.039 Configured Java source version (sonar.java.source): 8, preview features enabled (sonar.java.enablePreview): false
+[[1;34mINFO[m] 21:52:47.040 Server-side caching is enabled. The Java analyzer will not try to leverage data from a previous analysis.
+[[1;34mINFO[m] 21:52:47.040 Using ECJ batch to parse 6 Main java source files with batch size 390 KB.
+[[1;34mINFO[m] 21:52:47.044 Starting batch processing.
+[[1;34mINFO[m] 21:52:47.059 The Java analyzer cannot skip unchanged files in this context. A full analysis is performed for all files.
+[[1;34mINFO[m] 21:52:47.550 100% analyzed
+[[1;34mINFO[m] 21:52:47.550 Batch processing: Done.
+[[1;34mINFO[m] 21:52:47.550 Did not optimize analysis for any files, performed a full analysis for all 6 files.
+[[1;34mINFO[m] 21:52:47.550 Using ECJ batch to parse 2 Test java source files with batch size 390 KB.
+[[1;34mINFO[m] 21:52:47.551 Starting batch processing.
+[[1;34mINFO[m] 21:52:47.568 100% analyzed
+[[1;34mINFO[m] 21:52:47.568 Batch processing: Done.
+[[1;34mINFO[m] 21:52:47.568 Did not optimize analysis for any files, performed a full analysis for all 2 files.
+[[1;34mINFO[m] 21:52:47.568 No "Generated" source files to scan.
+[[1;34mINFO[m] 21:52:47.569 Sensor JavaSensor [java] (done) | time=531ms
+[[1;34mINFO[m] 21:52:47.569 Sensor SurefireSensor [java]
+[[1;34mINFO[m] 21:52:47.569 parsing [/home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/google-http-java-client/google-http-client-test/target/surefire-reports]
+[[1;34mINFO[m] 21:52:47.569 Sensor SurefireSensor [java] (done) | time=0ms
+[[1;34mINFO[m] 21:52:47.569 Sensor XML Sensor [xml]
+[[1;34mINFO[m] 21:52:47.569 1 source file to be analyzed
+[[1;34mINFO[m] 21:52:47.573 1/1 source file has been analyzed
+[[1;34mINFO[m] 21:52:47.573 Sensor XML Sensor [xml] (done) | time=4ms
+[[1;34mINFO[m] 21:52:47.573 Sensor JaCoCo XML Report Importer [jacoco]
+[[1;34mINFO[m] 21:52:47.574 'sonar.coverage.jacoco.xmlReportPaths' is not defined. Using default locations: target/site/jacoco/jacoco.xml,target/site/jacoco-it/jacoco.xml,build/reports/jacoco/test/jacocoTestReport.xml
+[[1;34mINFO[m] 21:52:47.574 No report imported, no coverage information will be imported by JaCoCo XML Report Importer
+[[1;34mINFO[m] 21:52:47.574 Sensor JaCoCo XML Report Importer [jacoco] (done) | time=1ms
+[[1;34mINFO[m] 21:52:47.574 Sensor IaC hadolint report Sensor [iac]
+[[1;34mINFO[m] 21:52:47.574 Sensor IaC hadolint report Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:47.574 Sensor Java Config Sensor [iac]
+[[1;34mINFO[m] 21:52:47.574 There are no files to be analyzed for the Java language
+[[1;34mINFO[m] 21:52:47.574 Sensor Java Config Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:47.574 Sensor IaC Docker Sensor [iac]
+[[1;34mINFO[m] 21:52:47.574 There are no files to be analyzed for the Docker language
+[[1;34mINFO[m] 21:52:47.574 Sensor IaC Docker Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:47.574 ------------- Run sensors on module google-http-java-client
+[[1;34mINFO[m] 21:52:47.600 Sensor XML Sensor [xml]
+[[1;34mINFO[m] 21:52:47.601 1 source file to be analyzed
+[[1;34mINFO[m] 21:52:47.609 1/1 source file has been analyzed
+[[1;34mINFO[m] 21:52:47.609 Sensor XML Sensor [xml] (done) | time=9ms
+[[1;34mINFO[m] 21:52:47.609 Sensor JaCoCo XML Report Importer [jacoco]
+[[1;34mINFO[m] 21:52:47.609 'sonar.coverage.jacoco.xmlReportPaths' is not defined. Using default locations: target/site/jacoco/jacoco.xml,target/site/jacoco-it/jacoco.xml,build/reports/jacoco/test/jacocoTestReport.xml
+[[1;34mINFO[m] 21:52:47.609 No report imported, no coverage information will be imported by JaCoCo XML Report Importer
+[[1;34mINFO[m] 21:52:47.609 Sensor JaCoCo XML Report Importer [jacoco] (done) | time=0ms
+[[1;34mINFO[m] 21:52:47.609 Sensor IaC hadolint report Sensor [iac]
+[[1;34mINFO[m] 21:52:47.610 Sensor IaC hadolint report Sensor [iac] (done) | time=1ms
+[[1;34mINFO[m] 21:52:47.610 Sensor Java Config Sensor [iac]
+[[1;34mINFO[m] 21:52:47.610 There are no files to be analyzed for the Java language
+[[1;34mINFO[m] 21:52:47.610 Sensor Java Config Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:47.610 Sensor IaC Docker Sensor [iac]
+[[1;34mINFO[m] 21:52:47.610 There are no files to be analyzed for the Docker language
+[[1;34mINFO[m] 21:52:47.610 Sensor IaC Docker Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:47.610 ------------- Run sensors on module google-http-java-client
+[[1;34mINFO[m] 21:52:47.635 Sensor JavaSensor [java]
+[[1;34mINFO[m] 21:52:47.635 Configured Java source version (sonar.java.source): 8, preview features enabled (sonar.java.enablePreview): false
+[[1;34mINFO[m] 21:52:47.636 Server-side caching is enabled. The Java analyzer will not try to leverage data from a previous analysis.
+[[1;34mINFO[m] 21:52:47.636 Using ECJ batch to parse 1 Main java source files with batch size 390 KB.
+[[1;34mINFO[m] 21:52:47.636 Starting batch processing.
+[[1;34mINFO[m] 21:52:47.648 The Java analyzer cannot skip unchanged files in this context. A full analysis is performed for all files.
+[[1;34mINFO[m] 21:52:47.673 100% analyzed
+[[1;34mINFO[m] 21:52:47.673 Batch processing: Done.
+[[1;34mINFO[m] 21:52:47.673 Did not optimize analysis for any files, performed a full analysis for all 1 files.
+[[1;34mINFO[m] 21:52:47.673 No "Test" source files to scan.
+[[1;34mINFO[m] 21:52:47.673 No "Generated" source files to scan.
+[[1;34mINFO[m] 21:52:47.674 Sensor JavaSensor [java] (done) | time=39ms
+[[1;34mINFO[m] 21:52:47.674 Sensor SurefireSensor [java]
+[[1;34mINFO[m] 21:52:47.674 parsing [/home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/google-http-java-client/samples/dailymotion-simple-cmdline-sample/target/surefire-reports]
+[[1;34mINFO[m] 21:52:47.674 Sensor SurefireSensor [java] (done) | time=0ms
+[[1;34mINFO[m] 21:52:47.674 Sensor XML Sensor [xml]
+[[1;34mINFO[m] 21:52:47.674 1 source file to be analyzed
+[[1;34mINFO[m] 21:52:47.679 1/1 source file has been analyzed
+[[1;34mINFO[m] 21:52:47.679 Sensor XML Sensor [xml] (done) | time=5ms
+[[1;34mINFO[m] 21:52:47.679 Sensor JaCoCo XML Report Importer [jacoco]
+[[1;34mINFO[m] 21:52:47.679 'sonar.coverage.jacoco.xmlReportPaths' is not defined. Using default locations: target/site/jacoco/jacoco.xml,target/site/jacoco-it/jacoco.xml,build/reports/jacoco/test/jacocoTestReport.xml
+[[1;34mINFO[m] 21:52:47.679 No report imported, no coverage information will be imported by JaCoCo XML Report Importer
+[[1;34mINFO[m] 21:52:47.679 Sensor JaCoCo XML Report Importer [jacoco] (done) | time=0ms
+[[1;34mINFO[m] 21:52:47.679 Sensor IaC hadolint report Sensor [iac]
+[[1;34mINFO[m] 21:52:47.679 Sensor IaC hadolint report Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:47.679 Sensor Java Config Sensor [iac]
+[[1;34mINFO[m] 21:52:47.679 There are no files to be analyzed for the Java language
+[[1;34mINFO[m] 21:52:47.679 Sensor Java Config Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:47.679 Sensor IaC Docker Sensor [iac]
+[[1;34mINFO[m] 21:52:47.679 There are no files to be analyzed for the Docker language
+[[1;34mINFO[m] 21:52:47.679 Sensor IaC Docker Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:47.680 ------------- Run sensors on module google-http-java-client
+[[1;34mINFO[m] 21:52:47.708 Sensor JavaSensor [java]
+[[1;34mINFO[m] 21:52:47.708 Configured Java source version (sonar.java.source): 8, preview features enabled (sonar.java.enablePreview): false
+[[1;34mINFO[m] 21:52:47.709 Server-side caching is enabled. The Java analyzer will not try to leverage data from a previous analysis.
+[[1;34mINFO[m] 21:52:47.709 Using ECJ batch to parse 158 Main java source files with batch size 390 KB.
+[[1;34mINFO[m] 21:52:47.721 Starting batch processing.
+[[1;34mINFO[m] 21:52:47.758 The Java analyzer cannot skip unchanged files in this context. A full analysis is performed for all files.
+[[1;34mINFO[m] 21:52:51.271 100% analyzed
+[[1;34mINFO[m] 21:52:51.271 Batch processing: Done.
+[[1;34mINFO[m] 21:52:51.271 Did not optimize analysis for any files, performed a full analysis for all 158 files.
+[[1;34mINFO[m] 21:52:51.271 Using ECJ batch to parse 60 Test java source files with batch size 390 KB.
+[[1;34mINFO[m] 21:52:51.290 Starting batch processing.
+[[1;34mINFO[m] 21:52:51.875 100% analyzed
+[[1;34mINFO[m] 21:52:51.875 Batch processing: Done.
+[[1;34mINFO[m] 21:52:51.875 Did not optimize analysis for any files, performed a full analysis for all 60 files.
+[[1;34mINFO[m] 21:52:51.875 No "Generated" source files to scan.
+[[1;34mINFO[m] 21:52:51.875 Sensor JavaSensor [java] (done) | time=4167ms
+[[1;34mINFO[m] 21:52:51.875 Sensor SurefireSensor [java]
+[[1;34mINFO[m] 21:52:51.875 parsing [/home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/google-http-java-client/google-http-client/target/surefire-reports]
+[[1;34mINFO[m] 21:52:51.875 Sensor SurefireSensor [java] (done) | time=0ms
+[[1;34mINFO[m] 21:52:51.875 Sensor XML Sensor [xml]
+[[1;34mINFO[m] 21:52:51.876 1 source file to be analyzed
+[[1;34mINFO[m] 21:52:51.881 1/1 source file has been analyzed
+[[1;34mINFO[m] 21:52:51.881 Sensor XML Sensor [xml] (done) | time=6ms
+[[1;34mINFO[m] 21:52:51.881 Sensor JaCoCo XML Report Importer [jacoco]
+[[1;34mINFO[m] 21:52:51.881 'sonar.coverage.jacoco.xmlReportPaths' is not defined. Using default locations: target/site/jacoco/jacoco.xml,target/site/jacoco-it/jacoco.xml,build/reports/jacoco/test/jacocoTestReport.xml
+[[1;34mINFO[m] 21:52:51.881 No report imported, no coverage information will be imported by JaCoCo XML Report Importer
+[[1;34mINFO[m] 21:52:51.881 Sensor JaCoCo XML Report Importer [jacoco] (done) | time=0ms
+[[1;34mINFO[m] 21:52:51.881 Sensor IaC hadolint report Sensor [iac]
+[[1;34mINFO[m] 21:52:51.881 Sensor IaC hadolint report Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:51.881 Sensor Java Config Sensor [iac]
+[[1;34mINFO[m] 21:52:51.882 There are no files to be analyzed for the Java language
+[[1;34mINFO[m] 21:52:51.882 Sensor Java Config Sensor [iac] (done) | time=1ms
+[[1;34mINFO[m] 21:52:51.882 Sensor IaC Docker Sensor [iac]
+[[1;34mINFO[m] 21:52:51.883 There are no files to be analyzed for the Docker language
+[[1;34mINFO[m] 21:52:51.883 Sensor IaC Docker Sensor [iac] (done) | time=1ms
+[[1;34mINFO[m] 21:52:51.883 ------------- Run sensors on module google-http-java-client
+[[1;34mINFO[m] 21:52:51.908 Sensor JavaSensor [java]
+[[1;34mINFO[m] 21:52:51.909 Configured Java source version (sonar.java.source): 8, preview features enabled (sonar.java.enablePreview): false
+[[1;34mINFO[m] 21:52:51.910 Server-side caching is enabled. The Java analyzer will not try to leverage data from a previous analysis.
+[[1;34mINFO[m] 21:52:51.910 Using ECJ batch to parse 5 Main java source files with batch size 390 KB.
+[[1;34mINFO[m] 21:52:51.911 Starting batch processing.
+[[1;34mINFO[m] 21:52:51.915 The Java analyzer cannot skip unchanged files in this context. A full analysis is performed for all files.
+[[1;34mINFO[m] 21:52:51.947 100% analyzed
+[[1;34mINFO[m] 21:52:51.947 Batch processing: Done.
+[[1;34mINFO[m] 21:52:51.948 Did not optimize analysis for any files, performed a full analysis for all 5 files.
+[[1;34mINFO[m] 21:52:51.948 Using ECJ batch to parse 1 Test java source files with batch size 390 KB.
+[[1;34mINFO[m] 21:52:51.948 Starting batch processing.
+[[1;34mINFO[m] 21:52:51.966 100% analyzed
+[[1;34mINFO[m] 21:52:51.966 Batch processing: Done.
+[[1;34mINFO[m] 21:52:51.966 Did not optimize analysis for any files, performed a full analysis for all 1 files.
+[[1;34mINFO[m] 21:52:51.966 No "Generated" source files to scan.
+[[1;34mINFO[m] 21:52:51.966 Sensor JavaSensor [java] (done) | time=58ms
+[[1;34mINFO[m] 21:52:51.966 Sensor SurefireSensor [java]
+[[1;34mINFO[m] 21:52:51.966 parsing [/home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/google-http-java-client/google-http-client-protobuf/target/surefire-reports]
+[[1;34mINFO[m] 21:52:51.966 Sensor SurefireSensor [java] (done) | time=0ms
+[[1;34mINFO[m] 21:52:51.966 Sensor XML Sensor [xml]
+[[1;34mINFO[m] 21:52:51.966 1 source file to be analyzed
+[[1;34mINFO[m] 21:52:51.971 1/1 source file has been analyzed
+[[1;34mINFO[m] 21:52:51.971 Sensor XML Sensor [xml] (done) | time=5ms
+[[1;34mINFO[m] 21:52:51.971 Sensor JaCoCo XML Report Importer [jacoco]
+[[1;34mINFO[m] 21:52:51.971 'sonar.coverage.jacoco.xmlReportPaths' is not defined. Using default locations: target/site/jacoco/jacoco.xml,target/site/jacoco-it/jacoco.xml,build/reports/jacoco/test/jacocoTestReport.xml
+[[1;34mINFO[m] 21:52:51.971 No report imported, no coverage information will be imported by JaCoCo XML Report Importer
+[[1;34mINFO[m] 21:52:51.971 Sensor JaCoCo XML Report Importer [jacoco] (done) | time=0ms
+[[1;34mINFO[m] 21:52:51.971 Sensor IaC hadolint report Sensor [iac]
+[[1;34mINFO[m] 21:52:51.971 Sensor IaC hadolint report Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:51.971 Sensor Java Config Sensor [iac]
+[[1;34mINFO[m] 21:52:51.971 There are no files to be analyzed for the Java language
+[[1;34mINFO[m] 21:52:51.971 Sensor Java Config Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:51.971 Sensor IaC Docker Sensor [iac]
+[[1;34mINFO[m] 21:52:51.971 There are no files to be analyzed for the Docker language
+[[1;34mINFO[m] 21:52:51.971 Sensor IaC Docker Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:51.971 ------------- Run sensors on module google-http-java-client
+[[1;34mINFO[m] 21:52:51.996 Sensor XML Sensor [xml]
+[[1;34mINFO[m] 21:52:51.997 1 source file to be analyzed
+[[1;34mINFO[m] 21:52:52.019 1/1 source file has been analyzed
+[[1;34mINFO[m] 21:52:52.019 Sensor XML Sensor [xml] (done) | time=23ms
+[[1;34mINFO[m] 21:52:52.019 Sensor JaCoCo XML Report Importer [jacoco]
+[[1;34mINFO[m] 21:52:52.019 'sonar.coverage.jacoco.xmlReportPaths' is not defined. Using default locations: target/site/jacoco/jacoco.xml,target/site/jacoco-it/jacoco.xml,build/reports/jacoco/test/jacocoTestReport.xml
+[[1;34mINFO[m] 21:52:52.019 No report imported, no coverage information will be imported by JaCoCo XML Report Importer
+[[1;34mINFO[m] 21:52:52.019 Sensor JaCoCo XML Report Importer [jacoco] (done) | time=0ms
+[[1;34mINFO[m] 21:52:52.019 Sensor IaC hadolint report Sensor [iac]
+[[1;34mINFO[m] 21:52:52.019 Sensor IaC hadolint report Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:52.019 Sensor Java Config Sensor [iac]
+[[1;34mINFO[m] 21:52:52.019 There are no files to be analyzed for the Java language
+[[1;34mINFO[m] 21:52:52.019 Sensor Java Config Sensor [iac] (done) | time=0ms
+[[1;34mINFO[m] 21:52:52.019 Sensor IaC Docker Sensor [iac]
+[[1;34mINFO[m] 21:52:52.020 There are no files to be analyzed for the Docker language
+[[1;34mINFO[m] 21:52:52.020 Sensor IaC Docker Sensor [iac] (done) | time=1ms
+[[1;34mINFO[m] 21:52:52.020 Sensor TextAndSecretsSensor [text]
+[[1;34mINFO[m] 21:52:52.025 Available processors: 16
+[[1;34mINFO[m] 21:52:52.025 Using 16 threads for analysis.
+[[1;34mINFO[m] 21:52:52.191 The property "sonar.tests" is not set. To improve the analysis accuracy, we categorize a file as a test file if any of the following is true:
+  * The filename starts with "test"
+  * The filename contains "test." or "tests."
+  * Any directory in the file path is named: "doc", "docs", "test", "tests", "mock" or "mocks"
+  * Any directory in the file path has a name ending in "test" or "tests"
+
+[[1;34mINFO[m] 21:52:52.205 Start fetching files for the text and secrets analysis
+[[1;34mINFO[m] 21:52:52.210 Using Git CLI to retrieve dirty files
+[[1;34mINFO[m] 21:52:52.233 Retrieving language associated files and files included via "sonar.text.inclusions" that are tracked by git
+[[1;34mINFO[m] 21:52:52.234 Starting the text and secrets analysis
+[[1;34mINFO[m] 21:52:52.235 323 source files to be analyzed for the text and secrets analysis
+[[1;34mINFO[m] 21:52:52.507 323/323 source files have been analyzed for the text and secrets analysis
+[[1;34mINFO[m] 21:52:52.508 Sensor TextAndSecretsSensor [text] (done) | time=488ms
+[[1;34mINFO[m] 21:52:52.509 ------------- Run sensors on project
+[[1;34mINFO[m] 21:52:52.590 Sensor JavaProjectSensor [java]
+[[1;34mINFO[m] 21:52:52.591 Sensor JavaProjectSensor [java] (done) | time=1ms
+[[1;34mINFO[m] 21:52:52.591 Sensor Zero Coverage Sensor
+[[1;34mINFO[m] 21:52:52.607 Sensor Zero Coverage Sensor (done) | time=16ms
+[[1;34mINFO[m] 21:52:52.607 Sensor Java CPD Block Indexer
+[[1;34mINFO[m] 21:52:52.714 Sensor Java CPD Block Indexer (done) | time=107ms
+[[1;34mINFO[m] 21:52:52.715 ------------- Gather SCA dependencies on project
+[[1;34mINFO[m] 21:52:52.716 Dependency analysis skipped
+[[1;34mINFO[m] 21:52:52.717 SCM Publisher is disabled
+[[1;34mINFO[m] 21:52:52.727 CPD Executor 71 files had no CPD blocks
+[[1;34mINFO[m] 21:52:52.727 CPD Executor Calculating CPD for 150 files
+[[1;34mINFO[m] 21:52:52.750 CPD Executor CPD calculation finished (done) | time=23ms
+[[1;34mINFO[m] 21:52:52.932 Analysis report generated in 165ms, dir size=3.5 MB
+[[1;34mINFO[m] 21:52:53.124 Analysis report compressed in 192ms, zip size=1.4 MB
+[[1;34mINFO[m] 21:52:53.468 Analysis report uploaded in 343ms
+[[1;34mINFO[m] 21:52:53.469 ANALYSIS SUCCESSFUL, you can find the results at: http://localhost:9000/dashboard?id=google-http-java-client-10
+[[1;34mINFO[m] 21:52:53.469 Note that you will be able to access the updated dashboard once the server has processed the submitted analysis report
+[[1;34mINFO[m] 21:52:53.469 More about the report processing at http://localhost:9000/api/ce/task?id=28a64fe7-d326-4ee6-8ff9-8ba4be76b521
+[[1;34mINFO[m] 21:52:53.502 Analysis total time: 11.859 s
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1mReactor Summary for Parent for the Google HTTP Client Library for Java 2.0.3:[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] Parent for the Google HTTP Client Library for Java . [1;32mSUCCESS[m [ 14.515 s]
+[[1;34mINFO[m] Google HTTP Client Library for Java ................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Android Platform Extensions to the Google HTTP Client Library for Java. [1;33mSKIPPED[m
+[[1;34mINFO[m] Apache HTTP transport v2 for the Google HTTP Client Library for Java. [1;33mSKIPPED[m
+[[1;34mINFO[m] Shared classes used for testing of artifacts in the Google HTTP Client Library for Java. [1;33mSKIPPED[m
+[[1;34mINFO[m] Google App Engine extensions to the Google HTTP Client Library for Java. [1;33mSKIPPED[m
+[[1;34mINFO[m] GSON extensions to the Google HTTP Client Library for Java. [1;33mSKIPPED[m
+[[1;34mINFO[m] Jackson 2 extensions to the Google HTTP Client Library for Java. [1;33mSKIPPED[m
+[[1;34mINFO[m] Protocol Buffer extensions to the Google HTTP Client Library for Java. [1;33mSKIPPED[m
+[[1;34mINFO[m] XML extensions to the Google HTTP Client Library for Java. [1;33mSKIPPED[m
+[[1;34mINFO[m] Assembly for the Google HTTP Client Library for Java [1;33mSKIPPED[m
+[[1;34mINFO[m] Apache HTTP transport v5 for the Google HTTP Client Library for Java. [1;33mSKIPPED[m
+[[1;34mINFO[m] Google APIs Client Library Findbugs custom plugin. . [1;33mSKIPPED[m
+[[1;34mINFO[m] Simple example for the Dailymotion API. ............ [1;33mSKIPPED[m
+[[1;34mINFO[m] Google HTTP Client Library for Java BOM ............ [1;33mSKIPPED[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;32mBUILD SUCCESS[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  15.128 s
+[[1;34mINFO[m] Finished at: 2026-04-22T21:52:53-03:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[0m[0m

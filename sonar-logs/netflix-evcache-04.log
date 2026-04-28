@@ -1,0 +1,18 @@
+warning: [options] source value 8 is obsolete and will be removed in a future release
+warning: [options] target value 8 is obsolete and will be removed in a future release
+warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+Note: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/EVCache/evcache-client/test/com/netflix/evcache/test/DIBase.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+3 warnings
+warning: [options] source value 8 is obsolete and will be removed in a future release
+warning: [options] target value 8 is obsolete and will be removed in a future release
+warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+Note: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/EVCache/evcache-core/src/test/java/com/netflix/evcache/test/Base.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+3 warnings
+warning: [options] source value 8 is obsolete and will be removed in a future release
+warning: [options] target value 8 is obsolete and will be removed in a future release
+warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+Note: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/EVCache/evcache-zipkin-tracing/src/test/java/com/netflix/evcache/EVCacheTracingEventListenerUnitTests.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+3 warnings

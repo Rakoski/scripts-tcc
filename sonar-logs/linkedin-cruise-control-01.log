@@ -1,0 +1,47 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.5/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+The 'sonarqube' task depends on compile tasks. This behavior is now deprecated and will be removed in version 5.x. To avoid implicit compilation, set property 'sonar.gradle.skipCompile' to 'true' and make sure your project is compiled, before analysis has started.
+The 'sonar' task depends on compile tasks. This behavior is now deprecated and will be removed in version 5.x. To avoid implicit compilation, set property 'sonar.gradle.skipCompile' to 'true' and make sure your project is compiled, before analysis has started.
+The 'sonarqube' task depends on compile tasks. This behavior is now deprecated and will be removed in version 5.x. To avoid implicit compilation, set property 'sonar.gradle.skipCompile' to 'true' and make sure your project is compiled, before analysis has started.
+The 'sonar' task depends on compile tasks. This behavior is now deprecated and will be removed in version 5.x. To avoid implicit compilation, set property 'sonar.gradle.skipCompile' to 'true' and make sure your project is compiled, before analysis has started.
+> Task :buildSrc:compileJava NO-SOURCE
+> Task :buildSrc:compileGroovy UP-TO-DATE
+> Task :buildSrc:pluginDescriptors UP-TO-DATE
+> Task :buildSrc:processResources NO-SOURCE
+> Task :buildSrc:classes UP-TO-DATE
+> Task :buildSrc:jar UP-TO-DATE
+> Task :cruise-control:generateOpenApiJson UP-TO-DATE
+> Task :cruise-control-core:compileJava UP-TO-DATE
+> Task :cruise-control-metrics-reporter:compileJava UP-TO-DATE
+> Task :cruise-control:compileJava NO-SOURCE
+> Task :cruise-control:compileScala UP-TO-DATE
+> Task :cruise-control:processResources UP-TO-DATE
+> Task :cruise-control:classes UP-TO-DATE
+> Task :cruise-control-core:processResources NO-SOURCE
+> Task :cruise-control-core:classes UP-TO-DATE
+> Task :cruise-control-core:compileTestJava UP-TO-DATE
+> Task :cruise-control-core:jar UP-TO-DATE
+> Task :cruise-control-core:processTestResources UP-TO-DATE
+> Task :cruise-control-core:testClasses UP-TO-DATE
+> Task :cruise-control-metrics-reporter:processResources NO-SOURCE
+> Task :cruise-control-metrics-reporter:classes UP-TO-DATE
+> Task :cruise-control-metrics-reporter:compileTestJava UP-TO-DATE
+> Task :cruise-control-metrics-reporter:jar UP-TO-DATE
+> Task :cruise-control-metrics-reporter:processTestResources UP-TO-DATE
+> Task :cruise-control-metrics-reporter:testClasses UP-TO-DATE
+> Task :cruise-control:copyDependantLibs UP-TO-DATE
+> Task :cruise-control:compileTestJava NO-SOURCE
+
+> Task :sonar
+Unresolved imports/types have been detected during analysis. Enable DEBUG mode to see them.
+Use of preview features have been detected during analysis. Enable DEBUG mode to see them.
+Use of preview features have been detected during analysis. Enable DEBUG mode to see them.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.5/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 33s
+16 actionable tasks: 1 executed, 15 up-to-date

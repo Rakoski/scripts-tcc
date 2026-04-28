@@ -1,0 +1,217 @@
+INFO: Scanner configuration file: /home/mateus/Documentos/artigos-tcc/repos/tcc/sonarqube-docker/sonar-scanner-5.0.1.3006-linux/conf/sonar-scanner.properties
+INFO: Project root configuration file: NONE
+INFO: SonarScanner 5.0.1.3006
+INFO: Java 17.0.7 Eclipse Adoptium (64-bit)
+INFO: Linux 6.12.74+deb12-amd64 amd64
+INFO: User cache: /home/mateus/.sonar/cache
+INFO: Analyzing on SonarQube server 26.2.0.119303
+INFO: Default locale: "pt_BR", source code encoding: "UTF-8"
+WARN: Java 17 scanner support ends with SonarQube 2026.3 (July 2026). Please upgrade to Java 21 or newer, or use JRE auto-provisioning to keep this requirement always up to date.
+INFO: Load global settings
+INFO: Load global settings (done) | time=52ms
+INFO: Server id: 147B411E-AZxiei4aNYKBggPWvmPT
+INFO: Loading required plugins
+INFO: Load plugins index
+INFO: Load plugins index (done) | time=38ms
+INFO: Load/download plugins
+INFO: Load/download plugins (done) | time=22ms
+INFO: Process project properties
+INFO: Process project properties (done) | time=10ms
+INFO: Project key: google-j2objc-11
+INFO: Base dir: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/j2objc
+INFO: Working dir: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/j2objc/.scannerwork
+INFO: Load project settings for component key: 'google-j2objc-11'
+INFO: Load quality profiles
+INFO: Load quality profiles (done) | time=63ms
+INFO: Load active rules
+INFO: Load active rules (done) | time=203ms
+INFO: Load analysis cache
+INFO: Load analysis cache (404) | time=4ms
+INFO: Preprocessing files...
+INFO: 2 languages detected in 3135 preprocessed files (done) | time=439ms
+INFO: Loading plugins for detected languages
+INFO: Load/download plugins
+INFO: Load/download plugins (done) | time=6ms
+INFO: Load project repositories
+INFO: Load project repositories (done) | time=6ms
+INFO: Indexing files...
+INFO: Project configuration:
+INFO: 3135 files indexed (done) | time=62ms
+INFO: Quality profile for java: Sonar way
+INFO: Quality profile for web: Sonar way
+INFO: ------------- Run sensors on module j2objc
+INFO: Load metrics repository
+INFO: Load metrics repository (done) | time=18ms
+INFO: Reflections took 34 ms to scan 1 urls, producing 24 keys and 257 values
+INFO: Sensor JavaSensor [java]
+INFO: Configured Java source version (sonar.java.source): 11, preview features enabled (sonar.java.enablePreview): false
+INFO: Server-side caching is enabled. The Java analyzer will not try to leverage data from a previous analysis.
+INFO: Using ECJ batch to parse 3087 Main java source files with batch size 390 KB.
+INFO: Starting batch processing.
+INFO: The Java analyzer cannot skip unchanged files in this context. A full analysis is performed for all files.
+ERROR: Unable to run check class org.sonar.java.checks.UtilityClassWithPublicConstructorCheck - S1118 on file 'jre_emul/android/platform/libcore/ojluni/src/main/java/java/util/ArraysParallelSortHelpers.java', To help improve the SonarSource Java Analyzer, please report this problem to SonarSource: see https://community.sonarsource.com/
+java.lang.IllegalArgumentException: count is negative: -8
+	at java.base/java.lang.String.repeat(Unknown Source)
+	at org.sonar.java.checks.UtilityClassWithPublicConstructorCheck.computeQuickFixes(UtilityClassWithPublicConstructorCheck.java:143)
+	at org.sonar.java.checks.UtilityClassWithPublicConstructorCheck.lambda$visitNode$0(UtilityClassWithPublicConstructorCheck.java:82)
+	at org.sonar.java.reporting.InternalJavaIssueBuilder.lambda$handleQuickFixes$0(InternalJavaIssueBuilder.java:241)
+	at java.base/java.util.stream.ReferencePipeline$7$1.accept(Unknown Source)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(Unknown Source)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(Unknown Source)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(Unknown Source)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(Unknown Source)
+	at java.base/java.util.stream.AbstractPipeline.evaluateToArrayNode(Unknown Source)
+	at java.base/java.util.stream.ReferencePipeline.toArray(Unknown Source)
+	at java.base/java.util.stream.ReferencePipeline.toArray(Unknown Source)
+	at java.base/java.util.stream.ReferencePipeline.toList(Unknown Source)
+	at org.sonar.java.reporting.InternalJavaIssueBuilder.handleQuickFixes(InternalJavaIssueBuilder.java:242)
+	at org.sonar.java.reporting.InternalJavaIssueBuilder.report(InternalJavaIssueBuilder.java:230)
+	at org.sonar.java.checks.UtilityClassWithPublicConstructorCheck.visitNode(UtilityClassWithPublicConstructorCheck.java:83)
+	at org.sonar.java.model.VisitorsBridge$IssuableSubscriptionVisitorsRunner.lambda$visit$1(VisitorsBridge.java:479)
+	at org.sonar.java.model.VisitorsBridge$IssuableSubscriptionVisitorsRunner.lambda$forEach$0(VisitorsBridge.java:495)
+	at org.sonar.java.model.VisitorsBridge.runScanner(VisitorsBridge.java:291)
+	at org.sonar.java.model.VisitorsBridge$IssuableSubscriptionVisitorsRunner.forEach(VisitorsBridge.java:495)
+	at org.sonar.java.model.VisitorsBridge$IssuableSubscriptionVisitorsRunner.visit(VisitorsBridge.java:481)
+	at org.sonar.java.model.VisitorsBridge$IssuableSubscriptionVisitorsRunner.visitChildren(VisitorsBridge.java:465)
+	at org.sonar.java.model.VisitorsBridge$IssuableSubscriptionVisitorsRunner.visit(VisitorsBridge.java:485)
+	at org.sonar.java.model.VisitorsBridge$IssuableSubscriptionVisitorsRunner.scanFile(VisitorsBridge.java:443)
+	at org.sonar.java.model.VisitorsBridge.lambda$runScanner$0(VisitorsBridge.java:286)
+	at org.sonar.java.model.VisitorsBridge.runScanner(VisitorsBridge.java:291)
+	at org.sonar.java.model.VisitorsBridge.runScanner(VisitorsBridge.java:286)
+	at org.sonar.java.model.VisitorsBridge.visitFile(VisitorsBridge.java:269)
+	at org.sonar.java.ast.JavaAstScanner.simpleScan(JavaAstScanner.java:169)
+	at org.sonar.java.ast.JavaAstScanner.simpleScan(JavaAstScanner.java:157)
+	at org.sonar.java.JavaFrontend.scanAsBatchCallback(JavaFrontend.java:247)
+	at org.sonar.java.JavaFrontend.lambda$scanBatch$0(JavaFrontend.java:238)
+	at org.sonar.java.model.JParserConfig$Batch$1.acceptAST(JParserConfig.java:187)
+	at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:1134)
+	at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:778)
+	at org.eclipse.jdt.core.dom.CompilationUnitResolver$ECJCompilationUnitResolver.resolve(CompilationUnitResolver.java:84)
+	at org.eclipse.jdt.core.dom.ASTParser.createASTs(ASTParser.java:1109)
+	at org.sonar.java.model.JParserConfig$Batch.parse(JParserConfig.java:173)
+	at org.sonar.java.JavaFrontend.scanBatch(JavaFrontend.java:238)
+	at org.sonar.java.JavaFrontend.scanInBatches(JavaFrontend.java:228)
+	at org.sonar.java.JavaFrontend.scanAsBatch(JavaFrontend.java:195)
+	at org.sonar.java.JavaFrontend.scan(JavaFrontend.java:160)
+	at org.sonar.plugins.java.JavaSensor.execute(JavaSensor.java:124)
+	at org.sonar.scanner.sensor.AbstractSensorWrapper.analyse(AbstractSensorWrapper.java:69)
+	at org.sonar.scanner.sensor.ModuleSensorsExecutor.execute(ModuleSensorsExecutor.java:88)
+	at org.sonar.scanner.sensor.ModuleSensorsExecutor.lambda$execute$1(ModuleSensorsExecutor.java:61)
+	at org.sonar.scanner.sensor.ModuleSensorsExecutor.withModuleStrategy(ModuleSensorsExecutor.java:79)
+	at org.sonar.scanner.sensor.ModuleSensorsExecutor.execute(ModuleSensorsExecutor.java:61)
+	at org.sonar.scanner.scan.SpringModuleScanContainer.doAfterStart(SpringModuleScanContainer.java:80)
+	at org.sonar.core.platform.SpringComponentContainer.startComponents(SpringComponentContainer.java:227)
+	at org.sonar.core.platform.SpringComponentContainer.execute(SpringComponentContainer.java:206)
+	at org.sonar.scanner.scan.SpringProjectScanContainer.scan(SpringProjectScanContainer.java:212)
+	at org.sonar.scanner.scan.SpringProjectScanContainer.scanRecursively(SpringProjectScanContainer.java:208)
+	at org.sonar.scanner.scan.SpringProjectScanContainer.doAfterStart(SpringProjectScanContainer.java:178)
+	at org.sonar.core.platform.SpringComponentContainer.startComponents(SpringComponentContainer.java:227)
+	at org.sonar.core.platform.SpringComponentContainer.execute(SpringComponentContainer.java:206)
+	at org.sonar.scanner.bootstrap.SpringScannerContainer.doAfterStart(SpringScannerContainer.java:344)
+	at org.sonar.core.platform.SpringComponentContainer.startComponents(SpringComponentContainer.java:227)
+	at org.sonar.core.platform.SpringComponentContainer.execute(SpringComponentContainer.java:206)
+	at org.sonar.scanner.bootstrap.SpringGlobalContainer.doAfterStart(SpringGlobalContainer.java:143)
+	at org.sonar.core.platform.SpringComponentContainer.startComponents(SpringComponentContainer.java:227)
+	at org.sonar.core.platform.SpringComponentContainer.execute(SpringComponentContainer.java:206)
+	at org.sonar.batch.bootstrapper.Batch.doExecute(Batch.java:73)
+	at org.sonar.batch.bootstrapper.Batch.execute(Batch.java:67)
+	at org.sonarsource.scanner.api.internal.batch.BatchIsolatedLauncher.execute(BatchIsolatedLauncher.java:46)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at org.sonarsource.scanner.api.internal.IsolatedLauncherProxy.invoke(IsolatedLauncherProxy.java:60)
+	at jdk.proxy1/jdk.proxy1.$Proxy0.execute(Unknown Source)
+	at org.sonarsource.scanner.api.EmbeddedScanner.doExecute(EmbeddedScanner.java:189)
+	at org.sonarsource.scanner.api.EmbeddedScanner.execute(EmbeddedScanner.java:138)
+	at org.sonarsource.scanner.cli.Main.execute(Main.java:126)
+	at org.sonarsource.scanner.cli.Main.execute(Main.java:81)
+	at org.sonarsource.scanner.cli.Main.main(Main.java:62)
+
+INFO: 100% analyzed
+INFO: Batch processing: Done.
+INFO: Did not optimize analysis for any files, performed a full analysis for all 3087 files.
+WARN: Dependencies/libraries were not provided for analysis of SOURCE files. The 'sonar.java.libraries' property is empty. Verify your configuration, as you might end up with less precise results.
+WARN: Unresolved imports/types have been detected during analysis. Enable DEBUG mode to see them.
+WARN: Use of preview features have been detected during analysis. Enable DEBUG mode to see them.
+INFO: No "Test" source files to scan.
+INFO: No "Generated" source files to scan.
+INFO: Sensor JavaSensor [java] (done) | time=79758ms
+INFO: Sensor SurefireSensor [java]
+INFO: parsing [/home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/j2objc/target/surefire-reports]
+INFO: Sensor SurefireSensor [java] (done) | time=1ms
+INFO: Sensor HTML [web]
+INFO: Sensor HTML [web] (done) | time=190ms
+INFO: Sensor JaCoCo XML Report Importer [jacoco]
+INFO: 'sonar.coverage.jacoco.xmlReportPaths' is not defined. Using default locations: target/site/jacoco/jacoco.xml,target/site/jacoco-it/jacoco.xml,build/reports/jacoco/test/jacocoTestReport.xml
+INFO: No report imported, no coverage information will be imported by JaCoCo XML Report Importer
+INFO: Sensor JaCoCo XML Report Importer [jacoco] (done) | time=0ms
+INFO: Sensor IaC hadolint report Sensor [iac]
+INFO: Sensor IaC hadolint report Sensor [iac] (done) | time=0ms
+INFO: Sensor Java Config Sensor [iac]
+INFO: There are no files to be analyzed for the Java language
+INFO: Sensor Java Config Sensor [iac] (done) | time=17ms
+INFO: Sensor IaC Docker Sensor [iac]
+INFO: There are no files to be analyzed for the Docker language
+INFO: Sensor IaC Docker Sensor [iac] (done) | time=17ms
+INFO: Sensor JavaScript inside HTML analysis [javascript]
+INFO: Detected os: Linux arch: amd64 alpine: false. Platform: LINUX_X64
+INFO: Deploy location /home/mateus/.sonar/js/node-runtime, tagetRuntime: /home/mateus/.sonar/js/node-runtime/node,  version: /home/mateus/.sonar/js/node-runtime/version.txt
+INFO: Using embedded Node.js runtime.
+INFO: Using Node.js executable: '/home/mateus/.sonar/js/node-runtime/node'.
+INFO: Memory configuration: OS (29790 MB), Node.js (4288 MB).
+INFO: WebSocket client connected on /ws
+INFO: 35 source files to be analyzed
+INFO: Plugin version: [11.8.0.37897]
+INFO: 35/35 source files have been analyzed
+INFO: Hit the cache for 0 out of 35
+INFO: Miss the cache for 35 out of 35: ANALYSIS_MODE_INELIGIBLE [35/35]
+INFO: Sensor JavaScript inside HTML analysis [javascript] (done) | time=2712ms
+INFO: Sensor CSS Rules [javascript]
+INFO: 35 source files to be analyzed
+INFO: 35/35 source files have been analyzed
+INFO: Hit the cache for 0 out of 0
+INFO: Miss the cache for 0 out of 0
+INFO: Sensor CSS Rules [javascript] (done) | time=137ms
+INFO: Sensor TextAndSecretsSensor [text]
+INFO: Available processors: 16
+INFO: Using 16 threads for analysis.
+INFO: The property "sonar.tests" is not set. To improve the analysis accuracy, we categorize a file as a test file if any of the following is true:
+  * The filename starts with "test"
+  * The filename contains "test." or "tests."
+  * Any directory in the file path is named: "doc", "docs", "test", "tests", "mock" or "mocks"
+  * Any directory in the file path has a name ending in "test" or "tests"
+
+INFO: Start fetching files for the text and secrets analysis
+INFO: Using Git CLI to retrieve dirty files
+INFO: Retrieving language associated files and files included via "sonar.text.inclusions" that are tracked by git
+INFO: Starting the text and secrets analysis
+INFO: 3131 source files to be analyzed for the text and secrets analysis
+INFO: 3131/3131 source files have been analyzed for the text and secrets analysis
+INFO: Sensor TextAndSecretsSensor [text] (done) | time=1020ms
+INFO: ------------- Run sensors on project
+INFO: Sensor JavaProjectSensor [java]
+INFO: Sensor JavaProjectSensor [java] (done) | time=0ms
+INFO: Sensor Zero Coverage Sensor
+INFO: Sensor Zero Coverage Sensor (done) | time=202ms
+INFO: Sensor Java CPD Block Indexer
+INFO: Sensor Java CPD Block Indexer (done) | time=2722ms
+INFO: ------------- Gather SCA dependencies on project
+INFO: Dependency analysis skipped
+INFO: SCM Publisher is disabled
+INFO: CPD Executor 862 files had no CPD blocks
+INFO: CPD Executor Calculating CPD for 2260 files
+INFO: CPD Executor CPD calculation finished (done) | time=296ms
+INFO: Analysis report generated in 646ms, dir size=73.8 MB
+INFO: Analysis report compressed in 2770ms, zip size=24.9 MB
+INFO: Analysis report uploaded in 407ms
+INFO: ANALYSIS SUCCESSFUL, you can find the results at: http://localhost:9000/dashboard?id=google-j2objc-11
+INFO: Note that you will be able to access the updated dashboard once the server has processed the submitted analysis report
+INFO: More about the report processing at http://localhost:9000/api/ce/task?id=61273c9d-cb1b-493f-9e23-e32f93545aec
+INFO: Analysis total time: 1:33.407 s
+INFO: ------------------------------------------------------------------------
+INFO: EXECUTION SUCCESS
+INFO: ------------------------------------------------------------------------
+INFO: Total time: 1:34.215s
+INFO: Final Memory: 37M/200M
+INFO: ------------------------------------------------------------------------

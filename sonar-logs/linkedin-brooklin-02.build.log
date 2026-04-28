@@ -1,0 +1,49 @@
+Downloading https://services.gradle.org/distributions/gradle-4.10.3-bin.zip
+.................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+Unzipping /home/mateus/.gradle/wrapper/dists/gradle-4.10.3-bin/31t79e2qsceia4mkbojplrgx/gradle-4.10.3-bin.zip to /home/mateus/.gradle/wrapper/dists/gradle-4.10.3-bin/31t79e2qsceia4mkbojplrgx
+Set executable permissions for: /home/mateus/.gradle/wrapper/dists/gradle-4.10.3-bin/31t79e2qsceia4mkbojplrgx/gradle-4.10.3/bin/gradle
+
+Welcome to Gradle 4.10.3!
+
+Here are the highlights of this release:
+ - Incremental Java compilation by default
+ - Periodic Gradle caches cleanup
+ - Gradle Kotlin DSL 1.0-RC6
+ - Nested included builds
+ - SNAPSHOT plugin versions in the `plugins {}` block
+
+For more details see https://docs.gradle.org/4.10.3/release-notes.html
+
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+A problem occurred configuring root project 'brooklin'.
+> Could not resolve all artifacts for configuration ':classpath'.
+   > Could not find org.codehaus.groovy.modules.http-builder:http-builder:0.7.2.
+     Searched in the following locations:
+       - https://repo.maven.apache.org/maven2/org/codehaus/groovy/modules/http-builder/http-builder/0.7.2/http-builder-0.7.2.pom
+       - https://repo.maven.apache.org/maven2/org/codehaus/groovy/modules/http-builder/http-builder/0.7.2/http-builder-0.7.2.jar
+       - https://plugins.gradle.org/m2/org/codehaus/groovy/modules/http-builder/http-builder/0.7.2/http-builder-0.7.2.pom
+       - https://plugins.gradle.org/m2/org/codehaus/groovy/modules/http-builder/http-builder/0.7.2/http-builder-0.7.2.jar
+       - https://linkedin.jfrog.io/artifactory/open-source/org/codehaus/groovy/modules/http-builder/http-builder/0.7.2/http-builder-0.7.2.pom
+       - https://linkedin.jfrog.io/artifactory/open-source/org/codehaus/groovy/modules/http-builder/http-builder/0.7.2/http-builder-0.7.2.jar
+     Required by:
+         project : > com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4
+   > Could not find org.jfrog.buildinfo:build-info-extractor:2.23.0.
+     Searched in the following locations:
+       - https://repo.maven.apache.org/maven2/org/jfrog/buildinfo/build-info-extractor/2.23.0/build-info-extractor-2.23.0.pom
+       - https://repo.maven.apache.org/maven2/org/jfrog/buildinfo/build-info-extractor/2.23.0/build-info-extractor-2.23.0.jar
+       - https://plugins.gradle.org/m2/org/jfrog/buildinfo/build-info-extractor/2.23.0/build-info-extractor-2.23.0.pom
+       - https://plugins.gradle.org/m2/org/jfrog/buildinfo/build-info-extractor/2.23.0/build-info-extractor-2.23.0.jar
+       - https://linkedin.jfrog.io/artifactory/open-source/org/jfrog/buildinfo/build-info-extractor/2.23.0/build-info-extractor-2.23.0.pom
+       - https://linkedin.jfrog.io/artifactory/open-source/org/jfrog/buildinfo/build-info-extractor/2.23.0/build-info-extractor-2.23.0.jar
+     Required by:
+         project : > org.jfrog.buildinfo:build-info-extractor-gradle:4.21.0
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+BUILD FAILED in 1m 38s

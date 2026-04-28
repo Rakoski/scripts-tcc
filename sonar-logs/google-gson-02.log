@@ -1,0 +1,5 @@
+[[1;31mERROR[m] 11:25:47.597 Unable to parse source file : 'gson/src/test/java/com/google/gson/functional/Java17RecordTest.java'
+[[1;31mERROR[m] 11:25:47.601 Parse error at line 90 column 23: Syntax error on token "(", ; expected
+[[1;31mERROR[m] 11:25:49.701 Unable to parse source file : 'test-graal-native-image/src/test/java/com/google/gson/native_test/Java17RecordReflectionTest.java'
+[[1;31mERROR[m] 11:25:49.701 Parse error at line 52 column 38: Syntax error on token "(", ; expected
+[0m[0m

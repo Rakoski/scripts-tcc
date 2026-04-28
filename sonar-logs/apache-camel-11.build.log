@@ -1,0 +1,1244 @@
+[[1;34mINFO[m] Maveniverse Nisse 0.5.1 loaded
+[[1;34mINFO[m] Nisse injecting 19 properties into User Properties
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] No need for inlining
+[[1;33mWARNING[m] This build will only read from the build cache, since the clean lifecycle is not part of the build invocation.
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1mReactor Build Order:[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] Camel                                                              [pom]
+[[1;34mINFO[m] Camel :: Buildtools                                                [jar]
+[[1;34mINFO[m] Camel :: Parent                                                    [pom]
+[[1;34mINFO[m] Camel :: Etc                                                       [pom]
+[[1;34mINFO[m] Camel :: Tooling                                                   [pom]
+[[1;34mINFO[m] Camel :: Tooling :: Util                                           [jar]
+[[1;34mINFO[m] Camel :: Tooling Parent                                            [pom]
+[[1;34mINFO[m] Camel :: Maven Plugins                                             [pom]
+[[1;34mINFO[m] Camel :: Maven Plugins :: BOM Generator                   [maven-plugin]
+[[1;34mINFO[m] Camel :: BOM :: Generator                                          [pom]
+[[1;34mINFO[m] Camel :: BOM                                                       [pom]
+[[1;34mINFO[m] Camel :: SPI Annotations                                           [jar]
+[[1;34mINFO[m] Camel :: Util :: JSon                                              [jar]
+[[1;34mINFO[m] Camel :: Tooling :: Model                                          [jar]
+[[1;34mINFO[m] Camel :: Maven Plugins :: Camel Maven Package             [maven-plugin]
+[[1;34mINFO[m] Camel :: Core Modules                                              [pom]
+[[1;34mINFO[m] Camel :: Util                                                      [jar]
+[[1;34mINFO[m] Camel :: API                                                       [jar]
+[[1;34mINFO[m] Camel :: Management API                                            [jar]
+[[1;34mINFO[m] Camel :: XML JAXP Util                                             [jar]
+[[1;34mINFO[m] Camel :: Support                                                   [jar]
+[[1;34mINFO[m] Camel :: Base                                                      [jar]
+[[1;34mINFO[m] Camel :: Base Engine                                               [jar]
+[[1;34mINFO[m] Camel :: Core Processor                                            [jar]
+[[1;34mINFO[m] Camel :: Core Model                                                [jar]
+[[1;34mINFO[m] Camel :: Core Reifier                                              [jar]
+[[1;34mINFO[m] Camel :: Core Engine                                               [jar]
+[[1;34mINFO[m] Camel :: XML IO Util                                               [jar]
+[[1;34mINFO[m] Camel :: Maven Plugins :: Camel EIP Documentation Enricher Plugin [maven-plugin]
+[[1;34mINFO[m] Camel :: XML IO                                                    [jar]
+[[1;34mINFO[m] Camel :: Tooling :: OpenApi REST DSL Generator                     [jar]
+[[1;34mINFO[m] Camel :: Core Languages                                            [jar]
+[[1;34mINFO[m] Camel :: Components                                                [pom]
+[[1;34mINFO[m] Camel :: Bean                                                      [jar]
+[[1;34mINFO[m] Camel :: Browse                                                    [jar]
+[[1;34mINFO[m] Camel :: Cluster                                                   [jar]
+[[1;34mINFO[m] Camel :: Controlbus                                                [jar]
+[[1;34mINFO[m] Camel :: Dataformat                                                [jar]
+[[1;34mINFO[m] Camel :: Mock                                                      [jar]
+[[1;34mINFO[m] Camel :: DataSet                                                   [jar]
+[[1;34mINFO[m] Camel :: Direct                                                    [jar]
+[[1;34mINFO[m] Camel :: File                                                      [jar]
+[[1;34mINFO[m] Camel :: Health                                                    [jar]
+[[1;34mINFO[m] Camel :: Language                                                  [jar]
+[[1;34mINFO[m] Camel :: Log                                                       [jar]
+[[1;34mINFO[m] Camel :: Ref                                                       [jar]
+[[1;34mINFO[m] Camel :: REST                                                      [jar]
+[[1;34mINFO[m] Camel :: Saga                                                      [jar]
+[[1;34mINFO[m] Camel :: Scheduler                                                 [jar]
+[[1;34mINFO[m] Camel :: Seda                                                      [jar]
+[[1;34mINFO[m] Camel :: Stub                                                      [jar]
+[[1;34mINFO[m] Camel :: Timer                                                     [jar]
+[[1;34mINFO[m] Camel :: XML JAXP                                                  [jar]
+[[1;34mINFO[m] Camel :: Validator                                                 [jar]
+[[1;34mINFO[m] Camel :: XPath                                                     [jar]
+[[1;34mINFO[m] Camel :: XSLT                                                      [jar]
+[[1;34mINFO[m] Camel :: XML JAXB                                                  [jar]
+[[1;34mINFO[m] Camel :: Core Catalog                                              [jar]
+[[1;34mINFO[m] Camel :: YAML IO                                                   [jar]
+[[1;34mINFO[m] Camel :: Core                                                      [jar]
+[[1;34mINFO[m] Camel :: Management                                                [jar]
+[[1;34mINFO[m] Camel :: Test :: Parent                                            [pom]
+[[1;34mINFO[m] Camel :: Test :: JUnit5                                            [jar]
+[[1;34mINFO[m] Camel :: Cron                                                      [jar]
+[[1;34mINFO[m] Camel :: Spring :: Parent                                          [pom]
+[[1;34mINFO[m] Camel :: Spring                                                    [jar]
+[[1;34mINFO[m] Camel :: Main                                                      [jar]
+[[1;34mINFO[m] Camel :: Core XML                                                  [jar]
+[[1;34mINFO[m] Camel :: Cloud (deprecated)                                        [jar]
+[[1;34mINFO[m] Camel :: Spring XML                                                [jar]
+[[1;34mINFO[m] Camel :: Test :: Spring :: JUnit5                                  [jar]
+[[1;34mINFO[m] Camel :: Spring Main                                               [jar]
+[[1;34mINFO[m] Camel :: Maven Plugins :: Camel Maven Plugin              [maven-plugin]
+[[1;34mINFO[m] Camel :: Maven Plugins :: Camel API Component Plugin      [maven-plugin]
+[[1;34mINFO[m] Camel :: HTTP :: Base                                              [jar]
+[[1;34mINFO[m] Camel :: Attachments                                               [jar]
+[[1;34mINFO[m] Camel :: HTTP :: Common                                            [jar]
+[[1;34mINFO[m] Camel :: Jackson                                                   [jar]
+[[1;34mINFO[m] Camel :: JAXB                                                      [jar]
+[[1;34mINFO[m] Camel :: OpenApi Java                                              [jar]
+[[1;34mINFO[m] Camel :: Gson                                                      [jar]
+[[1;34mINFO[m] Camel :: Servlet                                                   [jar]
+[[1;34mINFO[m] Camel :: Jetty :: Common                                           [jar]
+[[1;34mINFO[m] Camel :: Test Infra                                                [pom]
+[[1;34mINFO[m] Camel :: Test Infra :: Parent                                      [pom]
+[[1;34mINFO[m] Camel :: Test Infra :: Common                                      [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Jetty                                       [jar]
+[[1;34mINFO[m] Camel :: HTTP                                                      [jar]
+[[1;34mINFO[m] Camel :: Jetty                                                     [jar]
+[[1;34mINFO[m] Camel :: Platform HTTP                                             [jar]
+[[1;34mINFO[m] Camel :: Maven Plugins :: OpenApi REST DSL Generator Maven Plugin [maven-plugin]
+[[1;34mINFO[m] Camel :: Maven Plugins :: Sync Properties                 [maven-plugin]
+[[1;34mINFO[m] Camel :: Maven Plugins :: Camel Maven Component           [maven-plugin]
+[[1;34mINFO[m] Camel :: Maven Plugins :: Repackager                      [maven-plugin]
+[[1;34mINFO[m] Camel :: Tooling :: Maven                                          [jar]
+[[1;34mINFO[m] Camel :: Enforcer rules                                            [jar]
+[[1;34mINFO[m] Camel :: Console                                                   [jar]
+[[1;34mINFO[m] Camel :: All Core Sync point                                       [pom]
+[[1;34mINFO[m] Camel :: Test Infra :: Kafka                                       [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: AWS Common                                  [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: AWS SDK v2                                  [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Cassandra                                   [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Elasticsearch                               [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Couchbase                                   [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: MongoDB                                     [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: RabbitMQ                                    [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Azure Common                                [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Azure Storage Blob                          [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Azure Storage Datalake                      [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Azure Storage Queue                         [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Messaging Common                            [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Artemis                                     [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Dispatch Router                             [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: JDBC                                        [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: ArangoDB                                    [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Consul                                      [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Google Pub/Sub                              [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Infinispan                                  [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Microprofile LRA                            [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Minio                                       [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Nats                                        [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Pinecone                                    [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Pulsar                                      [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Redis                                       [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: RocketMQ                                    [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Solr                                        [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Xmpp                                        [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: ZooKeeper                                   [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Postgres                                    [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: CouchDb                                     [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Ftp                                         [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: FHIR                                        [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Mosquitto                                   [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: ChatScript                                  [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: OpenAI Mock                                 [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Openladp                                    [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Ignite                                      [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Hashicorp Vault                             [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Core                                        [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: opensearch                                  [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Server Message Block                        [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Cli (Camel JBang)                           [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: qdrant                                      [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Ollama                                      [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Milvus                                      [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Hazelcast                                   [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: HiveMQ                                      [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: TorchServe                                  [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: TensorFlow Serving                          [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Triton Inference Server                     [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Neo4j                                       [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Weaviate                                    [jar]
+[[1;34mINFO[m] Camel :: Test Infra :: Collection of all test services             [jar]
+[[1;34mINFO[m] Camel :: DFDL                                                      [jar]
+[[1;34mINFO[m] Camel :: DSL :: Parent                                             [pom]
+[[1;34mINFO[m] Camel :: DSL :: Support                                            [jar]
+[[1;34mINFO[m] Camel :: Netty                                                     [jar]
+[[1;34mINFO[m] Camel :: Resilience4j                                              [jar]
+[[1;34mINFO[m] Camel :: Netty HTTP                                                [jar]
+[[1;34mINFO[m] Camel :: Webhook                                                   [jar]
+[[1;34mINFO[m] Camel :: Telegram                                                  [jar]
+[[1;34mINFO[m] Camel :: Groovy                                                    [jar]
+[[1;34mINFO[m] Camel :: Base64                                                    [jar]
+[[1;34mINFO[m] Camel :: Jackson Avro                                              [jar]
+[[1;34mINFO[m] Camel :: Jackson Protobuf                                          [jar]
+[[1;34mINFO[m] Camel :: jOOR                                                      [jar]
+[[1;34mINFO[m] Camel :: Kamelet                                                   [jar]
+[[1;34mINFO[m] Camel :: XML DSL with camel-xml-io                                 [jar]
+[[1;34mINFO[m] Camel :: Test :: Main :: JUnit5                                    [jar]
+[[1;34mINFO[m] Camel :: Spring Batch                                              [jar]
+[[1;34mINFO[m] Camel :: JDBC                                                      [jar]
+[[1;34mINFO[m] Camel :: Spring JDBC                                               [jar]
+[[1;34mINFO[m] Camel :: Spring LDAP                                               [jar]
+[[1;34mINFO[m] Camel :: Spring RabbitMQ                                           [jar]
+[[1;34mINFO[m] Camel :: Spring Redis                                              [jar]
+[[1;34mINFO[m] Camel :: Spring Security                                           [jar]
+[[1;34mINFO[m] Camel :: XSLT Saxon                                                [jar]
+[[1;34mINFO[m] Camel :: Spring Web Services                                       [jar]
+[[1;34mINFO[m] Camel :: Undertow                                                  [jar]
+[[1;34mINFO[m] Camel :: Undertow Spring Security                                  [jar]
+[[1;34mINFO[m] Camel :: Spring Cloud Config                                       [jar]
+[[1;34mINFO[m] Camel :: CXF :: Parent                                             [pom]
+[[1;34mINFO[m] Camel :: CXF :: Common                                             [jar]
+[[1;34mINFO[m] Camel :: CXF :: Transport                                          [jar]
+[[1;34mINFO[m] Camel :: CXF :: REST                                               [jar]
+[[1;34mINFO[m] Camel :: CXF :: SOAP                                               [jar]
+[[1;34mINFO[m] Camel :: CXF :: Common :: Spring                                   [jar]
+[[1;34mINFO[m] Camel :: CXF :: Transport :: Spring                                [jar]
+[[1;34mINFO[m] Camel :: CXF :: SOAP :: Spring                                     [jar]
+[[1;34mINFO[m] Camel :: CXF :: REST :: Spring                                     [jar]
+[[1;34mINFO[m] Camel :: JMS                                                       [jar]
+[[1;34mINFO[m] Camel :: Master                                                    [jar]
+[[1;34mINFO[m] Camel :: Service                                                   [jar]
+[[1;34mINFO[m] Camel :: Common Tracing                                            [jar]
+[[1;34mINFO[m] Camel :: Common Telemetry                                          [jar]
+[[1;34mINFO[m] Camel :: ActiveMQ 5.x                                              [jar]
+[[1;34mINFO[m] Camel :: ActiveMQ 6.x                                              [jar]
+[[1;34mINFO[m] Camel :: AI :: Parent                                              [pom]
+[[1;34mINFO[m] Camel :: AI :: ChatScript                                          [jar]
+[[1;34mINFO[m] Camel :: AI :: Deep Java Library                                   [jar]
+[[1;34mINFO[m] Camel :: AI :: KServe                                              [jar]
+[[1;34mINFO[m] Camel :: AI :: LangChain4j :: Agent :: API                         [jar]
+[[1;34mINFO[m] Camel :: AI :: LangChain4j :: Tools                                [jar]
+[[1;34mINFO[m] Camel :: AI :: LangChain4j :: Agent                                [jar]
+[[1;34mINFO[m] Camel :: AI :: LangChain4j :: Chat                                 [jar]
+[[1;34mINFO[m] Camel :: AI :: LangChain4j :: Core                                 [jar]
+[[1;34mINFO[m] Camel :: Infinispan :: Parent                                      [pom]
+[[1;34mINFO[m] Camel :: Infinispan :: Common                                      [jar]
+[[1;34mINFO[m] Camel :: Infinispan :: Remote                                      [jar]
+[[1;34mINFO[m] Camel :: AI :: Qdrant                                              [jar]
+[[1;34mINFO[m] Camel :: AI :: Milvus                                              [jar]
+[[1;34mINFO[m] Camel :: AI :: Pinecone                                            [jar]
+[[1;34mINFO[m] Camel :: AI :: Neo4j                                               [jar]
+[[1;34mINFO[m] Camel :: AI :: Weaviate                                            [jar]
+[[1;34mINFO[m] Camel :: AI :: LangChain4j :: Embedding                            [jar]
+[[1;34mINFO[m] Camel :: AI :: LangChain4j :: Tokenizer                            [jar]
+[[1;34mINFO[m] Camel :: AI :: LangChain4j :: Web Search                           [jar]
+[[1;34mINFO[m] Camel :: AI :: TensorFlow Serving                                  [jar]
+[[1;34mINFO[m] Camel :: AI :: TorchServe (deprecated)                             [jar]
+[[1;34mINFO[m] Camel :: AMQP                                                      [jar]
+[[1;34mINFO[m] Camel :: ArangoDB                                                  [jar]
+[[1;34mINFO[m] Camel :: AS2 :: Parent                                             [pom]
+[[1;34mINFO[m] Camel :: AS2 :: API                                                [jar]
+[[1;34mINFO[m] Camel :: AS2 :: Component                                          [jar]
+[[1;34mINFO[m] Camel :: ASN.1                                                     [jar]
+[[1;34mINFO[m] Camel :: Asterisk                                                  [jar]
+[[1;34mINFO[m] Camel :: Atmosphere WebSocket Servlet                              [jar]
+[[1;34mINFO[m] Camel :: Atom                                                      [jar]
+[[1;34mINFO[m] Camel :: Avro                                                      [jar]
+[[1;34mINFO[m] Camel :: Avro RPC :: Parent                                        [pom]
+[[1;34mINFO[m] Camel :: Avro RPC :: Spi                                           [jar]
+[[1;34mINFO[m] Camel :: Avro RPC :: Jetty                                         [jar]
+[[1;34mINFO[m] Camel :: Avro RPC                                                  [jar]
+[[1;34mINFO[m] Camel :: AWS :: Parent                                             [pom]
+[[1;34mINFO[m] Camel :: AWS2 Athena                                               [jar]
+[[1;34mINFO[m] Camel :: JQ                                                        [jar]
+[[1;34mINFO[m] Camel :: AWS2 Bedrock                                              [jar]
+[[1;34mINFO[m] Camel :: AWS Cloutrail                                             [jar]
+[[1;34mINFO[m] Camel :: AWS Config                                                [jar]
+[[1;34mINFO[m] Camel :: AWS2 CW                                                   [jar]
+[[1;34mINFO[m] Camel :: AWS2 DDB                                                  [jar]
+[[1;34mINFO[m] Camel :: AWS2 EC2                                                  [jar]
+[[1;34mINFO[m] Camel :: AWS2 ECS                                                  [jar]
+[[1;34mINFO[m] Camel :: AWS2 EKS                                                  [jar]
+[[1;34mINFO[m] Camel :: Zip Deflater                                              [jar]
+[[1;34mINFO[m] Camel :: AWS2 S3                                                   [jar]
+[[1;34mINFO[m] Camel :: AWS2 SQS                                                  [jar]
+[[1;34mINFO[m] Camel :: AWS2 Eventbridge                                          [jar]
+[[1;34mINFO[m] Camel :: AWS2 IAM                                                  [jar]
+[[1;34mINFO[m] Camel :: AWS2 Kinesis                                              [jar]
+[[1;34mINFO[m] Camel :: AWS2 KMS                                                  [jar]
+[[1;34mINFO[m] Camel :: AWS2 Lambda                                               [jar]
+[[1;34mINFO[m] Camel :: AWS2 MSK                                                  [jar]
+[[1;34mINFO[m] Camel :: AWS2 MQ                                                   [jar]
+[[1;34mINFO[m] Camel :: AWS Redshift Data                                         [jar]
+[[1;34mINFO[m] Camel :: AWS2 Secrets Manager                                      [jar]
+[[1;34mINFO[m] Camel :: AWS2 SES                                                  [jar]
+[[1;34mINFO[m] Camel :: AWS2 SNS                                                  [jar]
+[[1;34mINFO[m] Camel :: AWS Step Functions                                        [jar]
+[[1;34mINFO[m] Camel :: AWS2 STS                                                  [jar]
+[[1;34mINFO[m] Camel :: AWS Timestream                                            [jar]
+[[1;34mINFO[m] Camel :: AWS2 Translate                                            [jar]
+[[1;34mINFO[m] Camel :: AWS :: XRay                                               [jar]
+[[1;34mINFO[m] Camel :: Azure :: Parent                                           [pom]
+[[1;34mINFO[m] Camel :: Azure :: Event Hubs                                       [jar]
+[[1;34mINFO[m] Camel :: Azure :: Storage Blob                                     [jar]
+[[1;34mINFO[m] Camel :: Azure :: Storage Datalake                                 [jar]
+[[1;34mINFO[m] Camel :: Azure :: Storage Queue                                    [jar]
+[[1;34mINFO[m] Camel :: Azure :: CosmosDB                                         [jar]
+[[1;34mINFO[m] Camel :: Azure :: ServiceBus                                       [jar]
+[[1;34mINFO[m] Camel :: Azure :: Key Vault                                        [jar]
+[[1;34mINFO[m] Camel :: SSH                                                       [jar]
+[[1;34mINFO[m] Camel :: FTP                                                       [jar]
+[[1;34mINFO[m] Camel :: Azure :: Files                                            [jar]
+[[1;34mINFO[m] Camel :: Azure :: Schema Registry                                  [jar]
+[[1;34mINFO[m] Camel :: Barcode                                                   [jar]
+[[1;34mINFO[m] Camel :: Bean validator                                            [jar]
+[[1;34mINFO[m] Camel :: BeanIO                                                    [jar]
+[[1;34mINFO[m] Camel :: Bindy                                                     [jar]
+[[1;34mINFO[m] Camel :: Bonita                                                    [jar]
+[[1;34mINFO[m] Camel :: Box :: Parent                                             [pom]
+[[1;34mINFO[m] Camel :: Box :: API                                                [jar]
+[[1;34mINFO[m] Camel :: Box :: Component                                          [jar]
+[[1;34mINFO[m] Camel :: Braintree                                                 [jar]
+[[1;34mINFO[m] Camel :: Caffeine                                                  [jar]
+[[1;34mINFO[m] Camel :: Cassandra CQL                                             [jar]
+[[1;34mINFO[m] Camel :: CBOR                                                      [jar]
+[[1;34mINFO[m] Camel :: Chunk                                                     [jar]
+[[1;34mINFO[m] Camel :: ClickUp                                                   [jar]
+[[1;34mINFO[m] Camel :: CloudEvents                                               [jar]
+[[1;34mINFO[m] Camel :: CM SMS                                                    [jar]
+[[1;34mINFO[m] Camel :: CoAP                                                      [jar]
+[[1;34mINFO[m] Camel :: Cometd                                                    [jar]
+[[1;34mINFO[m] Camel :: Consul                                                    [jar]
+[[1;34mINFO[m] Camel :: Couchbase                                                 [jar]
+[[1;34mINFO[m] Camel :: CouchDB                                                   [jar]
+[[1;34mINFO[m] Camel :: Crypto                                                    [jar]
+[[1;34mINFO[m] Camel :: Crypto PGP                                                [jar]
+[[1;34mINFO[m] Camel :: csimple jOOR                                              [jar]
+[[1;34mINFO[m] Camel :: CSV                                                       [jar]
+[[1;34mINFO[m] Camel :: Dapr                                                      [jar]
+[[1;34mINFO[m] Camel :: DataSonnet                                                [jar]
+[[1;34mINFO[m] Camel :: Debugging                                                 [jar]
+[[1;34mINFO[m] Camel :: Debezium :: Parent                                        [pom]
+[[1;34mINFO[m] Camel :: Debezium :: Common :: Parent                              [pom]
+[[1;34mINFO[m] Camel :: Debezium :: Common                                        [jar]
+[[1;34mINFO[m] Camel :: Debezium :: Maven Plugin                         [maven-plugin]
+[[1;34mINFO[m] Camel :: Debezium :: DB2                                           [jar]
+[[1;34mINFO[m] Camel :: Debezium :: MongoDB                                       [jar]
+[[1;34mINFO[m] Camel :: Debezium :: MySQL                                         [jar]
+[[1;34mINFO[m] Camel :: Debezium :: Oracle                                        [jar]
+[[1;34mINFO[m] Camel :: Debezium :: PostgreSQL                                    [jar]
+[[1;34mINFO[m] Camel :: Debezium :: SQL Server                                    [jar]
+[[1;34mINFO[m] Camel :: DHIS2 :: Parent                                           [pom]
+[[1;34mINFO[m] Camel :: DHIS2 API                                                 [jar]
+[[1;34mINFO[m] Camel :: DHIS2                                                     [jar]
+[[1;34mINFO[m] Camel :: DigitalOcean                                              [jar]
+[[1;34mINFO[m] Camel :: Disruptor                                                 [jar]
+[[1;34mINFO[m] Camel :: DNS                                                       [jar]
+[[1;34mINFO[m] Camel :: Docker                                                    [jar]
+[[1;34mINFO[m] Camel :: Drill                                                     [jar]
+[[1;34mINFO[m] Camel :: Dropbox                                                   [jar]
+[[1;34mINFO[m] Camel :: Dynamic Router                                            [jar]
+[[1;34mINFO[m] Camel :: Ehcache                                                   [jar]
+[[1;34mINFO[m] Camel :: ElasticSearch Java API Client                             [jar]
+[[1;34mINFO[m] Camel :: ElasticSearch Rest Client                                 [jar]
+[[1;34mINFO[m] Camel :: Elytron (deprecated)                                      [jar]
+[[1;34mINFO[m] Camel :: Exec                                                      [jar]
+[[1;34mINFO[m] Camel :: Fastjson                                                  [jar]
+[[1;34mINFO[m] Camel :: FHIR :: Parent                                            [pom]
+[[1;34mINFO[m] Camel :: FHIR :: API                                               [jar]
+[[1;34mINFO[m] Camel :: MINA                                                      [jar]
+[[1;34mINFO[m] Camel :: HL7                                                       [jar]
+[[1;34mINFO[m] Camel :: FHIR                                                      [jar]
+[[1;34mINFO[m] Camel :: File Watch                                                [jar]
+[[1;34mINFO[m] Camel :: FlatPack                                                  [jar]
+[[1;34mINFO[m] Camel :: Flink                                                     [jar]
+[[1;34mINFO[m] Camel :: Flowable                                                  [jar]
+[[1;34mINFO[m] Camel :: FOP                                                       [jar]
+[[1;34mINFO[m] Camel :: Freemarker                                                [jar]
+[[1;34mINFO[m] Camel :: Fory                                                      [jar]
+[[1;34mINFO[m] Camel :: Geocoder                                                  [jar]
+[[1;34mINFO[m] Camel :: Git                                                       [jar]
+[[1;34mINFO[m] Camel :: GitHub                                                    [jar]
+[[1;34mINFO[m] Camel :: Google :: Parent                                          [pom]
+[[1;34mINFO[m] Camel :: Google :: BigQuery                                        [jar]
+[[1;34mINFO[m] Camel :: Google :: Calendar                                        [jar]
+[[1;34mINFO[m] Camel :: Google :: Drive                                           [jar]
+[[1;34mINFO[m] Camel :: Google :: Functions                                       [jar]
+[[1;34mINFO[m] Camel :: Google :: Mail                                            [jar]
+[[1;34mINFO[m] Camel :: Google :: PubSub                                          [jar]
+[[1;34mINFO[m] Camel :: Google :: PubSub Lite (deprecated)                        [jar]
+[[1;34mINFO[m] Camel :: Google :: Secret Manager                                  [jar]
+[[1;34mINFO[m] Camel :: Google :: Sheets                                          [jar]
+[[1;34mINFO[m] Camel :: Google :: Storage                                         [jar]
+[[1;34mINFO[m] Camel :: Stream                                                    [jar]
+[[1;34mINFO[m] Camel :: Grape (deprecated)                                        [jar]
+[[1;34mINFO[m] Camel :: GraphQL                                                   [jar]
+[[1;34mINFO[m] Camel :: Grok                                                      [jar]
+[[1;34mINFO[m] Camel :: gRPC                                                      [jar]
+[[1;34mINFO[m] Camel :: Guava-EventBus (deprecated)                               [jar]
+[[1;34mINFO[m] Camel :: Hashicorp :: Key Vault                                    [jar]
+[[1;34mINFO[m] Camel :: HazelCast                                                 [jar]
+[[1;34mINFO[m] Camel :: Headers Map                                               [jar]
+[[1;34mINFO[m] Camel :: Huawei Cloud :: Parent                                    [pom]
+[[1;34mINFO[m] Camel :: Huawei Cloud :: Common                                    [jar]
+[[1;34mINFO[m] Camel :: Huawei Cloud :: DMS                                       [jar]
+[[1;34mINFO[m] Camel :: Huawei Cloud :: FaceRecognition                           [jar]
+[[1;34mINFO[m] Camel :: Huawei Cloud :: FunctionGraph                             [jar]
+[[1;34mINFO[m] Camel :: Huawei Cloud :: IAM                                       [jar]
+[[1;34mINFO[m] Camel :: Huawei Cloud :: ImageRecognition                          [jar]
+[[1;34mINFO[m] Camel :: Huawei Cloud :: OBS                                       [jar]
+[[1;34mINFO[m] Camel :: Huawei Cloud :: SimpleNotification                        [jar]
+[[1;34mINFO[m] Camel :: IBM :: Secrets Manager                                    [jar]
+[[1;34mINFO[m] Camel :: iCal                                                      [jar]
+[[1;34mINFO[m] Camel :: IEC 60870                                                 [jar]
+[[1;34mINFO[m] Camel :: Ignite                                                    [jar]
+[[1;34mINFO[m] Camel :: Infinispan :: Embedded                                    [jar]
+[[1;34mINFO[m] Camel :: InfluxDB                                                  [jar]
+[[1;34mINFO[m] Camel :: InfluxDB2                                                 [jar]
+[[1;34mINFO[m] Camel :: IRC                                                       [jar]
+[[1;34mINFO[m] Camel :: IronMQ                                                    [jar]
+[[1;34mINFO[m] Camel :: ISO-8583                                                  [jar]
+[[1;34mINFO[m] Camel :: Jackson XML                                               [jar]
+[[1;34mINFO[m] Camel :: Jandex                                                    [jar]
+[[1;34mINFO[m] Camel :: Jasypt                                                    [jar]
+[[1;34mINFO[m] Camel :: JavaScript                                                [jar]
+[[1;34mINFO[m] Camel :: JCache                                                    [jar]
+[[1;34mINFO[m] Camel :: JCR                                                       [jar]
+[[1;34mINFO[m] Camel :: Java Flight Recorder                                      [jar]
+[[1;34mINFO[m] Camel :: JGroups Raft                                              [jar]
+[[1;34mINFO[m] Camel :: JGroups                                                   [jar]
+[[1;34mINFO[m] Camel :: JIRA                                                      [jar]
+[[1;34mINFO[m] Camel :: JMX                                                       [jar]
+[[1;34mINFO[m] Camel :: Jolt                                                      [jar]
+[[1;34mINFO[m] Camel :: JPA                                                       [jar]
+[[1;34mINFO[m] Camel :: Jsch                                                      [jar]
+[[1;34mINFO[m] Camel :: Jslt                                                      [jar]
+[[1;34mINFO[m] Camel :: JSON validator                                            [jar]
+[[1;34mINFO[m] Camel :: JSonApi                                                   [jar]
+[[1;34mINFO[m] Camel :: JSONATA                                                   [jar]
+[[1;34mINFO[m] Camel :: JSON-B                                                    [jar]
+[[1;34mINFO[m] Camel :: Vert.x :: Parent                                          [pom]
+[[1;34mINFO[m] Camel :: Vert.x :: Common                                          [jar]
+[[1;34mINFO[m] Camel :: Vert.x :: HTTP                                            [jar]
+[[1;34mINFO[m] Camel :: REST OpenApi                                              [jar]
+[[1;34mINFO[m] Camel :: Platform HTTP :: Vert.x                                   [jar]
+[[1;34mINFO[m] Camel :: JSon Path                                                 [jar]
+[[1;34mINFO[m] Camel :: JsonPatch                                                 [jar]
+[[1;34mINFO[m] Camel :: Java Toolbox for IBM i                                    [jar]
+[[1;34mINFO[m] Camel :: JTA                                                       [jar]
+[[1;34mINFO[m] Camel :: Java Template Engine                                      [jar]
+[[1;34mINFO[m] Camel :: SQL                                                       [jar]
+[[1;34mINFO[m] Camel :: Kafka                                                     [jar]
+[[1;34mINFO[m] Camel :: Knative :: Parent                                         [pom]
+[[1;34mINFO[m] Camel :: Knative API                                               [jar]
+[[1;34mINFO[m] Camel :: Knative Component                                         [jar]
+[[1;34mINFO[m] Camel :: Knative HTTP                                              [jar]
+[[1;34mINFO[m] Camel :: Kubernetes                                                [jar]
+[[1;34mINFO[m] Camel :: Kudu                                                      [jar]
+[[1;34mINFO[m] Camel :: LDAP                                                      [jar]
+[[1;34mINFO[m] Camel :: LDIF                                                      [jar]
+[[1;34mINFO[m] Camel :: LevelDB                                                   [jar]
+[[1;34mINFO[m] Camel :: Long-Running-Action                                       [jar]
+[[1;34mINFO[m] Camel :: Lucene                                                    [jar]
+[[1;34mINFO[m] Camel :: Lumberjack                                                [jar]
+[[1;34mINFO[m] Camel :: LZF                                                       [jar]
+[[1;34mINFO[m] Camel :: Quartz                                                    [jar]
+[[1;34mINFO[m] Camel :: Mail                                                      [jar]
+[[1;34mINFO[m] Camel :: Mail :: Microsoft OAuth                                   [jar]
+[[1;34mINFO[m] Camel :: Mapstruct                                                 [jar]
+[[1;34mINFO[m] Camel :: Metrics                                                   [jar]
+[[1;34mINFO[m] Camel :: Micrometer                                                [jar]
+[[1;34mINFO[m] Camel :: Platform HTTP :: Main                                     [jar]
+[[1;34mINFO[m] Camel :: Micrometer Prometheus                                     [jar]
+[[1;34mINFO[m] Camel :: MicroProfile :: Parent                                    [pom]
+[[1;34mINFO[m] Camel :: MicroProfile :: Config                                    [jar]
+[[1;34mINFO[m] Camel :: MicroProfile :: Fault Tolerance                           [jar]
+[[1;34mINFO[m] Camel :: MicroProfile :: Health                                    [jar]
+[[1;34mINFO[m] Camel :: MinIO                                                     [jar]
+[[1;34mINFO[m] Camel :: Simple JMS                                                [jar]
+[[1;34mINFO[m] Camel :: MLLP                                                      [jar]
+[[1;34mINFO[m] Camel :: MongoDB GridFS                                            [jar]
+[[1;34mINFO[m] Camel :: MongoDB                                                   [jar]
+[[1;34mINFO[m] Camel :: Mustache                                                  [jar]
+[[1;34mINFO[m] Camel :: MVEL                                                      [jar]
+[[1;34mINFO[m] Camel :: MyBatis                                                   [jar]
+[[1;34mINFO[m] Camel :: Nats                                                      [jar]
+[[1;34mINFO[m] Camel :: Nitrite (deprecated)                                      [jar]
+[[1;34mINFO[m] Camel :: OAIPMH                                                    [jar]
+[[1;34mINFO[m] Camel :: OAuth                                                     [jar]
+[[1;34mINFO[m] Camel :: Micrometer Observation                                    [jar]
+[[1;34mINFO[m] Camel :: OGNL (deprecated)                                         [jar]
+[[1;34mINFO[m] Camel :: Olingo2 :: Parent                                         [pom]
+[[1;34mINFO[m] Camel :: Olingo2 :: API                                            [jar]
+[[1;34mINFO[m] Camel :: Olingo2 :: Component                                      [jar]
+[[1;34mINFO[m] Camel :: Olingo4 :: Parent                                         [pom]
+[[1;34mINFO[m] Camel :: Olingo4 :: API                                            [jar]
+[[1;34mINFO[m] Camel :: Olingo4 :: Component                                      [jar]
+[[1;34mINFO[m] Camel :: OpenStack                                                 [jar]
+[[1;34mINFO[m] Camel :: OpenTelemetry                                             [jar]
+[[1;34mINFO[m] Camel :: Opentelemetry 2                                           [jar]
+[[1;34mINFO[m] Camel :: Paho                                                      [jar]
+[[1;34mINFO[m] Camel :: Paho MQTT 5                                               [jar]
+[[1;34mINFO[m] Camel :: Parquet Avro                                              [jar]
+[[1;34mINFO[m] Camel :: PDF                                                       [jar]
+[[1;34mINFO[m] Camel :: PgReplicationSlot                                         [jar]
+[[1;34mINFO[m] Camel :: PgEvent                                                   [jar]
+[[1;34mINFO[m] Camel :: Platform HTTP :: Jolokia                                  [jar]
+[[1;34mINFO[m] Camel :: PLC4X                                                     [jar]
+[[1;34mINFO[m] Camel :: Printer                                                   [jar]
+[[1;34mINFO[m] Camel :: Protobuf                                                  [jar]
+[[1;34mINFO[m] Camel :: PubNub                                                    [jar]
+[[1;34mINFO[m] Camel :: Pulsar                                                    [jar]
+[[1;34mINFO[m] Camel :: PQC                                                       [jar]
+[[1;34mINFO[m] Camel :: Python                                                    [jar]
+[[1;34mINFO[m] Camel :: QuickFIX/J                                                [jar]
+[[1;34mINFO[m] Camel :: Reactive Executor :: Tomcat                               [jar]
+[[1;34mINFO[m] Camel :: Reactive Executor :: Vert.x                               [jar]
+[[1;34mINFO[m] Camel :: Reactive Streams                                          [jar]
+[[1;34mINFO[m] Camel :: Reactor                                                   [jar]
+[[1;34mINFO[m] Camel :: Redis                                                     [jar]
+[[1;34mINFO[m] Camel :: ResourceResolver GitHub                                   [jar]
+[[1;34mINFO[m] Camel :: RobotFramework                                            [jar]
+[[1;34mINFO[m] Camel :: RocketMQ                                                  [jar]
+[[1;34mINFO[m] Camel :: RSS                                                       [jar]
+[[1;34mINFO[m] Camel :: RxJava                                                    [jar]
+[[1;34mINFO[m] Camel :: Salesforce :: Parent                                      [pom]
+[[1;34mINFO[m] Camel :: Salesforce                                                [jar]
+[[1;34mINFO[m] Camel :: Salesforce :: CodeGen                                     [jar]
+[[1;34mINFO[m] Camel :: Salesforce :: Maven Plugin                       [maven-plugin]
+[[1;34mINFO[m] Camel :: Velocity                                                  [jar]
+[[1;34mINFO[m] Camel :: SAP NetWeaver                                             [jar]
+[[1;34mINFO[m] Camel :: Saxon                                                     [jar]
+[[1;34mINFO[m] Camel :: Schematron                                                [jar]
+[[1;34mINFO[m] Camel :: ServiceNow :: Parent                                      [pom]
+[[1;34mINFO[m] Camel :: ServiceNow :: Component                                   [jar]
+[[1;34mINFO[m] Camel :: ServiceNow :: Maven Plugin                       [maven-plugin]
+[[1;34mINFO[m] Camel :: Shiro                                                     [jar]
+[[1;34mINFO[m] Camel :: Simple JMS2                                               [jar]
+[[1;34mINFO[m] Camel :: Slack                                                     [jar]
+[[1;34mINFO[m] Camel :: SMB                                                       [jar]
+[[1;34mINFO[m] Camel :: Smooks :: Parent                                          [jar]
+[[1;34mINFO[m] Camel :: SMPP                                                      [jar]
+[[1;34mINFO[m] Camel :: SnakeYAML                                                 [jar]
+[[1;34mINFO[m] Camel :: SNMP                                                      [jar]
+[[1;34mINFO[m] Camel :: SOAP                                                      [jar]
+[[1;34mINFO[m] Camel :: Solr                                                      [jar]
+[[1;34mINFO[m] Camel :: Splunk                                                    [jar]
+[[1;34mINFO[m] Camel :: Splunk HEC                                                [jar]
+[[1;34mINFO[m] Camel :: StAX                                                      [jar]
+[[1;34mINFO[m] Camel :: Stomp                                                     [jar]
+[[1;34mINFO[m] Camel :: StringTemplate                                            [jar]
+[[1;34mINFO[m] Camel :: Stitch                                                    [jar]
+[[1;34mINFO[m] Camel :: SWIFT                                                     [jar]
+[[1;34mINFO[m] Camel :: OpenAPI :: Validator                                      [jar]
+[[1;34mINFO[m] Camel :: OpenSearch Java API Client                                [jar]
+[[1;34mINFO[m] Camel :: OptaPlanner                                               [jar]
+[[1;34mINFO[m] Camel :: Syslog                                                    [jar]
+[[1;34mINFO[m] Camel :: Tahu                                                      [jar]
+[[1;34mINFO[m] Camel :: Tar File                                                  [jar]
+[[1;34mINFO[m] Camel :: Telemetry :: Dev                                          [jar]
+[[1;34mINFO[m] Camel :: Thread Pool Factory :: Vert.x                             [jar]
+[[1;34mINFO[m] Camel :: Thrift                                                    [jar]
+[[1;34mINFO[m] Camel :: Thymeleaf                                                 [jar]
+[[1;34mINFO[m] Camel :: Tika                                                      [jar]
+[[1;34mINFO[m] Camel :: Twilio                                                    [jar]
+[[1;34mINFO[m] Camel :: Twitter                                                   [jar]
+[[1;34mINFO[m] Camel :: UniVocity Parsers                                         [jar]
+[[1;34mINFO[m] Camel :: Vertx                                                     [jar]
+[[1;34mINFO[m] Camel :: Vert.x :: WebSocket                                       [jar]
+[[1;34mINFO[m] Camel :: WAL                                                       [jar]
+[[1;34mINFO[m] Camel :: Wasm                                                      [jar]
+[[1;34mINFO[m] Camel :: Weather                                                   [jar]
+[[1;34mINFO[m] Camel :: Web3j                                                     [jar]
+[[1;34mINFO[m] Camel :: Whatsapp                                                  [jar]
+[[1;34mINFO[m] Camel :: Wordpress                                                 [jar]
+[[1;34mINFO[m] Camel :: Workday                                                   [jar]
+[[1;34mINFO[m] Camel :: XChange                                                   [jar]
+[[1;34mINFO[m] Camel :: XJ                                                        [jar]
+[[1;34mINFO[m] Camel :: XML Security                                              [jar]
+[[1;34mINFO[m] Camel :: XMPP                                                      [jar]
+[[1;34mINFO[m] Camel :: Zeebe                                                     [jar]
+[[1;34mINFO[m] Camel :: Zendesk                                                   [jar]
+[[1;34mINFO[m] Camel :: Zip File                                                  [jar]
+[[1;34mINFO[m] Camel :: Zookeeper Master                                          [jar]
+[[1;34mINFO[m] Camel :: Zookeeper                                                 [jar]
+[[1;34mINFO[m] Camel :: JOOQ                                                      [jar]
+[[1;34mINFO[m] Camel :: Observability Services                                    [jar]
+[[1;34mINFO[m] Camel :: Catalog                                                   [pom]
+[[1;34mINFO[m] Camel :: All Components Sync point                                 [pom]
+[[1;34mINFO[m] Camel :: Catalog :: Dummy Component                                [jar]
+[[1;34mINFO[m] Camel :: Catalog :: Camel Catalog                                  [jar]
+[[1;34mINFO[m] Camel :: Catalog :: Console                                        [jar]
+[[1;34mINFO[m] Camel :: Catalog :: Lucene (deprecated)                            [jar]
+[[1;34mINFO[m] Camel :: Catalog :: Maven                                          [jar]
+[[1;34mINFO[m] Camel :: Catalog :: Suggest                                        [jar]
+[[1;34mINFO[m] Camel :: Catalog :: Camel Route Parser                             [jar]
+[[1;34mINFO[m] Camel :: Catalog :: Common                                         [jar]
+[[1;34mINFO[m] Camel :: Catalog :: Camel Compiled Simple Maven Plugin    [maven-plugin]
+[[1;34mINFO[m] Camel :: Catalog :: Camel Report Maven Plugin             [maven-plugin]
+[[1;34mINFO[m] Camel :: Dependencies                                              [pom]
+[[1;34mINFO[m] Camel :: Endpoint DSL                                              [jar]
+[[1;34mINFO[m] Camel :: Component DSL                                             [jar]
+[[1;34mINFO[m] Camel :: DSL :: CLI Connector                                      [jar]
+[[1;34mINFO[m] Camel :: DSL :: Modeline                                           [jar]
+[[1;34mINFO[m] Camel :: Endpoint DSL :: Support                                   [jar]
+[[1;34mINFO[m] Camel :: Java DSL with jOOR                                        [jar]
+[[1;34mINFO[m] Camel :: XML DSL with camel-xml-jaxb                               [jar]
+[[1;34mINFO[m] Camel :: XML DSL Jaxb :: Tests                                     [pom]
+[[1;34mINFO[m] Camel :: XML DSL Jaxb :: Test :: Definition                        [jar]
+[[1;34mINFO[m] Camel :: XML DSL Jaxb :: Test :: Spring                            [jar]
+[[1;34mINFO[m] Camel :: YAML DSL :: Parent                                        [pom]
+[[1;34mINFO[m] Camel :: YAML DSL :: Maven Plugins                        [maven-plugin]
+[[1;34mINFO[m] Camel :: YAML DSL :: Common                                        [jar]
+[[1;34mINFO[m] Camel :: YAML DSL :: Deserializers                                 [jar]
+[[1;34mINFO[m] Camel :: YAML DSL                                                  [jar]
+[[1;34mINFO[m] Camel :: Kamelet Main                                              [jar]
+[[1;34mINFO[m] Camel :: JBang :: Parent                                           [pom]
+[[1;34mINFO[m] Camel :: JBang :: Console                                          [jar]
+[[1;34mINFO[m] Camel :: JBang :: Core                                             [jar]
+[[1;34mINFO[m] Camel :: JBang :: Main                                             [jar]
+[[1;34mINFO[m] Camel :: JBang :: Plugin :: Generate                               [jar]
+[[1;34mINFO[m] Camel :: JBang :: Plugin :: Edit                                   [jar]
+[[1;34mINFO[m] Camel :: JBang :: Plugin :: Kubernetes                             [jar]
+[[1;34mINFO[m] Camel :: JBang :: Plugin :: Testing                                [jar]
+[[1;34mINFO[m] Camel :: Launcher                                                  [jar]
+[[1;34mINFO[m] Camel :: JBang :: Integration tests                                [jar]
+[[1;34mINFO[m] Camel :: Archetypes                                                [pom]
+[[1;34mINFO[m] Camel :: Archetypes :: API Component                   [maven-archetype]
+[[1;34mINFO[m] Camel :: Archetypes :: Component                       [maven-archetype]
+[[1;34mINFO[m] Camel :: Archetypes :: Data Format                     [maven-archetype]
+[[1;34mINFO[m] Camel :: Archetypes :: Java Router                     [maven-archetype]
+[[1;34mINFO[m] Camel :: Archetypes :: Main                            [maven-archetype]
+[[1;34mINFO[m] Camel :: Archetypes :: Spring XML Based Router         [maven-archetype]
+[[1;34mINFO[m] Camel :: Integration Tests :: Test Bundles                         [pom]
+[[1;34mINFO[m] Camel :: Integration Tests :: Camel Validator Test Resources       [jar]
+[[1;34mINFO[m] Camel :: Integration Tests                                         [pom]
+[[1;34mINFO[m] Camel :: Integration Tests                                         [jar]
+[[1;34mINFO[m] Camel :: Integration Tests :: Stream Caching Tests                 [jar]
+[[1;34mINFO[m] Camel :: Docs                                                      [pom]
+[[1;34mINFO[m] Camel :: Assembly                                                  [pom]
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m-----------------------< [0;36morg.apache.camel:camel[0;1m >-----------------------[m
+[[1;34mINFO[m] [1mBuilding Camel 4.14.3                                            [1/602][m
+[[1;34mINFO[m] [1m--------------------------------[ pom ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-enforcer-plugin:3.6.1:enforce[m [1m(enforce-maven-version)[m @ [36mcamel[0;1m ---[m
+[[1;34mINFO[m] Skipping Rule Enforcement.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-enforcer-plugin:3.6.1:enforce[m [1m(enforce-java-version)[m @ [36mcamel[0;1m ---[m
+[[1;34mINFO[m] Skipping Rule Enforcement.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mlicense-maven-plugin:5.0.0:format[m [1m(license-format)[m @ [36mcamel[0;1m ---[m
+[[1;34mINFO[m] Updating license headers...
+[[1;33mWARNING[m] Unknown file extension: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/camel/.scannerwork/.sonar_lock
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1mReactor Summary for Camel 4.14.3:[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] Camel .............................................. [1;31mFAILURE[m [  2.622 s]
+[[1;34mINFO[m] Camel :: Buildtools ................................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Parent .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Etc ....................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Tooling ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Tooling :: Util ........................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Tooling Parent ............................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Maven Plugins ............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Maven Plugins :: BOM Generator ............ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: BOM :: Generator .......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: BOM ....................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: SPI Annotations ........................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Util :: JSon .............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Tooling :: Model .......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Maven Plugins :: Camel Maven Package ...... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Core Modules .............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Util ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: API ....................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Management API ............................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: XML JAXP Util ............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Support ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Base ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Base Engine ............................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Core Processor ............................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Core Model ................................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Core Reifier .............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Core Engine ............................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: XML IO Util ............................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Maven Plugins :: Camel EIP Documentation Enricher Plugin [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: XML IO .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Tooling :: OpenApi REST DSL Generator ..... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Core Languages ............................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Components ................................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Bean ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Browse .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Cluster ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Controlbus ................................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Dataformat ................................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Mock ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: DataSet ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Direct .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: File ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Health .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Language .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Log ....................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Ref ....................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: REST ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Saga ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Scheduler ................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Seda ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Stub ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Timer ..................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: XML JAXP .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Validator ................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: XPath ..................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: XSLT ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: XML JAXB .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Core Catalog .............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: YAML IO ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Core ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Management ................................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test :: Parent ............................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test :: JUnit5 ............................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Cron ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Spring :: Parent .......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Spring .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Main ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Core XML .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Cloud (deprecated) ........................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Spring XML ................................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test :: Spring :: JUnit5 .................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Spring Main ............................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Maven Plugins :: Camel Maven Plugin ....... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Maven Plugins :: Camel API Component Plugin [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: HTTP :: Base .............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Attachments ............................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: HTTP :: Common ............................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Jackson ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: JAXB ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: OpenApi Java .............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Gson ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Servlet ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Jetty :: Common ........................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra ................................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Parent ...................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Common ...................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Jetty ....................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: HTTP ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Jetty ..................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Platform HTTP ............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Maven Plugins :: OpenApi REST DSL Generator Maven Plugin [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Maven Plugins :: Sync Properties .......... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Maven Plugins :: Camel Maven Component .... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Maven Plugins :: Repackager ............... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Tooling :: Maven .......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Enforcer rules ............................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Console ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: All Core Sync point ....................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Kafka ....................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: AWS Common .................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: AWS SDK v2 .................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Cassandra ................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Elasticsearch ............... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Couchbase ................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: MongoDB ..................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: RabbitMQ .................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Azure Common ................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Azure Storage Blob .......... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Azure Storage Datalake ...... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Azure Storage Queue ......... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Messaging Common ............ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Artemis ..................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Dispatch Router ............. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: JDBC ........................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: ArangoDB .................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Consul ...................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Google Pub/Sub .............. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Infinispan .................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Microprofile LRA ............ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Minio ....................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Nats ........................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Pinecone .................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Pulsar ...................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Redis ....................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: RocketMQ .................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Solr ........................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Xmpp ........................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: ZooKeeper ................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Postgres .................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: CouchDb ..................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Ftp ......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: FHIR ........................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Mosquitto ................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: ChatScript .................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: OpenAI Mock ................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Openladp .................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Ignite ...................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Hashicorp Vault ............. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Core ........................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: opensearch .................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Server Message Block ........ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Cli (Camel JBang) ........... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: qdrant ...................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Ollama ...................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Milvus ...................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Hazelcast ................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: HiveMQ ...................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: TorchServe .................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: TensorFlow Serving .......... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Triton Inference Server ..... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Neo4j ....................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Weaviate .................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test Infra :: Collection of all test services [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: DFDL ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: DSL :: Parent ............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: DSL :: Support ............................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Netty ..................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Resilience4j .............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Netty HTTP ................................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Webhook ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Telegram .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Groovy .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Base64 .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Jackson Avro .............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Jackson Protobuf .......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: jOOR ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Kamelet ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: XML DSL with camel-xml-io ................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Test :: Main :: JUnit5 .................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Spring Batch .............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: JDBC ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Spring JDBC ............................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Spring LDAP ............................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Spring RabbitMQ ........................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Spring Redis .............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Spring Security ........................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: XSLT Saxon ................................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Spring Web Services ....................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Undertow .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Undertow Spring Security .................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Spring Cloud Config ....................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: CXF :: Parent ............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: CXF :: Common ............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: CXF :: Transport .......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: CXF :: REST ............................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: CXF :: SOAP ............................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: CXF :: Common :: Spring ................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: CXF :: Transport :: Spring ................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: CXF :: SOAP :: Spring ..................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: CXF :: REST :: Spring ..................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: JMS ....................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Master .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Service ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Common Tracing ............................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Common Telemetry .......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: ActiveMQ 5.x .............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: ActiveMQ 6.x .............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AI :: Parent .............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AI :: ChatScript .......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AI :: Deep Java Library ................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AI :: KServe .............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AI :: LangChain4j :: Agent :: API ......... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AI :: LangChain4j :: Tools ................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AI :: LangChain4j :: Agent ................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AI :: LangChain4j :: Chat ................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AI :: LangChain4j :: Core ................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Infinispan :: Parent ...................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Infinispan :: Common ...................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Infinispan :: Remote ...................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AI :: Qdrant .............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AI :: Milvus .............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AI :: Pinecone ............................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AI :: Neo4j ............................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AI :: Weaviate ............................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AI :: LangChain4j :: Embedding ............ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AI :: LangChain4j :: Tokenizer ............ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AI :: LangChain4j :: Web Search ........... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AI :: TensorFlow Serving .................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AI :: TorchServe (deprecated) ............. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AMQP ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: ArangoDB .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AS2 :: Parent ............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AS2 :: API ................................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AS2 :: Component .......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: ASN.1 ..................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Asterisk .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Atmosphere WebSocket Servlet .............. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Atom ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Avro ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Avro RPC :: Parent ........................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Avro RPC :: Spi ........................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Avro RPC :: Jetty ......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Avro RPC .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AWS :: Parent ............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AWS2 Athena ............................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: JQ ........................................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AWS2 Bedrock .............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AWS Cloutrail ............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AWS Config ................................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AWS2 CW ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AWS2 DDB .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AWS2 EC2 .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AWS2 ECS .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AWS2 EKS .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Zip Deflater .............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AWS2 S3 ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AWS2 SQS .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AWS2 Eventbridge .......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AWS2 IAM .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AWS2 Kinesis .............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AWS2 KMS .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AWS2 Lambda ............................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AWS2 MSK .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AWS2 MQ ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AWS Redshift Data ......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AWS2 Secrets Manager ...................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AWS2 SES .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AWS2 SNS .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AWS Step Functions ........................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AWS2 STS .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AWS Timestream ............................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AWS2 Translate ............................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: AWS :: XRay ............................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Azure :: Parent ........................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Azure :: Event Hubs ....................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Azure :: Storage Blob ..................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Azure :: Storage Datalake ................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Azure :: Storage Queue .................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Azure :: CosmosDB ......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Azure :: ServiceBus ....................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Azure :: Key Vault ........................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: SSH ....................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: FTP ....................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Azure :: Files ............................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Azure :: Schema Registry .................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Barcode ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Bean validator ............................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: BeanIO .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Bindy ..................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Bonita .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Box :: Parent ............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Box :: API ................................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Box :: Component .......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Braintree ................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Caffeine .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Cassandra CQL ............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: CBOR ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Chunk ..................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: ClickUp ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: CloudEvents ............................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: CM SMS .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: CoAP ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Cometd .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Consul .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Couchbase ................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: CouchDB ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Crypto .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Crypto PGP ................................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: csimple jOOR .............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: CSV ....................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Dapr ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: DataSonnet ................................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Debugging ................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Debezium :: Parent ........................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Debezium :: Common :: Parent .............. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Debezium :: Common ........................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Debezium :: Maven Plugin .................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Debezium :: DB2 ........................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Debezium :: MongoDB ....................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Debezium :: MySQL ......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Debezium :: Oracle ........................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Debezium :: PostgreSQL .................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Debezium :: SQL Server .................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: DHIS2 :: Parent ........................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: DHIS2 API ................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: DHIS2 ..................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: DigitalOcean .............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Disruptor ................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: DNS ....................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Docker .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Drill ..................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Dropbox ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Dynamic Router ............................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Ehcache ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: ElasticSearch Java API Client ............. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: ElasticSearch Rest Client ................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Elytron (deprecated) ...................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Exec ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Fastjson .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: FHIR :: Parent ............................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: FHIR :: API ............................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: MINA ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: HL7 ....................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: FHIR ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: File Watch ................................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: FlatPack .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Flink ..................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Flowable .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: FOP ....................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Freemarker ................................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Fory ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Geocoder .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Git ....................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: GitHub .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Google :: Parent .......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Google :: BigQuery ........................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Google :: Calendar ........................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Google :: Drive ........................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Google :: Functions ....................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Google :: Mail ............................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Google :: PubSub .......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Google :: PubSub Lite (deprecated) ........ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Google :: Secret Manager .................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Google :: Sheets .......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Google :: Storage ......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Stream .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Grape (deprecated) ........................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: GraphQL ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Grok ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: gRPC ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Guava-EventBus (deprecated) ............... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Hashicorp :: Key Vault .................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: HazelCast ................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Headers Map ............................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Huawei Cloud :: Parent .................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Huawei Cloud :: Common .................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Huawei Cloud :: DMS ....................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Huawei Cloud :: FaceRecognition ........... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Huawei Cloud :: FunctionGraph ............. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Huawei Cloud :: IAM ....................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Huawei Cloud :: ImageRecognition .......... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Huawei Cloud :: OBS ....................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Huawei Cloud :: SimpleNotification ........ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: IBM :: Secrets Manager .................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: iCal ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: IEC 60870 ................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Ignite .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Infinispan :: Embedded .................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: InfluxDB .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: InfluxDB2 ................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: IRC ....................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: IronMQ .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: ISO-8583 .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Jackson XML ............................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Jandex .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Jasypt .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: JavaScript ................................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: JCache .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: JCR ....................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Java Flight Recorder ...................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: JGroups Raft .............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: JGroups ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: JIRA ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: JMX ....................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Jolt ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: JPA ....................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Jsch ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Jslt ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: JSON validator ............................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: JSonApi ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: JSONATA ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: JSON-B .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Vert.x :: Parent .......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Vert.x :: Common .......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Vert.x :: HTTP ............................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: REST OpenApi .............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Platform HTTP :: Vert.x ................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: JSon Path ................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: JsonPatch ................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Java Toolbox for IBM i .................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: JTA ....................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Java Template Engine ...................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: SQL ....................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Kafka ..................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Knative :: Parent ......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Knative API ............................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Knative Component ......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Knative HTTP .............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Kubernetes ................................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Kudu ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: LDAP ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: LDIF ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: LevelDB ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Long-Running-Action ....................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Lucene .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Lumberjack ................................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: LZF ....................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Quartz .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Mail ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Mail :: Microsoft OAuth ................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Mapstruct ................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Metrics ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Micrometer ................................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Platform HTTP :: Main ..................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Micrometer Prometheus ..................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: MicroProfile :: Parent .................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: MicroProfile :: Config .................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: MicroProfile :: Fault Tolerance ........... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: MicroProfile :: Health .................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: MinIO ..................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Simple JMS ................................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: MLLP ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: MongoDB GridFS ............................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: MongoDB ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Mustache .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: MVEL ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: MyBatis ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Nats ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Nitrite (deprecated) ...................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: OAIPMH .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: OAuth ..................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Micrometer Observation .................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: OGNL (deprecated) ......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Olingo2 :: Parent ......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Olingo2 :: API ............................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Olingo2 :: Component ...................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Olingo4 :: Parent ......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Olingo4 :: API ............................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Olingo4 :: Component ...................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: OpenStack ................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: OpenTelemetry ............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Opentelemetry 2 ........................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Paho ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Paho MQTT 5 ............................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Parquet Avro .............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: PDF ....................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: PgReplicationSlot ......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: PgEvent ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Platform HTTP :: Jolokia .................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: PLC4X ..................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Printer ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Protobuf .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: PubNub .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Pulsar .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: PQC ....................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Python .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: QuickFIX/J ................................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Reactive Executor :: Tomcat ............... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Reactive Executor :: Vert.x ............... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Reactive Streams .......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Reactor ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Redis ..................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: ResourceResolver GitHub ................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: RobotFramework ............................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: RocketMQ .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: RSS ....................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: RxJava .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Salesforce :: Parent ...................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Salesforce ................................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Salesforce :: CodeGen ..................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Salesforce :: Maven Plugin ................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Velocity .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: SAP NetWeaver ............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Saxon ..................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Schematron ................................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: ServiceNow :: Parent ...................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: ServiceNow :: Component ................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: ServiceNow :: Maven Plugin ................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Shiro ..................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Simple JMS2 ............................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Slack ..................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: SMB ....................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Smooks :: Parent .......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: SMPP ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: SnakeYAML ................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: SNMP ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: SOAP ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Solr ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Splunk .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Splunk HEC ................................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: StAX ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Stomp ..................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: StringTemplate ............................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Stitch .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: SWIFT ..................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: OpenAPI :: Validator ...................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: OpenSearch Java API Client ................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: OptaPlanner ............................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Syslog .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Tahu ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Tar File .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Telemetry :: Dev .......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Thread Pool Factory :: Vert.x ............. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Thrift .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Thymeleaf ................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Tika ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Twilio .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Twitter ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: UniVocity Parsers ......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Vertx ..................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Vert.x :: WebSocket ....................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: WAL ....................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Wasm ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Weather ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Web3j ..................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Whatsapp .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Wordpress ................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Workday ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: XChange ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: XJ ........................................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: XML Security .............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: XMPP ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Zeebe ..................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Zendesk ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Zip File .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Zookeeper Master .......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Zookeeper ................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: JOOQ ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Observability Services .................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Catalog ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: All Components Sync point ................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Catalog :: Dummy Component ................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Catalog :: Camel Catalog .................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Catalog :: Console ........................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Catalog :: Lucene (deprecated) ............ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Catalog :: Maven .......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Catalog :: Suggest ........................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Catalog :: Camel Route Parser ............. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Catalog :: Common ......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Catalog :: Camel Compiled Simple Maven Plugin [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Catalog :: Camel Report Maven Plugin ...... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Dependencies .............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Endpoint DSL .............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Component DSL ............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: DSL :: CLI Connector ...................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: DSL :: Modeline ........................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Endpoint DSL :: Support ................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Java DSL with jOOR ........................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: XML DSL with camel-xml-jaxb ............... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: XML DSL Jaxb :: Tests ..................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: XML DSL Jaxb :: Test :: Definition ........ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: XML DSL Jaxb :: Test :: Spring ............ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: YAML DSL :: Parent ........................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: YAML DSL :: Maven Plugins ................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: YAML DSL :: Common ........................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: YAML DSL :: Deserializers ................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: YAML DSL .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Kamelet Main .............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: JBang :: Parent ........................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: JBang :: Console .......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: JBang :: Core ............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: JBang :: Main ............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: JBang :: Plugin :: Generate ............... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: JBang :: Plugin :: Edit ................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: JBang :: Plugin :: Kubernetes ............. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: JBang :: Plugin :: Testing ................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Launcher .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: JBang :: Integration tests ................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Archetypes ................................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Archetypes :: API Component ............... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Archetypes :: Component ................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Archetypes :: Data Format ................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Archetypes :: Java Router ................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Archetypes :: Main ........................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Archetypes :: Spring XML Based Router ..... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Integration Tests :: Test Bundles ......... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Integration Tests :: Camel Validator Test Resources [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Integration Tests ......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Integration Tests ......................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Integration Tests :: Stream Caching Tests . [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Docs ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Camel :: Assembly .................................. [1;33mSKIPPED[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  7.251 s
+[[1;34mINFO[m] Finished at: 2026-04-23T09:28:09-03:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] 3 goals, 3 executed
+[[1;31mERROR[m] Failed to execute goal [32mcom.mycila:license-maven-plugin:5.0.0:format[m [1m(license-format)[m on project [36mcamel[m: [1;31mUnable to find a comment style definition for some files. You may want to add a custom mapping for the relevant file extensions.[m -> [1m[Help 1][m
+[[1;31mERROR[m] 
+[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
+[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+[0m[0m

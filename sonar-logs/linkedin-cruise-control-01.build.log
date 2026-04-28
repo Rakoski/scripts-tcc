@@ -1,0 +1,37 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.5/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :buildSrc:compileJava NO-SOURCE
+> Task :buildSrc:compileGroovy UP-TO-DATE
+> Task :buildSrc:pluginDescriptors UP-TO-DATE
+> Task :buildSrc:processResources NO-SOURCE
+> Task :buildSrc:classes UP-TO-DATE
+> Task :buildSrc:jar UP-TO-DATE
+> Task :cruise-control:generateOpenApiJson UP-TO-DATE
+> Task :cruise-control-core:compileJava UP-TO-DATE
+> Task :cruise-control-metrics-reporter:compileJava UP-TO-DATE
+> Task :cruise-control:compileJava NO-SOURCE
+> Task :cruise-control:compileScala UP-TO-DATE
+> Task :cruise-control:processResources UP-TO-DATE
+> Task :cruise-control:classes UP-TO-DATE
+> Task :cruise-control-core:processResources NO-SOURCE
+> Task :cruise-control-core:classes UP-TO-DATE
+> Task :cruise-control-core:compileTestJava UP-TO-DATE
+> Task :cruise-control-core:jar UP-TO-DATE
+> Task :cruise-control-core:processTestResources UP-TO-DATE
+> Task :cruise-control-core:testClasses UP-TO-DATE
+> Task :cruise-control-metrics-reporter:processResources NO-SOURCE
+> Task :cruise-control-metrics-reporter:classes UP-TO-DATE
+> Task :cruise-control-metrics-reporter:compileTestJava UP-TO-DATE
+> Task :cruise-control-metrics-reporter:jar UP-TO-DATE
+> Task :cruise-control-metrics-reporter:processTestResources UP-TO-DATE
+> Task :cruise-control-metrics-reporter:testClasses UP-TO-DATE
+> Task :cruise-control:copyDependantLibs UP-TO-DATE
+> Task :cruise-control:determineCommitId UP-TO-DATE
+> Task :cruise-control:createVersionFile
+> Task :cruise-control:jar UP-TO-DATE
+> Task :cruise-control:assemble UP-TO-DATE
+> Task :cruise-control-core:assemble UP-TO-DATE
+> Task :cruise-control-metrics-reporter:assemble UP-TO-DATE
+
+BUILD SUCCESSFUL in 5s
+17 actionable tasks: 1 executed, 16 up-to-date

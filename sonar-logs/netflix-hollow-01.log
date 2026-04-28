@@ -1,0 +1,14 @@
+/home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/hollow/hollow/src/test/java/com/netflix/hollow/api/consumer/HollowConsumerBuilderTest.java:39: warning: non-varargs call of varargs method with inexact argument type for last parameter;
+                .withGeneratedAPIClass(AwardsAPI.class, "Movie", null)
+                                                                 ^
+  cast to java.lang.String for a varargs call
+  cast to java.lang.String[] for a non-varargs call and to suppress this warning
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+1 warning
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/hollow/hollow-explorer-ui/src/test/java/com/netflix/hollow/explorer/ui/HollowExplorerUIServerTest.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.

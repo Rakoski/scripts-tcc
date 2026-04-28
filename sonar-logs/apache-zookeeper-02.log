@@ -1,0 +1,44 @@
+INFO: Scanner configuration file: /home/mateus/Documentos/artigos-tcc/repos/tcc/sonarqube-docker/sonar-scanner-5.0.1.3006-linux/conf/sonar-scanner.properties
+INFO: Project root configuration file: NONE
+INFO: SonarScanner 5.0.1.3006
+INFO: Java 17.0.7 Eclipse Adoptium (64-bit)
+INFO: Linux 6.12.74+deb12-amd64 amd64
+INFO: User cache: /home/mateus/.sonar/cache
+INFO: Analyzing on SonarQube server 26.2.0.119303
+INFO: Default locale: "pt_BR", source code encoding: "UTF-8"
+WARN: Java 17 scanner support ends with SonarQube 2026.3 (July 2026). Please upgrade to Java 21 or newer, or use JRE auto-provisioning to keep this requirement always up to date.
+INFO: Load global settings
+INFO: Load global settings (done) | time=48ms
+INFO: Server id: 147B411E-AZxiei4aNYKBggPWvmPT
+INFO: Loading required plugins
+INFO: Load plugins index
+INFO: Load plugins index (done) | time=32ms
+INFO: Load/download plugins
+INFO: Load/download plugins (done) | time=18ms
+INFO: Process project properties
+INFO: Process project properties (done) | time=16ms
+INFO: Project key: apache-zookeeper-02
+INFO: Base dir: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/zookeeper
+INFO: Working dir: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/zookeeper/.scannerwork
+INFO: Load project settings for component key: 'apache-zookeeper-02'
+INFO: Load project settings for component key: 'apache-zookeeper-02' (done) | time=10ms
+INFO: Load quality profiles
+INFO: Load quality profiles (done) | time=31ms
+INFO: Load active rules
+INFO: Load active rules (done) | time=231ms
+INFO: Load analysis cache
+INFO: Load analysis cache | time=16ms
+INFO: Preprocessing files...
+INFO: 2 languages detected in 516 preprocessed files (done) | time=147ms
+INFO: Loading plugins for detected languages
+INFO: Load/download plugins
+INFO: Load/download plugins (done) | time=11ms
+INFO: Load project repositories
+INFO: Load project repositories (done) | time=130ms
+INFO: Indexing files...
+INFO: Project configuration:
+INFO: 516 files indexed (done) | time=23ms
+INFO: Quality profile for java: Sonar way
+INFO: Quality profile for web: Sonar way
+INFO: ------------- Run sensors on module zookeeper
+INFO: Load metrics repository

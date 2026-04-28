@@ -1,0 +1,279 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :build-infra:compileJava UP-TO-DATE
+> Task :build-infra:pluginDescriptors UP-TO-DATE
+> Task :build-infra:processResources UP-TO-DATE
+> Task :build-infra:classes UP-TO-DATE
+> Task :build-infra:jar UP-TO-DATE
+> Task :lucene:facet:processResources NO-SOURCE
+> Task :lucene:queries:processResources NO-SOURCE
+> Task :lucene:memory:processResources NO-SOURCE
+> Task :lucene:highlighter:processResources NO-SOURCE
+> Task :lucene:core:processResources UP-TO-DATE
+> Task :lucene:spatial3d:processResources NO-SOURCE
+> Task :lucene:spatial-extras:processResources NO-SOURCE
+> Task :lucene:sandbox:processResources UP-TO-DATE
+> Task :lucene:queryparser:processResources UP-TO-DATE
+> Task :lucene:assemble UP-TO-DATE
+> Task :lucene:analysis:assemble UP-TO-DATE
+> Task :lucene:core:processMain21Resources NO-SOURCE
+> Task :lucene:grouping:processResources NO-SOURCE
+> Task :lucene:analysis.tests:processResources NO-SOURCE
+> Task :lucene:codecs:processResources UP-TO-DATE
+> Task :lucene:expressions:processResources UP-TO-DATE
+> Task :lucene:benchmark:processResources NO-SOURCE
+> Task :lucene:classification:processResources NO-SOURCE
+> Task :lucene:benchmark-jmh:processResources NO-SOURCE
+> Task :lucene:demo:processResources NO-SOURCE
+> Task :lucene:backward-codecs:processResources UP-TO-DATE
+> Task :lucene:join:processResources NO-SOURCE
+> Task :lucene:misc:processResources NO-SOURCE
+> Task :lucene:documentation:changesToHtml UP-TO-DATE
+> Task :lucene:suggest:processResources UP-TO-DATE
+> Task :lucene:analysis:icu:processResources UP-TO-DATE
+> Task :lucene:analysis:morfologik:processResources UP-TO-DATE
+> Task :lucene:core.tests:processResources NO-SOURCE
+> Task :lucene:analysis:opennlp:processResources UP-TO-DATE
+> Task :lucene:analysis:kuromoji:processResources UP-TO-DATE
+> Task :lucene:analysis:nori:processResources UP-TO-DATE
+> Task :lucene:analysis:phonetic:processResources UP-TO-DATE
+> Task :lucene:monitor:processResources NO-SOURCE
+> Task :lucene:analysis:stempel:processResources UP-TO-DATE
+> Task :lucene:analysis:common:processResources UP-TO-DATE
+> Task :lucene:luke:processResources UP-TO-DATE
+> Task :lucene:spatial-test-fixtures:processResources NO-SOURCE
+> Task :lucene:distribution.tests:processResources NO-SOURCE
+> Task :lucene:analysis:morfologik.tests:processResources NO-SOURCE
+> Task :lucene:test-framework:processResources UP-TO-DATE
+> Task :missing-doclet:compileJava UP-TO-DATE
+> Task :missing-doclet:processResources NO-SOURCE
+> Task :missing-doclet:classes UP-TO-DATE
+> Task :missing-doclet:jar UP-TO-DATE
+> Task :lucene:replicator:processResources NO-SOURCE
+> Task :lucene:analysis:smartcn:processResources UP-TO-DATE
+> Task :lucene:documentation:copyDocumentationAssets UP-TO-DATE
+> Task :lucene:core:renderSiteJavadoc UP-TO-DATE
+> Task :lucene:documentation:markdownToHtml UP-TO-DATE
+> Task :lucene:documentation:createDocumentationIndex UP-TO-DATE
+> Task :gitStatus
+
+> Task :errorProneSkipped
+WARNING: errorprone disabled (skipped on builds not running inside CI environments, pass -Pvalidation.errorprone=true to enable)
+
+> Task :lucene:analysis.tests:compileJava NO-SOURCE
+> Task :lucene:distribution.tests:compileJava NO-SOURCE
+> Task :lucene:analysis:morfologik.tests:compileJava NO-SOURCE
+> Task :lucene:analysis.tests:classes UP-TO-DATE
+> Task :lucene:analysis:morfologik.tests:classes UP-TO-DATE
+> Task :lucene:distribution.tests:classes UP-TO-DATE
+> Task :lucene:core.tests:compileJava UP-TO-DATE
+> Task :lucene:analysis:morfologik.tests:jar UP-TO-DATE
+> Task :lucene:analysis.tests:jar UP-TO-DATE
+> Task :lucene:distribution.tests:jar UP-TO-DATE
+> Task :lucene:core.tests:classes UP-TO-DATE
+> Task :lucene:analysis:morfologik.tests:assemble UP-TO-DATE
+> Task :lucene:distribution.tests:assemble UP-TO-DATE
+> Task :lucene:analysis.tests:assemble UP-TO-DATE
+> Task :lucene:core.tests:jar UP-TO-DATE
+> Task :lucene:core.tests:assemble UP-TO-DATE
+> Task :lucene:core:compileJava UP-TO-DATE
+> Task :lucene:core:classes UP-TO-DATE
+> Task :lucene:core:compileMain21Java UP-TO-DATE
+> Task :lucene:core:main21Classes UP-TO-DATE
+> Task :lucene:core:jar UP-TO-DATE
+> Task :lucene:spatial3d:compileJava UP-TO-DATE
+> Task :lucene:backward-codecs:renderSiteJavadoc UP-TO-DATE
+> Task :lucene:spatial3d:classes UP-TO-DATE
+> Task :lucene:join:renderSiteJavadoc UP-TO-DATE
+> Task :lucene:replicator:renderSiteJavadoc UP-TO-DATE
+> Task :lucene:spatial3d:jar UP-TO-DATE
+> Task :lucene:misc:renderSiteJavadoc UP-TO-DATE
+> Task :lucene:spatial3d:renderSiteJavadoc UP-TO-DATE
+> Task :lucene:core:assemble UP-TO-DATE
+> Task :lucene:facet:compileJava UP-TO-DATE
+> Task :lucene:facet:classes UP-TO-DATE
+> Task :lucene:codecs:compileJava UP-TO-DATE
+> Task :lucene:codecs:classes UP-TO-DATE
+> Task :lucene:join:compileJava UP-TO-DATE
+> Task :lucene:spatial-extras:compileJava UP-TO-DATE
+> Task :lucene:spatial-extras:classes UP-TO-DATE
+> Task :lucene:join:classes UP-TO-DATE
+> Task :lucene:queries:compileJava UP-TO-DATE
+> Task :lucene:memory:compileJava UP-TO-DATE
+> Task :lucene:queries:classes UP-TO-DATE
+> Task :lucene:memory:classes UP-TO-DATE
+> Task :lucene:facet:jar UP-TO-DATE
+> Task :lucene:codecs:jar UP-TO-DATE
+> Task :lucene:join:jar UP-TO-DATE
+> Task :lucene:memory:jar UP-TO-DATE
+> Task :lucene:facet:renderSiteJavadoc UP-TO-DATE
+> Task :lucene:queries:jar UP-TO-DATE
+> Task :lucene:backward-codecs:compileJava UP-TO-DATE
+> Task :lucene:codecs:renderSiteJavadoc UP-TO-DATE
+> Task :lucene:memory:renderSiteJavadoc UP-TO-DATE
+> Task :lucene:spatial-extras:jar UP-TO-DATE
+> Task :lucene:queries:renderSiteJavadoc UP-TO-DATE
+> Task :lucene:expressions:compileJava UP-TO-DATE
+> Task :lucene:expressions:classes UP-TO-DATE
+> Task :lucene:spatial-extras:renderSiteJavadoc UP-TO-DATE
+> Task :lucene:backward-codecs:classes UP-TO-DATE
+> Task :lucene:grouping:compileJava UP-TO-DATE
+> Task :lucene:misc:compileJava UP-TO-DATE
+> Task :lucene:grouping:classes UP-TO-DATE
+> Task :lucene:codecs:assemble UP-TO-DATE
+> Task :lucene:misc:classes UP-TO-DATE
+> Task :lucene:backward-codecs:jar UP-TO-DATE
+> Task :lucene:highlighter:compileJava UP-TO-DATE
+> Task :lucene:backward-codecs:assemble UP-TO-DATE
+> Task :lucene:highlighter:classes UP-TO-DATE
+> Task :lucene:grouping:jar UP-TO-DATE
+> Task :lucene:misc:jar UP-TO-DATE
+> Task :lucene:grouping:renderSiteJavadoc UP-TO-DATE
+> Task :lucene:facet:assemble UP-TO-DATE
+> Task :lucene:grouping:assemble UP-TO-DATE
+> Task :lucene:join:assemble UP-TO-DATE
+> Task :lucene:memory:assemble UP-TO-DATE
+> Task :lucene:highlighter:jar UP-TO-DATE
+> Task :lucene:sandbox:compileJava UP-TO-DATE
+> Task :lucene:replicator:compileJava UP-TO-DATE
+> Task :lucene:misc:assemble UP-TO-DATE
+> Task :lucene:queries:assemble UP-TO-DATE
+> Task :lucene:sandbox:classes UP-TO-DATE
+> Task :lucene:replicator:classes UP-TO-DATE
+> Task :lucene:spatial-extras:assemble UP-TO-DATE
+> Task :lucene:spatial3d:assemble UP-TO-DATE
+> Task :lucene:highlighter:renderSiteJavadoc UP-TO-DATE
+> Task :lucene:highlighter:assemble UP-TO-DATE
+> Task :lucene:analysis:common:compileJava UP-TO-DATE
+> Task :lucene:analysis:common:classes UP-TO-DATE
+> Task :lucene:sandbox:jar UP-TO-DATE
+> Task :lucene:replicator:jar UP-TO-DATE
+> Task :lucene:replicator:assemble UP-TO-DATE
+> Task :lucene:classification:compileJava UP-TO-DATE
+> Task :lucene:test-framework:renderSiteJavadoc UP-TO-DATE
+> Task :lucene:sandbox:renderSiteJavadoc UP-TO-DATE
+> Task :lucene:expressions:jar UP-TO-DATE
+> Task :lucene:sandbox:assemble UP-TO-DATE
+> Task :lucene:analysis:common:jar UP-TO-DATE
+> Task :lucene:classification:renderSiteJavadoc UP-TO-DATE
+> Task :lucene:classification:classes UP-TO-DATE
+> Task :lucene:expressions:renderSiteJavadoc UP-TO-DATE
+> Task :lucene:analysis:common:renderSiteJavadoc UP-TO-DATE
+> Task :lucene:monitor:renderSiteJavadoc UP-TO-DATE
+> Task :lucene:analysis:icu:compileJava UP-TO-DATE
+> Task :lucene:analysis:kuromoji:compileJava UP-TO-DATE
+> Task :lucene:analysis:morfologik:renderSiteJavadoc UP-TO-DATE
+> Task :lucene:queryparser:compileJava UP-TO-DATE
+> Task :lucene:queryparser:classes UP-TO-DATE
+> Task :lucene:benchmark-jmh:compileJava UP-TO-DATE
+> Task :lucene:analysis:icu:renderSiteJavadoc UP-TO-DATE
+> Task :lucene:classification:jar UP-TO-DATE
+> Task :lucene:benchmark-jmh:renderSiteJavadoc SKIPPED
+> Task :lucene:analysis:kuromoji:renderSiteJavadoc UP-TO-DATE
+> Task :lucene:suggest:compileJava UP-TO-DATE
+> Task :lucene:analysis:nori:renderSiteJavadoc UP-TO-DATE
+> Task :lucene:benchmark-jmh:classes UP-TO-DATE
+> Task :lucene:analysis:opennlp:renderSiteJavadoc UP-TO-DATE
+> Task :lucene:analysis:smartcn:renderSiteJavadoc UP-TO-DATE
+> Task :lucene:analysis:phonetic:renderSiteJavadoc UP-TO-DATE
+> Task :lucene:queryparser:jar UP-TO-DATE
+> Task :lucene:classification:assemble UP-TO-DATE
+> Task :lucene:analysis:icu:classes UP-TO-DATE
+> Task :lucene:analysis:kuromoji:classes UP-TO-DATE
+> Task :lucene:test-framework:compileJava UP-TO-DATE
+> Task :lucene:suggest:renderSiteJavadoc UP-TO-DATE
+> Task :lucene:suggest:classes UP-TO-DATE
+> Task :lucene:analysis:stempel:renderSiteJavadoc UP-TO-DATE
+> Task :lucene:queryparser:renderSiteJavadoc UP-TO-DATE
+> Task :lucene:analysis:kuromoji:jar UP-TO-DATE
+> Task :lucene:analysis:icu:jar UP-TO-DATE
+> Task :lucene:benchmark-jmh:jar UP-TO-DATE
+> Task :lucene:benchmark-jmh:copyDependencies UP-TO-DATE
+> Task :lucene:suggest:jar UP-TO-DATE
+
+> Task :lucene:benchmark-jmh:assemble
+
+JMH benchmarks compiled. Run them with:
+
+java -jar lucene/benchmark-jmh/build/benchmarks/lucene-benchmark-jmh-10.3.2-SNAPSHOT.jar
+
+or
+
+java --module-path lucene/benchmark-jmh/build/benchmarks --module org.apache.lucene.benchmark.jmh
+
+JMH options you can use with the above:
+
+  -h      displays verbose help for all options 
+  -l      list available benchmarks
+  -lp     list benchmarks that pass the filter and their parameters
+  regexp  execute all benchmark containing regexp
+
+
+> Task :lucene:demo:compileJava UP-TO-DATE
+> Task :lucene:analysis:opennlp:compileJava UP-TO-DATE
+> Task :lucene:analysis:opennlp:classes UP-TO-DATE
+> Task :lucene:analysis:phonetic:compileJava UP-TO-DATE
+> Task :lucene:analysis:phonetic:classes UP-TO-DATE
+> Task :lucene:analysis:nori:compileJava UP-TO-DATE
+> Task :lucene:demo:renderSiteJavadoc UP-TO-DATE
+> Task :lucene:demo:classes UP-TO-DATE
+> Task :lucene:analysis:nori:classes UP-TO-DATE
+> Task :lucene:analysis:morfologik:compileJava UP-TO-DATE
+> Task :lucene:analysis:smartcn:compileJava UP-TO-DATE
+> Task :lucene:analysis:morfologik:classes UP-TO-DATE
+> Task :lucene:analysis:smartcn:classes UP-TO-DATE
+> Task :lucene:analysis:stempel:compileJava UP-TO-DATE
+> Task :lucene:analysis:stempel:classes UP-TO-DATE
+> Task :lucene:analysis:opennlp:jar UP-TO-DATE
+> Task :lucene:analysis:phonetic:jar UP-TO-DATE
+> Task :lucene:demo:jar UP-TO-DATE
+> Task :lucene:demo:assemble UP-TO-DATE
+> Task :lucene:test-framework:classes UP-TO-DATE
+> Task :lucene:expressions:assemble UP-TO-DATE
+> Task :lucene:queryparser:assemble UP-TO-DATE
+> Task :lucene:suggest:assemble UP-TO-DATE
+> Task :lucene:analysis:common:assemble UP-TO-DATE
+> Task :lucene:analysis:icu:assemble UP-TO-DATE
+> Task :lucene:analysis:kuromoji:assemble UP-TO-DATE
+> Task :lucene:analysis:opennlp:assemble UP-TO-DATE
+> Task :lucene:analysis:phonetic:assemble UP-TO-DATE
+> Task :lucene:analysis:morfologik:jar UP-TO-DATE
+> Task :lucene:analysis:smartcn:jar UP-TO-DATE
+> Task :lucene:analysis:morfologik:assemble UP-TO-DATE
+> Task :lucene:analysis:smartcn:assemble UP-TO-DATE
+> Task :lucene:analysis:stempel:jar UP-TO-DATE
+> Task :lucene:analysis:stempel:assemble UP-TO-DATE
+> Task :lucene:benchmark:compileJava UP-TO-DATE
+> Task :lucene:analysis:nori:jar UP-TO-DATE
+> Task :lucene:analysis:nori:assemble UP-TO-DATE
+> Task :lucene:benchmark:renderSiteJavadoc UP-TO-DATE
+> Task :lucene:monitor:compileJava UP-TO-DATE
+> Task :lucene:documentation:documentation UP-TO-DATE
+> Task :lucene:benchmark:classes UP-TO-DATE
+> Task :lucene:monitor:classes UP-TO-DATE
+> Task :lucene:documentation:assemble UP-TO-DATE
+> Task :documentation UP-TO-DATE
+> Task :assemble UP-TO-DATE
+> Task :lucene:test-framework:jar UP-TO-DATE
+> Task :lucene:test-framework:assemble UP-TO-DATE
+> Task :lucene:spatial-test-fixtures:compileJava UP-TO-DATE
+> Task :lucene:spatial-test-fixtures:classes UP-TO-DATE
+> Task :lucene:benchmark:jar UP-TO-DATE
+> Task :lucene:benchmark:assemble UP-TO-DATE
+> Task :lucene:spatial-test-fixtures:jar UP-TO-DATE
+> Task :lucene:spatial-test-fixtures:assemble UP-TO-DATE
+> Task :lucene:monitor:jar UP-TO-DATE
+> Task :lucene:monitor:assemble UP-TO-DATE
+> Task :lucene:luke:compileJava UP-TO-DATE
+> Task :lucene:luke:classes UP-TO-DATE
+> Task :lucene:luke:jar UP-TO-DATE
+> Task :lucene:luke:standaloneJar UP-TO-DATE
+> Task :lucene:distribution:assembleBinaryDirForTests UP-TO-DATE
+> Task :lucene:distribution:assemble UP-TO-DATE
+> Task :lucene:luke:standaloneAssemble UP-TO-DATE
+> Task :lucene:luke:assemble UP-TO-DATE
+
+[Incubating] Problems report is available at: file:///home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/lucene/build/reports/problems/problems-report.html
+
+BUILD SUCCESSFUL in 9s
+140 actionable tasks: 3 executed, 137 up-to-date

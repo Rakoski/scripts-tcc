@@ -49,11 +49,7 @@ sobre homogeneidade de variâncias. Brown-Forsythe testa se as variâncias difer
 Jonckheere-Terpstra testa se diferem **na ordem prevista**. Os dois respondem
 perguntas distintas e ambos serão reportados.
 
-**Testes secundários e exploratórios:** Kruskal-Wallis sobre densidade mediana
-(secundário, sem direção), Cliff's δ pareado e η² (tamanhos de efeito,
-obrigatórios), estatística descritiva por arquétipo. Sem correção para múltiplas
-comparações: o teste primário é único (J-T sobre variância) e os demais são
-declarados exploratórios na Seção 5.
+**Testes secundários e exploratórios:** Único teste confirmatório: Jonckheere-Terpstra unilateral sobre a variância da densidade de dívida é o único teste confirmatório do estudo. Todos os demais testes mencionados nesta seção e na §8 — Brown-Forsythe, Kruskal-Wallis, Cliff's δ pareado, η² — são descritivos / exploratórios e não constituem evidência confirmatória, independentemente de seus p-valores. Sem correção para múltiplas comparações porque há apenas um teste confirmatório. Esta decisão é congelada e não revisável após observação dos dados.
 
 **Compromisso de pré-registro:** a ordem `google < apache < descentralizado` é
 congelada nesta versão do protocolo. Se o resultado do J-T for não-significativo,
@@ -95,13 +91,12 @@ um valor de `instancia` (netflix, uber, spotify, linkedin).
 
 ### 3.3 Composição esperada do arquétipo descentralizado
 
-Distribuição prevista: Netflix 7, Uber 5, Spotify 2, LinkedIn 1 (total 15). Esta
-imbalance é assumida como característica do ecossistema público (Netflix publica
-mais Java ativo que os outros três) e será:
+Distribuição efetiva da amostra: Netflix 6, Uber 5, LinkedIn 3, Spotify 1 (total 15). A distribuição inicialmente prevista em v1.1 (Netflix 7, Uber 5, Spotify 2, LinkedIn 1) foi inviabilizada empiricamente durante a fase de seleção: vários repositórios Java da Netflix estavam arquivados ou abaixo do limiar de 70% Java exigido por §4.1; LinkedIn manteve mais projetos Java ativos elegíveis do que o estimado a priori; Spotify publica predominantemente em outras linguagens (sua plataforma Backstage, por exemplo, é em TypeScript), com apenas um repositório Java ativo elegível. Esta composição é mantida como achado substantivo sobre a presença pública de Java em cada organização — não como ruído amostral a ser corrigido — e será:
 
 1. Reportada em análise de subgrupo junto ao agregado.
 2. Discutida como achado substantivo: organizações descentralizadas diferem em
    quanto Java mantêm publicamente.
+3. Subgrupo Spotify (n=1) não suporta análise de variância intra-organização. Boxplots e estatísticas descritivas dentro do arquétipo descentralizado tratarão Spotify como ponto único, não como subgrupo, e nenhum teste inferencial intra-arquétipo será conduzido devido aos tamanhos de subgrupo (Netflix 6, Uber 5, LinkedIn 3, Spotify 1)."
 
 ## 4. Critérios de seleção de projetos
 
@@ -169,11 +164,7 @@ SonarQube. Releases "estáveis" excluem alphas, betas, RCs, milestones e snapsho
 ## 5. Amostra
 
 - **Tamanho:** n = 15 por arquétipo, total N = 45.
-- **Justificativa do tamanho:** convenience sample limitado pelo tempo de TCC e pela
-  necessidade de build local reprodutível. O estudo é **poderado para detectar
-  efeitos grandes apenas** (Cliff's δ ≥ ~0,47, que é o limiar convencional para
-  "efeito grande"). Esta limitação é declarada na Seção 5 do TCC e reconhecida
-  como ameaça à validade externa.
+- **Justificativa do tamanho:** convenience sample limitado pelo tempo de TCC e pela necessidade de build local reprodutível. Com n=15 por arquétipo, o poder estatístico do J-T unilateral a α=0,05 é de aproximadamente 70-75% para detectar uma tendência monotônica grande (Cliff's δ ≥ 0,474). O estudo não é poderado para detectar efeitos médios ou pequenos. Resultado não-significativo no J-T não constitui evidência de equivalência entre arquétipos — constitui falha em detectar um efeito grande sob amostra pequena. Esta limitação é declarada na Seção 5 do TCC e na discussão da validade externa.
 
 ### 5.1 Lista de candidatos congelada
 
@@ -232,10 +223,8 @@ complexity, cognitive_complexity, duplicated_lines_density, comment_lines_densit
 
 Justificativa de exclusões em relação à proposta inicial:
 
-- **`coverage`** removida: requer instrumentação de testes, não disponível para
-  a maioria dos projetos da amostra. Valores ausentes ou zerados poluiriam as
-  estatísticas descritivas. Cobertura é objeto de sub-estudo separado se vier
-  a ser feito.
+- **`coverage`** removida definitivamente: requer instrumentação de testes incompatível com o pipeline -DskipTests da §7.2. Reintroduzir cobertura geraria três classes de dados (cobertura real, cobertura zero por testes pulados, cobertura ausente por falta de testes), missing-not-at-random entre arquétipos, poluindo qualquer comparação. A análise de cobertura é deixada como trabalho futuro com pipeline próprio (build com testes, ingestão de relatórios JaCoCo), fora do escopo deste TCC.
+
 - **`reliability_rating`, `security_rating`, `sqale_rating`** removidas: são
   métricas ordinais (A-E) derivadas dos contadores brutos já incluídos.
   Adicionam ruído sem informação nova e tentam o analista a rodar testes sobre
@@ -309,6 +298,15 @@ conforme §5.2.
   no repositório do TCC **antes** da coleta oficial dos dados, para garantir
   que a análise não seja moldada pelos resultados.
 
+### 8.1 Tratamento de confundidores (NCLOC e idade)
+A amostra apresenta diferenças sistemáticas em NCLOC e idade entre arquétipos (medianas: Apache 51k LOC / 18,7 anos; Google 16k LOC / 12,9 anos; descentralizado 21k LOC / 8,2 anos). Esses confundidores não são tratados por manipulação amostral — restringir Apache a projetos pequenos e jovens não representaria Apache — mas analiticamente:
+
+Reporte prominente da composição amostral em Seção 4 antes de qualquer inferência: distribuição de NCLOC, idade, e contadores de contribuidores por arquétipo, com visualização (boxplot ou strip plot).
+Correlação parcial baseada em rank (Spearman parcial) entre arquétipo (codificado ordinalmente como em §3.1) e densidade de dívida, controlando para log(NCLOC) e idade. Reportada como análise descritiva, não confirmatória.
+Análise de robustez em sub-amostra de tamanho comparável: re-execução do J-T sobre o subconjunto de projetos com NCLOC entre 10k e 100k (faixa de sobreposição entre arquétipos). Se a direção do efeito persistir, isto fortalece a interpretação de governança; se inverter ou desaparecer, isto enfraquece e será discutido honestamente na Seção 5.
+
+A análise de robustez é descritiva, não confirmatória — ela não substitui o J-T primário sobre a amostra completa, que continua sendo o teste pré-registrado.
+
 ## 9. Reprodutibilidade
 
 - Toda execução gera um diretório `dados/YYYY-MM-DD/` imutável.
@@ -358,3 +356,43 @@ conforme §5.2.
   - §8: pipeline estatístico reorganizado em tabela de cinco testes
     obrigatórios; critério de decisão sobre H1 combinando significância e
     tamanho de efeito; pré-comprometimento do script de análise.
+
+- **1.2 (2026-04-27):** ajustes pós-revisão pré-coleta:
+  - §2: J-T unilateral sobre variância confirmado como ÚNICO teste
+    confirmatório. Brown-Forsythe, Kruskal-Wallis, Cliff's δ e η²
+    explicitamente rebaixados a descritivos/exploratórios no corpo da §2,
+    não apenas em nota.
+  - §3.3: distribuição efetiva da amostra descentralizada corrigida para
+    Netflix 6, Uber 5, LinkedIn 3, Spotify 1 (total 15), com justificativa
+    empírica. Nota adicionada sobre Spotify n=1 não suportar análise
+    inferencial intra-subgrupo.
+  - §5: declaração explícita de poder estatístico (~70-75% para δ ≥ 0,474
+    com n=15 por grupo, α=0,05 unilateral). Resultados não-significativos
+    não serão interpretados como evidência de equivalência entre
+    arquétipos.
+  - §6.1: parágrafo adicionado sobre objetividade condicional das medidas
+    em relação à Quality Profile `Sonar way` default em v26.2.0.119303
+    MQR Mode.
+  - §6.2: `coverage` removida definitivamente (não readicionada) com
+    justificativa expandida sobre missing-not-at-random.
+  - §8: nova subseção §8.1 introduzindo tratamento analítico de
+    confundidores (NCLOC, idade) via correlação parcial Spearman e
+    análise de robustez em sub-amostra de tamanho comparável (10k-100k
+    NCLOC). Confundidores tratados analiticamente em vez de via
+    manipulação amostral. Existing decision rule on H1 reorganized as
+    §8.2.
+  - Título do TCC ajustado para incluir "Code-Level Technical Debt" /
+    "Dívida Técnica em Nível de Código" e "Java", deixando explícito o
+    nível de medição e o escopo de linguagem.
+  - Introdução do TCC: mecanismo causal "diversidade de contribuidores"
+    substituído por "ausência de mecanismos de enforcement organizacional",
+    consistente com a distribuição observada de contribuidores
+    (Apache mediana 289 > Google 131 > descentralizado 55).
+  - Introdução do TCC: parágrafo de disclosure de composição amostral
+    adicionado antes de §1.1, declarando confundidores de tamanho e
+    idade upfront e o compromisso de tratá-los analiticamente.
+  - Introdução do TCC: parágrafo SQALE estendido para declarar
+    explicitamente que o estudo mede a assinatura código-nível das
+    escolhas de governança, não degradação arquitetural; análise
+    arquitetural via Arcan declarada como trabalho futuro fora do
+    escopo deste paper.

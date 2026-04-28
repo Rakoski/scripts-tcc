@@ -1,0 +1,59 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;33mWARNING[m] The project com.google.testing.compile:compile-testing:jar:0.23.0 uses prerequisites which is only intended for maven-plugin projects but not for non maven-plugin projects. For such purposes you should use the maven-enforcer-plugin. See https://maven.apache.org/enforcer/enforcer-rules/requireMavenVersion.html
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m-------------< [0;36mcom.google.testing.compile:compile-testing[0;1m >-------------[m
+[[1;34mINFO[m] [1mBuilding Compile Testing 0.23.0[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+Downloading from central: https://repo.maven.apache.org/maven2/com/google/truth/extensions/truth-java8-extension/1.4.5/truth-java8-extension-1.4.5.pom
+Progress (1): 1.9 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/com/google/truth/extensions/truth-java8-extension/1.4.5/truth-java8-extension-1.4.5.pom (1.9 kB at 2.4 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/com/google/truth/extensions/truth-extensions-parent/1.4.5/truth-extensions-parent-1.4.5.pom
+Progress (1): 890 B                   Downloaded from central: https://repo.maven.apache.org/maven2/com/google/truth/extensions/truth-extensions-parent/1.4.5/truth-extensions-parent-1.4.5.pom (890 B at 1.9 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/com/google/truth/extensions/truth-java8-extension/1.4.5/truth-java8-extension-1.4.5.jar
+Progress (1): 2.7/6.1 kBProgress (1): 5.5/6.1 kBProgress (1): 6.1 kB                        Downloaded from central: https://repo.maven.apache.org/maven2/com/google/truth/extensions/truth-java8-extension/1.4.5/truth-java8-extension-1.4.5.jar (6.1 kB at 20 kB/s)
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:resources[m [1m(default-resources)[m @ [36mcompile-testing[0;1m ---[m
+[[1;33mWARNING[m] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[[1;34mINFO[m] Copying 1 resource to META-INF
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.14.0:compile[m [1m(default-compile)[m @ [36mcompile-testing[0;1m ---[m
+[[1;34mINFO[m] Recompiling the module because of [1mchanged source code[m.
+[[1;33mWARNING[m] File encoding has not been set, using platform encoding [1mUTF-8[m, i.e. build is platform dependent!
+[[1;34mINFO[m] Compiling 24 source files with javac [debug deprecation target 1.8] to target/classes
+[[1;33mWARNING[m] bootstrap class path not set in conjunction with -source 8
+[[1;33mWARNING[m] source value 8 is obsolete and will be removed in a future release
+[[1;33mWARNING[m] target value 8 is obsolete and will be removed in a future release
+[[1;33mWARNING[m] To suppress warnings about obsolete options, use -Xlint:-options.
+[[1;33mWARNING[m] No processor claimed any of these annotations: com.google.errorprone.annotations.CheckReturnValue,org.jspecify.annotations.NullMarked,com.google.auto.value.AutoValue,com.google.errorprone.annotations.FormatMethod,com.google.errorprone.annotations.CanIgnoreReturnValue,com.google.common.annotations.VisibleForTesting
+[[1;33mWARNING[m] /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/compile-testing/src/main/java/com/google/testing/compile/JavaSourcesSubject.java:[312,28] withClasspathFrom(java.lang.ClassLoader) in com.google.testing.compile.Compiler has been deprecated
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:testResources[m [1m(default-testResources)[m @ [36mcompile-testing[0;1m ---[m
+[[1;33mWARNING[m] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[[1;34mINFO[m] Copying 4 resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.14.0:testCompile[m [1m(default-testCompile)[m @ [36mcompile-testing[0;1m ---[m
+[[1;34mINFO[m] Recompiling the module because of [1mchanged dependency[m.
+[[1;33mWARNING[m] File encoding has not been set, using platform encoding [1mUTF-8[m, i.e. build is platform dependent!
+[[1;34mINFO[m] Compiling 22 source files with javac [debug deprecation target 1.8] to target/test-classes
+[[1;33mWARNING[m] bootstrap class path not set in conjunction with -source 8
+[[1;33mWARNING[m] source value 8 is obsolete and will be removed in a future release
+[[1;33mWARNING[m] target value 8 is obsolete and will be removed in a future release
+[[1;33mWARNING[m] To suppress warnings about obsolete options, use -Xlint:-options.
+[[1;33mWARNING[m] No processor claimed any of these annotations: org.junit.Rule,org.junit.runner.RunWith,org.junit.runners.Parameterized.Parameters,org.junit.Test,com.google.errorprone.annotations.CanIgnoreReturnValue,org.junit.Before
+[[1;33mWARNING[m] /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/compile-testing/src/test/java/com/google/testing/compile/BreadcrumbsTest.java:[41,71] none() in org.junit.rules.ExpectedException has been deprecated
+[[1;33mWARNING[m] /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/compile-testing/src/test/java/com/google/testing/compile/CompilerTest.java:[194,13] withClasspathFrom(java.lang.ClassLoader) in com.google.testing.compile.Compiler has been deprecated
+[[1;33mWARNING[m] /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/compile-testing/src/test/java/com/google/testing/compile/CompilerTest.java:[210,13] withClasspathFrom(java.lang.ClassLoader) in com.google.testing.compile.Compiler has been deprecated
+[[1;33mWARNING[m] /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/compile-testing/src/test/java/com/google/testing/compile/JarFileResourcesCompilationTest.java:[61,11] URL(java.lang.String) in java.net.URL has been deprecated
+[[1;33mWARNING[m] /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/compile-testing/src/test/java/com/google/testing/compile/TreeContextTest.java:[37,71] none() in org.junit.rules.ExpectedException has been deprecated
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-surefire-plugin:3.5.3:test[m [1m(default-test)[m @ [36mcompile-testing[0;1m ---[m
+[[1;34mINFO[m] Tests are skipped.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-jar-plugin:3.4.2:jar[m [1m(default-jar)[m @ [36mcompile-testing[0;1m ---[m
+[[1;34mINFO[m] Building jar: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/compile-testing/target/compile-testing-0.23.0.jar
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;32mBUILD SUCCESS[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  5.067 s
+[[1;34mINFO[m] Finished at: 2026-04-22T21:54:51-03:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[0m[0m

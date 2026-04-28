@@ -1,0 +1,45 @@
+INFO: Scanner configuration file: /home/mateus/Documentos/artigos-tcc/repos/tcc/sonarqube-docker/sonar-scanner-5.0.1.3006-linux/conf/sonar-scanner.properties
+INFO: Project root configuration file: NONE
+INFO: SonarScanner 5.0.1.3006
+INFO: Java 17.0.7 Eclipse Adoptium (64-bit)
+INFO: Linux 6.12.74+deb12-amd64 amd64
+INFO: User cache: /home/mateus/.sonar/cache
+INFO: Analyzing on SonarQube server 26.2.0.119303
+INFO: Default locale: "pt_BR", source code encoding: "UTF-8"
+WARN: Java 17 scanner support ends with SonarQube 2026.3 (July 2026). Please upgrade to Java 21 or newer, or use JRE auto-provisioning to keep this requirement always up to date.
+INFO: Load global settings
+INFO: Load global settings (done) | time=58ms
+INFO: Server id: 147B411E-AZxiei4aNYKBggPWvmPT
+INFO: Loading required plugins
+INFO: Load plugins index
+INFO: Load plugins index (done) | time=24ms
+INFO: Load/download plugins
+INFO: Load/download plugins (done) | time=16ms
+INFO: Process project properties
+INFO: Process project properties (done) | time=9ms
+INFO: Project key: apache-tomcat-01
+INFO: Base dir: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/tomcat
+INFO: Working dir: /home/mateus/Documentos/artigos-tcc/repos/tcc/projetos-clonados/tomcat/.scannerwork
+INFO: Load project settings for component key: 'apache-tomcat-01'
+INFO: Load project settings for component key: 'apache-tomcat-01' (done) | time=9ms
+INFO: Load quality profiles
+INFO: Load quality profiles (done) | time=39ms
+INFO: Load active rules
+INFO: Load active rules (done) | time=304ms
+INFO: Load analysis cache
+INFO: Load analysis cache (2.5 kB) | time=8ms
+INFO: Preprocessing files...
+INFO: 2 languages detected in 47 preprocessed files (done) | time=38ms
+INFO: Loading plugins for detected languages
+INFO: Load/download plugins
+INFO: Load/download plugins (done) | time=6ms
+INFO: Load project repositories
+INFO: Load project repositories (done) | time=71ms
+INFO: Indexing files...
+INFO: Project configuration:
+INFO: 47 files indexed (done) | time=6ms
+INFO: Quality profile for java: Sonar way
+INFO: Quality profile for xml: Sonar way
+INFO: ------------- Run sensors on module tomcat
+INFO: Load metrics repository
+INFO: Load metrics repository (done) | time=14ms
