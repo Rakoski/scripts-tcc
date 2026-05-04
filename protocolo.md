@@ -37,25 +37,40 @@ de escopo, não uma omissão.
 - **H1' (secundária):** A densidade mediana de dívida técnica difere entre os três
   arquétipos (sem direção pré-especificada).
 
-**Teste primário:** Jonckheere-Terpstra unilateral sobre a variância da densidade
-de dívida por arquétipo, α = 0,05, com a ordem `google < apache < descentralizado`
-fixada *a priori* a partir da literatura de governança (ver §3.1) **antes** de
-qualquer coleta de dados.
+**Teste primário:** Brown-Forsythe (Levene com `center='median'`) sobre
+homogeneidade de variâncias da densidade de dívida entre os três arquétipos,
+α = 0,05. Brown-Forsythe testa se as variâncias diferem entre os grupos sem
+assumir normalidade nem homocedasticidade prévia, sendo o teste padrão para
+esta pergunta na literatura estatística. A ordem `google < apache <
+descentralizado` é fixada *a priori* a partir da literatura de governança
+(ver §3.1) **antes** de qualquer coleta de dados, e a confirmação dessa ordem
+é verificada descritivamente sobre as variâncias amostrais (não por teste
+inferencial sobre a ordenação).
 
+**Tamanho de efeito obrigatório:** Cliff's δ pareado entre os três pares de
+arquétipos (Google–Apache, Apache–Descentralizado, Google–Descentralizado),
+calculado sobre as densidades de dívida. Cliff's δ é não-paramétrico, robusto
+a outliers, e tem interpretação direta como a probabilidade de um projeto
+escolhido ao acaso de um arquétipo apresentar densidade maior do que um
+projeto de outro arquétipo. Limiares de Romano et al. (2006): |δ| < 0,147
+negligenciável; 0,147 ≤ |δ| < 0,33 pequeno; 0,33 ≤ |δ| < 0,474 médio;
+|δ| ≥ 0,474 grande.
 
-
-**Teste de existência complementar:** Brown-Forsythe (Levene com `center='median'`)
-sobre homogeneidade de variâncias. Brown-Forsythe testa se as variâncias diferem;
-Jonckheere-Terpstra testa se diferem **na ordem prevista**. Os dois respondem
-perguntas distintas e ambos serão reportados.
-
-**Testes secundários e exploratórios:** Único teste confirmatório: Jonckheere-Terpstra unilateral sobre a variância da densidade de dívida é o único teste confirmatório do estudo. Todos os demais testes mencionados nesta seção e na §8 — Brown-Forsythe, Kruskal-Wallis, Cliff's δ pareado, η² — são descritivos / exploratórios e não constituem evidência confirmatória, independentemente de seus p-valores. Sem correção para múltiplas comparações porque há apenas um teste confirmatório. Esta decisão é congelada e não revisável após observação dos dados.
+**Teste único confirmatório:** Brown-Forsythe é o único teste confirmatório do
+estudo. Cliff's δ é tamanho de efeito obrigatório, não teste de hipótese. Todos
+os demais procedimentos mencionados nesta seção e na §8 — Kruskal-Wallis, η²,
+Jonckheere-Terpstra, correlação parcial Spearman — são descritivos /
+exploratórios e não constituem evidência confirmatória, independentemente de
+seus p-valores. Sem correção para múltiplas comparações porque há apenas um
+teste confirmatório. Esta decisão é congelada e não revisável após observação
+dos dados.
 
 **Compromisso de pré-registro:** a ordem `google < apache < descentralizado` é
-congelada nesta versão do protocolo. Se o resultado do J-T for não-significativo,
-isso é reportado como evidência contra H1 e o protocolo **não** será re-rodado com
-ordem alternativa. A análise descritiva e Cliff's δ continuam revelando o padrão
-real independentemente.
+congelada nesta versão do protocolo. Se a ordem observada das variâncias
+amostrais não corresponder à ordem prevista, isto é reportado como evidência
+contra H1 e o protocolo **não** será re-rodado com ordem alternativa. A
+análise descritiva e Cliff's δ continuam revelando o padrão real
+independentemente.
 
 **Métrica primária:** densidade de dívida técnica = `sqale_index / ncloc`,
 em minutos por linha de código não-comentada, agregada ao nível de projeto.
@@ -280,23 +295,48 @@ conforme §5.2.
 - **Visualização obrigatória:** boxplot + strip plot por arquétipo, com subgrupo
   Netflix/Uber/Spotify/LinkedIn destacado dentro de descentralizado, e subgrupo
   ativo/manutenção/arquivado destacado dentro de Google.
-- **Pipeline confirmatório (cinco testes obrigatórios):**
 
-| # | Teste | Função | Status | Sobre o quê |
+- **Pipeline analítico:**
+
+| # | Procedimento | Função | Status | Sobre o quê |
 |---|---|---|---|---|
-| 1 | Brown-Forsythe | Existência de diferença de variâncias | Complementar ao primário | Variância da densidade |
-| 2 | Jonckheere-Terpstra (unilateral) | Diferença na ordem prevista | **Primário (H1)** | Variância da densidade |
-| 3 | Kruskal-Wallis | Diferença em tendência central | Secundário (H1') | Densidade mediana |
-| 4 | Cliff's δ (pareado) | Tamanho de efeito não-paramétrico | **Obrigatório** | Todos os pares |
-| 5 | η² (de Kruskal-Wallis) | Tamanho de efeito omnibus | Obrigatório | Densidade mediana |
+| 1 | Tabela descritiva por arquétipo (mediana, IQR, variância, std, min, max, n) | Apresentação primária da evidência | Obrigatório | Densidade |
+| 2 | Boxplot + strip plot por arquétipo | Visualização da dispersão | Obrigatório | Densidade |
+| 3 | Brown-Forsythe (Levene com `center='median'`) | Teste de homogeneidade de variâncias | **Primário (H1)** | Variância da densidade |
+| 4 | Cliff's δ pareado (3 pares) | Tamanho de efeito não-paramétrico | **Obrigatório** | Densidade, todos os pares |
+| 5 | Kruskal-Wallis + η² | Diferença em tendência central (H1') | Secundário | Densidade mediana |
+| 6 | Jonckheere-Terpstra sobre densidades | Tendência monotônica (exploratório) | Exploratório | Densidade |
 
-- **Decisão sobre H1:** rejeitar H0 a favor de H1 se e somente se o J-T
-  unilateral retornar p < 0,05 **e** Cliff's δ apontar efeito grande
-  (|δ| ≥ 0,474) em pelo menos um dos pares relevantes. Significância sem
-  efeito grande é reportada como "padrão direcional fraco, não conclusivo".
 - **Pré-comprometimento:** o script `analise_estatistica.py` será commitado
   no repositório do TCC **antes** da coleta oficial dos dados, para garantir
   que a análise não seja moldada pelos resultados.
+
+### 8.2 Regra de decisão sobre H1
+
+H0 é rejeitada a favor de H1 se e somente se as três condições abaixo forem
+simultaneamente satisfeitas:
+
+1. **Significância:** Brown-Forsythe retorna p < 0,05 sobre a homogeneidade
+   das variâncias entre os três arquétipos.
+2. **Ordem:** a ordenação das variâncias amostrais corresponde à ordem
+   prevista *a priori* — variância(Google) < variância(Apache) <
+   variância(Descentralizado).
+3. **Tamanho de efeito:** pelo menos um dos três Cliff's δ pareados atinge
+   magnitude grande (|δ| ≥ 0,474).
+
+Falha em qualquer das três condições é reportada como falha de H1, com
+interpretação específica:
+
+- (1) sem (2): variâncias diferem mas não na ordem prevista — evidência
+  contra H1, pode sugerir mecanismo causal alternativo a ser discutido na
+  Seção 5 do TCC.
+- (1) e (2) sem (3): ordem prevista observada e estatisticamente
+  significativa, mas magnitude insuficiente para significância prática —
+  reportar como "padrão direcional consistente com H1 mas de magnitude
+  pequena, não conclusivo para os fins desta tese".
+- ausência de (1): falha em detectar diferença de variâncias — sob poder
+  de ~70-75% para δ ≥ 0,474 (§5), não constitui evidência de equivalência
+  entre arquétipos.
 
 ### 8.1 Tratamento de confundidores (NCLOC e idade)
 A amostra apresenta diferenças sistemáticas em NCLOC e idade entre arquétipos (medianas: Apache 51k LOC / 18,7 anos; Google 16k LOC / 12,9 anos; descentralizado 21k LOC / 8,2 anos). Esses confundidores não são tratados por manipulação amostral — restringir Apache a projetos pequenos e jovens não representaria Apache — mas analiticamente:
@@ -396,3 +436,29 @@ A análise de robustez é descritiva, não confirmatória — ela não substitui
     escolhas de governança, não degradação arquitetural; análise
     arquitetural via Arcan declarada como trabalho futuro fora do
     escopo deste paper.
+- **1.3 (2026-05-03):** simplificação do pipeline confirmatório, decidida
+antes da coleta oficial:
+  - §2: Brown-Forsythe (Levene com `center='median'`) promovido a teste
+    primário e único confirmatório sobre a homogeneidade das variâncias
+    de densidade de dívida entre arquétipos. Justificativa: Brown-Forsythe
+    é o teste padrão da literatura para esta pergunta, sem premissas
+    paramétricas relevantes, e dispensa o uso de bootstrap sobre
+    estatísticas de variância que seria necessário para aplicar
+    Jonckheere-Terpstra ao mesmo objeto. Pipeline mais simples reduz
+    riscos de implementação e facilita revisão metodológica.
+  - §2: Jonckheere-Terpstra removido como teste confirmatório. Mantido
+    apenas como procedimento exploratório sobre as densidades brutas
+    (não sobre variâncias), reportado na §4 do TCC apenas como suporte
+    descritivo da ordenação.
+  - §2: Cliff's δ pareado mantido como tamanho de efeito obrigatório,
+    com limiares de Romano et al. (2006) explicitados.
+  - §8: tabela do pipeline analítico reorganizada para refletir a nova
+    hierarquia (descritiva + visualização + Brown-Forsythe + Cliff's δ
+    como núcleo, Kruskal-Wallis e J-T como secundários/exploratórios).
+  - §8.2: nova subseção dedicada à regra de decisão sobre H1, com as
+    três condições conjuntivas (significância via Brown-Forsythe + ordem
+    descritiva prevista + magnitude de Cliff's δ ≥ 0,474 em pelo menos
+    um par) e interpretação explícita de cada modo de falha.
+  - Esta mudança é uma simplificação metodológica registrada antes da
+    coleta oficial dos dados (cf. §10 — coleta prevista para maio de
+    2026). Não constitui resposta a observações nos dados.
