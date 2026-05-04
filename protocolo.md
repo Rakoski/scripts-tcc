@@ -3,7 +3,7 @@
 **Autor:** Mateus Rakoski
 **Orientadora:** Evanise A. C. Ruiz
 **Instituição:** IFPR — Campus Paranavaí
-**Versão:** 1.1 — congelada em 2026-04-14
+**Versão:** 1.3 — atualizada em 2026-05-03
 **Status:** Fase 1 — aberta para coleta após congelamento
 
 > Este documento congela as decisões metodológicas do TCC. Alterações posteriores devem
@@ -31,9 +31,10 @@ de escopo, não uma omissão.
 
 - **H0:** Não há diferença estatisticamente significativa na variância nem na
   densidade da dívida técnica entre os três arquétipos de governança.
-- **H1 (primária, ordenada, unilateral):** A **variância** da densidade de dívida
-  técnica segue a ordem Google < Apache < Descentralizado, à medida que cresce a
-  escala do projeto e a diversidade do time de contribuidores.
+- **H1 (primária, ordenada):** A **variância** da densidade de dívida
+  técnica segue a ordem Google < Apache < Descentralizado, refletindo a ausência
+  de mecanismos de enforcement organizacional à medida que a governança se
+  descentraliza.
 - **H1' (secundária):** A densidade mediana de dívida técnica difere entre os três
   arquétipos (sem direção pré-especificada).
 
@@ -96,7 +97,7 @@ governança é estabelecida **a priori** com a seguinte justificativa:
 
 Esta ordem é a hipótese sobre a *variável independente* do estudo. Sua
 validade conceitual é defendida na Seção 2 do TCC e independe do resultado
-empírico do J-T.
+empírico do teste primário.
 
 ### 3.2 Critério de atribuição
 
@@ -111,7 +112,7 @@ Distribuição efetiva da amostra: Netflix 6, Uber 5, LinkedIn 3, Spotify 1 (tot
 1. Reportada em análise de subgrupo junto ao agregado.
 2. Discutida como achado substantivo: organizações descentralizadas diferem em
    quanto Java mantêm publicamente.
-3. Subgrupo Spotify (n=1) não suporta análise de variância intra-organização. Boxplots e estatísticas descritivas dentro do arquétipo descentralizado tratarão Spotify como ponto único, não como subgrupo, e nenhum teste inferencial intra-arquétipo será conduzido devido aos tamanhos de subgrupo (Netflix 6, Uber 5, LinkedIn 3, Spotify 1)."
+3. Subgrupo Spotify (n=1) não suporta análise de variância intra-organização. Boxplots e estatísticas descritivas dentro do arquétipo descentralizado tratarão Spotify como ponto único, não como subgrupo, e nenhum teste inferencial intra-arquétipo será conduzido devido aos tamanhos de subgrupo (Netflix 6, Uber 5, LinkedIn 3, Spotify 1).
 
 ## 4. Critérios de seleção de projetos
 
@@ -179,7 +180,7 @@ SonarQube. Releases "estáveis" excluem alphas, betas, RCs, milestones e snapsho
 ## 5. Amostra
 
 - **Tamanho:** n = 15 por arquétipo, total N = 45.
-- **Justificativa do tamanho:** convenience sample limitado pelo tempo de TCC e pela necessidade de build local reprodutível. Com n=15 por arquétipo, o poder estatístico do J-T unilateral a α=0,05 é de aproximadamente 70-75% para detectar uma tendência monotônica grande (Cliff's δ ≥ 0,474). O estudo não é poderado para detectar efeitos médios ou pequenos. Resultado não-significativo no J-T não constitui evidência de equivalência entre arquétipos — constitui falha em detectar um efeito grande sob amostra pequena. Esta limitação é declarada na Seção 5 do TCC e na discussão da validade externa.
+- **Justificativa do tamanho:** convenience sample limitado pelo tempo de TCC e pela necessidade de build local reprodutível. Com n=15 por arquétipo, o poder estatístico do teste primário a α=0,05 é de aproximadamente 70-75% para detectar efeitos grandes (Cliff's δ ≥ 0,474). O estudo não é poderado para detectar efeitos médios ou pequenos. Resultado não-significativo no Brown-Forsythe não constitui evidência de equivalência entre arquétipos — constitui falha em detectar um efeito grande sob amostra pequena. Esta limitação é declarada na Seção 5 do TCC e na discussão da validade externa.
 
 ### 5.1 Lista de candidatos congelada
 
@@ -201,7 +202,7 @@ substituído por um projeto da lista de reservas **do mesmo arquétipo e, quando
 descentralizado, da mesma instância preferencial**, mantendo a distribuição de §3.3.
 A substituição é registrada na planilha em coluna `substituiu` apontando para o
 candidato original. **Máximo de 3 substituições por arquétipo** antes de revisão do
-protocolo (versão 1.2).
+protocolo (versão 1.4).
 
 Reservas a serem definidas em passo subsequente antes de iniciar coleta oficial.
 
@@ -220,7 +221,11 @@ Reservas a serem definidas em passo subsequente antes de iniciar coleta oficial.
   reproduções feitas com SonarQube em modo legado. A reprodutibilidade exige
   versão **e** modo registrados.
 - **Quality Profile:** `Sonar way` (default) para Java, na versão empacotada
-  com a v26.2.0.119303. Sem customização.
+  com a v26.2.0.119303. Sem customização. As medidas reportadas neste estudo
+  são objetivas condicionalmente ao uso da Quality Profile `Sonar way` default
+  empacotada com SonarQube Community Build v26.2.0.119303 em MQR Mode.
+  Reproduções com versão diferente, modo legado, ou Quality Profile
+  customizada podem produzir valores absolutos diferentes.
 - **Configuração do scanner:**
   - `sonar.sources=.` (ajustado por projeto quando `src/` existe)
   - `sonar.java.binaries` apontando para `target/` ou `build/` após compilação
@@ -258,10 +263,10 @@ com paginação completa (`ps=500`, iterar `p` até `paging.total`).
 
 ### 6.4 Arcan (Fase 2, condicional)
 
-Decisão de critério de inclusão Fase 2 adiada para versão 1.2 do protocolo,
+Decisão de critério de inclusão Fase 2 adiada para versão futura do protocolo,
 após conclusão completa da Fase 1. Restrição conhecida: projetos Bazel (guava,
 error-prone, grpc-java) provavelmente saem da Fase 2 por custo de extração de
-bytecode — decisão formal na v1.2.
+bytecode — decisão formal posterior.
 
 ## 7. Pipeline de execução
 
@@ -288,14 +293,13 @@ conforme §5.2.
 
 ## 8. Análise estatística
 
-- **Ambiente:** Python 3.11+, `pandas`, `scipy.stats` (≥ 1.13 para
-  `jonckheere_terpstra`), `pingouin`. R como backup se necessário.
-- **Descritivas por arquétipo:** mediana, IQR, variância, coeficiente de variação,
-  n, mínimo, máximo. Tabela obrigatória na Seção 4 do TCC.
+- **Ambiente:** Python 3.11+, `pandas`, `scipy.stats`, `pingouin`. R como
+  backup se necessário.
+- **Descritivas por arquétipo:** mediana, IQR, variância, desvio-padrão,
+  mínimo, máximo, n. Tabela obrigatória na Seção 4 do TCC.
 - **Visualização obrigatória:** boxplot + strip plot por arquétipo, com subgrupo
   Netflix/Uber/Spotify/LinkedIn destacado dentro de descentralizado, e subgrupo
   ativo/manutenção/arquivado destacado dentro de Google.
-
 - **Pipeline analítico:**
 
 | # | Procedimento | Função | Status | Sobre o quê |
@@ -310,6 +314,16 @@ conforme §5.2.
 - **Pré-comprometimento:** o script `analise_estatistica.py` será commitado
   no repositório do TCC **antes** da coleta oficial dos dados, para garantir
   que a análise não seja moldada pelos resultados.
+
+### 8.1 Tratamento de confundidores (NCLOC e idade)
+
+A amostra apresenta diferenças sistemáticas em NCLOC e idade entre arquétipos (medianas: Apache 51k LOC / 18,7 anos; Google 16k LOC / 12,9 anos; descentralizado 21k LOC / 8,2 anos). Esses confundidores não são tratados por manipulação amostral — restringir Apache a projetos pequenos e jovens não representaria Apache — mas analiticamente:
+
+1. Reporte prominente da composição amostral em Seção 4 antes de qualquer inferência: distribuição de NCLOC, idade, e contadores de contribuidores por arquétipo, com visualização (boxplot ou strip plot).
+2. Correlação parcial baseada em rank (Spearman parcial) entre arquétipo (codificado ordinalmente como em §3.1) e densidade de dívida, controlando para log(NCLOC) e idade. Reportada como análise descritiva, não confirmatória.
+3. Análise de robustez em sub-amostra de tamanho comparável: re-execução do Brown-Forsythe sobre o subconjunto de projetos com NCLOC entre 10k e 100k (faixa de sobreposição entre arquétipos). Se a direção do efeito persistir, isto fortalece a interpretação de governança; se inverter ou desaparecer, isto enfraquece e será discutido honestamente na Seção 5.
+
+A análise de robustez é descritiva, não confirmatória — ela não substitui o Brown-Forsythe primário sobre a amostra completa, que continua sendo o teste pré-registrado.
 
 ### 8.2 Regra de decisão sobre H1
 
@@ -337,15 +351,6 @@ interpretação específica:
 - ausência de (1): falha em detectar diferença de variâncias — sob poder
   de ~70-75% para δ ≥ 0,474 (§5), não constitui evidência de equivalência
   entre arquétipos.
-
-### 8.1 Tratamento de confundidores (NCLOC e idade)
-A amostra apresenta diferenças sistemáticas em NCLOC e idade entre arquétipos (medianas: Apache 51k LOC / 18,7 anos; Google 16k LOC / 12,9 anos; descentralizado 21k LOC / 8,2 anos). Esses confundidores não são tratados por manipulação amostral — restringir Apache a projetos pequenos e jovens não representaria Apache — mas analiticamente:
-
-Reporte prominente da composição amostral em Seção 4 antes de qualquer inferência: distribuição de NCLOC, idade, e contadores de contribuidores por arquétipo, com visualização (boxplot ou strip plot).
-Correlação parcial baseada em rank (Spearman parcial) entre arquétipo (codificado ordinalmente como em §3.1) e densidade de dívida, controlando para log(NCLOC) e idade. Reportada como análise descritiva, não confirmatória.
-Análise de robustez em sub-amostra de tamanho comparável: re-execução do J-T sobre o subconjunto de projetos com NCLOC entre 10k e 100k (faixa de sobreposição entre arquétipos). Se a direção do efeito persistir, isto fortalece a interpretação de governança; se inverter ou desaparecer, isto enfraquece e será discutido honestamente na Seção 5.
-
-A análise de robustez é descritiva, não confirmatória — ela não substitui o J-T primário sobre a amostra completa, que continua sendo o teste pré-registrado.
 
 ## 9. Reprodutibilidade
 
@@ -436,8 +441,9 @@ A análise de robustez é descritiva, não confirmatória — ela não substitui
     escolhas de governança, não degradação arquitetural; análise
     arquitetural via Arcan declarada como trabalho futuro fora do
     escopo deste paper.
+
 - **1.3 (2026-05-03):** simplificação do pipeline confirmatório, decidida
-antes da coleta oficial:
+  antes da coleta oficial:
   - §2: Brown-Forsythe (Levene com `center='median'`) promovido a teste
     primário e único confirmatório sobre a homogeneidade das variâncias
     de densidade de dívida entre arquétipos. Justificativa: Brown-Forsythe
