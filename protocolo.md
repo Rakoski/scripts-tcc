@@ -3,7 +3,7 @@
 **Autor:** Mateus Rakoski
 **Orientadora:** Evanise A. C. Ruiz
 **Instituição:** IFPR — Campus Paranavaí
-**Versão:** 1.3 — atualizada em 2026-05-03
+**Versão:** 1.5 — atualizada em 05/05/2026
 **Status:** Fase 1 — aberta para coleta após congelamento
 
 > Este documento congela as decisões metodológicas do TCC. Alterações posteriores devem
@@ -55,13 +55,9 @@ a outliers, e tem interpretação direta como a probabilidade de um projeto
 escolhido ao acaso de um arquétipo apresentar densidade maior do que um
 projeto de outro arquétipo. Limiares de Romano et al. (2006): |δ| < 0,147
 negligenciável; 0,147 ≤ |δ| < 0,33 pequeno; 0,33 ≤ |δ| < 0,474 médio;
-|δ| ≥ 0,474 grande.
+|δ| ≥ 0,474 grande. A partir da v1.5, Cliff's δ é reportado como tamanho de efeito descritivo, mas não constitui condição da regra de decisão pré-registrada (ver §8.2 reformulada).
 
-**Teste único confirmatório:** Brown-Forsythe é o único teste confirmatório do
-estudo. Cliff's δ é tamanho de efeito obrigatório, não teste de hipótese. Todos
-os demais procedimentos mencionados nesta seção e na §8 — Kruskal-Wallis, η²,
-Jonckheere-Terpstra, correlação parcial Spearman — são descritivos /
-exploratórios e não constituem evidência confirmatória, independentemente de
+Teste único confirmatório (v1.5): Brown-Forsythe é o único teste confirmatório do estudo, sob a regra de decisão revisada em §8.2 (C1 ∧ C2). Cliff's δ é tamanho de efeito reportado descritivamente, não componente da regra de decisão. Todos os demais procedimentos mencionados nesta seção e na §8 — Kruskal-Wallis, η², Jonckheere-Terpstra, correlação parcial Spearman — são descritivos / exploratórios e não constituem evidência confirmatória, independentemente de
 seus p-valores. Sem correção para múltiplas comparações porque há apenas um
 teste confirmatório. Esta decisão é congelada e não revisável após observação
 dos dados.
@@ -76,7 +72,7 @@ independentemente.
 **Métrica primária:** densidade de dívida técnica = `sqale_index / ncloc`,
 em minutos por linha de código não-comentada, agregada ao nível de projeto.
 **Métrica secundária:** densidade mediana de dívida (mesma fórmula, foco em
-tendência central em vez de variância). Adicionalmente ao teste primário Brown-Forsythe, será reportada a variância intra-organizacional para cada organização do arquétipo descentralizado com n ≥ 2 (Netflix, Uber, LinkedIn). Para o subconjunto do arquétipo descentralizado excluindo Spotify (n=14), será calculado o ICC(1) com organização como fator aleatório, para quantificar a proporção da variância atribuível a diferenças inter-organizacionais. Estas análises são exploratórias e não constituem testes confirmatórios da hipótese H1.
+tendência central em vez de variância). Adicionalmente ao teste primário Brown-Forsythe, será reportada a variância intra-organizacional para cada organização do arquétipo descentralizado com n ≥ 2 (Netflix, Uber, LinkedIn). Para o subconjunto do arquétipo descentralizado (n=10, sem Spotify presente na composição final), será calculado o ICC(1) com organização como fator aleatório, para quantificar a proporção da variância atribuível a diferenças inter-organizacionais. Estas análises são exploratórias e não constituem testes confirmatórios da hipótese H1.
 
 ## 3. Arquétipos de governança
 
@@ -105,14 +101,28 @@ A classificação é feita **na planilha**, não em código. Cada projeto recebe
 valor de `arquetipo` ∈ {apache, google, descentralizado} e, quando aplicável,
 um valor de `instancia` (netflix, uber, spotify, linkedin).
 
-### 3.3 Composição esperada do arquétipo descentralizado
+### 3.3 Composição efetiva do arquétipo descentralizado
 
-Distribuição efetiva da amostra: Netflix 6, Uber 5, LinkedIn 3, Spotify 1 (total 15). A distribuição inicialmente prevista em v1.1 (Netflix 7, Uber 5, Spotify 2, LinkedIn 1) foi inviabilizada empiricamente durante a fase de seleção: vários repositórios Java da Netflix estavam arquivados ou abaixo do limiar de 70% Java exigido por §4.1; LinkedIn manteve mais projetos Java ativos elegíveis do que o estimado a priori; Spotify publica predominantemente em outras linguagens (sua plataforma Backstage, por exemplo, é em TypeScript), com apenas um repositório Java ativo elegível. Esta composição é mantida como achado substantivo sobre a presença pública de Java em cada organização — não como ruído amostral a ser corrigido — e será:
+Distribuição efetiva da amostra após aplicação dos critérios refinados em v1.4:
+**Netflix 5, Uber 2, LinkedIn 3, Spotify 0 (total 10).** A trajetória da
+composição ao longo das versões do protocolo (v1.1: Netflix 7, Uber 5, Spotify 2,
+LinkedIn 1; v1.2: Netflix 6, Uber 5, LinkedIn 3, Spotify 1; v1.4: composição
+final acima) reflete a aplicação progressivamente mais rigorosa dos critérios
+de inclusão e a revalidação empírica de NCLOC e contribuidores via Sonar e
+GitHub API.
+
+Esta composição é mantida como achado substantivo sobre a presença pública de
+Java em cada organização — não como ruído amostral a ser corrigido — e será:
 
 1. Reportada em análise de subgrupo junto ao agregado.
 2. Discutida como achado substantivo: organizações descentralizadas diferem em
    quanto Java mantêm publicamente.
-3. Subgrupo Spotify (n=1) não suporta análise de variância intra-organização. Boxplots e estatísticas descritivas dentro do arquétipo descentralizado tratarão Spotify como ponto único, não como subgrupo, e nenhum teste inferencial intra-arquétipo será conduzido devido aos tamanhos de subgrupo (Netflix 6, Uber 5, LinkedIn 3, Spotify 1).
+3. Subgrupo Spotify (n=0) ausente da amostra final, com discussão substantiva
+   em §5 do TCC sobre o significado dessa ausência. Subgrupo Uber (n=2)
+   apresenta ponto único insuficiente para análise inferencial intra-subgrupo;
+   Boxplots e estatísticas descritivas dentro do arquétipo descentralizado
+   tratarão Uber como dois pontos individuais agregados ao subgrupo. Análises
+   intra-arquétipo serão restritas a Netflix (n=5) e LinkedIn (n=3).
 
 ## 4. Critérios de seleção de projetos
 
@@ -165,6 +175,14 @@ Google serão reportados em duas versões:
 Se as duas versões concordarem na direção, a conclusão é forte. Se discordarem,
 isto próprio é um achado e será discutido na Seção 5.
 
+> **Atualização v1.4:** Após aplicação do critério temporal ≤ 24 meses (v1.4),
+> nenhum projeto Google arquivado satisfaz simultaneamente todos os critérios
+> de inclusão. Na composição final, todos os 11 projetos Google têm
+> `status='ativo'`. As duas versões (primária e robustez) colapsam no mesmo
+> subconjunto, e o reporte duplo torna-se redundante. A coluna `status` é
+> mantida no schema da planilha por consistência metodológica e para
+> reprodutibilidade.
+
 ### 4.4 Critério temporal uniforme
 
 Para cada projeto selecionado:
@@ -179,32 +197,78 @@ SonarQube. Releases "estáveis" excluem alphas, betas, RCs, milestones e snapsho
 
 ## 5. Amostra
 
-- **Tamanho:** n = 15 por arquétipo, total N = 45.
-- **Justificativa do tamanho:** convenience sample limitado pelo tempo de TCC e pela necessidade de build local reprodutível. Com n=15 por arquétipo, o poder estatístico do teste primário a α=0,05 é de aproximadamente 70-75% para detectar efeitos grandes (Cliff's δ ≥ 0,474). O estudo não é poderado para detectar efeitos médios ou pequenos. Resultado não-significativo no Brown-Forsythe não constitui evidência de equivalência entre arquétipos — constitui falha em detectar um efeito grande sob amostra pequena. Esta limitação é declarada na Seção 5 do TCC e na discussão da validade externa. A análise primária (Brown-Forsythe one-way) trata os 15 projetos de cada arquétipo como observações independentes. No arquétipo descentralizado, esta independência é apenas aproximada, dado que múltiplos projetos provêm da mesma organização. A decomposição complementar de variância (ICC) busca caracterizar a magnitude dessa não-independência e contextualizar a interpretação dos resultados.
+- **Tamanho final (v1.4):** n = 14/11/10 (Apache/Google/Descentralizado),
+  total N = 35.
+- **Tamanho originalmente projetado (v1.0–v1.3):** n = 15 por arquétipo,
+  total N = 45. Composição revista para N = 35 em v1.4 após aplicação
+  rigorosa dos critérios de inclusão (ver histórico de versões).
 
-### 5.1 Lista de candidatos congelada
+- **Justificativa do tamanho:** convenience sample limitado pelo tempo
+  de TCC e pela necessidade de build local reprodutível. A composição
+  efetiva reflete a aplicação dos critérios à oferta pública de Java
+  sob cada arquétipo, não otimização de poder.
 
-Candidatos primários (Fase 1):
+- **Poder estatístico (v1.5):** simulação Monte Carlo com 10000 réplicas
+  sob amostra final n=14/11/10 estimou poder da regra de decisão revisada
+  (§8.2, C1 ∧ C2) em **aproximadamente 9% para razão de variância 3.36×**
+  entre Google e Descentralizado. Detalhes em v1.5 do histórico de versões.
 
-- **Apache (15):** tomcat, zookeeper, kafka, cassandra, flink, commons-lang,
-  commons-io, commons-collections, maven, lucene, camel, curator, dubbo, pulsar, mina.
-- **Google (15):** guava, gson, dagger, auto, grpc-java, error-prone, truth, tink,
-  jib, closure-compiler, j2objc, protobuf (Java), flatbuffers (Java), caliper,
-  google-java-format.
-- **Descentralizado (15):** Netflix — hollow, mantis, conductor, EVCache, spectator,
-  metacat, dgs-framework; Uber — NullAway, AutoDispose, jvm-profiler, h3-java, tally;
-  Spotify — github-java-client, completable-futures; LinkedIn — cruise-control.
+- **Implicação para interpretação:** resultado não-significativo no
+  Brown-Forsythe **não constitui evidência de equivalência** entre
+  arquétipos, sob poder limitado da amostra. Esta limitação é declarada
+  explicitamente em §5 do TCC.
 
-### 5.2 Lista de reservas
+- **Tratamento de não-independência intra-arquétipo:** a análise primária
+  (Brown-Forsythe one-way) trata os projetos de cada arquétipo como
+  observações independentes. No arquétipo descentralizado, esta independência
+  é apenas aproximada, dado que múltiplos projetos provêm da mesma
+  organização. A decomposição complementar de variância (ICC) busca
+  caracterizar a magnitude dessa não-independência e contextualizar a
+  interpretação dos resultados.
 
-Se um candidato falhar build ou violar critério de inclusão após inspeção, ele é
-substituído por um projeto da lista de reservas **do mesmo arquétipo e, quando
-descentralizado, da mesma instância preferencial**, mantendo a distribuição de §3.3.
-A substituição é registrada na planilha em coluna `substituiu` apontando para o
-candidato original. **Máximo de 3 substituições por arquétipo** antes de revisão do
-protocolo (versão 1.4).
+### 5.1 Lista final de projetos da amostra (v1.4)
 
-Reservas a serem definidas em passo subsequente antes de iniciar coleta oficial.
+A composição abaixo é a amostra final pré-coleta após aplicação dos
+critérios refinados em v1.4 e revalidação via Sonar:
+
+- **Apache (n=14):** tomcat, zookeeper, kafka, cassandra, flink,
+  commons-lang, commons-io, commons-collections, maven, lucene, camel,
+  curator, dubbo, pulsar.
+
+- **Google (n=11):** guava, gson, dagger, auto, grpc-java, error-prone,
+  truth, conscrypt, jib, google-http-java-client, j2objc.
+
+- **Descentralizado (n=10):**
+  - Netflix (5): hollow, mantis, EVCache, spectator, eureka.
+  - Uber (2): NullAway, cadence-java-client.
+  - LinkedIn (3): ambry, rest.li, cruise-control.
+  - Spotify (0): nenhum projeto satisfaz simultaneamente os critérios
+    de inclusão após aplicação do critério temporal v1.4.
+
+A trajetória de composição entre versões (Apache: 15→14, Google: 15→11,
+Descentralizado: 15→10) e as substituições documentadas estão registradas
+no histórico de versões da v1.4.
+
+### 5.2 Substituições e saídas (v1.4 — congeladas)
+
+A política de substituições foi aplicada em v1.4 com os seguintes resultados:
+
+- **Substituições registradas:** guice → conscrypt (Google), brooklin →
+  rest.li (LinkedIn). Detalhes em v1.4 do histórico.
+
+- **Saídas sem substituto:** tchannel-java, AutoDispose, h3-java,
+  github-java-client, flogger, jimfs, google-java-format, compile-testing,
+  concurrency-limits, commons-codec. A não-substituição preserva a
+  composição como reflexo direto da aplicação dos critérios à oferta
+  pública de Java sob cada arquétipo, em consonância com a postura de
+  v1.1 e v1.2 sobre composição como achado substantivo.
+
+- **Limite de substituições por arquétipo (v1.0):** "Máximo de 3
+  substituições antes de revisão do protocolo" foi observado em v1.4
+  (Google: 5 saídas, mas com 1 substituição efetiva; Descentralizado: 6
+  saídas, com 1 substituição efetiva). Excesso de saídas sem substituição
+  é documentado como aplicação rigorosa de critérios, não violação
+  metodológica.
 
 ## 6. Configuração de ferramentas
 
@@ -310,6 +374,10 @@ conforme §5.2.
 | 4 | Cliff's δ pareado (3 pares) | Tamanho de efeito não-paramétrico | **Obrigatório** | Densidade, todos os pares |
 | 5 | Kruskal-Wallis + η² | Diferença em tendência central (H1') | Secundário | Densidade mediana |
 | 6 | Jonckheere-Terpstra sobre densidades | Tendência monotônica (exploratório) | Exploratório | Densidade |
+| 7 | Decomposição do sqale_index por type e tag de regra | Diagnóstico de viés de Quality Profile | Exploratório (v1.4) | Composição da dívida |
+| 8 | Top-10 regras dominantes por projeto | Diagnóstico de viés de stack tecnológico | Exploratório/Suplemento (v1.4) | Regras individuais |
+| 9 | ICC(1) intra-arquétipo descentralizado | Decomposição de variância inter vs intra-organização | Descritivo (v1.4) | Variância da densidade |
+| 10 | Correlação parcial Spearman estendida (NCLOC, idade do projeto, idade do snapshot) | Controle analítico de confundidores | Descritivo (v1.4) | Densidade |
 
 - **Pré-comprometimento:** o script `analise_estatistica.py` será commitado
   no repositório do TCC **antes** da coleta oficial dos dados, para garantir
@@ -320,37 +388,41 @@ conforme §5.2.
 A amostra apresenta diferenças sistemáticas em NCLOC e idade entre arquétipos (medianas: Apache 51k LOC / 18,7 anos; Google 16k LOC / 12,9 anos; descentralizado 21k LOC / 8,2 anos). Esses confundidores não são tratados por manipulação amostral — restringir Apache a projetos pequenos e jovens não representaria Apache — mas analiticamente:
 
 1. Reporte prominente da composição amostral em Seção 4 antes de qualquer inferência: distribuição de NCLOC, idade, e contadores de contribuidores por arquétipo, com visualização (boxplot ou strip plot).
-2. Correlação parcial baseada em rank (Spearman parcial) entre arquétipo (codificado ordinalmente como em §3.1) e densidade de dívida, controlando para log(NCLOC) e idade. Reportada como análise descritiva, não confirmatória.
+2. Correlação parcial baseada em rank (Spearman parcial) entre arquétipo (codificado ordinalmente como em §3.1) e densidade de dívida, controlando para log(NCLOC), idade do projeto e idade do snapshot (v1.4). Reportada como análise descritiva, não confirmatória.
 3. Análise de robustez em sub-amostra de tamanho comparável: re-execução do Brown-Forsythe sobre o subconjunto de projetos com NCLOC entre 10k e 100k (faixa de sobreposição entre arquétipos). Se a direção do efeito persistir, isto fortalece a interpretação de governança; se inverter ou desaparecer, isto enfraquece e será discutido honestamente na Seção 5.
 
 A análise de robustez é descritiva, não confirmatória — ela não substitui o Brown-Forsythe primário sobre a amostra completa, que continua sendo o teste pré-registrado.
 
-### 8.2 Regra de decisão sobre H1
+### 8.2 Regra de decisão sobre H1 (v1.5)
 
-H0 é rejeitada a favor de H1 se e somente se as três condições abaixo forem
-simultaneamente satisfeitas:
+H0 é rejeitada a favor de H1 se e somente se as duas condições abaixo
+forem simultaneamente satisfeitas:
 
-1. **Significância:** Brown-Forsythe retorna p < 0,05 sobre a homogeneidade
-   das variâncias entre os três arquétipos.
+1. **Significância:** Brown-Forsythe retorna F > F-crítico empírico
+   (calibrado conforme §8) sobre a homogeneidade das variâncias entre
+   os três arquétipos.
+
 2. **Ordem:** a ordenação das variâncias amostrais corresponde à ordem
-   prevista *a priori* — variância(Google) < variância(Apache) <
-   variância(Descentralizado).
-3. **Tamanho de efeito:** pelo menos um dos três Cliff's δ pareados atinge
-   magnitude grande (|δ| ≥ 0,474).
+   prevista *a priori* — variância(Google) < variância(Apache) < variância(Descentralizado).
 
-Falha em qualquer das três condições é reportada como falha de H1, com
+Falha em qualquer das duas condições é reportada como falha de H1, com
 interpretação específica:
 
-- (1) sem (2): variâncias diferem mas não na ordem prevista — evidência
-  contra H1, pode sugerir mecanismo causal alternativo a ser discutido na
-  Seção 5 do TCC.
-- (1) e (2) sem (3): ordem prevista observada e estatisticamente
-  significativa, mas magnitude insuficiente para significância prática —
-  reportar como "padrão direcional consistente com H1 mas de magnitude
-  pequena, não conclusivo para os fins desta tese".
-- ausência de (1): falha em detectar diferença de variâncias — sob poder
-  de ~70-75% para δ ≥ 0,474 (§5), não constitui evidência de equivalência
-  entre arquétipos.
+- **C1 sem C2:** variâncias diferem mas não na ordem prevista — evidência
+  contra H1, sugere mecanismo causal alternativo a ser discutido em §5
+  do TCC.
+- **Ausência de C1:** falha em detectar diferença de variâncias — sob
+  poder de ~9% (v1.5), não constitui evidência de equivalência entre
+  arquétipos.
+
+Cliff's δ pareado é reportado como tamanho de efeito descritivo (limiares
+de Romano et al., 2006), mas não constitui condição da regra de decisão
+desde v1.5 (justificativa conceitual e empírica em v1.5 do histórico).
+
+Histórico desta seção: v1.3 introduziu três condições conjuntivas (Brown-Forsythe + ordem + Cliff's δ ≥ 0,474). v1.5 reformulou para
+duas condições, removendo a condição sobre Cliff's δ após simulação Monte
+Carlo demonstrar que C3 reduzia o poder da regra sem agregar informação
+sobre H1.
 
 ## 9. Reprodutibilidade
 
@@ -366,9 +438,12 @@ interpretação específica:
 
 ## 10. Cronograma alvo
 
-- **Abril 2026:** congelar protocolo (este documento), corrigir scripts, clonar
-  restante da amostra, popular planilha, commitar `analise_estatistica.py`.
-- **Maio 2026:** coleta oficial Fase 1 completa sobre N=45.
+- **Abril 2026:** congelamento inicial do protocolo (v1.0–v1.3),
+  correção de scripts, clonagem inicial da amostra.
+- **Início de Maio 2026:** revisão metodológica adversarial e congelamento
+  final do protocolo (v1.4 e v1.5), incluindo composição amostral final
+  N=35 e regra de decisão simplificada (C1 ∧ C2).
+- **Maio 2026:** coleta oficial Fase 1 completa sobre **N=35**.
 - **Junho 2026:** análise estatística, escrita das Seções 3-4.
 - **Julho 2026:** Seção 5, revisão do texto, submissão SBQS 2026 CTICQS.
 - **Agosto 2026:** se tempo permitir, Fase 2 (Arcan) sobre subconjunto.
@@ -468,7 +543,7 @@ interpretação específica:
   - Esta mudança é uma simplificação metodológica registrada antes da
     coleta oficial dos dados (cf. §10 — coleta prevista para maio de
     2026). Não constitui resposta a observações nos dados.
-- **1.4 (DATA — preencher):** ajustes pré-coleta documentados em sessão de revisão metodológica adversarial:
+- **1.4 05/05/2026:** ajustes pré-coleta documentados em sessão de revisão metodológica adversarial:
 
   ### Critérios de inclusão e exclusão
 
@@ -646,7 +721,7 @@ interpretação específica:
   via Sonar para projetos limítrofes ao critério §4.1 #2. O
   pré-registro permanece intacto.
 
-- **1.5 (DATA):** Reformulação da regra de decisão sobre H1, baseada em
+- **1.5 05/05/2026:** Reformulação da regra de decisão sobre H1, baseada em
   simulação Monte Carlo do desenho final (n=14/11/10):
 
   ### Calibração empírica de F-crítico
@@ -699,8 +774,7 @@ interpretação específica:
      (calibrado conforme §8 acima) sobre a homogeneidade das variâncias
      entre os três arquétipos.
   2. **Ordem:** a ordenação das variâncias amostrais corresponde à
-     ordem prevista a priori — variância(Google) < variância(Apache) 
-     variância(Descentralizado).
+     ordem prevista a priori — variância(Google) < variância(Apache) < variância(Descentralizado).
   
   Falha em qualquer das duas condições é reportada como falha de H1,
   com interpretação específica:
