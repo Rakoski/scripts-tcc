@@ -1,13 +1,4 @@
-#!/usr/bin/env bash
-#
-# rodar_sonar.sh — Executa análise SonarQube para cada projeto do TCC
-#
-# Uso:
-#   ./rodar_sonar.sh                    # analisa todos
-#   ./rodar_sonar.sh --limit 3          # analisa apenas os 3 primeiros
-#   ./rodar_sonar.sh --only kafka       # analisa apenas o projeto "kafka"
-#   ./rodar_sonar.sh --skip-existing    # pula projetos que já existem no SonarQube
-#
+#!/bin/bash
 set -euo pipefail
 
 BASE_DIR="/home/mateus/Documentos/artigos-tcc/repos/tcc"
@@ -35,14 +26,14 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# Verifica se SonarQube está acessível
+
 if ! curl -sf "$SONAR_URL/api/system/status" -u "$SONAR_TOKEN:" > /dev/null 2>&1; then
     echo "[ERRO] SonarQube não está acessível em $SONAR_URL"
     exit 1
 fi
 echo "[OK] SonarQube acessível em $SONAR_URL"
 
-# Detecta tipo de build
+
 detect_build_type() {
     local dir="$1"
     if [[ -f "$dir/pom.xml" ]]; then
@@ -56,14 +47,14 @@ detect_build_type() {
     fi
 }
 
-# Encontra diretórios de código-fonte Java
+
 find_java_sources() {
     local dir="$1"
     local sources=()
-    # Cobre layout Maven (src/main/java) e layouts alternativos tipo
-    # Lucene (src/java), sem duplicar pastas geradas em build/.
+    
+    
     while IFS= read -r src_dir; do
-        # Exclui build/target (gerados), examples/samples/test-data (código secundário)
+        
         [[ "$src_dir" == *"/build/"* || "$src_dir" == *"/target/"* ]] && continue
         [[ "$src_dir" == *"/examples/"* || "$src_dir" == *"/example/"* ]] && continue
         [[ "$src_dir" == *"/samples/"* || "$src_dir" == *"/sample/"* ]] && continue
@@ -75,20 +66,20 @@ find_java_sources() {
             -o -path "*/main/java" \
         \) 2>/dev/null | head -500)
 
-    if [[ ${#sources[@]} -gt 0 ]]; then
+    if [[ ${
         printf '%s,' "${sources[@]}" | sed 's/,$//'
     else
-        # Fallback: diretório raiz (cobre Bazel e layouts não-padronizados)
+        
         echo "$dir"
     fi
 }
 
-# Encontra binários compilados (para sonar.java.binaries)
+
 find_java_binaries() {
     local dir="$1"
     local bins=()
-    # Cobre Maven (target/classes), Gradle (build/classes/java/main, build/classes),
-    # IntelliJ (out/production/classes) e fallbacks.
+    
+    
     while IFS= read -r bin_dir; do
         bins+=("$bin_dir")
     done < <(find "$dir" -type d \( \
@@ -99,16 +90,16 @@ find_java_binaries() {
             -o -path "*/out/production/classes" \
         \) 2>/dev/null | head -500)
 
-    if [[ ${#bins[@]} -gt 0 ]]; then
+    if [[ ${
         printf '%s,' "${bins[@]}" | sed 's/,$//'
     else
         echo ""
     fi
 }
 
-# Verifica se projeto já existe no SonarQube.
-# Token de análise (sqa_) não tem acesso a /api/components/show (403),
-# então usamos /api/measures/component que só precisa de leitura básica.
+
+
+
 project_exists_in_sonar() {
     local key="$1"
     local http_code
@@ -118,7 +109,7 @@ project_exists_in_sonar() {
     [[ "$http_code" == "200" ]]
 }
 
-# Executa análise com sonar-scanner standalone
+
 run_scanner() {
     local project_key="$1"
     local project_name="$2"
@@ -130,9 +121,9 @@ run_scanner() {
     local binaries
     binaries=$(find_java_binaries "$project_dir")
 
-    # SonarJava exige sonar.java.binaries. Se não achou nada compilado,
-    # aponta para um diretório vazio para permitir análise degradada
-    # (métricas LOC/linguagem continuam funcionando; só perde regras de bytecode).
+    
+    
+    
     if [[ -z "$binaries" ]]; then
         local empty_bin="$LOG_DIR/_empty_bin_${project_key}"
         mkdir -p "$empty_bin"
@@ -155,7 +146,7 @@ run_scanner() {
         -Dsonar.exclusions=**/build/**,**/target/**,**/out/**,**/buildSrc/**,**/examples/**,**/example/**,**/samples/**,**/sample/**,**/test/data/**,**/testdata/**,**/.git/**,**/node_modules/**
     )
 
-    # Stack grande evita StackOverflow em expressões bitwise aninhadas (Lucene)
+    
     export SONAR_SCANNER_OPTS="-Xss64m -Xmx4g"
 
     echo "[SCANNER] Rodando sonar-scanner para $project_key..."
@@ -169,7 +160,7 @@ run_scanner() {
     fi
 }
 
-# Executa análise com Maven
+
 run_maven() {
     local project_key="$1"
     local project_name="$2"
@@ -180,8 +171,8 @@ run_maven() {
     echo "[MAVEN] Rodando mvn package + sonar:sonar para $project_key..."
     cd "$project_dir"
 
-    # Build mais robusto que compile — gera JARs e classes em multi-module
-    # Desabilita plugins opcionais que tendem a quebrar
+    
+    
     if mvn package -DskipTests \
             -Dmaven.javadoc.skip=true \
             -Dcheckstyle.skip=true \
@@ -209,7 +200,7 @@ run_maven() {
     run_scanner "$project_key" "$project_name" "$project_dir"
 }
 
-# Executa análise com Gradle
+
 run_gradle() {
     local project_key="$1"
     local project_name="$2"
@@ -225,7 +216,7 @@ run_gradle() {
         gradle_cmd="gradle"
     fi
 
-    # assemble cobre todos módulos e gera build/classes/java/main em cada um
+    
     if "$gradle_cmd" assemble -x test -x javadoc --no-daemon --warning-mode none \
             < /dev/null > "$build_log" 2>&1; then
         if "$gradle_cmd" sonar \
@@ -247,25 +238,25 @@ run_gradle() {
     run_scanner "$project_key" "$project_name" "$project_dir"
 }
 
-# ========== LOOP PRINCIPAL ==========
+
 processed=0
 success=0
 failed=0
 
-# Usa process substitution para evitar subshell (variáveis persistem)
+
 while IFS=, read -r id nome empresa arquetipo status url tag commit_sha rest; do
-    # Pula linhas sem tag
+    
     if [[ -z "$tag" ]]; then
         echo "[SKIP] $nome — sem tag"
         continue
     fi
 
-    # Filtro --only
+    
     if [[ -n "$ONLY" && "$nome" != "$ONLY" ]]; then
         continue
     fi
 
-    # Filtro --limit
+    
     if (( LIMIT > 0 && processed >= LIMIT )); then
         break
     fi
@@ -280,20 +271,20 @@ while IFS=, read -r id nome empresa arquetipo status url tag commit_sha rest; do
     echo "[$processed] $empresa/$nome → $project_key"
     echo "============================================"
 
-    # Verifica se o repo existe
+    
     if [[ ! -d "$repo_dir/.git" ]]; then
         echo "[ERRO] Repo não encontrado: $repo_dir"
         failed=$(( failed + 1 ))
         continue
     fi
 
-    # Pula se já existe no SonarQube
+    
     if $SKIP_EXISTING && project_exists_in_sonar "$project_key"; then
         echo "[SKIP] $project_key já existe no SonarQube"
         continue
     fi
 
-    # Checkout na tag correta
+    
     cd "$repo_dir"
     if ! git checkout --force "$tag" --quiet 2>/dev/null; then
         echo "[ERRO] Falha no checkout da tag $tag para $nome"
@@ -303,7 +294,7 @@ while IFS=, read -r id nome empresa arquetipo status url tag commit_sha rest; do
     fi
     cd "$BASE_DIR"
 
-    # Detecta build type e executa
+    
     build_type=$(detect_build_type "$repo_dir")
     echo "[BUILD] Tipo detectado: $build_type"
 
@@ -313,7 +304,7 @@ while IFS=, read -r id nome empresa arquetipo status url tag commit_sha rest; do
         *)      run_scanner "$project_key" "$nome" "$repo_dir" && success=$(( success + 1 )) || failed=$(( failed + 1 )) ;;
     esac
 
-    # Espera breve para o SonarQube processar a task em background
+    
     sleep 2
 done < <(tail -n+2 "$CSV_FILE")
 
