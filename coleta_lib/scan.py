@@ -21,7 +21,7 @@ import subprocess
 import time
 from pathlib import Path
 
-from .io_utils import ColetaError, SonarClient
+from .io_utils import ColetaError, ProjetoError, SonarClient
 
 # Ordem estrita de tentativa: mais recente primeiro. Razão: projetos modernos
 # (Gradle 9+, NullAway) exigem JDK 21+ para *rodar* o build tool, mesmo que
@@ -62,17 +62,10 @@ STANDALONE_EXCLUSIONS = (
     "**/.git/**,**/node_modules/**"
 )
 
-GRADLE_INIT_DEFAULT = "sonar_init.gradle"
-
-# Init-scripts específicos por projeto. NullAway tem subprojetos Android que
-# conflitam com o plugin Sonar via initscript padrão; o init-script dedicado
-# inclui AGP no classpath e exclui subprojetos Android via afterEvaluate.
-GRADLE_INIT_SCRIPTS: dict[str, str] = {
-    "uber-nullaway-01": "sonar_init_nullaway.gradle",
-    # Dagger 2.57.2 também tem subprojetos Android; sem AGP no classpath do
-    # initscript, sonar quebra com NoClassDefFoundError: BaseExtension.
-    "google-dagger-03": "sonar_init_nullaway.gradle",
-}
+# Init-script unificado. Inclui AGP no classpath + afterEvaluate que pula
+# sub-projetos Android (NullAway, Dagger). Projetos sem Android ignoram AGP
+# sem custo; o único overhead é ~50MB no cache do Gradle (uma vez).
+GRADLE_INIT_SCRIPT = "sonar_init.gradle"
 
 BINARY_PATTERNS = [
     "**/target/classes",
@@ -113,6 +106,15 @@ ANT_BUILD_DIRS_TO_CLEAN: dict[str, list[str]] = {
 SOURCE_PATHS_PROJETOS: dict[str, list[str]] = {
     "apache-cassandra-04": ["src/java"],
     "apache-tomcat-01":    ["java"],
+}
+
+# Patches aplicados pós-checkout, antes de qualquer build. Mudanças
+# pontuais em build files para contornar incompatibilidades declaradas
+# (ex.: cadence-java-client v3.12.4 tem Thrift compiler/runtime mismatch
+# corrigido por bump de libthrift em build.gradle). Scripts ficam em
+# scripts-tcc/patches/ versionados para auditabilidade e reprodutibilidade.
+PATCHES_POST_CHECKOUT: dict[str, str] = {
+    "uber-cadence-java-client-05": "cadence-libthrift.sh",
 }
 
 
@@ -204,6 +206,14 @@ def env_com_jdk(jdk_home: str) -> dict:
     env["JAVA_HOME"] = jdk_home
     env["PATH"] = f"{jdk_home}/bin:" + env.get("PATH", "")
     env.setdefault("SONAR_SCANNER_OPTS", "-Xss64m -Xmx4g")
+    # Garantir falha rápida em vez de prompt interativo quando build puxa
+    # deps via Git SSH/HTTPS sem credenciais (caso cadence-java-client-05,
+    # que travou 40min no prompt 'Enter passphrase for key id_rsa'). Coleta
+    # científica reproducible não pode depender de chave SSH local.
+    env["GIT_TERMINAL_PROMPT"] = "0"
+    env["GIT_SSH_COMMAND"] = "ssh -o BatchMode=yes -o StrictHostKeyChecking=no"
+    env["GRADLE_OPTS"] = (env.get("GRADLE_OPTS", "")
+                          + " -Dorg.gradle.console=plain").strip()
     return env
 
 
@@ -266,6 +276,27 @@ def limpar_scannerwork(repo: Path) -> None:
         shutil.rmtree(sw, ignore_errors=True)
 
 
+def aplicar_patch_post_checkout(project_key: str, repo: Path,
+                                base_dir: Path,
+                                logger: logging.Logger) -> None:
+    nome = PATCHES_POST_CHECKOUT.get(project_key)
+    if not nome:
+        return
+    patch_script = base_dir / "scripts-tcc" / "patches" / nome
+    if not patch_script.exists():
+        raise ProjetoError(
+            f"[{project_key}] patch script ausente: {patch_script}"
+        )
+    logger.info("[%s] aplicando patch: %s", project_key, nome)
+    try:
+        subprocess.run([str(patch_script)], cwd=str(repo), check=True)
+    except subprocess.CalledProcessError as e:
+        raise ProjetoError(
+            f"[{project_key}] patch {nome} falhou (rc={e.returncode})"
+        ) from e
+    logger.info("[%s] patch aplicado", project_key)
+
+
 # ---------------- análises com plugin nativo ----------------
 
 def _sonar_props(project_key: str, project_name: str, tag: str, sha7: str,
@@ -299,9 +330,8 @@ def _maven_completo(repo: Path, props: list[str], env: dict,
     return _run(cmd, repo, env, log_path)
 
 
-def _resolver_init_gradle(project_key: str, base_dir: Path) -> Path:
-    nome = GRADLE_INIT_SCRIPTS.get(project_key, GRADLE_INIT_DEFAULT)
-    caminho = base_dir / "scripts-tcc" / nome
+def _resolver_init_gradle(base_dir: Path) -> Path:
+    caminho = base_dir / "scripts-tcc" / GRADLE_INIT_SCRIPT
     if not caminho.exists():
         raise ColetaError(f"init-script Gradle ausente: {caminho}")
     return caminho
@@ -318,7 +348,28 @@ def _gradle_completo(repo: Path, props: list[str], env: dict,
         "-x", "test", "-x", "javadoc",
         *props,
     ]
-    return _run(cmd, repo, env, log_path)
+    # 8min: build Gradle legítimo de qualquer projeto Java se completa em
+    # <5min. >10min é sinal de travamento (prompt SSH, daemon hung, etc.) —
+    # vale falhar rápido e o orquestrador tenta o próximo JDK.
+    return _run(cmd, repo, env, log_path, timeout=480)
+
+
+def _gradle_assemble_only(repo: Path, env: dict, log_path: Path) -> int:
+    """Build-only: 'gradle assemble' sem plugin Sonar nem init-script.
+
+    Modo híbrido para Gradle 5.x/6.x onde o Plugin Sonar (compilado p/ JDK 17)
+    é incompatível com a JVM que roda esses Gradles antigos. O build em si
+    funciona com JDK 8/11; rodamos sonar depois via scanner standalone usando
+    os binários produzidos por este build.
+    """
+    grad = repo / "gradlew"
+    base = [str(grad)] if grad.exists() and os.access(grad, os.X_OK) else ["gradle"]
+    cmd = [
+        *base, "assemble",
+        "--no-daemon", "--warning-mode", "none",
+        "-x", "test", "-x", "javadoc",
+    ]
+    return _run(cmd, repo, env, log_path, timeout=480)
 
 
 def _limpar_build_dirs_ant(repo: Path, project_key: str,
@@ -488,7 +539,7 @@ def analisar_com_fallbacks(build_type: str, pom_filename: str | None,
         def runner(env): return _maven_completo(repo, props, env, log_path,
                                                 pom_filename)
     elif build_type == "gradle":
-        init_script = _resolver_init_gradle(project_key, base_dir)
+        init_script = _resolver_init_gradle(base_dir)
         logger.info("[%s] usando init-script: %s", project_key, init_script.name)
         nome = "gradle assemble sonar"
         def runner(env): return _gradle_completo(repo, props, env, log_path,
@@ -518,8 +569,50 @@ def analisar_com_fallbacks(build_type: str, pom_filename: str | None,
             logger.warning("[%s] %s com JDK %d falhou (rc=%d)",
                            project_key, nome, v, rc)
 
-        logger.warning("[%s] todos JDKs do fallback falharam para %s — caindo para scanner standalone",
-                       project_key, nome)
+        if build_type == "gradle":
+            logger.warning("[%s] todos JDKs falharam para 'assemble sonar' — "
+                           "tentando build-only para gerar binários",
+                           project_key)
+        else:
+            logger.warning("[%s] todos JDKs do fallback falharam para %s — caindo para scanner standalone",
+                           project_key, nome)
+
+    # Modo híbrido Gradle: 'assemble sonar' falhou em todos JDKs (Plugin
+    # Sonar requer JDK 17, mas Gradle 5.x/6.x roda só em JDK 8/11). Tenta
+    # 'gradle assemble' (sem sonar) para produzir binários reais; se algum
+    # JDK conseguir compilar, roda sonar via scanner standalone com esses
+    # binários (não glob de .class antigos cached).
+    if build_type == "gradle":
+        for v in JDK_FALLBACK_ORDER:
+            jpath = jdk_path_para(v)
+            if not jpath:
+                continue
+            logger.info("[%s] tentando build-only JDK %d em %s",
+                        project_key, v, jpath)
+            env_v = env_com_jdk(jpath)
+            rc_build = _gradle_assemble_only(repo, env_v, log_path)
+            if rc_build != 0:
+                logger.warning("[%s] gradle assemble com JDK %d falhou (rc=%d)",
+                               project_key, v, rc_build)
+                continue
+            logger.info("[%s] gradle assemble com JDK %d OK (modo build-only)",
+                        project_key, v)
+            binaries = find_java_binaries(repo)
+            if not binaries:
+                logger.warning("[%s] build-only com JDK %d completou mas sem .class — "
+                               "build falso, descartando", project_key, v)
+                continue
+            logger.info("[%s] modo híbrido: build nativo OK + scanner standalone "
+                        "com binários reais (do build nativo)", project_key)
+            rc_scan = _scanner_standalone(repo, props, env_v, scanner_bin,
+                                          log_path, logger, project_key)
+            if rc_scan == 0:
+                return True, f"JDK {v} (gradle assemble + scanner híbrido)"
+            logger.warning("[%s] build-only OK mas scanner standalone falhou (rc=%d)",
+                           project_key, rc_scan)
+            return False, "build-only OK mas scanner falhou"
+        logger.warning("[%s] todos JDKs falharam até em build-only — "
+                       "caindo para scanner standalone degradado", project_key)
 
     # último recurso: scanner standalone (com detecção de binários)
     rc = _scanner_standalone(repo, props, env_com_jdk(_primeiro_jdk_disponivel()),
@@ -624,6 +717,7 @@ def coletar_um_projeto(row: dict, repo: Path, base_dir: Path, log_dir: Path,
     sha7 = git_checkout(repo, tag, logger)
     out["sha7"] = sha7
     limpar_scannerwork(repo)
+    aplicar_patch_post_checkout(pid, repo, base_dir, logger)
 
     build_type, pom_filename = detectar_build(repo)
     logger.info("[%s] build_type=%s%s", pid, build_type,

@@ -164,7 +164,11 @@ def validar(saida_dir: Path, n_esperado: int, logger: logging.Logger) -> list[st
         except Exception as e:
             erros.append(f"issues/{pid}.json inválido: {e}")
             continue
+        parciais_flag = False
+        total_sonar = None
         if isinstance(data, dict) and "issues" in data:
+            parciais_flag = bool(data.get("parciais"))
+            total_sonar = data.get("total_sonar")
             data = data["issues"]
         if not isinstance(data, list):
             erros.append(f"issues/{pid}.json: estrutura inesperada")
@@ -173,6 +177,14 @@ def validar(saida_dir: Path, n_esperado: int, logger: logging.Logger) -> list[st
             rk = it.get("rule")
             if rk:
                 rule_keys.add(rk)
+        if parciais_flag:
+            # Paginação ficou aquém do total, mas as métricas agregadas em
+            # consolidado.csv vêm de /api/measures/component (sem limite) e
+            # são a fonte de verdade da análise estatística. Warning, não erro.
+            tot = total_sonar if total_sonar is not None else "?"
+            logger.warning("[VALID] %s: issues parciais (%d/%s capturadas — "
+                           "usando contagem agregada). Métricas válidas no "
+                           "consolidado.", pid, len(data), tot)
         # ncloc / sqale_index não podem ser nulo/0
         for col in ("ncloc", "sqale_index"):
             v = (r.get(col) or "").strip()

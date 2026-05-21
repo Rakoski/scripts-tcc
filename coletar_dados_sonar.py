@@ -129,7 +129,8 @@ def main(argv=None) -> int:
             try:
                 m = extracao.extrair_metricas(client, pid, logger)
                 metricas_por_id[pid] = m
-                n_issues = extracao.extrair_issues(client, pid, issues_dir, logger)
+                n_issues = extracao.extrair_issues(client, pid, issues_dir, logger,
+                                                   metricas=m)
                 issues_count[pid] = n_issues
             except ProjetoError as e:
                 logger.error("[PROJ_ERR] %s — issues incompletas, seguindo", e)

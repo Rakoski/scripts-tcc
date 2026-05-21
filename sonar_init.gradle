@@ -1,12 +1,19 @@
 initscript {
     repositories {
         maven { url "https://plugins.gradle.org/m2/" }
+        google()
     }
     dependencies {
-        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:4.4.1.3373"
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:7.3.0.8198"
+        classpath "com.android.tools.build:gradle:8.13.0"
     }
 }
-
 allprojects {
-    apply plugin: org.sonarqube.gradle.SonarQubePlugin
+    afterEvaluate { proj ->
+        if (!proj.plugins.hasPlugin('com.android.application') &&
+            !proj.plugins.hasPlugin('com.android.library') &&
+            !proj.plugins.hasPlugin('com.android.base')) {
+            proj.apply plugin: org.sonarqube.gradle.SonarQubePlugin
+        }
+    }
 }
