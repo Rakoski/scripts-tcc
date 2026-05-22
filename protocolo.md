@@ -822,3 +822,273 @@ sobre H1.
   desenho. Nenhuma das duas evidências é dependente de observação
   dos dados de sqale_index. A reformulação não constitui resposta
   a observações nos dados, e portanto não viola pré-registro.
+
+  ---
+
+# Adendo v1.6 (22/05/2026) — Ampliação Amostral
+
+> **AVISO METODOLÓGICO CRÍTICO:** Esta seção é uma ADIÇÃO ao protocolo v1.5,
+> escrita DEPOIS de:
+>
+> 1. Coleta oficial conforme protocolo v1.5 (17/05/2026)
+> 2. Execução completa da análise estatística sobre N=34 (21/05/2026 14:50)
+> 3. Observação dos resultados (H1 não sustentada por C1=False, C2=False)
+> 4. Análise de poder post-hoc revelando poder a priori ~8% para razão de variância plausível
+> 5. Exploração de log-transformação revelando F=3.19 (borderline empírico) em log-densidade
+>
+> Esta cronologia é declarada explicitamente para que revisores e leitores
+> entendam que a expansão amostral E a análise log são adições conscientes
+> pós-observação de resultado em N=34, mas pré-coleta dos N=30 novos projetos.
+>
+> Esta cronologia será preservada via tag git `ampliacao-v1.6-predeclarada`
+> criada IMEDIATAMENTE após este commit, ANTES de qualquer coleta de novos
+> dados.
+
+## A1. Cronologia detalhada
+
+| Data | Evento |
+|------|--------|
+| 16/05/2026 | Tag `pre-coleta-v1.5` criada, congelando protocolo v1.5 |
+| 17/05/2026 | Coleta oficial N=34 executada conforme protocolo v1.5 |
+| 21/05/2026 14:50 | Análise estatística N=34 executada |
+| 21/05/2026 14:50 | Resultado: C1=False (F=0.52, p=0.60), C2=False (var(desc)<var(apa)<var(goog)). H1 não sustentada. |
+| 21/05/2026 ~16h | Análise de poder post-hoc via simulação Monte Carlo (1000 réplicas) revelou poder a priori de aproximadamente 8% para razão de variância 2.38× plausível. |
+| 21/05/2026 ~17h | Exploração estatística com log-transformação revelou que poder em escala log atinge ~71% com N=30/grupo (vs ~14% em densidade). |
+| 21/05/2026 ~18h | Análise exploratória de log-densidade nos N=34: F=3.190, p=0.055 (> F-crítico empírico 3.09 mas borderline). Ordenamento em log: var(apa)<var(desc)<var(goog). C2 ainda False. |
+| 22/05/2026 | Decisão: expandir amostra para N=64, formalizar análise log como complementar declaradamente post-hoc, escrever este adendo. |
+
+## A2. Decisões formalizadas
+
+### A2.1 Expansão amostral
+
+Amostra é expandida de **N=34 para N=64** via adição de 30 projetos novos
+distribuídos pelos três arquétipos:
+
+| Arquétipo | Atual (v1.5) | Novos | Final (v1.6) |
+|-----------|--------------|-------|--------------|
+| Apache | 14 | +10 | 24 |
+| Google | 10 | +10 | 20 |
+| Descentralizado | 10 | +10 | 20 |
+| **Total** | **34** | **+30** | **64** |
+
+**Razão metodológica para expansão:**
+
+- Poder estatístico ~8% (a priori) demonstrado inadequado para detecção de efeitos plausíveis em escala densidade
+- Estabilidade de variâncias amostrais com n=10-14 é baixa (intervalos de confiança amplos)
+- Expansão preserva análise primária em densidade conforme protocolo v1.5; aumenta estabilidade de estimativas
+
+### A2.2 Análise estatística complementar em log-densidade
+
+Análise estatística será conduzida em **duas escalas**:
+
+1. **Análise primária (inalterada):** densidade (sqale_index/ncloc) conforme
+   protocolo v1.5 §2 e §8.2. Regra de decisão H1 = C1 ∧ C2 permanece
+   inalterada. Esta é a análise pré-registrada original.
+
+2. **Análise complementar (post-hoc):** log-densidade (log(sqale_index/ncloc))
+   declarada explicitamente como adicionada após observação de poder
+   limitado em escala original em N=34.
+
+**Justificativa metodológica da análise log:**
+
+- Validação distribucional via Kolmogorov-Smirnov (protocolo v1.5 §8) já
+  havia confirmado lognormalidade da densidade (KS p=0.7071, não rejeita)
+- Transformação log é tratamento padrão para variáveis lognormais em análises
+  de variância
+- Análise de poder via simulação Monte Carlo demonstrou ganho de poder
+  significativo: ~71% em log vs ~14% em densidade com N=30/grupo
+
+**Declaração de cronologia para a análise log:**
+
+A análise log NÃO estava no protocolo v1.5. Foi explorada após observação
+do resultado em densidade e do baixo poder. Esta cronologia será reportada
+explicitamente no paper resultante: análise log é apresentada como
+complementar, descritivamente, com declaração explícita de que foi
+adicionada após coleta e análise primária em densidade.
+
+### A2.3 Reporte transparente de cronologia
+
+O paper resultante (TCC e submissão VEM) reportará:
+
+1. Análise primária em densidade conforme protocolo v1.5 com todos os
+   resultados, **independentemente da direção**
+2. Análise complementar em log-densidade com declaração explícita de
+   cronologia (post-hoc)
+3. Esta seção do protocolo (adendo v1.6) referenciada no texto como
+   pré-declaração da expansão e da análise log
+4. Tag git `ampliacao-v1.6-predeclarada` referenciada como evidência
+   de pré-declaração antes da nova coleta
+
+## A3. Critérios de inclusão pré-declarados para novos projetos
+
+Critérios objetivos aplicados na busca de candidatos via GitHub API:
+
+- **Linguagem primária:** Java (campo `language` da API do GitHub)
+- **Stars:** ≥ 1.000
+- **Atividade:** último commit em main/master nos últimos 12 meses
+  (após 22/05/2025)
+- **Não fork**, **não arquivado**
+- **Tamanho:** ≥ 1.000 KB (aproxima ≥5.000 LOC)
+
+**Exclusões:**
+
+- Projetos já presentes em `dados/2026-05-17/consolidado.csv` (N=34 original)
+- Projetos previamente registrados em `PROJETOS_EXCLUIDOS_LIMITACAO_TECNICA`
+  (em `coleta_lib/io_utils.py`): atualmente apenas `google/j2objc` (macOS-only)
+
+**Regra de famílias:** máximo 3 projetos por (organização, sub-família), onde
+sub-família = primeira palavra do nome do repositório antes de qualquer hífen.
+
+**Organizações pesquisadas por arquétipo:**
+
+- Apache: `apache`
+- Google: `google`, `googleapis`, `bazelbuild`, `firebase`
+- Descentralizado: `Netflix`, `uber`, `linkedin`, `square`
+
+**Nota sobre Square:** Embora `square` tenha sido incluído nas organizações
+pesquisadas, nenhum projeto Square satisfez o critério `language == "Java"`
+devido à classificação primária do GitHub (Retrofit, por exemplo, é
+classificado como HTML 68% pela alta proporção de documentação em HTML
+apesar do código core ser Java). Esta limitação técnica é declarada;
+nenhuma exceção foi feita à regra pré-declarada.
+
+## A4. Critério de seleção dos novos projetos
+
+Após aplicação dos critérios objetivos via GitHub API (script
+`scripts-tcc/buscar_projetos_candidatos.py`), seleção dos novos projetos
+foi feita por critério mecânico declarado:
+
+- **Apache:** top 10 por número de stars entre candidatos elegíveis
+- **Google:** top 10 por stars excluindo google/ExoPlayer (deprecated
+  oficialmente conforme descrição do próprio projeto: "This project is
+  deprecated and stale")
+- **Descentralizado:** distribuição balanceada por organização —
+  Netflix 6, LinkedIn 2, Uber 2. Limitação: LinkedIn e Uber possuem
+  apenas 2 candidatos elegíveis cada após aplicação dos critérios; Netflix
+  domina por ter maior representação pública de projetos OSS Java.
+
+## A5. Lista final pré-declarada de projetos a coletar
+
+### Apache (+10)
+
+1. `apache/skywalking` — 24802★ — APM, Application Performance Monitoring System
+2. `apache/rocketmq` — 22436★ — cloud native messaging and streaming platform
+3. `apache/shardingsphere` — 20723★ — distributed SQL for sharding
+4. `apache/hadoop` — 15548★ — Apache Hadoop
+5. `apache/doris` — 15378★ — high performance unified analytics database
+6. `apache/dolphinscheduler` — 14281★ — data orchestration platform
+7. `apache/druid` — 14003★ — real-time analytics database
+8. `apache/jmeter` — 9392★ — load testing tool
+9. `apache/seatunnel` — 9340★ — high-performance data integration
+10. `apache/iceberg` — 8880★ — table format for analytics
+
+### Google (+10)
+
+1. `bazelbuild/bazel` — 25410★ — build system
+2. `google/guice` — 12739★ — dependency injection framework
+3. `google/tsunami-security-scanner` — 8571★ — network security scanner
+4. `google/google-java-format` — 6133★ — Java code formatter
+5. `google/open-location-code` — 4318★ — short location code library
+6. `google/bundletool` — 3991★ — Android App Bundle manipulation
+7. `google/bindiff` — 3047★ — binary difference analysis
+8. `google/copybara` — 2729★ — code transformation/moving tool
+9. `google/jimfs` — 2546★ — in-memory file system for Java
+10. `firebase/firebase-android-sdk` — 2511★ — Firebase Android SDK
+
+### Descentralizado (+10)
+
+**Netflix (6):**
+
+1. `Netflix/Hystrix` — 24456★ — latency and fault tolerance library (declarado
+   em maintenance mode oficial pela Netflix; ver A6)
+2. `Netflix/zuul` — 14013★ — gateway service
+3. `Netflix/ribbon` — 4618★ — Inter Process Communication library (declarado
+   em maintenance mode; ver A6)
+4. `Netflix/maestro` — 3779★ — Workflow Orchestrator
+5. `Netflix/archaius` — 2493★ — configuration management library (declarado
+   em maintenance mode; ver A6)
+6. `Netflix/genie` — 1763★ — Big Data Orchestration Service
+
+**LinkedIn (2):**
+
+7. `linkedin/dexmaker` — 1965★ — compile/runtime code generation
+8. `linkedin/parseq` — 1176★ — async Java framework
+
+**Uber (2):**
+
+9. `uber/AutoDispose` — 3352★ — RxJava stream binding/disposal
+10. `uber/okbuck` — 1528★ — gradle plugin for Buck build
+
+## A6. Limitações declaradas a priori
+
+- **Projetos em maintenance mode:** Netflix/Hystrix, Netflix/Ribbon e
+  Netflix/Archaius (último commit em dezembro/2025, em maintenance mode
+  oficial pela Netflix) batem o critério pré-declarado de "<12 meses
+  inativos" e são incluídos. Captam padrões de dívida acumulada
+  característica de projetos legados ativos sob a mesma organização.
+  Esta inclusão é declarada explicitamente para evitar interpretação
+  pós-hoc.
+
+- **Apache de origem chinesa:** 6 dos 10 projetos Apache pré-declarados
+  (skywalking, rocketmq, shardingsphere, doris, dolphinscheduler,
+  seatunnel) têm origem em empresas chinesas (Alibaba, Huawei, etc.) que
+  foram doados/incubados na Apache Software Foundation. Cultura técnica
+  de origem pode diferir de projetos Apache "tradicionais" (Hadoop,
+  JMeter). Esta heterogeneidade interna ao arquétipo Apache é declarada
+  como possível confundidor; subgrupos podem ser analisados
+  descritivamente em discussão.
+
+- **Square excluído por critério estrito:** Apesar de Square ser
+  organização classificável como descentralizada com projetos Java
+  ativos (Retrofit, OkHttp, etc.), a classificação primária do GitHub
+  como "HTML" (devido a alto volume de documentação) impediu inclusão
+  sob critério estrito `language == "Java"`. A decisão de manter critério
+  estrito sem exceção é declarada para evitar cherry-picking pós-coleta.
+
+- **Domínio Netflix no arquétipo descentralizado:** Após expansão,
+  Netflix representa 9 dos 20 projetos descentralizados (45%). Esta
+  composição reflete a maior representação pública de Java sob Netflix
+  em comparação com LinkedIn e Uber, e é declarada como possível
+  confundidor entre "arquétipo descentralizado" e "cultura técnica
+  Netflix" para discussão substantiva em §5 do TCC.
+
+## A7. Regra de decisão sobre H1 (v1.6)
+
+A regra de decisão pré-registrada permanece **inalterada** desde a v1.5:
+
+**H0 é rejeitada a favor de H1 se e somente se:**
+
+1. **C1:** Brown-Forsythe (sobre densidade) retorna F > F-crítico empírico
+2. **C2:** ordenamento var(Google) < var(Apache) < var(Descentralizado)
+
+**A análise log-densidade NÃO é parte da regra de decisão pré-registrada.**
+Os resultados em log-densidade serão reportados como evidência descritiva
+complementar, com declaração explícita de cronologia.
+
+## A8. Compromissos formais
+
+1. A nova coleta será conduzida com o mesmo pipeline da coleta original
+   (mesma versão do SonarQube, mesmas configurações).
+2. Nenhuma decisão de inclusão/exclusão pós-coleta será feita exceto por
+   limitação técnica declarada (com mesmo padrão dos casos j2objc/cadence
+   da v1.5).
+3. Análise primária em densidade reportará TODOS os 64 projetos.
+4. Análise complementar em log-densidade reportará TODOS os 64 projetos.
+5. Subgrupos N=34 (originais) e N=30 (novos) também serão reportados
+   descritivamente para verificação de consistência inter-coleta.
+
+## A9. Postura sobre pré-registro
+
+Esta seção v1.6 documenta:
+
+- **Adição CONSCIENTE pós-observação** da expansão amostral
+- **Adição CONSCIENTE pós-observação** da análise log-densidade como complementar
+- **Manutenção INTACTA** da regra de decisão sobre H1 (regra v1.5 = regra v1.6)
+- **Manutenção INTACTA** da análise primária em densidade
+- **Pré-declaração formal** da lista de 30 novos projetos antes de qualquer
+  coleta adicional
+
+O pré-registro do protocolo v1.5 sobre análise primária permanece intacto.
+A v1.6 adiciona componentes complementares e expansão amostral declarados
+explicitamente como decisões pós-observação, com cronologia auditável via
+git tags (`pre-coleta-v1.5` e `ampliacao-v1.6-predeclarada`).
