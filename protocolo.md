@@ -1092,3 +1092,267 @@ O pré-registro do protocolo v1.5 sobre análise primária permanece intacto.
 A v1.6 adiciona componentes complementares e expansão amostral declarados
 explicitamente como decisões pós-observação, com cronologia auditável via
 git tags (`pre-coleta-v1.5` e `ampliacao-v1.6-predeclarada`).
+
+A lista §A5 foi gerada com versão do script de 22/05 manhã (commit 0530b8d, bug do j2objc ativo)
+O j2objc não estava no top 10 do Google de qualquer forma (saiu por critério temporal/limitação técnica documentada em PROJETOS_EXCLUIDOS_LIMITACAO_TECNICA), então o bug não afetou a lista §A5
+O fix posterior (Claude Code, hoje) corrigiu o bug pra runs futuros, mas a coleta segue a §A5 pré-declarada, não a saída do script pós-fix
+
+---
+
+# Adendo v1.7 (23/05/2026) — Relaxamento do critério temporal §4.4 para os 30 novos projetos
+
+> **AVISO METODOLÓGICO CRÍTICO:** Esta seção é uma ADIÇÃO ao adendo v1.6,
+> escrita ANTES da coleta dos 30 novos projetos da §A5, mas DEPOIS de:
+>
+> 1. Tentativa de identificação de tags estáveis pré-2026-01-01 conforme §4.4 v1.5
+> 2. Levantamento empírico via `git ls-remote --tags` em 22-23/05/2026 sobre
+>    os 30 projetos da §A5
+> 3. Constatação de que a regra §4.4 v1.5 é inviável para parte substancial
+>    dos 30 novos projetos
+>
+> Esta cronologia é declarada explicitamente. A regra é relaxada por
+> impossibilidade prática evidenciada por dados objetivos, não por
+> conveniência pós-observação dos resultados da nova coleta (que ainda
+> não ocorreu).
+
+## A10. Relaxamento do critério temporal §4.4 v1.5
+
+### A10.1 Problema declarado
+
+O critério §4.4 v1.5 ("último tag de release estável anterior a 2026-01-01")
+foi formulado sob a premissa implícita de que projetos open-source Java
+mantêm convenção uniforme de releases via git tags. O levantamento
+empírico realizado em 22-23/05/2026 sobre os 30 projetos da §A5 (via
+`git ls-remote --tags --sort=-version:refname`) demonstrou que esta
+premissa não se sustenta para a amostra ampliada.
+
+### A10.2 Evidência empírica do levantamento
+
+Inventário das tags por categoria observada (22-23/05/2026):
+
+**Categoria 1 — Tag estável recente identificável pré-2026-01-01:**
+Subconjunto dos 30 projetos. Critério §4.4 v1.5 aplicável diretamente.
+
+**Categoria 2 — Tag estável recente mas posterior a 2026-01-01:**
+Projetos como apache/hadoop (`rel/release-3.4.3` de 12/02/2026,
+`rel/release-3.5.0` de 24/03/2026) e apache/druid (`druid-37.0.0`
+de 28/04/2026, `druid-36.0.0` de 02/02/2026). Critério §4.4 v1.5
+inaplicável (data limite violada).
+
+**Categoria 3 — Tags estáveis existem mas refletem versões muito antigas:**
+- `google/guice`: tag mais recente é `snapshot20101120` (2010); releases
+  reais distribuídos via Maven Central sem tags git correspondentes
+- `Netflix/zuul`: tag mais recente `zuul-1.0.28`; projeto operacional em
+  zuul 2.x sem tags git correspondentes
+- `linkedin/dexmaker`: tag estável `2.28.6` existe mas ordenação por
+  versão retorna `v1.4` como "mais recente" devido a esquema misto de
+  tagging
+- `apache/iceberg`: tags retornadas são de subprojeto `pyiceberg-*`, não
+  da release principal de iceberg-Java
+- `apache/jmeter`: tag mais recente `v5_2_RC1` (release candidate);
+  releases finais distribuídas via Apache Mirror sem tags estáveis
+  correspondentes
+
+**Categoria 4 — Sem tags git ou apenas pre-releases contínuos:**
+- `firebase/firebase-android-sdk`: sem tags
+- `Netflix/maestro`: sem tags
+- `bazelbuild/bazel`: apenas tags `10.0.0-pre.YYYYMMDD.N` (pre-releases
+  contínuos)
+- `google/tsunami-security-scanner`: apenas `v0.2.0`
+
+### A10.3 Inviabilidade da regra §4.4 v1.5 para os 30 novos
+
+Tentativa de aplicação estrita da regra §4.4 v1.5 produziria:
+
+- Para Categoria 1: aplicação direta
+- Para Categoria 2: nenhum snapshot elegível (todas as tags violam data limite)
+- Para Categoria 3: snapshots arbitrariamente antigos (snapshot20101120
+  do guice teria 15+ anos de idade)
+- Para Categoria 4: nenhum snapshot disponível
+
+Isto produziria heterogeneidade extrema de idade de snapshot dentro do
+próprio subconjunto N=30, com idades variando de meses a décadas, criando
+confundidor temporal intra-grupo de magnitude maior que o confundidor
+inter-grupo (N=34 vs N=30) tratado em A11.
+
+### A10.4 Critério substituto pré-declarado para os 30 novos projetos
+
+Para os 30 projetos listados na §A5:
+
+1. **Identificar o branch principal** via `git symbolic-ref refs/remotes/origin/HEAD`.
+   Default observado: `main` para projetos modernos, `master` para alguns
+   projetos legados. Registrar o nome do branch em campo dedicado do
+   consolidado.
+
+2. **Executar `git checkout origin/<branch_principal>`** na data efetiva da coleta.
+
+3. **Registrar no consolidado**:
+   - `tag`: vazio ou marcador especial (`HEAD-on-<branch>-YYYY-MM-DD`)
+   - `commit_sha`: SHA completo do HEAD na data da coleta
+   - `data_commit`: data ISO 8601 do commit selecionado
+   - `snapshot_type`: `head-of-main` (novo campo declarado a seguir)
+
+### A10.5 Aplicabilidade
+
+- **Aplicável**: 30 projetos da §A5 (Apache +10, Google +10, Descentralizado +10)
+- **Não aplicável**: 34 projetos originais. A coleta v1.5 (tag
+  `coleta-oficial-v1.5`, dados em `dados/2026-05-17/consolidado.csv`)
+  permanece intocada. Os SHAs registrados continuam sendo as tags
+  estáveis pré-2026-01-01 conforme §4.4 v1.5.
+
+### A10.6 Justificativa metodológica
+
+O critério substituto é uniforme dentro do subconjunto N=30 (todos os
+projetos coletados via HEAD do branch principal na mesma janela
+temporal de coleta), o que minimiza confundidor temporal intra-grupo.
+A diferença sistemática entre N=34 e N=30 é declarada explicitamente
+em A11 e tratada analiticamente.
+
+A inviabilidade de §4.4 v1.5 para os 30 novos projetos foi documentada
+via dados objetivos (`git ls-remote`) antes da coleta, não inferida
+post-hoc dos resultados.
+
+## A11. Confundidor temporal entre N=34 e N=30
+
+### A11.1 Reconhecimento explícito
+
+Subconjuntos da amostra N=64 têm diferença sistemática de idade de
+snapshot:
+
+- **N=34 (v1.5)**: tags estáveis pré-2026-01-01. Idade média de
+  snapshot estimada em ~6-18 meses contados a partir da data de
+  coleta original (17/05/2026).
+- **N=30 (v1.6)**: HEAD do branch principal na data de coleta.
+  Idade média de snapshot ~0-7 dias.
+
+Esta diferença é estrutural ao desenho v1.6, não acidental.
+
+### A11.2 Hipóteses sobre direção do efeito do confundidor
+
+Snapshots mais novos podem apresentar densidade de dívida técnica
+sistematicamente diferente de snapshots mais antigos pelas seguintes
+razões plausíveis:
+
+1. **Acumulação de dívida ao longo do tempo**: snapshots novos
+   refletem dívida acumulada por mais tempo, podendo aumentar
+   densidade
+2. **Atualização de regras do SonarQube**: regras introduzidas em
+   versões recentes do Sonar afetam código novo e código legado
+   uniformemente, mas snapshots novos têm potencialmente mais código
+   afetado por regras introduzidas recentemente
+3. **Refatorações recentes**: projetos ativos refatoram continuamente,
+   potencialmente reduzindo densidade em snapshots novos
+
+Direções (1) e (3) operam em sentidos opostos, e direção (2) é
+neutra em direção mas adiciona ruído. Direção líquida não é
+predizível a priori.
+
+### A11.3 Tratamento analítico
+
+1. **Idade do snapshot como variável de controle obrigatória**: já
+   prevista em §8.1 v1.4 (correlação parcial Spearman estendida).
+   Mantida e aplicada a todo o N=64 sem alteração.
+
+2. **Análise de subgrupos N=34 vs N=30 pré-registrada**: além do
+   teste primário em N=64 conforme §8.2, será reportado:
+   - Tabela descritiva separada (mediana, IQR, variância, std) para
+     subgrupos N=34 e N=30 dentro de cada arquétipo
+   - Brown-Forsythe aplicado separadamente a N=34 e a N=30 (apenas
+     descritivo, não confirmatório — N=30 sozinho não satisfaz a
+     regra de decisão pré-registrada)
+   - Boxplot lado a lado dos dois subgrupos por arquétipo
+
+3. **Verificação de robustez declarada**:
+   - Se a direção do ordenamento de variâncias for consistente entre
+     N=34 e N=30 dentro de cada arquétipo, isto fortalece interpretação
+     de governança como variável estrutural
+   - Se a direção divergir, isto fragiliza interpretação e é discutido
+     honestamente em §5 do paper com hipóteses alternativas (efeito de
+     idade de snapshot, mudança de stacks tecnológicos, evolução de
+     práticas)
+
+4. **Sub-amostra etariamente comparável (exploratória)**: para os
+   projetos do N=34 cujo snapshot tem idade ≤ 12 meses contados de
+   17/05/2026 (i.e. tag pré-2026-01-01 datada de 2025), execução
+   adicional do Brown-Forsythe sobre o subconjunto N=30 ∪ (N=34 com
+   snapshot recente). Análise exploratória, não substitui o teste
+   primário em N=64.
+
+### A11.4 Limitação declarada
+
+O tratamento analítico de A11.3 não elimina o confundidor temporal,
+apenas o caracteriza e quantifica. Resultado confirmatório do teste
+primário em N=64 (regra C1 ∧ C2 da §8.2) será interpretado **sob a
+ressalva** de que parte da variância observada pode ser atribuível
+à diferença sistemática de idade de snapshot entre subgrupos, não
+exclusivamente a diferenças de governança arquitetural.
+
+Esta limitação é declarada como limitação intrínseca do desenho v1.6
+e listada em §6.2 do paper resultante junto com as outras limitações
+da v1.5 (poder estatístico, confundidores de NCLOC/idade do projeto,
+heterogeneidade do arquétipo Apache, domínio Netflix no
+descentralizado).
+
+## A12. Identificação operacional do branch principal
+
+Pseudocódigo da regra de identificação do branch principal por projeto:
+
+1. Existe `origin/main`? → usar `main`
+2. Existe `origin/master`? → usar `master`
+3. Falha: registrar `branch_status=indeterminado` e abortar coleta do projeto
+
+Branch identificado é registrado no consolidado em coluna dedicada
+(`branch_principal`).
+
+## A13. Novos campos no schema do consolidado
+
+Os seguintes campos são adicionados ao schema do `consolidado.csv` a
+partir da coleta v1.6:
+
+| Campo | Valores | Aplicabilidade |
+|-------|---------|----------------|
+| `snapshot_type` | `release-tag-pre-2026` (N=34) ou `head-of-main` (N=30) | Todos |
+| `branch_principal` | string (`main`, `master`, ou outro) | N=30; vazio para N=34 |
+| `idade_snapshot_dias` | int (dias entre `data_commit` e data de coleta) | Todos |
+| `subconjunto` | `n34-v1.5` ou `n30-v1.6` | Todos |
+
+Para os projetos N=34, os campos `snapshot_type` e `subconjunto` são
+preenchidos retroativamente sem alterar o conteúdo dos demais campos
+do consolidado original.
+
+## A14. Compromissos formais adicionais
+
+Adicionalmente aos compromissos da §A8:
+
+6. O `consolidado.csv` original em `dados/2026-05-17/consolidado.csv`
+   permanece intocado. Os campos novos de A13 são adicionados ao
+   `consolidado.csv` unificado em diretório separado.
+
+7. A análise primária em densidade conforme §8.2 v1.5 é aplicada ao
+   `consolidado.csv` unificado (N=64). A regra de decisão C1 ∧ C2
+   permanece inalterada.
+
+8. A análise de subgrupos A11.3 é reportada em apêndice ou seção
+   dedicada do paper resultante, com declaração explícita de que
+   não constitui teste confirmatório adicional.
+
+9. A discussão de limitações em §5 do paper incluirá obrigatoriamente
+   o confundidor temporal A11 como item dedicado.
+
+## A15. Postura sobre pré-registro
+
+Esta seção v1.7 documenta:
+
+- **Relaxamento PRÉ-COLETA** do critério §4.4 v1.5 para os 30 novos
+  projetos, motivado por dados objetivos (`git ls-remote`) coletados
+  antes de qualquer coleta de métricas Sonar dos novos projetos
+- **Manutenção INTACTA** do critério §4.4 v1.5 para os 34 projetos
+  originais
+- **Manutenção INTACTA** da regra de decisão §8.2 v1.5 (C1 ∧ C2)
+- **Pré-declaração formal** do tratamento analítico do confundidor
+  temporal (A11.3) antes da coleta dos novos dados
+
+A coleta dos 30 novos projetos será executada APÓS o commit deste
+adendo e a criação da tag `relaxamento-v1.7-predeclarada`, registrando
+a sequência: levantamento empírico de tags → relaxamento declarado →
+coleta.
