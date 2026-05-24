@@ -29,7 +29,7 @@ from coleta_lib.io_utils import (
 
 BASE_DIR = Path("/home/mateus/Documentos/artigos-tcc/repos/tcc")
 SCRIPTS_DIR = BASE_DIR / "scripts-tcc"
-CSV_PATH = SCRIPTS_DIR / "projetos-tcc-dataset-3.csv"
+CSV_PATH = SCRIPTS_DIR / "projetos-tcc-dataset-4.csv"
 ENV_PATH = SCRIPTS_DIR / ".env"
 CLONES_DIR = BASE_DIR / "projetos-clonados"
 

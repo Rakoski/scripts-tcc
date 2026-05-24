@@ -16,12 +16,14 @@ import requests
 
 ARQUETIPOS_VALIDOS = {"apache", "google", "descentralizado"}
 
-# Reduzido de 35 por exclusão técnica de j2objc (build macOS-only —
-# xcodebuild/xcrun/Xcode indisponíveis em Linux). Auditado em 2026-05-16
-# em Debian 12; falha em '/bin/sh: xcodebuild: not found' na fase jre_emul.
-# Declarado como limitação técnica de plataforma na Seção 5 do TCC: Google
-# passa de 11 para 10, Apache mantém 14, Descentralizado mantém 10.
-N_AMOSTRA = 34
+# v1.6 (§A5): 64 = 34 (v1.5) + 30 (expansão). Reduzido de 65 por exclusão
+# técnica de j2objc (build macOS-only — xcodebuild/xcrun/Xcode indisponíveis
+# em Linux). Auditado em 2026-05-16 em Debian 12; falha em '/bin/sh:
+# xcodebuild: not found' na fase jre_emul. Declarado como limitação técnica
+# de plataforma na Seção 5 do TCC: Google passa de 11 para 10 no subconjunto
+# n34-v1.5 (Apache mantém 14, Descentralizado mantém 10); n30-v1.6 adiciona
+# 10/10/10.
+N_AMOSTRA = 64
 
 # Projetos excluídos da coleta por limitação técnica de plataforma.
 # Mapping id → motivo (logado no carregamento da planilha).
