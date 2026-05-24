@@ -254,20 +254,111 @@ def find_main_sources(repo: Path, project_key: str | None = None) -> str:
 
 # ---------------- git ----------------
 
-def git_checkout(repo: Path, tag: str, logger: logging.Logger) -> str:
+SNAPSHOT_TYPE_RELEASE_TAG = "release-tag-pre-2026"
+SNAPSHOT_TYPE_HEAD = "head-of-main"
+SNAPSHOT_TYPES_VALIDOS = {SNAPSHOT_TYPE_RELEASE_TAG, SNAPSHOT_TYPE_HEAD}
+
+
+def git_checkout(repo: Path, tag: str, logger: logging.Logger,
+                 snapshot_type: str = SNAPSHOT_TYPE_RELEASE_TAG,
+                 branch_principal: str | None = None) -> str:
+    """Faz checkout do snapshot definido pelo protocolo.
+
+    snapshot_type='release-tag-pre-2026' (v1.5 §4.4, N=34): checkout literal
+    da tag estável em `tag`.
+
+    snapshot_type='head-of-main' (v1.7 §A10.4, N=30): fetch + checkout do
+    HEAD de origin/<branch_principal>. O campo `tag` é usado apenas para
+    logging (pode estar vazio ou conter marcador `HEAD-on-<branch>-YYYY-MM-DD`).
+    """
     if not (repo / ".git").exists():
         raise ColetaError(f"Repo não inicializado: {repo}")
-    subprocess.run(["git", "fetch", "--all", "--tags", "--quiet"],
-                   cwd=str(repo), check=False)
-    r = subprocess.run(["git", "checkout", "--force", tag, "--quiet"],
-                       cwd=str(repo))
-    if r.returncode != 0:
-        raise ColetaError(f"git checkout {tag} falhou em {repo}")
+
+    if snapshot_type not in SNAPSHOT_TYPES_VALIDOS:
+        raise ColetaError(
+            f"snapshot_type inválido: {snapshot_type!r} (esperado: "
+            f"{sorted(SNAPSHOT_TYPES_VALIDOS)}) — ver protocolo v1.7 §A10/A13"
+        )
+
+    if snapshot_type == SNAPSHOT_TYPE_RELEASE_TAG:
+        if not tag:
+            raise ColetaError(
+                f"snapshot_type=release-tag-pre-2026 requer tag para {repo} "
+                f"(protocolo v1.5 §4.4)"
+            )
+        subprocess.run(["git", "fetch", "--all", "--tags", "--quiet"],
+                       cwd=str(repo), check=False)
+        r = subprocess.run(["git", "checkout", "--force", tag, "--quiet"],
+                           cwd=str(repo))
+        if r.returncode != 0:
+            raise ColetaError(f"git checkout {tag} falhou em {repo}")
+        rotulo = tag
+    else:  # SNAPSHOT_TYPE_HEAD
+        if not branch_principal:
+            raise ColetaError(
+                f"snapshot_type=head-of-main requer branch_principal para {repo} "
+                f"(protocolo v1.7 §A10.4/A12)"
+            )
+        subprocess.run(
+            ["git", "fetch", "origin", branch_principal, "--quiet"],
+            cwd=str(repo), check=False,
+        )
+        ref = f"origin/{branch_principal}"
+        r = subprocess.run(["git", "checkout", "--force", ref, "--quiet"],
+                           cwd=str(repo))
+        if r.returncode != 0:
+            raise ColetaError(f"git checkout {ref} falhou em {repo}")
+        rotulo = tag or f"HEAD-on-{branch_principal}"
+
     sha_full = subprocess.run(["git", "rev-parse", "HEAD"], cwd=str(repo),
                               capture_output=True, text=True).stdout.strip()
     sha7 = sha_full[:7]
-    logger.info("git checkout %s (sha=%s) em %s", tag, sha7, repo.name)
+    logger.info("git checkout %s (sha=%s) em %s", rotulo, sha7, repo.name)
     return sha7
+
+
+def detectar_branch_principal(repo: Path, logger: logging.Logger) -> str:
+    """Identifica o branch principal do repositório clonado (protocolo v1.7 §A12).
+
+    Ordem de tentativa:
+      1. `git symbolic-ref refs/remotes/origin/HEAD` (preferência do remote)
+      2. fallback: `origin/main` existe → 'main'
+      3. fallback: `origin/master` existe → 'master'
+      4. raise ColetaError
+
+    Retorna apenas o nome do branch (sem prefixo 'origin/').
+    """
+    if not (repo / ".git").exists():
+        raise ColetaError(f"Repo não inicializado: {repo}")
+
+    r = subprocess.run(
+        ["git", "symbolic-ref", "--short", "refs/remotes/origin/HEAD"],
+        cwd=str(repo), capture_output=True, text=True,
+    )
+    if r.returncode == 0:
+        ref = r.stdout.strip()
+        if ref.startswith("origin/"):
+            nome = ref[len("origin/"):]
+            if nome:
+                logger.info("branch_principal de %s: %s (via symbolic-ref)",
+                            repo.name, nome)
+                return nome
+
+    for cand in ("main", "master"):
+        rc = subprocess.run(
+            ["git", "show-ref", "--verify", "--quiet",
+             f"refs/remotes/origin/{cand}"],
+            cwd=str(repo),
+        ).returncode
+        if rc == 0:
+            logger.info("branch_principal de %s: %s (fallback show-ref)",
+                        repo.name, cand)
+            return cand
+
+    raise ColetaError(
+        f"branch_principal indeterminado para {repo} — nenhum de "
+        f"origin/main, origin/master encontrado (protocolo v1.7 §A12)"
+    )
 
 
 def limpar_scannerwork(repo: Path) -> None:
@@ -697,8 +788,10 @@ def coletar_um_projeto(row: dict, repo: Path, base_dir: Path, log_dir: Path,
                        skip_existing: bool = False) -> dict:
     pid = row["id"]
     nome = row["nome"]
-    tag = row["tag"]
+    tag = row.get("tag", "")
     sha = row.get("commit_sha", "")
+    snapshot_type = (row.get("snapshot_type") or SNAPSHOT_TYPE_RELEASE_TAG).strip()
+    branch_principal = (row.get("branch_principal") or "").strip() or None
 
     out = {"id": pid, "nome": nome, "scan_ok": False,
            "build_caminho": "?", "sha7": sha[:7] if sha else "?"}
@@ -714,7 +807,9 @@ def coletar_um_projeto(row: dict, repo: Path, base_dir: Path, log_dir: Path,
         out["build_caminho"] = "repo-ausente"
         return out
 
-    sha7 = git_checkout(repo, tag, logger)
+    sha7 = git_checkout(repo, tag, logger,
+                        snapshot_type=snapshot_type,
+                        branch_principal=branch_principal)
     out["sha7"] = sha7
     limpar_scannerwork(repo)
     aplicar_patch_post_checkout(pid, repo, base_dir, logger)

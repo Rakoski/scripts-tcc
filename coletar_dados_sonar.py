@@ -163,10 +163,14 @@ def main(argv=None) -> int:
                 pid = r["id"]
                 metricas_por_id[pid] = extracao.extrair_metricas(client, pid, logger)
 
+        # data_coleta para idade_snapshot_dias (§A13). Usa o nome do dir
+        # de saída (já é YYYY-MM-DD) — assim valor é consistente com onde
+        # o consolidado está escrito, mesmo se a coleta levar dias.
         consolidacao.montar_consolidado(
             rows, metricas_por_id,
             saida / "consolidado.csv", logger,
             merge=parcial,
+            data_coleta=saida.name,
         )
         h = hash_arquivo(saida / "consolidado.csv")
         consolidacao.escrever_ambiente(saida, BASE_DIR, sonar_url, sonar_token,
