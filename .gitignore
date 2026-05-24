@@ -2,3 +2,6 @@
 venv/
 *.csv
 /sonar-logs
+/__pycache__
+*.pyc
+*.cpython
