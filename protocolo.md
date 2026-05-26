@@ -1356,3 +1356,216 @@ A coleta dos 30 novos projetos será executada APÓS o commit deste
 adendo e a criação da tag `relaxamento-v1.7-predeclarada`, registrando
 a sequência: levantamento empírico de tags → relaxamento declarado →
 coleta.
+
+---
+
+# Adendo v1.8 (26/05/2026) — Substituições por violação de critérios objetivos §3.1
+
+> **AVISO METODOLÓGICO CRÍTICO:** Esta seção é uma ADIÇÃO ao adendo v1.7,
+> escrita durante a coleta v1.6, APÓS:
+>
+> 1. Coleta v1.6 executada parcialmente (18 dos 30 projetos com sucesso)
+> 2. Execução do script `validar_candidatos_v17.py` retroativamente sobre
+>    os 30 projetos da §A5 v1.6
+> 3. Identificação de 7 projetos da §A5 que violam critérios objetivos
+>    §3.1 (linguagem, NCLOC, idade, contribuidores)
+>
+> Esta cronologia é declarada explicitamente. As substituições são por
+> violação objetiva de critério pré-existente §3.1, não por conveniência
+> pós-observação de resultados.
+>
+> Esta cronologia será preservada via tag git `substituicao-v1.8-predeclarada`
+> criada IMEDIATAMENTE após este commit, ANTES de qualquer coleta dos
+> substitutos.
+
+## A16. Detecção de violação de critérios
+
+### A16.1 Origem da detecção
+
+A §A5 do adendo v1.6 declarou 30 projetos a coletar, gerados por busca
+automatizada via GitHub API. Durante a coleta v1.6, observamos
+inconsistências em projetos individuais (NCLOC absurdamente baixo,
+falhas estruturais de build). Para verificar se as falhas eram técnicas
+(pipeline) ou estruturais (projeto inelegível), aplicamos retroativamente
+o script `validar_candidatos_v17.py` (commitado em
+`scripts-tcc/validar_candidatos_v17.py`) sobre os 30 projetos da §A5.
+
+O script verifica 6 critérios mecanicamente:
+- **C1:** ≥70% Java via `/repos/{owner}/{repo}/languages` (bytes)
+- **C2:** 10k ≤ NCLOC ≤ 1M (estimado como `java_bytes / 30`, heurística)
+- **C3:** ≥3 anos desde `created_at`
+- **C4:** ≥25 contribuidores via paginação `Link rel=last`
+- **C5:** ≥1 release estável (não-prerelease, não-draft) pre-2026-01-01
+- **C6:** Presença de `pom.xml`, `build.gradle`, `build.gradle.kts` ou
+  `settings.gradle` na raiz (build Maven/Gradle, não Bazel)
+
+### A16.2 Imprecisões conhecidas do script
+
+Documentadas para registro:
+- C2 usa heurística `bytes/30` que conta arquivos `.java` em testes,
+  comentários, código gerado, etc. Sistematicamente superestima NCLOC
+  em 3-7x comparado a `ncloc_language_distribution[java]` do Sonar
+  (definição operacional autoritativa via §4.1 v1.4).
+- C3 usa `created_at` do repo, que pode ser posterior ao primeiro commit
+  para repos importados/migrados.
+- C5 reflete o critério v1.5 original, **sem considerar o relaxamento
+  v1.7** que substitui release estável por HEAD-of-main para os 30 da §A5.
+
+### A16.3 Aplicação aos 30 projetos da §A5
+
+Resultado salvo em `scripts-tcc/validacao_candidatos_v17.csv` (commit
+deste adendo). Falhas registradas categorizadas em:
+
+**Falsos positivos C2 (NCLOC estimado vs NCLOC Sonar real)** — mantidos:
+- apache/shardingsphere: estimativa 1.18M vs Sonar 250.957 ✓ elegível
+- apache/druid: estimativa 2.13M vs Sonar 640.579 ✓ elegível
+- apache/iceberg: estimativa 1.46M vs Sonar 211.913 ✓ elegível
+- bazelbuild/bazel: estimativa 1.51M, NCLOC Sonar não disponível pois
+  build Bazel pendente (§7.2)
+
+**Falsos positivos C5 (já relaxado em v1.7)** — mantidos:
+- apache/hadoop, Netflix/zuul, linkedin/parseq, google/tsunami-security-scanner
+
+**Violações reais** — listadas em §A17 abaixo.
+
+## A17. Projetos excluídos da §A5 v1.6 por violação objetiva
+
+| Projeto | Arquétipo | Critério violado | Valor observado | Limiar |
+|---------|-----------|------------------|-----------------|--------|
+| apache/hadoop | apache | C2 (Sonar) | 1.028.933 NCLOC | ≤ 1.000.000 |
+| apache/doris | apache | C1 | 48.1% Java | ≥ 70% |
+| google/open-location-code | google | C1 | 22.2% Java | ≥ 70% |
+| google/bundletool | google | C4 | 22 contribuidores | ≥ 25 |
+| google/bindiff | google | C3 | 2.3 anos | ≥ 3 |
+| firebase/firebase-android-sdk | google | C1 | 44.7% Java | ≥ 70% |
+| Netflix/maestro | descentralizado | C4 | 12 contribuidores | ≥ 25 |
+
+Notas:
+- **apache/hadoop:** o script aprovou erroneamente o C2 via estimativa
+  inflada de bytes, mas o NCLOC real do Sonar (1.028.933) viola o teto
+  de 1.000.000 em 2.9%. Tratamento consistente com a exclusão de
+  `apache/commons-codec` na v1.4 (9.573 NCLOC, 4% abaixo do mínimo de
+  10.000), em que o critério foi aplicado literalmente sem flexibilização
+  por margem pequena.
+
+## A18. Substitutos pré-declarados
+
+Substitutos selecionados pelo mesmo critério mecânico da §A4 v1.6:
+**top por stars entre candidatos aprovados pelo script** e não-presentes
+em `clones_v17.csv`.
+
+Lista do CSV de aprovados (`validacao_candidatos_v17.csv`, coluna
+`aprovado=sim` e `ja_na_v17=nao`) usada como base.
+
+### Apache (+2)
+
+1. **apache/incubator-seata** (25965★) → substitui hadoop
+2. **apache/shenyu** (8791★) → substitui doris
+
+### Google (+4)
+
+1. **GoogleCloudPlatform/java-docs-samples** (1888★) → substitui open-location-code
+2. **google/flogger** (1479★) → substitui bundletool
+3. **google/j2cl** (1370★) → substitui bindiff
+4. **GoogleCloudPlatform/DataflowTemplates** (1295★) → substitui firebase-android-sdk
+
+### Descentralizado (+1)
+
+1. **Netflix/servo** (1427★) → substitui maestro
+
+### Notas de auditoria
+
+**apache/incubator-seata** é #1 Apache em stars (25965). Foi omitido da
+§A5 v1.6 original sem motivo documentado — falha do levantamento
+automatizado. O adendo v1.8 trata esta inclusão como **correção de
+omissão**, não substituição arbitrária.
+
+**google/ExoPlayer** (21924★) NÃO é incluído. Foi explicitamente excluído
+da §A5 v1.6 pela §A4: "Google: top 10 por stars excluindo google/ExoPlayer
+(deprecated oficialmente conforme descrição do próprio projeto)". Status
+confirmado em 26/05/2026: continua deprecated. A regra original mantém-se.
+
+**google/flogger** foi excluído da v1.4 do protocolo por NCLOC Java
+< 10k (7.503 NCLOC). Revalidação em 26/05/2026 via contagem rigorosa
+(cloc-like Python) revelou 14.000+ NCLOC reais, dentro da janela
+10k-1M. Reentra elegibilidade. Esta reentrada é justificada por
+mudança objetiva no projeto entre 04/2026 e 05/2026, não por mudança
+de critério.
+
+**Netflix/servo** (1427★) é o próximo Netflix elegível na lista
+após exclusão de Netflix/maestro. Preserva a composição
+Netflix=6/LinkedIn=2/Uber=2 declarada na §A4 v1.6.
+
+**apache/shenyu** é Apache de origem chinesa (Dromara doado para ASF).
+A composição Apache "origem chinesa" sobe de 6/10 para 7/10 após
+substituições (incubator-seata também é origem chinesa). A
+heterogeneidade interna do arquétipo Apache, declarada como possível
+confundidor na §A6 v1.6, é reafirmada e listada nas limitações do
+paper resultante.
+
+## A19. Schema do consolidado e classificação dos excluídos
+
+Os 7 projetos excluídos por §A17 são adicionados ao registro
+`PROJETOS_EXCLUIDOS_LIMITACAO_TECNICA` em `coleta_lib/io_utils.py`
+com motivo categorizado em "violação de critério §3.1".
+
+Distinção operacional entre as categorias de exclusão em
+`PROJETOS_EXCLUIDOS_LIMITACAO_TECNICA`:
+
+- **Plataforma incompatível** (j2objc): build exige plataforma não
+  disponível ao ambiente da coleta.
+- **Violação de critério §3.1** (hadoop, doris, open-location-code,
+  bundletool, bindiff, firebase-android-sdk, maestro): projeto não
+  satisfaz critérios objetivos da seleção amostral. Detectado
+  retroativamente via `validar_candidatos_v17.py`.
+
+Os dados parciais coletados desses 7 projetos em `dados/2026-05-24/`
+(via execução do loop §A8 da v1.7) **NÃO** entram no `consolidado.csv`
+unificado para análise. São removidos do consolidado e os projetos
+correspondentes são deletados do SonarQube para evitar contaminação.
+
+## A20. Substituição N=64 → N=64 (preserva tamanho amostral)
+
+A substituição é **um-por-um**, preservando N=64 e a composição
+declarada §A2.1 v1.6:
+
+- Apache: 14 (v1.5) + 10 (v1.6 menos hadoop/doris + seata/shenyu) = 24
+- Google: 10 (v1.5 sem j2objc, conforme limitação técnica)
+  + 10 (v1.6 menos 4 excluídos + 4 substitutos) = 20
+- Descentralizado: 10 (v1.5) + 10 (v1.6 menos maestro + servo) = 20
+
+N total: 64. Inalterado em relação a v1.6.
+
+## A21. Compromissos formais adicionais
+
+Adicionalmente aos compromissos da §A8 v1.6 e §A14 v1.7:
+
+10. A coleta dos 7 substitutos seguirá o mesmo pipeline e as mesmas
+    regras §A10.4 v1.7 (HEAD-of-main, `snapshot_type=head-of-main`,
+    `subconjunto=n30-v1.6`).
+
+11. O `validacao_candidatos_v17.csv` é commitado neste adendo como
+    evidência da aplicação mecânica do script aos 30 da §A5 v1.6.
+
+12. A análise primária e complementar conforme §A2.2 v1.6 será
+    aplicada à amostra final N=64 com substituições aplicadas, sem
+    revisão da regra de decisão (§8.2 v1.5 inalterada).
+
+## A22. Postura sobre pré-registro
+
+Esta seção v1.8 documenta:
+
+- **Detecção objetiva** de violações de §3.1 via script mecânico
+  aplicado retroativamente
+- **Substituições por critério idêntico** ao levantamento original
+  (top por stars entre aprovados, mesma janela de candidatos
+  `candidatos_expansao_v1.6.csv`)
+- **Manutenção INTACTA** da regra de decisão §8.2 v1.5 (C1 ∧ C2)
+- **Manutenção INTACTA** da análise primária em densidade e complementar
+  em log-densidade
+- **Preservação INTACTA** do N=64 declarado em v1.6
+
+A substituição NÃO foi informada por observação dos resultados Sonar
+dos projetos coletados em v1.6 — foi informada pela detecção de
+inelegibilidade estrutural via metadados (GitHub API). A regra de
+decisão e o desenho analítico permanecem inalterados desde v1.5.

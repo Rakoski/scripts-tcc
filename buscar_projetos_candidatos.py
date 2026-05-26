@@ -72,7 +72,8 @@ LOG_PATH = SCRIPTS_DIR / "candidatos_expansao.log"
 
 ORGS_POR_ARQUETIPO: dict[str, list[str]] = {
     "apache": ["apache"],
-    "google": ["google", "googleapis", "bazelbuild", "firebase"],
+    "google": ["google", "googleapis", "bazelbuild", "firebase",
+               "androidx", "GoogleCloudPlatform", "google-deepmind"],
     "descentralizado": ["Netflix", "uber", "linkedin", "square"],
 }
 
