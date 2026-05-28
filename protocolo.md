@@ -1569,3 +1569,93 @@ A substituição NÃO foi informada por observação dos resultados Sonar
 dos projetos coletados em v1.6 — foi informada pela detecção de
 inelegibilidade estrutural via metadados (GitHub API). A regra de
 decisão e o desenho analítico permanecem inalterados desde v1.5.
+
+---
+
+# Adendo v1.9 (28/05/2026) — Cascata servo → Priam por violação §3.1.2 pós-coleta
+
+> **AVISO METODOLÓGICO:** Esta seção documenta substituição em cascata
+> realizada APÓS coleta Sonar de Netflix/servo revelar NCLOC abaixo do
+> piso §3.1.2. A detecção foi via medida operacional autoritativa
+> (Sonar `ncloc`), não via estimativa pré-coleta.
+
+## A23. Detecção da violação
+
+Coleta de `netflix-servo-10` em 2026-05-28 17:20:51 retornou:
+- NCLOC Sonar = 9.233
+- Piso §3.1.2 = 10.000
+- Margem abaixo do piso = 7.67%
+
+O script de validação `validar_candidatos_v17.py` havia aprovado servo
+em 2026-05-26 com `ncloc_est=26.558` (heurística `java_bytes/30`). A
+inflação observada (26.558/9.233 ≈ 2.88×) é consistente com a inflação
+sistemática 3-7× declarada na §A16.2 do adendo v1.8.
+
+## A24. Decisão de exclusão por consistência
+
+`netflix-servo-10` é excluído da amostra n30-v1.6, por consistência com:
+- `apache-commons-codec` (v1.4): excluído por 4% abaixo do piso (9.573 NCLOC).
+- `apache-hadoop-18` (v1.8 §A17): excluído por 3% acima do teto (1.028.933 NCLOC).
+
+Servo (7.7% abaixo) está em margem maior que ambos os casos precedentes.
+Manter servo introduziria assimetria não justificável no tratamento de
+§3.1.2.
+
+## A25. Substituto pré-declarado
+
+Próximo Netflix elegível por critério estrito (top stars entre aprovados
+pelo `validar_candidatos_v17.py`, descontando v1.5 e v1.6 já em uso):
+**Netflix/Priam** (1.038 estrelas).
+
+Validação prévia via contagem cloc-like local antes da clonagem oficial:
+- NCLOC main (sem testes) = 13.170 → ≥ 10.000 ✓
+- Margem acima do piso = 31.7%
+
+A contagem cloc-like local é declarada como **triagem adicional** após
+servo. Para Priam, a estimativa pré-coleta (`ncloc_est = 39.882`) e a
+contagem cloc-like (`13.170 main`) divergem em 3.03× — coerente com a
+inflação esperada. Priam tem margem suficiente acima do piso para que
+diferença residual entre cloc-like e Sonar não cause violação.
+
+A próxima opção (Netflix/astyanax, 1.034 estrelas) será considerada se
+Priam violar §3.1.2 na coleta Sonar.
+
+## A26. Mapeamento atualizado §A18
+
+A substituição em §A18 v1.8 (`Netflix/servo` no lugar de
+`Netflix/maestro`) é modificada para:
+
+| Excluído (v1.8) | Substituto (v1.8) | Substituto (v1.9) |
+|---|---|---|
+| Netflix/maestro | ~~Netflix/servo~~ | Netflix/Priam |
+
+`Netflix/servo` é adicionado a `PROJETOS_EXCLUIDOS_LIMITACAO_TECNICA`
+com categoria "violação §3.1.2 detectada pós-coleta".
+
+## A27. Operações pré-declaradas
+
+A coleta de Priam será conduzida APÓS:
+
+1. Commit deste adendo v1.9
+2. Tag git `cascata-v1.9-predeclarada`
+3. Remoção de servo do consolidado v1.6 (`dados/2026-05-24/consolidado.csv`)
+4. Remoção de servo do SonarQube (HTTP DELETE)
+5. Substituição de servo por Priam em `projetos-tcc-dataset-4.csv`,
+   `clones_v17.csv` e `clonar_v17.py`
+6. Clone de Priam em `projetos-clonados/Priam`
+
+## A28. Postura sobre pré-registro
+
+Esta seção v1.9 documenta:
+
+- **Detecção objetiva pós-coleta** de violação §3.1.2 via medida Sonar
+  (definição operacional autoritativa §4.1 v1.4)
+- **Substituição por critério idêntico** ao levantamento (top stars)
+- **Manutenção INTACTA** da regra de decisão §8.2 v1.5 (C1 ∧ C2)
+- **Manutenção INTACTA** da análise primária em densidade e complementar
+  em log-densidade
+- **Preservação INTACTA** do N=64 declarado em v1.6
+
+A coleta dos 17 projetos v1.6 anteriores não é afetada. Os 4 substitutos
+restantes (java-docs-samples, shenyu, incubator-seata, DataflowTemplates)
+ainda não foram coletados e serão coletados após a cascata servo→Priam.
