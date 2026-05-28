@@ -64,6 +64,11 @@ PROJETOS_EXCLUIDOS_LIMITACAO_TECNICA: dict[str, str] = {
         "§3.1.4 (C4): 12 contribuidores < 25. "
         "Excluído pela §A17 do adendo v1.8."
     ),
+    "netflix-servo-10": (
+        "Violação §3.1.2 detectada pós-coleta: NCLOC Sonar=9233 < 10000 "
+        "(-7.7%). Excluído pela §A23 do adendo v1.9, substituído por "
+        "Netflix/Priam."
+    ),
 }
 
 

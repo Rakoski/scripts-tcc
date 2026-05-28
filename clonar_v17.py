@@ -62,7 +62,7 @@ PROJETOS_V17 = [
     ("netflix-hystrix-07",          "Netflix/Hystrix",                  "Hystrix",                   "Netflix",  "descentralizado"),
     ("netflix-zuul-08",             "Netflix/zuul",                     "zuul",                      "Netflix",  "descentralizado"),
     ("netflix-ribbon-09",           "Netflix/ribbon",                   "ribbon",                    "Netflix",  "descentralizado"),
-    ("netflix-servo-10", "Netflix/servo", "servo", "Netflix", "descentralizado"),
+    ("netflix-priam-10", "Netflix/Priam", "Priam", "Netflix", "descentralizado"),
     ("netflix-archaius-11",         "Netflix/archaius",                 "archaius",                  "Netflix",  "descentralizado"),
     ("netflix-genie-12",            "Netflix/genie",                    "genie",                     "Netflix",  "descentralizado"),
     ("linkedin-dexmaker-04",        "linkedin/dexmaker",                "dexmaker",                  "LinkedIn", "descentralizado"),
