@@ -28,8 +28,42 @@ N_AMOSTRA = 64
 # Projetos excluídos da coleta por limitação técnica de plataforma.
 # Mapping id → motivo (logado no carregamento da planilha).
 PROJETOS_EXCLUIDOS_LIMITACAO_TECNICA: dict[str, str] = {
-    "google-j2objc-11": "Build exige macOS (xcodebuild, xcrun, Xcode). "
-                        "Incompatível com Linux Debian 12.",
+    # ===== Plataforma incompatível =====
+    "google-j2objc-11": (
+        "Build exige macOS (xcodebuild, xcrun, Xcode). "
+        "Incompatível com Linux Debian 12."
+    ),
+
+    # ===== Violação de critério §3.1 (detectado v1.8) =====
+    "apache-hadoop-18": (
+        "Violação §3.1.2 (C2): NCLOC Sonar 1.028.933 > 1.000.000. "
+        "Excluído pela §A17 do adendo v1.8."
+    ),
+    "apache-doris-19": (
+        "Violação §3.1.1 (C1): 48.1% Java < 70%. "
+        "Excluído pela §A17 do adendo v1.8."
+    ),
+    "google-open-location-code-16": (
+        "Violação §3.1.1 (C1): 22.2% Java < 70%. "
+        "Excluído pela §A17 do adendo v1.8."
+    ),
+    "google-bundletool-17": (
+        "Violação §3.1.4 (C4): 22 contribuidores < 25. "
+        "Excluído pela §A17 do adendo v1.8."
+    ),
+    "google-bindiff-18": (
+        "Violação §3.1.3 (C3): 2.3 anos < 3 anos. "
+        "Excluído pela §A17 do adendo v1.8."
+    ),
+    "google-firebase-android-sdk-21": (
+        "Violação §3.1.1 (C1): 44.7% Java < 70%. "
+        "Excluído pela §A17 do adendo v1.8."
+    ),
+    "netflix-maestro-10": (
+        "Violação §3.1.3 (C3): 1.7 anos < 3 anos; "
+        "§3.1.4 (C4): 12 contribuidores < 25. "
+        "Excluído pela §A17 do adendo v1.8."
+    ),
 }
 
 
