@@ -1659,3 +1659,229 @@ Esta seção v1.9 documenta:
 A coleta dos 17 projetos v1.6 anteriores não é afetada. Os 4 substitutos
 restantes (java-docs-samples, shenyu, incubator-seata, DataflowTemplates)
 ainda não foram coletados e serão coletados após a cascata servo→Priam.
+
+---
+
+# Adendo v1.10 (29/05/2026) — Limitação técnica de build + estado amostral final efetivo N=60
+
+> **AVISO METODOLÓGICO:** Esta seção documenta 4 projetos que, mesmo após
+> esforço documentado de fix de build (patches pós-checkout, suporte Bazel
+> nativo no pipeline, fallbacks de JDK), não foram coletáveis no ambiente
+> da pré-banca. A exclusão é por **limitação técnica do ambiente de
+> coleta**, não por inelegibilidade pelos critérios §3.1.
+
+## A29. Limitação técnica adicional v1.10 (4 projetos)
+
+Os 4 projetos abaixo passam os critérios §3.1 (linguagem, tamanho,
+idade, contribuidores, release) mas falham na execução do pipeline de
+build local pré-Sonar. Cada um documenta a causa exata observada e a
+condição para reintrodução pós-banca.
+
+### A29.1. `google-bazel-12` (bazelbuild/bazel)
+
+- **Causa**: Bazel meta-build (recursos). Primeira tentativa via
+  `_bazel_completo` esgotou memória/CPU do ambiente e travou o PC
+  (Bazel buildando o próprio Bazel é caso patológico de recursos).
+- **Diagnóstico**: não é falha de critério §3.1 — bazelbuild/bazel
+  aprova nos 6 critérios (Java 83.5%, contribs 1.373, release tags
+  contínuas, idade 11+ anos, NCLOC dentro da faixa real). É falha
+  estritamente de recursos do ambiente de coleta.
+- **Reintrodução pós-banca**: tentar build com `bazel build //src/main/...`
+  (target reduzido via `BAZEL_TARGETS_OVERRIDE`) em ambiente com mais
+  memória, ou aceitar análise apenas do subdiretório `src/main/java`
+  via scanner standalone com binários pré-compilados de release oficial.
+
+### A29.2. `google-google-java-format-15` (google/google-java-format)
+
+- **Causa**: Maven Tycho 5.0.2 lança `ProvisionException` no
+  `TargetPlatformWorkspaceReader` mesmo invocando `mvn package` no pom
+  raiz. Tycho é orientado a Eclipse PDE — requer configuração de
+  target platform Eclipse não presente no ambiente CI/Linux.
+- **Diagnóstico**: não é falha de critério §3.1 — google-java-format
+  aprova nos 6 critérios. Falha é toolchain-específica (Tycho requer
+  Eclipse target platform; coleta Sonar não pode depender disso).
+- **Reintrodução pós-banca**: configurar Tycho com p2 repositories
+  apontando para um Eclipse SDK local, ou desativar Tycho via
+  `-Dtycho.mode=maven` se viável sem quebrar empacotamento.
+
+### A29.3. `google-java-docs-samples-16` (GoogleCloudPlatform/java-docs-samples)
+
+- **Causa**: monorepo Gradle de samples independentes — cada subdiretório
+  tem `pom.xml` ou `build.gradle` próprio mas não há build unificado na
+  raiz. `gradle assemble` na raiz não compila nada útil (sem `settings.gradle`
+  agregador).
+- **Diagnóstico**: aprovação nos critérios §3.1 ocorreu sobre o repo
+  agregado (415 contribuidores, 95% Java, 402k NCLOC heurístico), mas
+  o pipeline atual assume um build unificado por projeto. Análise por
+  subdiretório individual quebraria comparabilidade (qual sample? por
+  que esse e não outro?).
+- **Reintrodução pós-banca**: ou (a) escolher pré-declaradamente UM
+  subdiretório-âncora representativo (ex.: `cloud-tasks`) e analisar
+  esse, com nota explícita de que NÃO é o repo agregado; ou (b)
+  rodar Sonar standalone sobre o repo todo aceitando inflação por
+  duplicação de boilerplate entre samples.
+
+### A29.4. `linkedin-dexmaker-04` (linkedin/dexmaker)
+
+- **Causa**: build Gradle exige NDK Android `27.0.12077973`; instalação
+  via Android SDK Manager produziu diretório corrompido (sem
+  `source.properties`), fazendo Gradle abortar com
+  `NullPointerException` ao resolver toolchain. Reinstalação manual
+  não resolveu (vários `sdkmanager` retornam mesma corrupção).
+- **Diagnóstico**: aprovação nos critérios §3.1 ocorreu sobre metadados
+  GitHub (87% Java, 55 contribs, stable releases). Falha é
+  ambiente-específica (NDK package corrompido no repositório Google);
+  outros projetos com NDK podem ter o mesmo problema.
+- **Reintrodução pós-banca**: tentar instalação manual do NDK via
+  download direto do Google (link oficial pula o SDK Manager), ou
+  buildar com NDK mais antigo declarado no `build.gradle` como
+  override.
+
+## A30. Estado amostral final efetivo N=60
+
+Recompõe a contagem após todos os adendos v1.4 → v1.10:
+
+| Categoria | Quantidade | Origem |
+|---|---:|---|
+| Declarado v1.5 (n34) | 34 | §A1 v1.5 |
+| Expansão v1.6 (n30) | 30 | §A5 v1.6 |
+| **Subtotal bruto** | **64** | — |
+| Excluído por plataforma macOS (v1.5) | -1 | j2objc (§A11) |
+| Excluído por violação §3.1 v1.8 | -7 | hadoop, doris, open-location-code, bundletool, bindiff, firebase, maestro (§A17) → substituídos por incubator-seata, shenyu, java-docs-samples, flogger, j2cl, DataflowTemplates, servo (preserva N=64) |
+| Excluído por violação §3.1.2 pós-coleta v1.9 | -1 | servo → substituído por Priam (preserva N=64) |
+| **Subtotal após substituições preservadoras** | **64** | — |
+| Excluído por limitação técnica v1.5 | -1 | j2objc (sem substituto: §A11 v1.5 já contabilizou) |
+| Excluído por limitação técnica v1.10 | -3 | bazel, google-java-format, java-docs-samples (sem substituto: §A30) |
+| Excluído por limitação técnica v1.10 | -1 | dexmaker (sem substituto: §A30) |
+| **N final efetivo** | **60** | — |
+
+**Composição N=60 por arquétipo:**
+
+| Arquétipo | v1.5 | v1.6 entrada | Excl. v1.10 | Final |
+|---|---:|---:|---:|---:|
+| Apache | 14 | 10 (bem-sucedidos via §A17) | 0 | 24 |
+| Google | 10 (após j2objc) | 10 (após §A17) | -3 (bazel, google-java-format, java-docs-samples) | 17 |
+| Descentralizado | 10 | 10 (após §A17/§A23) | -1 (dexmaker) | 19 |
+| **Total** | **34** | **30** | **-4** | **60** |
+
+**Implicação metodológica**: a redução de N=64 → N=60 (-6,25%) NÃO
+afeta a regra de decisão §8.2 v1.5 (C1 ∧ C2) nem o desenho analítico
+primário (Brown-Forsythe sobre densidade). O poder estatístico do
+teste primário em N=60 é discutido na §10 da redação final como parte
+das limitações.
+
+## A31. Implementações de pipeline registradas em v1.10
+
+Mudanças em `coleta_lib/scan.py` (commitadas como parte de v1.10) que
+suportam projetos Bazel e patches pós-checkout. Documentadas aqui para
+auditabilidade — não alteram critérios §3.1 nem método estatístico.
+
+### A31.1. Patches pós-checkout Gradle
+
+Registrados em `PATCHES_POST_CHECKOUT: dict[str, str]` em
+`coleta_lib/scan.py`. Scripts em `scripts-tcc/patches/`.
+
+| Projeto | Script | Motivo |
+|---|---|---|
+| `uber-cadence-java-client-05` | `cadence-libthrift.sh` | Thrift compiler/runtime mismatch — bump de `libthrift` para v0.20.0 |
+| `google-tsunami-14` | `tsunami-skip-javadocjar.sh` | Gradle 8.10 detecta implicit-dep entre `:tsunami-proto:generateProto` e `:tsunami-proto:javadocJar`; desativa `java.withJavadocJar()` nos subprojects |
+| `netflix-genie-12` | `genie-skip-vendor-and-ui-npm.sh` | (a) `gradle-daemon-jvm.properties` exige `toolchainVendor` estrito; remove a linha; (b) `:genie-ui` depende de npm 5.8.0 quebrado, desliga as dependências `npmInstall` e `bundle` |
+
+Cada patch é shell idempotente (usando `sed -i` / `/pattern/d`), aplicado
+APÓS `git checkout --force` do SHA da planilha e ANTES da invocação do
+build. Patches modificam o working tree do clone; o repo upstream não é
+afetado. Backup do estado original em `*.bak-*` na primeira invocação.
+
+### A31.2. Suporte nativo a Bazel
+
+`coleta_lib/scan.py` ganha:
+
+- **`detectar_build(repo)`** retorna `"bazel"` quando `MODULE.bazel`,
+  `WORKSPACE`, `WORKSPACE.bazel`, `BUILD` ou `BUILD.bazel` está
+  presente na raiz (após Maven/Gradle, antes de Ant).
+- **`_bazel_completo(repo, ..., scanner_bin)`** roda `bazelisk build
+  <target>` (default `//...`), coleta JARs de `bazel-bin/`, e invoca
+  `sonar-scanner` standalone com `sonar.java.binaries` apontando para
+  os JARs e `sonar.sources` para os diretórios reais de código.
+- **`BAZEL_TARGETS_OVERRIDE: dict[str, list[str]]`** permite override
+  do target Bazel por projeto. Necessário em `google-j2cl-18` (uso de
+  `//transpiler/java/...` em vez de `//...` que falha por macros
+  internas Google).
+- **`BAZEL_SOURCE_HINTS: dict[str, list[str]]`** declara source roots
+  específicos quando o layout não é `src/main/java` (j2cl tem 5 source
+  roots em subdirs convencionais).
+- **`find_bazel_sources(repo, project_key)`** prioriza HINTS, depois
+  cai pra `find_main_sources`, depois faz busca heurística em `java/`
+  na raiz e `*/java/` em subdirs até 2 níveis, excluindo
+  `bazel-*/`, `external/`, `third_party/`, `javatests/`. Retorna
+  vazio explicitamente em vez de `.` (fallback ausente — `sources=.`
+  contamina ncloc com dependências; better fail than inflated data).
+- **Filtragem de JARs em `_bazel_completo`**: exclui JARs em paths
+  `javatests/`, `tests/`, `test/` (paridade com `STANDALONE_EXCLUSIONS`)
+  e JARs cujo símlink resolvido aponta para path inexistente (evita
+  `IllegalStateException` no Sonar por path inválido).
+- **Properties file para `sonar.java.binaries`**: lista de JARs pode
+  exceder `MAX_ARG_STRLEN` Linux (~128KB por argumento único); o
+  pipeline escreve a propriedade em `sonar-project.properties`
+  temporário e a remove no `finally`.
+
+### A31.3. Resultados de aplicação em v1.10
+
+Projetos Bazel coletados com sucesso após implementação:
+
+| Projeto | Target Bazel | n_jars | n_source dirs | NCLOC Sonar |
+|---|---|---:|---:|---:|
+| `google-flogger-17` | `//...` | 1.904 | 5 (via src/main/java) | 10.797 |
+| `google-copybara-19` | `//...` | 27.886 | 1 (via heurística `java/` raiz) | 63.228 |
+| `google-j2cl-18` | `//transpiler/java/...` (override) | 3.770 (após filtro test JARs) | 5 (via HINTS) | 80.622 |
+
+Projetos Gradle coletados com sucesso via patches:
+
+| Projeto | Patch | NCLOC Sonar |
+|---|---|---:|
+| `google-tsunami-14` | `tsunami-skip-javadocjar.sh` | 11.015 |
+| `netflix-genie-12` | `genie-skip-vendor-and-ui-npm.sh` | 39.678 |
+
+## A32. Compromisso de tentativa pós-banca
+
+Os 4 projetos da §A29 NÃO são abandonados — são deferidos. Compromisso
+formal pós-banca:
+
+1. **Tentar reintrodução** de cada um conforme protocolo de
+   reintrodução específico declarado em §A29.1-A29.4.
+2. **Registrar resultado** de cada tentativa (sucesso → adição ao
+   dataset, falha → manter exclusão com diagnóstico atualizado) em
+   adendo v1.11+ pós-banca.
+3. **Não alterar regra de decisão §8.2** se a coleta pós-banca dos 4
+   for bem-sucedida — análise principal do TCC é fechada em N=60 e
+   uma re-análise opcional em N=64 (com os 4 reincluídos) é
+   apresentada como **análise de robustez** na seção de discussão.
+
+Esta postura preserva integridade do pré-registro: a análise primária
+em N=60 está formalmente fechada em v1.10. Reintrodução pós-banca não
+contamina a regra de decisão, apenas alimenta análise complementar.
+
+## A33. Postura sobre pré-registro
+
+Esta seção v1.10 documenta:
+
+- **Limitação técnica do ambiente de coleta** como categoria de
+  exclusão distinta de violação §3.1 — coerente com §A11 v1.5 (j2objc).
+- **Critérios de reintrodução pós-banca pré-declarados** por projeto
+  individual (§A29.1-A29.4), não inventados após a tentativa.
+- **N=60 como amostra primária** — fixada antes da análise estatística
+  primária. Qualquer reintrodução posterior é análise de robustez,
+  não substituição da primária.
+- **Manutenção INTACTA** da regra de decisão §8.2 v1.5 (C1 ∧ C2)
+  aplicada agora sobre N=60.
+- **Manutenção INTACTA** do desenho analítico (Brown-Forsythe sobre
+  densidade, complementar em log-densidade, análise de robustez
+  conforme §8.1).
+- **Reconhecimento explícito** de redução de poder estatístico de
+  N=64 para N=60 (-6,25%), discutido nas limitações da §10 da redação.
+
+A escolha de declarar limitação técnica em vez de substituir os 4 (à
+moda v1.8) é deliberada: substituir reabriria o levantamento
+`candidatos_expansao_v1.6.csv` num momento pós-pré-banca, configurando
+mudança de critério após observação parcial de resultados. Manter N=60
+preserva a sequência de decisões pré-registradas.

@@ -16,14 +16,14 @@ import requests
 
 ARQUETIPOS_VALIDOS = {"apache", "google", "descentralizado"}
 
-# v1.6 (§A5): 64 = 34 (v1.5) + 30 (expansão). Reduzido de 65 por exclusão
-# técnica de j2objc (build macOS-only — xcodebuild/xcrun/Xcode indisponíveis
-# em Linux). Auditado em 2026-05-16 em Debian 12; falha em '/bin/sh:
-# xcodebuild: not found' na fase jre_emul. Declarado como limitação técnica
-# de plataforma na Seção 5 do TCC: Google passa de 11 para 10 no subconjunto
-# n34-v1.5 (Apache mantém 14, Descentralizado mantém 10); n30-v1.6 adiciona
-# 10/10/10.
-N_AMOSTRA = 64
+# v1.10 (§A30): 60 = 64 (bruto após substituições v1.8/v1.9) - 4 limitação
+# técnica adicional. Os 4 excluídos passam §3.1 mas não buildam no ambiente
+# (bazel meta-build, google-java-format Tycho, java-docs-samples monorepo,
+# dexmaker NDK corrompido). Detalhes em §A29 do protocolo. Composição
+# resultante: Apache=24, Google=17, Descentralizado=19.
+# Histórico: v1.5 declarava 65; v1.6 (§A11) tirou j2objc → 64; v1.10 (§A29)
+# tira mais 3 google + 1 linkedin → 60.
+N_AMOSTRA = 60
 
 # Projetos excluídos da coleta por limitação técnica de plataforma.
 # Mapping id → motivo (logado no carregamento da planilha).
@@ -68,6 +68,25 @@ PROJETOS_EXCLUIDOS_LIMITACAO_TECNICA: dict[str, str] = {
         "Violação §3.1.2 detectada pós-coleta: NCLOC Sonar=9233 < 10000 "
         "(-7.7%). Excluído pela §A23 do adendo v1.9, substituído por "
         "Netflix/Priam."
+    ),
+
+    # ===== Limitação técnica de build (detectado v1.10) =====
+    "google-bazel-12": (
+        "Bazel meta-build (recursos): travou PC em primeira tentativa. "
+        "Deferred para pós-banca. Excluído pela §A29 do adendo v1.10."
+    ),
+    "google-google-java-format-15": (
+        "Maven Tycho 5.0.2: ProvisionException no "
+        "TargetPlatformWorkspaceReader, mesmo no pom raiz. "
+        "Excluído pela §A29 do adendo v1.10."
+    ),
+    "google-java-docs-samples-16": (
+        "Monorepo Gradle: samples independentes sem build unificado na raiz. "
+        "Excluído pela §A29 do adendo v1.10."
+    ),
+    "linkedin-dexmaker-04": (
+        "NDK Android 27.0.12077973 corrompido (sem source.properties). "
+        "Excluído pela §A29 do adendo v1.10."
     ),
 }
 
