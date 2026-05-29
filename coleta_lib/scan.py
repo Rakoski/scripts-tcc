@@ -108,6 +108,33 @@ SOURCE_PATHS_PROJETOS: dict[str, list[str]] = {
     "apache-tomcat-01":    ["java"],
 }
 
+# Targets Bazel customizados por projeto. Default é "//..." que funciona
+# em projetos Bazel "puros" (flogger, copybara). Projetos com macros
+# internas do Google ou monorepos quebrados via OSS precisam target
+# reduzido. Validado manualmente antes de hardcode.
+BAZEL_TARGETS_OVERRIDE: dict[str, list[str]] = {
+    # j2cl: //... falha por kotlin_and_j2cl_library / junit_test_suites.bzl
+    # (macros internas Google ausentes no repo público). //transpiler/java/...
+    # compila em ~125s e gera JARs com o código principal do projeto.
+    "google-j2cl-18": ["//transpiler/java/..."],
+}
+
+# Dirs típicos de código de produção em projetos Bazel Google. Layout
+# canônico: `java/` ou `src/main/java/` na raiz, ou múltiplos `*/java/`
+# subdirs. Cada caminho é relativo ao repo. Excluímos `javatests/` e
+# `*/javatests/` (testes, paridade com Maven/Gradle main-only).
+BAZEL_SOURCE_HINTS: dict[str, list[str]] = {
+    # j2cl: múltiplos source roots em subdirs convencionais
+    "google-j2cl-18": [
+        "transpiler/java",
+        "tools/java",
+        "junit/generator/java",
+        "junit/emul/java",
+        "benchmarking/java",
+    ],
+}
+
+
 # Patches aplicados pós-checkout, antes de qualquer build. Mudanças
 # pontuais em build files para contornar incompatibilidades declaradas
 # (ex.: cadence-java-client v3.12.4 tem Thrift compiler/runtime mismatch
@@ -160,6 +187,15 @@ def detectar_build(repo: Path) -> tuple[str, str | None]:
                    "settings.gradle", "settings.gradle.kts"):
         if (repo / marker).exists():
             return "gradle", None
+    # Bazel: detectado por MODULE.bazel ou WORKSPACE; BUILD na raiz como
+    # último indicador (para projetos Bazel antigos sem MODULE/WORKSPACE
+    # explícitos).
+    for marker in ("MODULE.bazel", "WORKSPACE", "WORKSPACE.bazel"):
+        if (repo / marker).exists():
+            return "bazel", None
+    for build_marker in ("BUILD", "BUILD.bazel"):
+        if (repo / build_marker).exists():
+            return "bazel", None
     if (repo / "build.xml").exists():
         return "ant", None
     return "scanner", None
@@ -258,6 +294,74 @@ def find_main_sources(repo: Path, project_key: str | None = None) -> str:
             for d in repo.glob(f"**/src/main/{sub}"):
                 if d.is_dir():
                     found.append(str(d.resolve()))
+    return ",".join(found)
+
+
+def find_bazel_sources(repo: Path, project_key: str | None = None) -> str:
+    """Localiza diretórios de código de produção em projetos Bazel.
+
+    Layout Bazel canônico (Google) NÃO segue Maven (`src/main/java`).
+    Variantes comuns:
+    - `java/com/...` na raiz (copybara, parte do flogger)
+    - `src/main/java/...` (bazel próprio, alguns híbridos)
+    - múltiplos `<subdir>/java/com/...` (j2cl tem 5+)
+
+    Estratégia:
+      1. Se `project_key` em `BAZEL_SOURCE_HINTS`, usa lista declarada.
+      2. Senão, tenta `find_main_sources` (caso flogger, com src/main).
+      3. Senão, busca `java/` na raiz (até 1 nível) e `*/java/` em subdirs
+         (até 2 níveis), excluindo `bazel-*/`, `external/`, `third_party/`,
+         `javatests/`, e dirs com nome contendo `test`.
+
+    Retorna CSV de paths absolutos, vazio se nada encontrado.
+    """
+    found: list[str] = []
+    hints = BAZEL_SOURCE_HINTS.get(project_key) if project_key else None
+    if hints:
+        for rel in hints:
+            d = repo / rel
+            if d.is_dir() and any(d.rglob("*.java")):
+                found.append(str(d.resolve()))
+        if found:
+            return ",".join(found)
+
+    # Tenta layout Maven (caso o projeto Bazel tenha src/main/java)
+    maven_like = find_main_sources(repo, project_key=project_key)
+    if maven_like:
+        return maven_like
+
+    # Busca `java/` em até 2 níveis, excluindo dirs Bazel/test/external
+    EXCLUDED = {"bazel-bin", "bazel-out", "bazel-testlogs", "external",
+                "third_party", "javatests", "test", "tests", "node_modules",
+                ".git"}
+    EXCLUDED_PREFIXES = ("bazel-",)
+
+    def is_excluded(path: Path) -> bool:
+        rel = path.relative_to(repo)
+        for part in rel.parts:
+            if part in EXCLUDED:
+                return True
+            if any(part.startswith(p) for p in EXCLUDED_PREFIXES):
+                return True
+            if "javatests" in part or part.endswith("_test"):
+                return True
+        return False
+
+    # Nível 1: <repo>/java
+    cand = repo / "java"
+    if cand.is_dir() and not is_excluded(cand) and any(cand.rglob("*.java")):
+        found.append(str(cand.resolve()))
+
+    # Nível 2: <repo>/<subdir>/java
+    for sub in repo.iterdir():
+        if not sub.is_dir():
+            continue
+        if is_excluded(sub):
+            continue
+        cand = sub / "java"
+        if cand.is_dir() and not is_excluded(cand) and any(cand.rglob("*.java")):
+            found.append(str(cand.resolve()))
+
     return ",".join(found)
 
 
@@ -472,6 +576,114 @@ def _gradle_assemble_only(repo: Path, env: dict, log_path: Path) -> int:
     return _run(cmd, repo, env, log_path, timeout=480)
 
 
+def _bazel_completo(repo: Path, props: list[str], env: dict,
+                    scanner_bin: Path, log_path: Path,
+                    logger: logging.Logger, project_key: str) -> int:
+    """Build Bazel via bazelisk + scanner standalone com binários gerados.
+
+    Bazel não tem plugin Sonar nativo, então usa modo híbrido:
+    1) bazelisk build <target> gera JARs em bazel-bin/
+    2) sonar-scanner com -Dsonar.java.binaries apontando pros JARs +
+       sonar.sources detectado via find_bazel_sources (layout Bazel).
+
+    Targets customizáveis por projeto via BAZEL_TARGETS_OVERRIDE; default //...
+    Timeout: 1800s (30min) para o build.
+    """
+    # Determinar target(s) — override por projeto, default //...
+    targets = BAZEL_TARGETS_OVERRIDE.get(project_key, ["//..."])
+
+    cmd_build = [
+        "bazelisk", "build", *targets,
+        "--noshow_progress",
+        "--keep_going",
+    ]
+    logger.info("[%s] bazelisk build target(s): %s",
+                project_key, " ".join(targets))
+    rc_build = _run(cmd_build, repo, env, log_path, timeout=1800)
+    if rc_build != 0:
+        logger.warning("[%s] bazelisk build falhou (rc=%d) — usando JARs "
+                       "parciais se houver", project_key, rc_build)
+
+    # Coletar JARs de bazel-bin (resolve symlinks)
+    bazel_bin = repo / "bazel-bin"
+    if not bazel_bin.exists():
+        logger.error("[%s] bazel-bin não existe — build falhou completamente",
+                     project_key)
+        return rc_build or 1
+
+    jars = []
+    # Path parts que indicam código de teste — paridade com STANDALONE_EXCLUSIONS.
+    # Bazel Google usa "javatests/" como convenção (j2cl tem mais de 1000 JARs lá).
+    TEST_PATH_PARTS = {"javatests", "tests", "test"}
+    skipped_test = 0
+    skipped_stale = 0
+    for jar in bazel_bin.rglob("*.jar"):
+        name = jar.name
+        if name.endswith("-src.jar") or name.endswith("-hjar.jar"):
+            continue
+        if "header" in name or "source" in name:
+            continue
+        if any(p in TEST_PATH_PARTS for p in jar.parts):
+            skipped_test += 1
+            continue
+        # bazel-bin é symlink para bazel-out (cache); um JAR resolvido para
+        # caminho inexistente faz sonar-scanner abortar com
+        # IllegalStateException "No files nor directories matching ..."
+        # — basta UM path inválido para invalidar a propriedade inteira.
+        resolved = jar.resolve()
+        if not resolved.exists():
+            skipped_stale += 1
+            continue
+        jars.append(str(resolved))
+    if skipped_test or skipped_stale:
+        logger.info("[%s] filtrados: %d test JARs, %d symlinks stale",
+                    project_key, skipped_test, skipped_stale)
+
+    if not jars:
+        logger.error("[%s] nenhum JAR utilizável em bazel-bin/", project_key)
+        return 1
+
+    logger.info("[%s] Bazel build OK: %d JARs em bazel-bin/",
+                project_key, len(jars))
+    binaries = ",".join(jars)
+
+    # Detecta sources via heurística específica Bazel
+    bazel_sources = find_bazel_sources(repo, project_key=project_key)
+    extra = [f"-Dsonar.projectBaseDir={repo}"]
+
+    if bazel_sources:
+        extra.append(f"-Dsonar.sources={bazel_sources}")
+        excl = STANDALONE_EXCLUSIONS
+        n_dirs = bazel_sources.count(",") + 1
+        logger.info("[%s] Bazel: %d source dir(s) detectado(s)",
+                    project_key, n_dirs)
+    else:
+        # NÃO usa sources=. para evitar contaminação por third_party/bazel-bin/external.
+        # Se não detectou sources, registra como falha — better fail than inflated data.
+        logger.error("[%s] Bazel: nenhum source dir detectado — "
+                     "ABORTANDO scan (sources=. contaminaria com deps)",
+                     project_key)
+        return 1
+
+    extra.append(f"-Dsonar.exclusions={excl}")
+
+    # sonar.java.binaries via properties file (cmdline limit ~128KB)
+    props_file = repo / "sonar-project.properties"
+    backup = (props_file.read_text(encoding="utf-8")
+              if props_file.exists() else None)
+    try:
+        props_file.write_text(
+            f"sonar.java.binaries={binaries}\n",
+            encoding="utf-8",
+        )
+        return _run([str(scanner_bin), *props, *extra], repo, env, log_path)
+    finally:
+        if backup is not None:
+            props_file.write_text(backup, encoding="utf-8")
+        else:
+            props_file.unlink(missing_ok=True)
+
+
 def _limpar_build_dirs_ant(repo: Path, project_key: str,
                            logger: logging.Logger) -> None:
     dirs = ANT_BUILD_DIRS_TO_CLEAN.get(project_key, ["build"])
@@ -644,6 +856,10 @@ def analisar_com_fallbacks(build_type: str, pom_filename: str | None,
         nome = "gradle assemble sonar"
         def runner(env): return _gradle_completo(repo, props, env, log_path,
                                                  init_script)
+    elif build_type == "bazel":
+        nome = "bazel build //..."
+        def runner(env): return _bazel_completo(repo, props, env, scanner_bin,
+                                                log_path, logger, project_key)
     else:
         runner = None
         nome = "scanner-standalone"
