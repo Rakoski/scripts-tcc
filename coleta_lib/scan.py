@@ -115,6 +115,15 @@ SOURCE_PATHS_PROJETOS: dict[str, list[str]] = {
 # scripts-tcc/patches/ versionados para auditabilidade e reprodutibilidade.
 PATCHES_POST_CHECKOUT: dict[str, str] = {
     "uber-cadence-java-client-05": "cadence-libthrift.sh",
+    # tsunami: Gradle 8.10 detecta implicit-dep não-declarada entre
+    # :tsunami-proto:generateProto e :tsunami-proto:javadocJar.
+    # Solução: desativar withJavadocJar() na config de subprojects.
+    "google-tsunami-14": "tsunami-skip-javadocjar.sh",
+    # genie: (1) gradle-daemon-jvm.properties exige toolchainVendor estrito
+    # (azul/adoptium) que pode não casar com o JDK do ambiente; (2) :genie-ui
+    # depende de npm 5.8.0 quebrado. Patch remove a linha vendor e desliga
+    # as deps npmInstall/bundle (Java do :genie-ui continua compilando).
+    "netflix-genie-12": "genie-skip-vendor-and-ui-npm.sh",
 }
 
 
