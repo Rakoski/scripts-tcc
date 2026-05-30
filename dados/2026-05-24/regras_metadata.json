@@ -1,0 +1,6650 @@
+{
+  "java:S1066": {
+    "name": "Mergeable \"if\" statements should be combined",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "clumsy"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S108": {
+    "name": "Nested blocks of code should not be left empty",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "suspicious"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1117": {
+    "name": "Local variables should not shadow class fields",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cert",
+      "suspicious",
+      "pitfall"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1119": {
+    "name": "Labels should not be used",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "confusing"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S112": {
+    "name": "Generic exceptions should never be thrown",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "error-handling",
+      "cert"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1130": {
+    "name": "Exceptions in \"throws\" clauses should not be superfluous",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "error-handling",
+      "unused",
+      "redundant",
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1133": {
+    "name": "Deprecated code should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "obsolete"
+    ],
+    "severity": "INFO",
+    "lang": "java"
+  },
+  "java:S1135": {
+    "name": "Track uses of \"TODO\" tags",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe"
+    ],
+    "severity": "INFO",
+    "lang": "java"
+  },
+  "java:S1141": {
+    "name": "Try-catch blocks should not be nested",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "error-handling",
+      "confusing"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1143": {
+    "name": "Jump statements should not occur in \"finally\" blocks",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "error-handling",
+      "cert"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S1163": {
+    "name": "Exceptions should not be thrown in finally blocks",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "error-handling",
+      "cert",
+      "suspicious"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S1172": {
+    "name": "Unused method parameters should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cert",
+      "unused"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1181": {
+    "name": "Throwable and Error should not be caught",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "error-handling",
+      "bad-practice",
+      "cert"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1186": {
+    "name": "Methods should not be empty",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "suspicious"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S1192": {
+    "name": "String literals should not be duplicated",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "design"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S1206": {
+    "name": "\"equals(Object obj)\" and \"hashCode()\" should be overridden in pairs",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "cert"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S125": {
+    "name": "Sections of code should not be commented out",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "unused"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S135": {
+    "name": "Loops should not contain more than a single \"break\" or \"continue\" statement",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "brain-overload"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1452": {
+    "name": "Generic wildcard types should not be used in return types",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "pitfall"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S1481": {
+    "name": "Unused local variables should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "unused",
+      "java22"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1604": {
+    "name": "Anonymous inner classes containing only one method should become lambdas",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "java8"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1607": {
+    "name": "JUnit4 @Ignored and JUnit5 @Disabled annotations should be used to disable tests and should provide a rationale",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "junit",
+      "tests",
+      "bad-practice",
+      "confusing",
+      "suspicious"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1612": {
+    "name": "Lambdas should be replaced with method references",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "java8"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1854": {
+    "name": "Unused assignments should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "cert",
+      "unused"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1871": {
+    "name": "Two branches in a conditional structure should not have exactly the same implementation",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "design",
+      "suspicious"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1872": {
+    "name": "Classes should not be compared by name",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "cert"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S2093": {
+    "name": "Try-with-resources should be used",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "java8",
+      "cert",
+      "pitfall"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S2184": {
+    "name": "Math operands should be cast before assignment",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "overflow",
+      "cert"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S2187": {
+    "name": "TestCases should contain tests",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "junit",
+      "tests",
+      "unused",
+      "confusing"
+    ],
+    "severity": "BLOCKER",
+    "lang": "java"
+  },
+  "java:S2222": {
+    "name": "Locks should be released on all paths",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "symbolic-execution",
+      "multi-threading"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S2259": {
+    "name": "Null pointers should not be dereferenced",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "symbolic-execution",
+      "cert"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S2293": {
+    "name": "The diamond operator (\"<>\") should be used",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S2699": {
+    "name": "Tests should include assertions",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "junit",
+      "tests"
+    ],
+    "severity": "BLOCKER",
+    "lang": "java"
+  },
+  "java:S3038": {
+    "name": "Abstract methods should not be redundant",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "confusing"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S3077": {
+    "name": "Non-primitive fields should not be \"volatile\"",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "multi-threading",
+      "cert"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S3776": {
+    "name": "Cognitive Complexity of methods should not be too high",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "brain-overload"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S3824": {
+    "name": "\"Map.get\" and value test should be replaced with single method call",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "symbolic-execution",
+      "java8"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S4144": {
+    "name": "Methods should not have identical implementations",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "confusing",
+      "duplicate",
+      "suspicious"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S4449": {
+    "name": "Nullness of parameters should be guaranteed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "symbolic-execution"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S4738": {
+    "name": "Java features should be preferred to Guava",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "java9",
+      "java8"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S5778": {
+    "name": "Only one method invocation is expected when testing runtime exceptions",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "junit",
+      "tests"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S5785": {
+    "name": "JUnit assertTrue/assertFalse should be simplified to the corresponding dedicated assertion",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "junit",
+      "tests"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S5976": {
+    "name": "Similar tests should be grouped in a single Parameterized test",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "tests",
+      "bad-practice",
+      "clumsy"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S6397": {
+    "name": "Character classes in regular expressions should not contain only one character",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "regex"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S6548": {
+    "name": "The Singleton design pattern should be used with care",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "design"
+    ],
+    "severity": "INFO",
+    "lang": "java"
+  },
+  "java:S899": {
+    "name": "Return values should not be ignored when they contain the operation status code",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "error-handling",
+      "cert"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "xml:S1135": {
+    "name": "Track uses of \"TODO\" tags",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe"
+    ],
+    "severity": "INFO",
+    "lang": "xml"
+  },
+  "java:S106": {
+    "name": "Standard outputs should not be used directly to log anything",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "bad-practice",
+      "cert"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1068": {
+    "name": "Unused \"private\" fields should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "unused"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1104": {
+    "name": "Class variable fields should not have public accessibility",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1116": {
+    "name": "Empty statements should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cert",
+      "unused"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1118": {
+    "name": "Utility classes should not have public constructors",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "design"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1123": {
+    "name": "Deprecated elements should have both the annotation and the Javadoc tag",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "obsolete",
+      "bad-practice"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1124": {
+    "name": "Modifiers should be declared in the correct order",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1126": {
+    "name": "Return of boolean expressions should not be wrapped into an \"if-then-else\" statement",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1128": {
+    "name": "Unnecessary imports should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "unused"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1144": {
+    "name": "Unused \"private\" methods should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "unused"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1149": {
+    "name": "Synchronized classes \"Vector\", \"Hashtable\", \"Stack\" and \"StringBuffer\" should not be used",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "performance"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S116": {
+    "name": "Field names should comply with a naming convention",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1161": {
+    "name": "\"@Override\" should be used on overriding and implementing methods",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "bad-practice"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1168": {
+    "name": "Empty arrays and collections should be returned instead of null",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cert"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1170": {
+    "name": "Public constants and fields initialized at declaration should be \"static final\" rather than merely \"final\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1171": {
+    "name": "Only static class initializers should be used",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "pitfall"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S119": {
+    "name": "Type parameter names should comply with a naming convention",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1197": {
+    "name": "Array designators \"[]\" should be on the type, not the variable",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1319": {
+    "name": "Declarations should use Java collection interfaces such as \"List\" rather than specific implementation classes such as \"LinkedList\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "bad-practice"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1444": {
+    "name": "\"public static\" fields should be constant",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "cert"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1488": {
+    "name": "Local variables should not be declared and then immediately returned or thrown",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1602": {
+    "name": "Lambdas containing only one statement should not nest this statement in a block",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "java8"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1611": {
+    "name": "Parentheses should be removed from a single lambda parameter when its type is inferred",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "java8"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1643": {
+    "name": "Strings should not be concatenated using '+' in a loop",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "performance"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1858": {
+    "name": "\"toString()\" should never be called on a String object",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "finding",
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1874": {
+    "name": "\"@Deprecated\" code should not be used",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "obsolete",
+      "cert"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1905": {
+    "name": "Redundant casts should not be used",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "redundant",
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S2112": {
+    "name": "\"URL.hashCode\" and \"URL.equals\" should be avoided",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "performance"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S2139": {
+    "name": "Exceptions should be either logged or rethrown but not both",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "error-handling",
+      "logging"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S2147": {
+    "name": "Catches should be combined",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S2326": {
+    "name": "Unused type parameters should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "unused"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S2583": {
+    "name": "Conditionally executed code should be reachable",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "symbolic-execution",
+      "cert",
+      "unused",
+      "suspicious",
+      "pitfall"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S2589": {
+    "name": "Boolean expressions should not be gratuitous",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "symbolic-execution",
+      "suspicious",
+      "redundant"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S2629": {
+    "name": "\"Preconditions\" and logging arguments should not require evaluation",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "performance"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S2737": {
+    "name": "\"catch\" clauses should do more than rethrow",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "error-handling",
+      "unused",
+      "finding",
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S2925": {
+    "name": "\"Thread.sleep\" should not be used in tests",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "tests",
+      "bad-practice"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S3008": {
+    "name": "Static non-final field names should comply with a naming convention",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S3011": {
+    "name": "Reflection should not be used to increase accessibility of classes, methods, or fields",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cert"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S3039": {
+    "name": "Indexes to passed to \"String\" operations should be within the string's bounds",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S3415": {
+    "name": "Assertion arguments should be passed in the correct order",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "junit",
+      "tests",
+      "suspicious"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S3457": {
+    "name": "Format strings should be used correctly",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cert",
+      "confusing"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S3740": {
+    "name": "Raw types should not be used",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "pitfall"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S3878": {
+    "name": "Arrays should not be created for varargs parameters",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S4276": {
+    "name": "Functional Interfaces should be as specialised as possible",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "performance"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S4719": {
+    "name": "\"StandardCharsets\" constants should be preferred",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "java7",
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S5786": {
+    "name": "JUnit5 test classes and methods should have default package visibility",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "junit",
+      "tests"
+    ],
+    "severity": "INFO",
+    "lang": "java"
+  },
+  "java:S5845": {
+    "name": "Assertions comparing incompatible types should not be made",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "tests"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S5961": {
+    "name": "Test methods should not contain too many assertions",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "tests"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S5993": {
+    "name": "Constructors of an \"abstract\" class should not be declared \"public\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "design"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S6068": {
+    "name": "Call to Mockito method \"verify\", \"when\" or \"given\" should be simplified",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "tests",
+      "mockito",
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S6541": {
+    "name": "Methods should not perform too many tasks (aka Brain method)",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "design"
+    ],
+    "severity": "INFO",
+    "lang": "java"
+  },
+  "java:S6813": {
+    "name": "Field dependency injection should be avoided",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S100": {
+    "name": "Method names should comply with a naming convention",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S107": {
+    "name": "Methods should not have too many parameters",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "brain-overload"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1125": {
+    "name": "Boolean literals should not be redundant",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S115": {
+    "name": "Constant names should comply with a naming convention",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S1155": {
+    "name": "\"Collection.isEmpty()\" should be used to test for emptiness",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S117": {
+    "name": "Local variable and method parameter names should comply with a naming convention",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S120": {
+    "name": "Package names should comply with a naming convention",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1210": {
+    "name": "\"equals(Object obj)\" should be overridden along with the \"compareTo(T obj)\" method",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1301": {
+    "name": "\"switch\" statements should have at least 3 \"case\" clauses",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "bad-practice"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S131": {
+    "name": "\"switch\" statements should have \"default\" clauses",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "cert"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S1659": {
+    "name": "Multiple variables should not be declared on the same line",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention",
+      "cert"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S2095": {
+    "name": "Resources should be closed",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "symbolic-execution",
+      "leak",
+      "denial-of-service",
+      "cert"
+    ],
+    "severity": "BLOCKER",
+    "lang": "java"
+  },
+  "java:S2142": {
+    "name": "\"InterruptedException\" and \"ThreadDeath\" should not be ignored",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "error-handling",
+      "multi-threading"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S2786": {
+    "name": "Nested \"enum\"s should not be declared static",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "redundant"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S2789": {
+    "name": "\"null\" should not be used with \"Optional\"",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "java8"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S3398": {
+    "name": "\"private\" methods called only by inner classes should be moved to those classes",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "confusing"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S3655": {
+    "name": "Optional value should only be accessed after calling isPresent()",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "symbolic-execution"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S4042": {
+    "name": "\"java.nio.Files#delete\" should be preferred",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "error-handling",
+      "api-design"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S4065": {
+    "name": "\"ThreadLocal.withInitial\" should be preferred",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "java8"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S4274": {
+    "name": "Asserts should not be used to check the parameters of a public method",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "pitfall"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S5164": {
+    "name": "\"ThreadLocal\" variables should be cleaned up when no longer used",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "leak",
+      "performance"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S5843": {
+    "name": "Regular expressions should not be too complicated",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "regex"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S6213": {
+    "name": "Restricted Identifiers should not be used as Identifiers",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S6353": {
+    "name": "Regular expression quantifiers and character classes should be used concisely",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "regex"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S7158": {
+    "name": "\"String.isEmpty()\" should be used to test for emptiness",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "css:S125": {
+    "name": "Sections of code should not be commented out",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "unused"
+    ],
+    "severity": "MAJOR",
+    "lang": "css"
+  },
+  "css:S4658": {
+    "name": "Empty blocks should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "css"
+  },
+  "css:S4666": {
+    "name": "Selectors should not be duplicated",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "css"
+  },
+  "css:S7924": {
+    "name": "Text and background colors should have sufficient contrast",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "css",
+      "accessibility",
+      "wcag",
+      "contrast"
+    ],
+    "severity": "MAJOR",
+    "lang": "css"
+  },
+  "docker:S7031": {
+    "name": "Reduce the amount of consecutive RUN instructions",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MINOR",
+    "lang": "docker"
+  },
+  "java:S101": {
+    "name": "Class names should comply with a naming convention",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1075": {
+    "name": "URIs should not be hardcoded",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "android",
+      "cert"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S110": {
+    "name": "Inheritance tree of classes should not be too deep",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1134": {
+    "name": "Track uses of \"FIXME\" tags",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1165": {
+    "name": "Exception classes should have final fields",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "error-handling"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1175": {
+    "name": "The signature of \"finalize()\" should match that of \"Object.finalize()\"",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "pitfall"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S1182": {
+    "name": "Classes that override \"clone\" should be \"Cloneable\" and call \"super.clone()\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention",
+      "cwe",
+      "cert"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1185": {
+    "name": "Overriding methods should do more than simply call the same method in the super class",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "redundant",
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1191": {
+    "name": "Classes from \"sun.*\" packages should not be used",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "lock-in",
+      "pitfall"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S127": {
+    "name": "\"for\" loop stop conditions should be invariant",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "pitfall"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S128": {
+    "name": "Switch cases should end with an unconditional \"break\" statement",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "cert",
+      "suspicious"
+    ],
+    "severity": "BLOCKER",
+    "lang": "java"
+  },
+  "java:S1450": {
+    "name": "Private fields only used as local variables in methods should become local variables",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "pitfall"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1640": {
+    "name": "Maps with keys that are enum values should use the EnumMap implementation",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "performance"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1700": {
+    "name": "A field should not duplicate the name of its containing class",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "brain-overload"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1710": {
+    "name": "Annotation repetitions should not be wrapped",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "java8"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1845": {
+    "name": "Methods and field names should not be the same or differ only by capitalization",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "confusing"
+    ],
+    "severity": "BLOCKER",
+    "lang": "java"
+  },
+  "java:S1948": {
+    "name": "Fields in a \"Serializable\" class should either be transient or serializable",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "serialization"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S2094": {
+    "name": "Classes should not be empty",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S2097": {
+    "name": "\"equals(Object obj)\" should test the argument's type",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S2160": {
+    "name": "Subclasses that add fields to classes that override \"equals\" should also override \"equals\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "suspicious"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S2201": {
+    "name": "Return values from functions without side effects should not be ignored",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cert"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S2274": {
+    "name": "\"Object.wait(...)\" and \"Condition.await(...)\" should be called inside a \"while\" loop",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "multi-threading",
+      "cert"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S2386": {
+    "name": "Mutable fields should not be \"public static\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "unpredictable",
+      "cert"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S2387": {
+    "name": "Child class fields should not shadow parent class fields",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "confusing"
+    ],
+    "severity": "BLOCKER",
+    "lang": "java"
+  },
+  "java:S2696": {
+    "name": "Instance methods should not write to \"static\" fields",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "multi-threading"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S2864": {
+    "name": "\"entrySet()\" should be iterated when both the key and value are needed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "performance"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S2970": {
+    "name": "Assertions should be complete",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "tests",
+      "assertj",
+      "mockito"
+    ],
+    "severity": "BLOCKER",
+    "lang": "java"
+  },
+  "java:S2975": {
+    "name": "\"clone\" should not be overridden",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "suspicious"
+    ],
+    "severity": "BLOCKER",
+    "lang": "java"
+  },
+  "java:S3024": {
+    "name": "Arguments to \"append\" should not be concatenated",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "performance",
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S3252": {
+    "name": "\"static\" base class members should not be accessed via derived types",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "confusing"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S3358": {
+    "name": "Ternary operators should not be nested",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "confusing"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S3516": {
+    "name": "Methods returns should not be invariant",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "symbolic-execution"
+    ],
+    "severity": "BLOCKER",
+    "lang": "java"
+  },
+  "java:S3551": {
+    "name": "Overrides should match their parent class methods in synchronization",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "multi-threading",
+      "cert"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S3599": {
+    "name": "Double Brace Initialization should not be used",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "leak"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S3626": {
+    "name": "Jump statements should not be redundant",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "redundant",
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S4030": {
+    "name": "Collection contents should be used",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "performance",
+      "unused",
+      "suspicious"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S4034": {
+    "name": "\"Stream\" call chains should be simplified when possible",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S4973": {
+    "name": "Strings and Boxed types should be compared using \"equals()\"",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "cert"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S5361": {
+    "name": "\"String#replace\" should be preferred to \"String#replaceAll\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "regex",
+      "performance"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S5411": {
+    "name": "Avoid using boxed \"Boolean\" types directly in boolean expressions",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "pitfall"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S5669": {
+    "name": "Vararg method arguments should not be confusing",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S5803": {
+    "name": "Class members annotated with \"@VisibleForTesting\" should not be accessed from production code",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "pitfall"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S5838": {
+    "name": "Chained AssertJ assertions should be simplified to the corresponding dedicated assertion",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "tests",
+      "assertj"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S5841": {
+    "name": "AssertJ assertions \"allMatch\" and \"doesNotContain\" should also test for emptiness",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "tests",
+      "assertj"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S5855": {
+    "name": "Regex alternatives should not be redundant",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "regex"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S5869": {
+    "name": "Character classes in regular expressions should not contain the same character twice",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "regex"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S6244": {
+    "name": "Consumer Builders should be used",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "aws"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S6809": {
+    "name": "Methods with Spring proxy should not be called via \"this\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S6814": {
+    "name": "Optional REST parameters should have an object type",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S6837": {
+    "name": "Superfluous \"@ResponseBody\" annotations should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "spring"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S6905": {
+    "name": "SQL queries should retrieve only necessary fields",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "sustainability",
+      "sql"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "typescript:S101": {
+    "name": "Class names should comply with a naming convention",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S1077": {
+    "name": "Image, area, button with image and object elements should have an alternative text",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "accessibility",
+      "react",
+      "wcag2-a"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S108": {
+    "name": "Nested blocks of code should not be left empty",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "suspicious"
+    ],
+    "severity": "MAJOR",
+    "lang": "ts"
+  },
+  "typescript:S1082": {
+    "name": "Mouse events should have corresponding keyboard events",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "accessibility",
+      "react"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S1121": {
+    "name": "Assignments should not be made from within sub-expressions",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "suspicious"
+    ],
+    "severity": "MAJOR",
+    "lang": "ts"
+  },
+  "typescript:S1125": {
+    "name": "Boolean literals should not be used in comparisons",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S1135": {
+    "name": "Track uses of \"TODO\" tags",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe"
+    ],
+    "severity": "INFO",
+    "lang": "ts"
+  },
+  "typescript:S125": {
+    "name": "Sections of code should not be commented out",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "unused"
+    ],
+    "severity": "MAJOR",
+    "lang": "ts"
+  },
+  "typescript:S1301": {
+    "name": "\"if\" statements should be preferred over \"switch\" when simpler",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "bad-practice"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S1533": {
+    "name": "Wrapper objects should not be used for primitive types",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "pitfall"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S1854": {
+    "name": "Unused assignments should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "unused"
+    ],
+    "severity": "MAJOR",
+    "lang": "ts"
+  },
+  "typescript:S1874": {
+    "name": "Deprecated APIs should not be used",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "type-dependent",
+      "obsolete"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S2004": {
+    "name": "Functions should not be nested too deeply",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "brain-overload"
+    ],
+    "severity": "CRITICAL",
+    "lang": "ts"
+  },
+  "typescript:S2201": {
+    "name": "Return values from functions without side effects should not be ignored",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "type-dependent"
+    ],
+    "severity": "MAJOR",
+    "lang": "ts"
+  },
+  "typescript:S2301": {
+    "name": "Methods should not contain selector parameters",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "design",
+      "type-dependent"
+    ],
+    "severity": "MAJOR",
+    "lang": "ts"
+  },
+  "typescript:S2486": {
+    "name": "Exceptions should not be ignored",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "error-handling",
+      "suspicious"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S3358": {
+    "name": "Ternary operators should not be nested",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "confusing"
+    ],
+    "severity": "MAJOR",
+    "lang": "ts"
+  },
+  "typescript:S3626": {
+    "name": "Jump statements should not be redundant",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "redundant",
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S3735": {
+    "name": "\"void\" should not be used",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "type-dependent",
+      "confusing"
+    ],
+    "severity": "CRITICAL",
+    "lang": "ts"
+  },
+  "typescript:S3776": {
+    "name": "Cognitive Complexity of functions should not be too high",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "brain-overload"
+    ],
+    "severity": "CRITICAL",
+    "lang": "ts"
+  },
+  "typescript:S3863": {
+    "name": "Imports from the same module should be merged",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "es2015"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S4123": {
+    "name": "\"await\" should only be used with promises",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "type-dependent",
+      "confusing"
+    ],
+    "severity": "CRITICAL",
+    "lang": "ts"
+  },
+  "typescript:S4144": {
+    "name": "Functions should not have identical implementations",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "confusing",
+      "duplicate",
+      "suspicious"
+    ],
+    "severity": "MAJOR",
+    "lang": "ts"
+  },
+  "typescript:S4325": {
+    "name": "Redundant casts and non-null assertions should be avoided",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "type-dependent",
+      "redundant"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S5843": {
+    "name": "Regular expressions should not be too complicated",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "regex",
+      "type-dependent"
+    ],
+    "severity": "MAJOR",
+    "lang": "ts"
+  },
+  "typescript:S5869": {
+    "name": "Character classes in regular expressions should not contain the same character twice",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "regex",
+      "type-dependent"
+    ],
+    "severity": "MAJOR",
+    "lang": "ts"
+  },
+  "typescript:S6035": {
+    "name": "Single-character alternations in regular expressions should be replaced with character classes",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "regex",
+      "type-dependent"
+    ],
+    "severity": "MAJOR",
+    "lang": "ts"
+  },
+  "typescript:S6325": {
+    "name": "Regular expression literals should be used when possible",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "regex"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S6353": {
+    "name": "Regular expression quantifiers and character classes should be used concisely",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "regex",
+      "type-dependent"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S6397": {
+    "name": "Character classes in regular expressions should not contain only one character",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "regex",
+      "type-dependent"
+    ],
+    "severity": "MAJOR",
+    "lang": "ts"
+  },
+  "typescript:S6479": {
+    "name": "JSX list components should not use array indexes as key",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "performance",
+      "react",
+      "jsx"
+    ],
+    "severity": "MAJOR",
+    "lang": "ts"
+  },
+  "typescript:S6535": {
+    "name": "Unnecessary character escapes should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "ts"
+  },
+  "typescript:S6551": {
+    "name": "Objects and classes converted or coerced to strings should define a \"toString()\" method",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "string",
+      "type-dependent",
+      "object"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S6557": {
+    "name": "Ends of strings should be checked with \"startsWith()\" and \"endsWith()\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "type-dependent"
+    ],
+    "severity": "MAJOR",
+    "lang": "ts"
+  },
+  "typescript:S6564": {
+    "name": "Redundant type aliases should not be used",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "ts"
+  },
+  "typescript:S6582": {
+    "name": "Optional chaining should be preferred",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "ts"
+  },
+  "typescript:S6594": {
+    "name": "\"RegExp.exec()\" should be preferred over \"String.match()\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "regex",
+      "type-dependent"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S6598": {
+    "name": "Function types should be preferred",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "function",
+      "type"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S6606": {
+    "name": "Nullish coalescing should be preferred",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "type-dependent",
+      "nullish-coalescing",
+      "es2020"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S6644": {
+    "name": "Ternary operator should not be used instead of simpler alternatives",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S6650": {
+    "name": "Renaming import, export, and destructuring assignments should not be to the same name",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S6660": {
+    "name": "If statements should not be the only statement in else blocks",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "ts"
+  },
+  "typescript:S6749": {
+    "name": "Redundant JSX fragments should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "react"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S6848": {
+    "name": "Non-interactive DOM elements should not have an interactive handler",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "accessibility",
+      "react"
+    ],
+    "severity": "MAJOR",
+    "lang": "ts"
+  },
+  "typescript:S7718": {
+    "name": "Error parameters in catch clauses should follow a consistent naming convention",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention",
+      "error-handling"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S7721": {
+    "name": "Functions should be moved to the highest possible scope",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "performance",
+      "optimization",
+      "javascript"
+    ],
+    "severity": "MAJOR",
+    "lang": "ts"
+  },
+  "typescript:S7722": {
+    "name": "Built-in error objects should have meaningful messages",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "error-handling"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S7723": {
+    "name": "Built-in constructors should be called consistently with or without \"new\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S7735": {
+    "name": "Negated conditions should be avoided when an else clause is present",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "readability"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S7737": {
+    "name": "Objects should not be used as default parameters",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "confusing",
+      "pitfall"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S7740": {
+    "name": "Variables should not be assigned the value of \"this\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "obsolete",
+      "confusing"
+    ],
+    "severity": "MAJOR",
+    "lang": "ts"
+  },
+  "typescript:S7747": {
+    "name": "Spread syntax should not be used unnecessarily",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "readability",
+      "performance"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S7750": {
+    "name": "Array methods \".find()\" and \".findLast()\" should be preferred over \".filter()\" for single element retrieval",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "readability",
+      "performance"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S7754": {
+    "name": "Use \".some()\" instead of \".filter().length\" checks or \".find()\" for existence testing",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "readability",
+      "performance"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S7762": {
+    "name": "DOM nodes should be removed using \"remove()\" instead of \"removeChild()\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "dom",
+      "modernize",
+      "javascript"
+    ],
+    "severity": "MAJOR",
+    "lang": "ts"
+  },
+  "typescript:S7763": {
+    "name": "Re-exports should use \"export...from\" syntax",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S7764": {
+    "name": "Use \"globalThis\" instead of \"window\", \"self\", or \"global\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "portability",
+      "es2020"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S7765": {
+    "name": "Existence checks should use \".includes()\" instead of \".indexOf()\" or \".lastIndexOf()\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "readability",
+      "es6"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S7766": {
+    "name": "Ternary expressions should be replaced with \"Math.min()\" or \"Math.max()\" for simple comparisons",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "readability",
+      "confusing"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S7770": {
+    "name": "Wrapper functions around built-in type conversion functions should be avoided",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "performance",
+      "unnecessary"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S7771": {
+    "name": "Negative indices should be used instead of length calculations",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "readability",
+      "performance"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S7773": {
+    "name": "Number static methods and properties should be preferred over global equivalents",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention",
+      "es2015"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S7776": {
+    "name": "Arrays used only for existence checks should be Sets",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "performance",
+      "optimization"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S7778": {
+    "name": "Multiple consecutive calls to methods that accept multiple arguments should be combined",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "readability",
+      "performance"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S7781": {
+    "name": "Strings should use \"replaceAll()\" instead of \"replace()\" with global regex",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "readability",
+      "es2021"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S7784": {
+    "name": "\"structuredClone()\" should be used instead of other deep cloning methods",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "performance",
+      "modernize",
+      "es2021"
+    ],
+    "severity": "MINOR",
+    "lang": "ts"
+  },
+  "typescript:S905": {
+    "name": "Non-empty statements should change control flow or have at least one side-effect",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "unused"
+    ],
+    "severity": "MAJOR",
+    "lang": "ts"
+  },
+  "java:S2924": {
+    "name": "JUnit rules should be used",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "junit",
+      "tests",
+      "unused"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "docker:S6596": {
+    "name": "Specific version tag for image should be used",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "docker"
+  },
+  "docker:S7020": {
+    "name": "Too long RUN instruction should be split into multiple lines",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MINOR",
+    "lang": "docker"
+  },
+  "java:S1113": {
+    "name": "The \"Object.finalize()\" method should not be overridden",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "unpredictable",
+      "cert"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S1121": {
+    "name": "Assignments should not be made from within sub-expressions",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "cert",
+      "suspicious"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1153": {
+    "name": "\"String.valueOf()\" should not be appended to a \"String\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1158": {
+    "name": "Primitive wrappers should not be instantiated only for \"toString\" or \"compareTo\" calls",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "performance",
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1193": {
+    "name": "Exception types should not be tested using \"instanceof\" in catch blocks",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "error-handling",
+      "cert",
+      "clumsy"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1199": {
+    "name": "Nested code blocks should not be used",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "bad-practice"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1214": {
+    "name": "Interfaces should not solely consist of constants",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "bad-practice"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S1215": {
+    "name": "Execution of the Garbage Collector should be triggered only by the JVM",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "unpredictable",
+      "bad-practice"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S1598": {
+    "name": "Package declaration should match source file directory",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "pitfall"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S1764": {
+    "name": "Identical expressions should not be used on both sides of a binary operator",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cert"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1860": {
+    "name": "Synchronization should not be done on instances of value-based classes",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "multi-threading",
+      "cert"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1940": {
+    "name": "Boolean checks should not be inverted",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "pitfall"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S2119": {
+    "name": "\"Random\" objects should be reused",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S2122": {
+    "name": "\"ScheduledThreadPoolExecutor\" should not have 0 core threads",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S2129": {
+    "name": "Constructors should not be used to instantiate \"String\", \"BigInteger\", \"BigDecimal\" and primitive-wrapper classes",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "performance"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S2130": {
+    "name": "Parsing should be used to convert \"Strings\" to primitives",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "performance"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S2140": {
+    "name": "Methods of \"Random\" that return floating point values should not be used in random integer generation",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "performance",
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S2166": {
+    "name": "Classes named like \"Exception\" should extend \"Exception\" or a subclass",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention",
+      "error-handling",
+      "pitfall"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S2168": {
+    "name": "Double-checked locking should not be used",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "singleton",
+      "multi-threading",
+      "design",
+      "cert"
+    ],
+    "severity": "BLOCKER",
+    "lang": "java"
+  },
+  "java:S2178": {
+    "name": "Short-circuit logic should be used in boolean contexts",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cert"
+    ],
+    "severity": "BLOCKER",
+    "lang": "java"
+  },
+  "java:S2185": {
+    "name": "Do not perform unnecessary mathematical operations",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "clumsy"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S2209": {
+    "name": "\"static\" members should be accessed statically",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "pitfall"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S2272": {
+    "name": "\"Iterator.next()\" methods should throw \"NoSuchElementException\"",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "error-handling",
+      "unpredictable"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S2445": {
+    "name": "Blocks should be synchronized on \"private final\" fields",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "multi-threading",
+      "cert"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S2674": {
+    "name": "The value returned from a stream read should be checked",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cert"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S2885": {
+    "name": "Non-thread-safe fields should not be static",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "multi-threading"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S2886": {
+    "name": "Getters and setters should be synchronized in pairs",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "multi-threading",
+      "cert"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S3010": {
+    "name": "Static fields should not be updated in constructors",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S3034": {
+    "name": "Raw byte values should not be used in bitwise operations in combination with shifts",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cert"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S3064": {
+    "name": "Assignment of lazy-initialized members should be the last step with double-checked locking",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "multi-threading",
+      "cert"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S3416": {
+    "name": "Loggers should be named for their enclosing classes",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "logging",
+      "confusing"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S4201": {
+    "name": "Null checks should not be used with \"instanceof\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "redundant"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S4977": {
+    "name": "Type parameters should not shadow other type parameters",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "kotlin:S100": {
+    "name": "Function names should comply with a naming convention",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention"
+    ],
+    "severity": "MINOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S1066": {
+    "name": "Mergeable \"if\" statements should be combined",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "clumsy"
+    ],
+    "severity": "MAJOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S107": {
+    "name": "Functions should not have too many parameters",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "brain-overload"
+    ],
+    "severity": "MAJOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S108": {
+    "name": "Nested blocks of code should not be left empty",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "suspicious"
+    ],
+    "severity": "MAJOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S1128": {
+    "name": "Unnecessary imports should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "unused"
+    ],
+    "severity": "MINOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S1133": {
+    "name": "Deprecated code should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "obsolete"
+    ],
+    "severity": "INFO",
+    "lang": "kotlin"
+  },
+  "kotlin:S1135": {
+    "name": "Track uses of \"TODO\" tags",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe"
+    ],
+    "severity": "INFO",
+    "lang": "kotlin"
+  },
+  "kotlin:S117": {
+    "name": "Local variable and function parameter names should comply with a naming convention",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention"
+    ],
+    "severity": "MINOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S1172": {
+    "name": "Unused function parameters should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "unused"
+    ],
+    "severity": "MAJOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S1186": {
+    "name": "Functions should not be empty",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "suspicious"
+    ],
+    "severity": "CRITICAL",
+    "lang": "kotlin"
+  },
+  "kotlin:S1192": {
+    "name": "String literals should not be duplicated",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "design"
+    ],
+    "severity": "CRITICAL",
+    "lang": "kotlin"
+  },
+  "kotlin:S125": {
+    "name": "Sections of code should not be commented out",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "unused"
+    ],
+    "severity": "MAJOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S1481": {
+    "name": "Unused local variables should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "unused"
+    ],
+    "severity": "MINOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S1871": {
+    "name": "Two branches in a conditional structure should not have exactly the same implementation",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "design",
+      "suspicious"
+    ],
+    "severity": "MAJOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S1874": {
+    "name": "Code annotated as deprecated should not be used",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "obsolete"
+    ],
+    "severity": "MINOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S2097": {
+    "name": "\"equals(other: Any?)\" should test the argument's type",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MINOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S3776": {
+    "name": "Cognitive Complexity of functions should not be too high",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "brain-overload",
+      "architecture"
+    ],
+    "severity": "CRITICAL",
+    "lang": "kotlin"
+  },
+  "kotlin:S4144": {
+    "name": "Functions should not have identical implementations",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "confusing",
+      "duplicate",
+      "suspicious"
+    ],
+    "severity": "MAJOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S6508": {
+    "name": "\"Unit\" should be used instead of \"Void\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S6510": {
+    "name": "\"return\" statements should be lifted before \"if\" or \"when\" statement",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S6511": {
+    "name": "\"when\" statements should be used instead of chained \"if\" statements",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S6514": {
+    "name": "Delegator pattern should use \"by\" clause",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S6515": {
+    "name": "Singleton pattern should use object declarations or expressions",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S6516": {
+    "name": "Functional interface implementations should use lambda expressions",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S6517": {
+    "name": "Single function interfaces should be functional interfaces",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S6518": {
+    "name": "Element access should use indexed access operators",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S6519": {
+    "name": "Structural equality tests should use \"==\" or \"!=\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S6526": {
+    "name": "Abstract class should be interface",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S6529": {
+    "name": "Expression should be simplified with \"isEmpty\", \"isNotEmpty\" or \"isNullOrEmpty\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S6530": {
+    "name": "Type casts and type checks that can never succeed should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S6531": {
+    "name": "Redundant type casts should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S6532": {
+    "name": "Check for preconditions should be simplified",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S6558": {
+    "name": "\"It\" shouldn't be used as a lambda parameter name",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S6611": {
+    "name": "\"Map\" values should be accessed safely",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S6619": {
+    "name": "Null checks should be useful",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S899": {
+    "name": "Return values should not be ignored when they contain the operation status code",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "error-handling"
+    ],
+    "severity": "MINOR",
+    "lang": "kotlin"
+  },
+  "secrets:S6334": {
+    "name": "Google API keys should not be disclosed",
+    "type": "VULNERABILITY",
+    "tags": [],
+    "sysTags": [
+      "cwe"
+    ],
+    "severity": "BLOCKER",
+    "lang": "secrets"
+  },
+  "java:S6202": {
+    "name": "Operator \"instanceof\" should be used instead of \"A.class.isInstance()\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S6880": {
+    "name": "Use switch instead of if-else chain to compare a variable against multiple cases",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "java21"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S3012": {
+    "name": "Arrays and lists should not be copied using loops",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S3923": {
+    "name": "All branches in a conditional structure should not have exactly the same implementation",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S4968": {
+    "name": "The upper bound of type variables and wildcards should not be \"final\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S5738": {
+    "name": "\"@Deprecated\" code marked for removal should never be used",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "obsolete",
+      "cert"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S6539": {
+    "name": "Classes should not depend on an excessive number of classes (aka Monster Class)",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "design"
+    ],
+    "severity": "INFO",
+    "lang": "java"
+  },
+  "java:S2177": {
+    "name": "Child class methods named for parent class methods should be overrides",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "pitfall"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S5853": {
+    "name": "Consecutive AssertJ \"assertThat\" statements should be chained",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "tests",
+      "assertj"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S6201": {
+    "name": "Pattern Matching for \"instanceof\" operator should be used instead of simple \"instanceof\" + cast",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "java16"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S6204": {
+    "name": "\"Stream.toList()\" method should be used instead of \"collectors\" when unmodifiable list needed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "java16"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S6206": {
+    "name": "Records should be used instead of ordinary classes when representing immutable data structure",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "java16"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S6355": {
+    "name": "Deprecated annotations should include explanations",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "java9"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S6395": {
+    "name": "Non-capturing groups without quantifier should not be used",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "regex"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S6485": {
+    "name": "Hash-based collections with known capacity should be initialized with the proper related static method.",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "performance"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S6916": {
+    "name": "Use when instead of a single if inside a pattern match body",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "java21"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1157": {
+    "name": "Case insensitive string comparisons should be made without intermediate upper or lower casing",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "performance",
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S2157": {
+    "name": "\"Cloneables\" should implement \"clone\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention",
+      "api-design"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S2390": {
+    "name": "Classes should not access their own subclasses during class initialization",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cert"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S3014": {
+    "name": "\"ThreadGroup\" should not be used",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "design",
+      "cert",
+      "suspicious"
+    ],
+    "severity": "BLOCKER",
+    "lang": "java"
+  },
+  "java:S4423": {
+    "name": "Weak SSL/TLS protocols should not be used",
+    "type": "VULNERABILITY",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "privacy"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S1110": {
+    "name": "Redundant pairs of parentheses should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "confusing"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1219": {
+    "name": "\"switch\" statements should not contain non-case labels",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "suspicious"
+    ],
+    "severity": "BLOCKER",
+    "lang": "java"
+  },
+  "java:S1479": {
+    "name": "\"switch\" statements should not have too many \"case\" clauses",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "brain-overload"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S2153": {
+    "name": "Unnecessary boxing and unboxing should be avoided",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S2176": {
+    "name": "Class names should not shadow interfaces or superclasses",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "pitfall"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S2189": {
+    "name": "Loops should not be infinite",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "symbolic-execution",
+      "cert"
+    ],
+    "severity": "BLOCKER",
+    "lang": "java"
+  },
+  "java:S2234": {
+    "name": "Parameters should be passed in the correct order",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S2638": {
+    "name": "Method overrides should not change contracts",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "suspicious"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S3400": {
+    "name": "Methods should not return constants",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "confusing"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S5777": {
+    "name": "Exception testing via JUnit @Test annotation should be avoided",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "junit",
+      "tests"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S6126": {
+    "name": "String multiline concatenation should be replaced with Text Blocks",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "java15"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S6208": {
+    "name": "Comma-separated labels should be used in Switch with colon case",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "java14"
+    ],
+    "severity": "INFO",
+    "lang": "java"
+  },
+  "java:S6218": {
+    "name": "Equals method should be overridden in records containing array fields",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "java16"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S6830": {
+    "name": "Bean names should adhere to the naming conventions",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "spring"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S6878": {
+    "name": "Use record pattern instead of explicit field access",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "java21"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S6885": {
+    "name": "Use built-in \"Math.clamp\" methods",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "java21"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1862": {
+    "name": "Related \"if/else if\" statements should not have the same condition",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cert",
+      "unused",
+      "pitfall"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S2175": {
+    "name": "Inappropriate \"Collection\" calls should not be made",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cert"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S2676": {
+    "name": "\"Math.abs\" and negation should not be used on numbers that could be \"MIN_VALUE\"",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "suspicious"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S3063": {
+    "name": "\"StringBuilder\" data should be used",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "performance"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S3577": {
+    "name": "Test classes should comply with a naming convention",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention",
+      "tests"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S4165": {
+    "name": "Assignments should not be redundant",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "symbolic-execution",
+      "redundant"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S5998": {
+    "name": "Regular expressions should not overflow the stack",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "regex"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "xml:S125": {
+    "name": "Sections of code should not be commented out",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "unused"
+    ],
+    "severity": "MAJOR",
+    "lang": "xml"
+  },
+  "java:S2062": {
+    "name": "\"readResolve\" methods should be inheritable",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "pitfall"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S2065": {
+    "name": "Fields in non-serializable classes should not be \"transient\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "serialization",
+      "unused"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S2133": {
+    "name": "Objects should not be created only to invoke \"getClass\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "performance"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S2479": {
+    "name": "Whitespace and control characters in literals should be explicit",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "pitfall"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S2755": {
+    "name": "XML parsers should not be vulnerable to XXE attacks",
+    "type": "VULNERABILITY",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "symbolic-execution"
+    ],
+    "severity": "BLOCKER",
+    "lang": "java"
+  },
+  "java:S3518": {
+    "name": "Zero should not be a possible denominator",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "symbolic-execution",
+      "denial-of-service",
+      "cert"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S3864": {
+    "name": "\"Stream.peek\" should be used with caution",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "java8",
+      "pitfall"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S4087": {
+    "name": "\"close()\" calls should not be redundant",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "redundant"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S4349": {
+    "name": "\"write(byte[],int,int)\" should be overridden",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "performance"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S4830": {
+    "name": "Server certificates should be verified during SSL/TLS connections",
+    "type": "VULNERABILITY",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "privacy",
+      "cert",
+      "ssl"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S6035": {
+    "name": "Single-character alternations in regular expressions should be replaced with character classes",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "regex"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "kotlin:S6615": {
+    "name": "Variables assigned values should be read",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "kotlin"
+  },
+  "java:S1221": {
+    "name": "Methods should not be named \"tostring\", \"hashcode\" or \"equal\"",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "pitfall"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1751": {
+    "name": "Loops with at most one iteration should be refactored",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "bad-practice",
+      "confusing"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1994": {
+    "name": "\"for\" loop increment clauses should modify the loops' counters",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "confusing"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S2066": {
+    "name": "\"Serializable\" inner classes of non-serializable outer classes should be \"static\"",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "serialization",
+      "cert"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S2276": {
+    "name": "\"wait(...)\" should be used instead of \"Thread.sleep(...)\" when a lock is held",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "multi-threading",
+      "performance",
+      "cert"
+    ],
+    "severity": "BLOCKER",
+    "lang": "java"
+  },
+  "java:S2388": {
+    "name": "Inner class calls to super class methods should be unambiguous",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "pitfall"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S2446": {
+    "name": "\"notifyAll()\" should be preferred over \"notify()\"",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "multi-threading",
+      "cert"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S2447": {
+    "name": "\"null\" should not be returned from a \"Boolean\" method",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "cert",
+      "pitfall"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S4275": {
+    "name": "Getters and setters should access the expected fields",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "pitfall"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S4348": {
+    "name": "\"iterator\" should not return \"this\"",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "pitfall"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S5783": {
+    "name": "Only one method invocation is expected when testing checked exceptions",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "junit",
+      "tests"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S5833": {
+    "name": "AssertJ methods setting the assertion context should come before an assertion",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "tests",
+      "assertj"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S5842": {
+    "name": "Repeated patterns in regular expressions should not match the empty string",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "regex"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S5863": {
+    "name": "Assertions should not compare an object to itself",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "tests"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S5958": {
+    "name": "AssertJ \"assertThatThrownBy\" should not be used alone",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "tests",
+      "assertj"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S6241": {
+    "name": "Region should be set explicitly when creating a new \"AwsClient\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "startup-time",
+      "aws"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S6242": {
+    "name": "Credentials Provider should be set explicitly when creating a new \"AwsClient\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "startup-time",
+      "aws"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S7476": {
+    "name": "Comments should start with the appropriate number of slashes",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "javadoc",
+      "java23"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "scala:S100": {
+    "name": "Function names should comply with a naming convention",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention"
+    ],
+    "severity": "MINOR",
+    "lang": "scala"
+  },
+  "scala:S3776": {
+    "name": "Cognitive Complexity of functions should not be too high",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "brain-overload"
+    ],
+    "severity": "CRITICAL",
+    "lang": "scala"
+  },
+  "java:S6103": {
+    "name": "AssertJ assertions with \"Consumer\" arguments should contain assertion inside consumers",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "tests"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1596": {
+    "name": "\"Collections.EMPTY_LIST\", \"EMPTY_MAP\", and \"EMPTY_SET\" should not be used",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "obsolete",
+      "pitfall"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S2111": {
+    "name": "\"BigDecimal(double)\" should not be used",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cert"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S2273": {
+    "name": "\"Object.wait()\", \"Object.notify()\" and \"Object.notifyAll()\" should only be called from synchronized code",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "multi-threading"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S2692": {
+    "name": "\"indexOf\" checks should not be for positive numbers",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "suspicious"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S3078": {
+    "name": "\"volatile\" variables should not be used with compound operators",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "multi-threading",
+      "cert"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S6104": {
+    "name": "Map \"computeIfAbsent()\" and \"computeIfPresent()\" should not be used to add \"null\" values.",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S1201": {
+    "name": "\"equals\" method overrides should accept \"Object\" parameters",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "suspicious"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1656": {
+    "name": "Variables should not be self-assigned",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cert"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1989": {
+    "name": "Exceptions should not be thrown from servlet methods",
+    "type": "VULNERABILITY",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "error-handling",
+      "cert"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S2186": {
+    "name": "JUnit assertions should not be used in \"run\" methods",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "junit",
+      "tests"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S2637": {
+    "name": "\"@NonNull\" values should not be set to null",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "symbolic-execution",
+      "cert"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S2677": {
+    "name": "\"read\" and \"readLine\" return values should be used",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S3066": {
+    "name": "\"enum\" fields should not be publicly mutable",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "bad-practice"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S3958": {
+    "name": "Intermediate Stream methods should not be left unused",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "symbolic-execution",
+      "java8"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S3985": {
+    "name": "Unused \"private\" classes should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "unused"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S4925": {
+    "name": "\"Class.forName()\" should not load JDBC 4.0+ drivers",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "obsolete"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S4929": {
+    "name": "\"read(byte[],int,int)\" should be overridden",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "performance"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S5301": {
+    "name": "\"ActiveMQConnectionFactory\" should not be vulnerable to malicious code deserialization",
+    "type": "VULNERABILITY",
+    "tags": [],
+    "sysTags": [
+      "cwe"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S5413": {
+    "name": "'List.remove()' should not be used in ascending 'for' loops",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S5542": {
+    "name": "Encryption algorithms should be used with secure mode and padding scheme",
+    "type": "VULNERABILITY",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "privacy"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S5547": {
+    "name": "Cipher algorithms should be robust",
+    "type": "VULNERABILITY",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "privacy"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S5779": {
+    "name": "Assertion methods should not be used within the try block of a try-catch catching an Error",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "junit",
+      "tests"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S5850": {
+    "name": "Alternatives in regular expressions should be grouped when used with anchors",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "regex"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S6019": {
+    "name": "Reluctant quantifiers in regular expressions should be followed by an expression that can't match the empty string",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "regex"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S6909": {
+    "name": "Constant parameters in a \"PreparedStatement\" should not be set more than once",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "sustainability",
+      "sql"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S6912": {
+    "name": "Use batch Processing in JDBC",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "sustainability",
+      "sql"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S2226": {
+    "name": "Servlets should not have mutable instance fields",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "multi-threading",
+      "struts",
+      "cert"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S5776": {
+    "name": "Exception testing via JUnit ExpectedException rule should not be mixed with other assertions",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "junit",
+      "tests"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S5790": {
+    "name": "JUnit5 inner test classes should be annotated with @Nested",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "junit",
+      "tests"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S6437": {
+    "name": "Credentials should not be hard-coded",
+    "type": "VULNERABILITY",
+    "tags": [],
+    "sysTags": [
+      "cwe"
+    ],
+    "severity": "BLOCKER",
+    "lang": "java"
+  },
+  "java:S2275": {
+    "name": "Printf-style format strings should not lead to unexpected behavior at runtime",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cert"
+    ],
+    "severity": "BLOCKER",
+    "lang": "java"
+  },
+  "java:S3973": {
+    "name": "A conditionally executed single line should be denoted by indentation",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "confusing",
+      "suspicious"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S5261": {
+    "name": "\"else\" statements should be clearly matched with an \"if\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "confusing"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S2438": {
+    "name": "\"Thread\" should not be used where a \"Runnable\" argument is expected",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "multi-threading",
+      "pitfall"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S3329": {
+    "name": "Cipher Block Chaining IVs should be unpredictable",
+    "type": "VULNERABILITY",
+    "tags": [],
+    "sysTags": [
+      "cwe"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S3986": {
+    "name": "Week Year (\"YYYY\") should not be used for date formatting",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "suspicious"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S5826": {
+    "name": "Methods setUp() and tearDown() should be correctly annotated starting with JUnit4",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "junit",
+      "tests"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S5857": {
+    "name": "Character classes should be preferred over reluctant quantifiers in regular expressions",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "regex"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S6207": {
+    "name": "Redundant constructors/methods should be avoided in records",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "java16"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S6829": {
+    "name": "\"@Autowired\" should be used when multiple constructors are provided",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "spring"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S6831": {
+    "name": "\"@Qualifier\" should not be used on \"@Bean\" methods",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "spring"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S6856": {
+    "name": "\"@PathVariable\" annotation should be present if a path variable is used",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "spring"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S1220": {
+    "name": "The default unnamed package should not be used",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S1226": {
+    "name": "Method parameters, caught exceptions and foreach variables' initial values should not be ignored",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S2159": {
+    "name": "Unnecessary equality checks should not be made",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cert",
+      "unused"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S7178": {
+    "name": "Injecting data into static fields is not supported by Spring",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "spring"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S2440": {
+    "name": "Classes with only \"static\" methods should not be instantiated",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "clumsy"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S4032": {
+    "name": "Packages containing only \"package-info.java\" should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "unused"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S5527": {
+    "name": "Server hostnames should be verified during SSL/TLS connections",
+    "type": "VULNERABILITY",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "privacy",
+      "ssl"
+    ],
+    "severity": "CRITICAL",
+    "lang": "java"
+  },
+  "java:S5860": {
+    "name": "Names of regular expressions named groups should be used",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "regex"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "Web:DoctypePresenceCheck": {
+    "name": "\"<!DOCTYPE>\" declarations should appear before \"<html>\" tags",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "user-experience"
+    ],
+    "severity": "MAJOR",
+    "lang": "web"
+  },
+  "Web:MouseEventWithoutKeyboardEquivalentCheck": {
+    "name": "Mouse events should have corresponding keyboard events",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "accessibility"
+    ],
+    "severity": "MINOR",
+    "lang": "web"
+  },
+  "Web:PageWithoutTitleCheck": {
+    "name": "\"<title>\" should be present in all pages",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "user-experience"
+    ],
+    "severity": "MAJOR",
+    "lang": "web"
+  },
+  "Web:S5254": {
+    "name": "\"<html>\" element should have a language attribute",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "accessibility",
+      "wcag2-a"
+    ],
+    "severity": "MAJOR",
+    "lang": "web"
+  },
+  "Web:S5255": {
+    "name": "\"aria-label\" or \"aria-labelledby\" attributes should be used to differentiate similar elements",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "accessibility",
+      "wcag2-a"
+    ],
+    "severity": "MAJOR",
+    "lang": "web"
+  },
+  "Web:S6819": {
+    "name": "Prefer tag over ARIA role",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "accessibility"
+    ],
+    "severity": "MAJOR",
+    "lang": "web"
+  },
+  "Web:S6846": {
+    "name": "DOM elements should not use the \"accesskey\" property",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "accessibility"
+    ],
+    "severity": "MAJOR",
+    "lang": "web"
+  },
+  "Web:S7930": {
+    "name": "HTML elements should have unique \"id\" attribute values",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "accessibility",
+      "web",
+      "html"
+    ],
+    "severity": "CRITICAL",
+    "lang": "web"
+  },
+  "go:S100": {
+    "name": "Function names should comply with a naming convention",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention"
+    ],
+    "severity": "MINOR",
+    "lang": "go"
+  },
+  "go:S1135": {
+    "name": "Track uses of \"TODO\" tags",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe"
+    ],
+    "severity": "INFO",
+    "lang": "go"
+  },
+  "go:S1186": {
+    "name": "Functions should not be empty",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "suspicious"
+    ],
+    "severity": "CRITICAL",
+    "lang": "go"
+  },
+  "go:S1192": {
+    "name": "String literals should not be duplicated",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "design"
+    ],
+    "severity": "CRITICAL",
+    "lang": "go"
+  },
+  "go:S3776": {
+    "name": "Cognitive Complexity of functions should not be too high",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "brain-overload"
+    ],
+    "severity": "CRITICAL",
+    "lang": "go"
+  },
+  "java:S2154": {
+    "name": "Dissimilar primitive wrappers should not be used with the ternary operator without explicit casting",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S2183": {
+    "name": "Ints and longs should not be shifted by zero or more than their number of bits-1",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S2437": {
+    "name": "Unnecessary bit operations should not be performed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "suspicious"
+    ],
+    "severity": "BLOCKER",
+    "lang": "java"
+  },
+  "java:S3067": {
+    "name": "\"getClass\" should not be used for synchronization",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "multi-threading",
+      "cert"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S3981": {
+    "name": "Collection sizes and array length comparisons should make sense",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "confusing"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S4838": {
+    "name": "An iteration on a Collection should be performed on the type handled by the Collection",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "bad-practice",
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S5665": {
+    "name": "Escape sequences should not be used in text blocks",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "java14"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S5960": {
+    "name": "Assertions should not be used in production code",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "java:S6203": {
+    "name": "Text blocks should not be used in complex expressions",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "java:S6217": {
+    "name": "Permitted types of a sealed class should be omitted if they are declared in the same file",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "java17"
+    ],
+    "severity": "MINOR",
+    "lang": "java"
+  },
+  "php:S100": {
+    "name": "Function names should comply with a naming convention",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention"
+    ],
+    "severity": "MINOR",
+    "lang": "php"
+  },
+  "php:S101": {
+    "name": "Class names should comply with a naming convention",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention"
+    ],
+    "severity": "MINOR",
+    "lang": "php"
+  },
+  "php:S105": {
+    "name": "Tabulation characters should not be used",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention",
+      "psr2"
+    ],
+    "severity": "MINOR",
+    "lang": "php"
+  },
+  "php:S1066": {
+    "name": "Mergeable \"if\" statements should be combined",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "clumsy"
+    ],
+    "severity": "MAJOR",
+    "lang": "php"
+  },
+  "php:S1068": {
+    "name": "Unused \"private\" fields should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "unused"
+    ],
+    "severity": "MAJOR",
+    "lang": "php"
+  },
+  "php:S107": {
+    "name": "Functions should not have too many parameters",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "brain-overload"
+    ],
+    "severity": "MAJOR",
+    "lang": "php"
+  },
+  "php:S108": {
+    "name": "Nested blocks of code should not be left empty",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "suspicious"
+    ],
+    "severity": "MAJOR",
+    "lang": "php"
+  },
+  "php:S1110": {
+    "name": "Redundant pairs of parentheses should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "confusing"
+    ],
+    "severity": "MAJOR",
+    "lang": "php"
+  },
+  "php:S1116": {
+    "name": "Empty statements should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "unused"
+    ],
+    "severity": "MINOR",
+    "lang": "php"
+  },
+  "php:S112": {
+    "name": "Generic exceptions ErrorException, RuntimeException and Exception should not be thrown",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "error-handling"
+    ],
+    "severity": "MAJOR",
+    "lang": "php"
+  },
+  "php:S1124": {
+    "name": "Modifiers should be declared in the correct order",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention"
+    ],
+    "severity": "MINOR",
+    "lang": "php"
+  },
+  "php:S1125": {
+    "name": "Boolean literals should not be redundant",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "php"
+  },
+  "php:S113": {
+    "name": "Files should end with a newline",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention"
+    ],
+    "severity": "MINOR",
+    "lang": "php"
+  },
+  "php:S1131": {
+    "name": "Lines should not end with trailing whitespaces",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention",
+      "psr2"
+    ],
+    "severity": "MINOR",
+    "lang": "php"
+  },
+  "php:S1135": {
+    "name": "Track uses of \"TODO\" tags",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe"
+    ],
+    "severity": "INFO",
+    "lang": "php"
+  },
+  "php:S1142": {
+    "name": "Functions should not contain too many return statements",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "brain-overload"
+    ],
+    "severity": "MAJOR",
+    "lang": "php"
+  },
+  "php:S1144": {
+    "name": "Unused \"private\" methods should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "unused"
+    ],
+    "severity": "MAJOR",
+    "lang": "php"
+  },
+  "php:S1145": {
+    "name": "Useless \"if(true) {...}\" and \"if(false){...}\" blocks should be removed",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cwe"
+    ],
+    "severity": "MAJOR",
+    "lang": "php"
+  },
+  "php:S116": {
+    "name": "Field names should comply with a naming convention",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention"
+    ],
+    "severity": "MINOR",
+    "lang": "php"
+  },
+  "php:S1172": {
+    "name": "Unused function parameters should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "unused"
+    ],
+    "severity": "MAJOR",
+    "lang": "php"
+  },
+  "php:S1192": {
+    "name": "String literals should not be duplicated",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "design"
+    ],
+    "severity": "CRITICAL",
+    "lang": "php"
+  },
+  "php:S121": {
+    "name": "Control structures should use curly braces",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "pitfall"
+    ],
+    "severity": "CRITICAL",
+    "lang": "php"
+  },
+  "php:S125": {
+    "name": "Sections of code should not be commented out",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "unused"
+    ],
+    "severity": "MAJOR",
+    "lang": "php"
+  },
+  "php:S128": {
+    "name": "Switch cases should end with an unconditional \"break\" statement",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "suspicious"
+    ],
+    "severity": "BLOCKER",
+    "lang": "php"
+  },
+  "php:S131": {
+    "name": "\"switch\" statements should have \"default\" clauses",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe"
+    ],
+    "severity": "CRITICAL",
+    "lang": "php"
+  },
+  "php:S138": {
+    "name": "Functions should not have too many lines of code",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "brain-overload"
+    ],
+    "severity": "MAJOR",
+    "lang": "php"
+  },
+  "php:S1448": {
+    "name": "Classes should not have too many methods",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "brain-overload"
+    ],
+    "severity": "MAJOR",
+    "lang": "php"
+  },
+  "php:S1481": {
+    "name": "Unused local variables should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "unused"
+    ],
+    "severity": "MINOR",
+    "lang": "php"
+  },
+  "php:S1488": {
+    "name": "Local variables should not be declared and then immediately returned or thrown",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "php"
+  },
+  "php:S1607": {
+    "name": "A reason should be provided when skipping a test",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "tests",
+      "bad-practice",
+      "confusing",
+      "phpunit"
+    ],
+    "severity": "MAJOR",
+    "lang": "php"
+  },
+  "php:S1781": {
+    "name": "PHP keywords and constants \"true\", \"false\", \"null\" should be lower case",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention",
+      "psr2"
+    ],
+    "severity": "MINOR",
+    "lang": "php"
+  },
+  "php:S1784": {
+    "name": "Method visibility should be explicitly declared",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "convention"
+    ],
+    "severity": "MINOR",
+    "lang": "php"
+  },
+  "php:S1793": {
+    "name": "\"elseif\" keyword should be used in place of \"else if\" keywords",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention"
+    ],
+    "severity": "MINOR",
+    "lang": "php"
+  },
+  "php:S1848": {
+    "name": "Objects should not be created to be dropped immediately without being used",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "php"
+  },
+  "php:S1854": {
+    "name": "Unused assignments should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "unused"
+    ],
+    "severity": "MAJOR",
+    "lang": "php"
+  },
+  "php:S1871": {
+    "name": "Two branches in a conditional structure should not have exactly the same implementation",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "design",
+      "suspicious"
+    ],
+    "severity": "MAJOR",
+    "lang": "php"
+  },
+  "php:S2699": {
+    "name": "Tests should include assertions",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "tests",
+      "phpunit"
+    ],
+    "severity": "BLOCKER",
+    "lang": "php"
+  },
+  "php:S3011": {
+    "name": "Reflection should not be used to increase accessibility of classes, methods, or fields",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "php"
+  },
+  "php:S3360": {
+    "name": "Test class names should end with \"Test\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "tests",
+      "phpunit"
+    ],
+    "severity": "BLOCKER",
+    "lang": "php"
+  },
+  "php:S3415": {
+    "name": "Assertion arguments should be passed in the correct order",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "tests",
+      "suspicious",
+      "phpunit"
+    ],
+    "severity": "MAJOR",
+    "lang": "php"
+  },
+  "php:S3626": {
+    "name": "Jump statements should not be redundant",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "redundant",
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "php"
+  },
+  "php:S3699": {
+    "name": "The output of functions that don't return anything should not be used",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "php"
+  },
+  "php:S3776": {
+    "name": "Cognitive Complexity of functions should not be too high",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "brain-overload"
+    ],
+    "severity": "CRITICAL",
+    "lang": "php"
+  },
+  "php:S4824": {
+    "name": "References used in \"foreach\" loops should be \"unset\"",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "pitfall"
+    ],
+    "severity": "CRITICAL",
+    "lang": "php"
+  },
+  "php:S4833": {
+    "name": "Use of namespaces should be preferred to \"include\" or \"require\" functions",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "php"
+  },
+  "php:S5785": {
+    "name": "PHPUnit assertTrue/assertFalse should be simplified to the corresponding dedicated assertion",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "tests",
+      "phpunit"
+    ],
+    "severity": "MAJOR",
+    "lang": "php"
+  },
+  "php:S6600": {
+    "name": "Unnecessary parentheses should not be used for constructs",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "pitfall"
+    ],
+    "severity": "CRITICAL",
+    "lang": "php"
+  },
+  "php:S836": {
+    "name": "Variables should be initialized before use",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "symbolic-execution"
+    ],
+    "severity": "MAJOR",
+    "lang": "php"
+  },
+  "python:S100": {
+    "name": "Method names should comply with a naming convention",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention"
+    ],
+    "severity": "MINOR",
+    "lang": "py"
+  },
+  "python:S101": {
+    "name": "Class names should comply with a naming convention",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention"
+    ],
+    "severity": "MINOR",
+    "lang": "py"
+  },
+  "python:S1066": {
+    "name": "Mergeable \"if\" statements should be combined",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "clumsy"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S107": {
+    "name": "Functions, methods and lambdas should not have too many parameters",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "brain-overload"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S108": {
+    "name": "Nested blocks of code should not be left empty",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "suspicious"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S112": {
+    "name": "\"Exception\" and \"BaseException\" should not be raised",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "error-handling"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S1134": {
+    "name": "Track uses of \"FIXME\" tags",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S1135": {
+    "name": "Track uses of \"TODO\" tags",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe"
+    ],
+    "severity": "INFO",
+    "lang": "py"
+  },
+  "python:S1143": {
+    "name": "Break, continue and return statements should not occur in \"finally\" blocks",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "error-handling",
+      "pitfall"
+    ],
+    "severity": "CRITICAL",
+    "lang": "py"
+  },
+  "python:S1144": {
+    "name": "Unused class-private methods should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "suspicious"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S116": {
+    "name": "Field names should comply with a naming convention",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention"
+    ],
+    "severity": "MINOR",
+    "lang": "py"
+  },
+  "python:S117": {
+    "name": "Local variable and function parameter names should comply with a naming convention",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention"
+    ],
+    "severity": "MINOR",
+    "lang": "py"
+  },
+  "python:S1172": {
+    "name": "Unused function parameters should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "unused"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S1186": {
+    "name": "Functions and methods should not be empty",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "suspicious"
+    ],
+    "severity": "CRITICAL",
+    "lang": "py"
+  },
+  "python:S1192": {
+    "name": "String literals should not be duplicated",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "design"
+    ],
+    "severity": "CRITICAL",
+    "lang": "py"
+  },
+  "python:S1226": {
+    "name": "Function parameters initial values should not be ignored",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "suspicious"
+    ],
+    "severity": "MINOR",
+    "lang": "py"
+  },
+  "python:S1244": {
+    "name": "Floating point numbers should not be tested for equality",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "pytorch",
+      "data-science",
+      "numpy",
+      "suspicious"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S125": {
+    "name": "Sections of code should not be commented out",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "unused"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S1481": {
+    "name": "Unused local variables should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "unused"
+    ],
+    "severity": "MINOR",
+    "lang": "py"
+  },
+  "python:S1515": {
+    "name": "Functions and lambdas should not reference variables defined in enclosing loops",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "suspicious"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S1542": {
+    "name": "Function names should comply with a naming convention",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention",
+      "pep"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S1656": {
+    "name": "Variables should not be self-assigned",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "convention",
+      "confusing"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S1700": {
+    "name": "A field should not duplicate the name of its containing class",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "brain-overload"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S1764": {
+    "name": "Identical expressions should not be used on both sides of a binary operator",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "suspicious"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S1845": {
+    "name": "Methods and field names should not differ only by capitalization",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention",
+      "confusing"
+    ],
+    "severity": "BLOCKER",
+    "lang": "py"
+  },
+  "python:S1854": {
+    "name": "Unused assignments should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "unused"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S1871": {
+    "name": "Two branches in a conditional structure should not have exactly the same implementation",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "design",
+      "suspicious"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S1940": {
+    "name": "Boolean checks should not be inverted",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "pitfall"
+    ],
+    "severity": "MINOR",
+    "lang": "py"
+  },
+  "python:S2201": {
+    "name": "Return values from functions without side effects should not be ignored",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "confusing",
+      "suspicious"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S2208": {
+    "name": "Wildcard imports should not be used",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "bad-practice",
+      "pitfall"
+    ],
+    "severity": "CRITICAL",
+    "lang": "py"
+  },
+  "python:S2638": {
+    "name": "Method overrides should not change contracts",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "suspicious"
+    ],
+    "severity": "CRITICAL",
+    "lang": "py"
+  },
+  "python:S2710": {
+    "name": "The first argument to class methods should follow the naming convention",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention",
+      "confusing",
+      "pitfall"
+    ],
+    "severity": "CRITICAL",
+    "lang": "py"
+  },
+  "python:S2737": {
+    "name": "\"except\" clauses should do more than raise the same issue",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "error-handling",
+      "unused",
+      "finding",
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "py"
+  },
+  "python:S2761": {
+    "name": "Doubled prefix operators \"not\" and \"~\" should not be used",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "confusing"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S2772": {
+    "name": "\"pass\" should not be used needlessly",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "confusing"
+    ],
+    "severity": "MINOR",
+    "lang": "py"
+  },
+  "python:S2836": {
+    "name": "Loops without \"break\" should not have \"else\" clauses",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "suspicious"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S3358": {
+    "name": "Conditional expressions should not be nested",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "confusing"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S3457": {
+    "name": "String formatting should be used correctly",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "confusing"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S3516": {
+    "name": "Functions returns should not be invariant",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "design",
+      "confusing"
+    ],
+    "severity": "BLOCKER",
+    "lang": "py"
+  },
+  "python:S3626": {
+    "name": "Jump statements should not be redundant",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "redundant",
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "py"
+  },
+  "python:S3699": {
+    "name": "The output of functions that don't return anything should not be used",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "python3"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S3776": {
+    "name": "Cognitive Complexity of functions should not be too high",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "brain-overload"
+    ],
+    "severity": "CRITICAL",
+    "lang": "py"
+  },
+  "python:S3827": {
+    "name": "Variables, classes and functions should be defined before being used",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "python3",
+      "pitfall"
+    ],
+    "severity": "BLOCKER",
+    "lang": "py"
+  },
+  "python:S3862": {
+    "name": "Iterable unpacking, \"for-in\" loops and \"yield from\" should use an Iterable object",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "defign",
+      "typing",
+      "pitfall"
+    ],
+    "severity": "BLOCKER",
+    "lang": "py"
+  },
+  "python:S3923": {
+    "name": "All branches in a conditional structure should not have exactly the same implementation",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "convention",
+      "suspicious"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S4143": {
+    "name": "Collection content should not be replaced unconditionally",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "suspicious"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S4144": {
+    "name": "Functions and methods should not have identical implementations",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "confusing",
+      "duplicate",
+      "suspicious"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S4423": {
+    "name": "Weak SSL/TLS protocols should not be used",
+    "type": "VULNERABILITY",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "privacy"
+    ],
+    "severity": "CRITICAL",
+    "lang": "py"
+  },
+  "python:S4487": {
+    "name": "Unread \"private\" attributes should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "unused"
+    ],
+    "severity": "CRITICAL",
+    "lang": "py"
+  },
+  "python:S4830": {
+    "name": "Server certificates should be verified during SSL/TLS connections",
+    "type": "VULNERABILITY",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "privacy",
+      "ssl"
+    ],
+    "severity": "CRITICAL",
+    "lang": "py"
+  },
+  "python:S5361": {
+    "name": "`str.replace` should be preferred to `re.sub`",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "regex",
+      "performance"
+    ],
+    "severity": "CRITICAL",
+    "lang": "py"
+  },
+  "python:S5445": {
+    "name": "Insecure temporary file creation methods should not be used",
+    "type": "VULNERABILITY",
+    "tags": [],
+    "sysTags": [
+      "cwe"
+    ],
+    "severity": "CRITICAL",
+    "lang": "py"
+  },
+  "python:S5527": {
+    "name": "Server hostnames should be verified during SSL/TLS connections",
+    "type": "VULNERABILITY",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "privacy",
+      "ssl"
+    ],
+    "severity": "CRITICAL",
+    "lang": "py"
+  },
+  "python:S5603": {
+    "name": "Unused scope-limited definitions should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "unused"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S5607": {
+    "name": "Operators should be used on compatible types",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "typing"
+    ],
+    "severity": "BLOCKER",
+    "lang": "py"
+  },
+  "python:S5655": {
+    "name": "Arguments given to functions should be of an expected type",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "typing",
+      "suspicious"
+    ],
+    "severity": "CRITICAL",
+    "lang": "py"
+  },
+  "python:S5706": {
+    "name": "Special method \"__exit__\" should not re-raise the provided exception",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "error-handling",
+      "bad-practice"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S5707": {
+    "name": "Exceptions' \"__cause__\" should be either an Exception or None",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "error-handling",
+      "design",
+      "pep"
+    ],
+    "severity": "CRITICAL",
+    "lang": "py"
+  },
+  "python:S5709": {
+    "name": "Custom Exception classes should inherit from \"Exception\" or one of its subclasses",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention",
+      "bad-practice"
+    ],
+    "severity": "CRITICAL",
+    "lang": "py"
+  },
+  "python:S5712": {
+    "name": "Some special methods should return \"NotImplemented\" instead of raising \"NotImplementedError\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "error-handling",
+      "bad-practice"
+    ],
+    "severity": "CRITICAL",
+    "lang": "py"
+  },
+  "python:S5713": {
+    "name": "A subclass should not be in the same \"except\" statement as a parent class",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "error-handling",
+      "bad-practice",
+      "unused"
+    ],
+    "severity": "MINOR",
+    "lang": "py"
+  },
+  "python:S5717": {
+    "name": "Function parameters' default values should not be modified or assigned",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "bad-practice",
+      "pitfall"
+    ],
+    "severity": "CRITICAL",
+    "lang": "py"
+  },
+  "python:S5719": {
+    "name": "Instance and class methods should have at least one positional parameter",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "python3",
+      "syntax"
+    ],
+    "severity": "BLOCKER",
+    "lang": "py"
+  },
+  "python:S5720": {
+    "name": "\"self\" should be the first argument to instance methods",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention",
+      "confusing",
+      "suspicious"
+    ],
+    "severity": "CRITICAL",
+    "lang": "py"
+  },
+  "python:S5722": {
+    "name": "Special methods should have an expected number of parameters",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "design",
+      "bad-practice"
+    ],
+    "severity": "BLOCKER",
+    "lang": "py"
+  },
+  "python:S5727": {
+    "name": "Comparison to None should not be constant",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "suspicious"
+    ],
+    "severity": "CRITICAL",
+    "lang": "py"
+  },
+  "python:S5747": {
+    "name": "Bare \"raise\" statements should only be used in \"except\" blocks",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "error-handling",
+      "unpredictable",
+      "confusing"
+    ],
+    "severity": "CRITICAL",
+    "lang": "py"
+  },
+  "python:S5754": {
+    "name": "\"SystemExit\" should be re-raised",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "error-handling",
+      "bad-practice",
+      "suspicious"
+    ],
+    "severity": "CRITICAL",
+    "lang": "py"
+  },
+  "python:S5797": {
+    "name": "Constants should not be used as conditions",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "suspicious"
+    ],
+    "severity": "CRITICAL",
+    "lang": "py"
+  },
+  "python:S5799": {
+    "name": "Implicit string and byte concatenations should not be confusing",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "confusing",
+      "suspicious"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S5806": {
+    "name": "Builtins should not be shadowed by local variables",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "bad-practice",
+      "confusing",
+      "pitfall"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S5807": {
+    "name": "Only defined names should be listed in \"__all__\"",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "design"
+    ],
+    "severity": "BLOCKER",
+    "lang": "py"
+  },
+  "python:S5842": {
+    "name": "Repeated patterns in regular expressions should not match the empty string",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "regex"
+    ],
+    "severity": "MINOR",
+    "lang": "py"
+  },
+  "python:S5843": {
+    "name": "Regular expressions should not be too complicated",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "regex"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S5850": {
+    "name": "Alternatives in regular expressions should be grouped when used with anchors",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "regex"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S5857": {
+    "name": "Character classes should be preferred over reluctant quantifiers in regular expressions",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "regex"
+    ],
+    "severity": "MINOR",
+    "lang": "py"
+  },
+  "python:S5869": {
+    "name": "Character classes in regular expressions should not contain the same character twice",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "regex"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S5886": {
+    "name": "Function return types should be consistent with their type hint",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "typing"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S5890": {
+    "name": "Values assigned to variables should match their type annotations",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "typing",
+      "confusing"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S5899": {
+    "name": "Test methods should be discoverable",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "tests",
+      "unittest",
+      "unused"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S5906": {
+    "name": "The most specific \"unittest\" assertion should be used",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "tests",
+      "unittest"
+    ],
+    "severity": "MINOR",
+    "lang": "py"
+  },
+  "python:S5914": {
+    "name": "Assertions should not fail or succeed unconditionally",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "tests",
+      "confusing",
+      "suspicious"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S5915": {
+    "name": "Assertions should not be made at the end of blocks expecting an exception",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "tests",
+      "unused",
+      "pitfall"
+    ],
+    "severity": "CRITICAL",
+    "lang": "py"
+  },
+  "python:S5918": {
+    "name": "Tests should be skipped explicitly",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "tests",
+      "bad-practice"
+    ],
+    "severity": "MINOR",
+    "lang": "py"
+  },
+  "python:S6035": {
+    "name": "Single-character alternations in regular expressions should be replaced with character classes",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "regex"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S6353": {
+    "name": "Regular expression quantifiers and character classes should be used concisely",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "regex"
+    ],
+    "severity": "MINOR",
+    "lang": "py"
+  },
+  "python:S6395": {
+    "name": "Non-capturing groups without quantifier should not be used",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "regex"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S6397": {
+    "name": "Character classes in regular expressions should not contain only one character",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "regex"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S6659": {
+    "name": "'startswith' or 'endswith' methods should be used instead of string slicing in condition expressions",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention",
+      "pep"
+    ],
+    "severity": "MINOR",
+    "lang": "py"
+  },
+  "python:S6660": {
+    "name": "\"isinstance()\" should be preferred to direct type comparisons",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "typing"
+    ],
+    "severity": "MINOR",
+    "lang": "py"
+  },
+  "python:S6663": {
+    "name": "Sequence indexes must have an __index__ method",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S6903": {
+    "name": "Using timezone-aware \"datetime\" objects should be preferred over using \"datetime.datetime.utcnow\" and \"datetime.datetime.utcfromtimestamp\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "datetime",
+      "pitfall"
+    ],
+    "severity": "CRITICAL",
+    "lang": "py"
+  },
+  "python:S7483": {
+    "name": "Asynchronous functions should not accept timeout parameters",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "async",
+      "trio",
+      "asyncio",
+      "anyio"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S7492": {
+    "name": "List comprehensions should not be used with \"any()\" or \"all()\"",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MINOR",
+    "lang": "py"
+  },
+  "python:S7494": {
+    "name": "Comprehensions should be used instead of constructors around generator expressions",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MINOR",
+    "lang": "py"
+  },
+  "python:S7496": {
+    "name": "Creation of collections with literals or comprehensions should not be wrapped in type constructors",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MINOR",
+    "lang": "py"
+  },
+  "python:S7498": {
+    "name": "Literal syntax should be preferred when creating empty collections or dictionaries with keyword arguments",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MINOR",
+    "lang": "py"
+  },
+  "python:S7500": {
+    "name": "Comprehensions only used to copy should be replaced with the respective constructor calls",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MINOR",
+    "lang": "py"
+  },
+  "python:S7503": {
+    "name": "Async functions should use async features",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "async"
+    ],
+    "severity": "MINOR",
+    "lang": "py"
+  },
+  "python:S7504": {
+    "name": "When iterating over an iterable object, using \"list()\" should be avoided",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MINOR",
+    "lang": "py"
+  },
+  "python:S7505": {
+    "name": "Generators and comprehensions should be preferred over the usage of \"map\" and \"lambda\" when creating collection",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S7508": {
+    "name": "Redundant collection functions should be avoided",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MINOR",
+    "lang": "py"
+  },
+  "python:S7511": {
+    "name": "Passing a reversed iterable to \"set()\", \"sorted()\", or \"reversed()\" should be avoided",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S7519": {
+    "name": "Populating a dictionary with a constant value should be done with dict.fromkeys() method call",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [],
+    "severity": "MINOR",
+    "lang": "py"
+  },
+  "python:S905": {
+    "name": "Non-empty statements should change control flow or have at least one side-effect",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "unused"
+    ],
+    "severity": "MAJOR",
+    "lang": "py"
+  },
+  "python:S930": {
+    "name": "The number and name of arguments passed to a function should match its parameters",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cwe"
+    ],
+    "severity": "BLOCKER",
+    "lang": "py"
+  },
+  "python:S935": {
+    "name": "Functions and methods should only return expected values",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "typing"
+    ],
+    "severity": "BLOCKER",
+    "lang": "py"
+  },
+  "ruby:S1066": {
+    "name": "Mergeable \"if\" statements should be combined",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "clumsy"
+    ],
+    "severity": "MAJOR",
+    "lang": "ruby"
+  },
+  "ruby:S1135": {
+    "name": "Track uses of \"TODO\" tags",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe"
+    ],
+    "severity": "INFO",
+    "lang": "ruby"
+  },
+  "ruby:S117": {
+    "name": "Function and block parameter names should comply with a naming convention",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "convention"
+    ],
+    "severity": "MINOR",
+    "lang": "ruby"
+  },
+  "ruby:S1172": {
+    "name": "Unused function parameters should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "unused"
+    ],
+    "severity": "MAJOR",
+    "lang": "ruby"
+  },
+  "ruby:S1192": {
+    "name": "String literals should not be duplicated",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "design"
+    ],
+    "severity": "CRITICAL",
+    "lang": "ruby"
+  },
+  "ruby:S131": {
+    "name": "\"case\" statements should have \"else\" clauses",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "cwe"
+    ],
+    "severity": "CRITICAL",
+    "lang": "ruby"
+  },
+  "ruby:S1481": {
+    "name": "Unused local variables should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "unused"
+    ],
+    "severity": "MINOR",
+    "lang": "ruby"
+  },
+  "ruby:S3776": {
+    "name": "Cognitive Complexity of functions should not be too high",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "brain-overload"
+    ],
+    "severity": "CRITICAL",
+    "lang": "ruby"
+  },
+  "rust:S3776": {
+    "name": "Cognitive Complexity of functions should not be too high",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "brain-overload"
+    ],
+    "severity": "CRITICAL",
+    "lang": "rust"
+  },
+  "java:S2225": {
+    "name": "\"toString()\" and \"clone()\" methods should not return null",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "cert"
+    ],
+    "severity": "MAJOR",
+    "lang": "java"
+  },
+  "javascript:S1186": {
+    "name": "Functions should not be empty",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "suspicious"
+    ],
+    "severity": "CRITICAL",
+    "lang": "js"
+  },
+  "javascript:S6353": {
+    "name": "Regular expression quantifiers and character classes should be used concisely",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "regex",
+      "type-dependent"
+    ],
+    "severity": "MINOR",
+    "lang": "js"
+  },
+  "javascript:S7781": {
+    "name": "Strings should use \"replaceAll()\" instead of \"replace()\" with global regex",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "readability",
+      "es2021"
+    ],
+    "severity": "MINOR",
+    "lang": "js"
+  },
+  "javascript:S905": {
+    "name": "Non-empty statements should change control flow or have at least one side-effect",
+    "type": "BUG",
+    "tags": [],
+    "sysTags": [
+      "cwe",
+      "unused"
+    ],
+    "severity": "MAJOR",
+    "lang": "js"
+  },
+  "kotlin:S1125": {
+    "name": "Boolean literals should not be redundant",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "clumsy"
+    ],
+    "severity": "MINOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S1144": {
+    "name": "Unused \"private\" methods should be removed",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "unused"
+    ],
+    "severity": "MAJOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S1479": {
+    "name": "\"when\" statements should not have too many clauses",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "brain-overload"
+    ],
+    "severity": "MAJOR",
+    "lang": "kotlin"
+  },
+  "kotlin:S4738": {
+    "name": "Native features should be preferred to Guava",
+    "type": "CODE_SMELL",
+    "tags": [],
+    "sysTags": [
+      "guava"
+    ],
+    "severity": "MAJOR",
+    "lang": "kotlin"
+  }
+}

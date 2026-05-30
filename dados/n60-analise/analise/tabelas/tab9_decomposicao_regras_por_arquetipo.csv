@@ -1,0 +1,4 @@
+arquetipo,n_projetos,prop_smell_media,prop_smell_std,prop_bug_media,prop_bug_std,prop_vuln_media,prop_vuln_std
+google,17,1.000000,0.000000,0.078469,0.079208,0.003744,0.009969
+apache,24,0.932741,0.164861,0.050573,0.029964,0.001567,0.003320
+descentralizado,19,1.000000,0.000000,0.063729,0.034315,0.000449,0.000934

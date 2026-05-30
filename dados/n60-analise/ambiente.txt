@@ -1,0 +1,27 @@
+===== ambiente v1.5 (N=34, coleta 2026-05-17) =====
+SonarQube: Community Build v26.2.0.119303
+Modo: MQR
+Scanner: sonar-scanner-5.0.1.3006-linux
+JDK: openjdk version "11.0.31" 2026-04-21
+Python: 3.11.2
+Plataforma: Linux-6.12.74+deb12-amd64-x86_64-with-glibc2.36
+Data da coleta: 2026-05-24 16:21
+SONAR_URL: http://localhost:9000
+SONAR_TOKEN (mask): squ_9b…a578
+Hash do consolidado.csv: d6d257e2734faf760a186086d625e642e6d72dc0ce14c389bb39a6aa5b1aa343
+Versão do protocolo: 1.5
+Tag git do repo TCC: ?
+
+===== ambiente v1.6 (N=26, coleta 2026-05-24) =====
+SonarQube: Community Build v26.2.0.119303
+Modo: MQR
+Scanner: sonar-scanner-5.0.1.3006-linux
+JDK: openjdk version "17.0.13" 2024-10-15
+Python: 3.11.2
+Plataforma: Linux-6.12.74+deb12-amd64-x86_64-with-glibc2.36
+Data da coleta: 2026-05-29 11:58
+SONAR_URL: http://localhost:9000
+SONAR_TOKEN (mask): squ_9b…a578
+Hash do consolidado.csv: b470579e7082d0e6a8067d69425327da50a43d90053a9b91fbcc8204099b7cda
+Versão do protocolo: 1.5
+Tag git do repo TCC: ?

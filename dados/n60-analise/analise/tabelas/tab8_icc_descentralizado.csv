@@ -1,0 +1,2 @@
+type,motivo
+erro,ValueError: Either missing values are present in data or data are unbalanced. Please remove them manually or use nan_policy='omit'.

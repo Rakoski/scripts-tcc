@@ -1,0 +1,2 @@
+F_obs_log,p_teorico_log,F_crit_emp_log,F_crit_teo_log,var_apache_log,var_google_log,var_desc_log,C1_log,C2_log,H1_log_aceita
+2.9287735522032565,0.06155263451437859,2.8113864424338244,3.1588427192606465,0.2686282443415129,0.7763592804139355,0.5440588968675053,True,False,False

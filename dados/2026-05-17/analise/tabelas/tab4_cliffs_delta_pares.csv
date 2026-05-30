@@ -1,0 +1,4 @@
+grupo_x,grupo_y,n_x,n_y,cliff_delta,magnitude,interpretacao
+apache,google,14,10,0.385714,médio,x > y em maioria estocástica
+apache,descentralizado,14,10,0.442857,médio,x > y em maioria estocástica
+google,descentralizado,10,10,-0.060000,negligenciável,y > x em maioria estocástica

@@ -1,0 +1,2 @@
+F_obs,F_crit_empirico,F_crit_teorico,p_teorico,var_apache,var_google,var_desc,C1_satisfeita,C2_satisfeita,H1_aceita,interpretacao
+0.523279,3.091928,3.304817,0.597716,0.049678,0.102867,0.043276,False,False,False,"Falha em detectar diferença de variâncias. Sob poder de ~9% (v1.5), NÃO constitui evidência de equivalência entre arquétipos."
