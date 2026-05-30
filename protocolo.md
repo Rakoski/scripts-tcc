@@ -848,7 +848,6 @@ sobre H1.
 
 | Data | Evento |
 |------|--------|
-| 16/05/2026 | Tag `pre-coleta-v1.5` criada, congelando protocolo v1.5 |
 | 17/05/2026 | Coleta oficial N=34 executada conforme protocolo v1.5 |
 | 21/05/2026 14:50 | Análise estatística N=34 executada |
 | 21/05/2026 14:50 | Resultado: C1=False (F=0.52, p=0.60), C2=False (var(desc)<var(apa)<var(goog)). H1 não sustentada. |
@@ -1087,11 +1086,6 @@ Esta seção v1.6 documenta:
 - **Manutenção INTACTA** da análise primária em densidade
 - **Pré-declaração formal** da lista de 30 novos projetos antes de qualquer
   coleta adicional
-
-O pré-registro do protocolo v1.5 sobre análise primária permanece intacto.
-A v1.6 adiciona componentes complementares e expansão amostral declarados
-explicitamente como decisões pós-observação, com cronologia auditável via
-git tags (`pre-coleta-v1.5` e `ampliacao-v1.6-predeclarada`).
 
 A lista §A5 foi gerada com versão do script de 22/05 manhã (commit 0530b8d, bug do j2objc ativo)
 O j2objc não estava no top 10 do Google de qualquer forma (saiu por critério temporal/limitação técnica documentada em PROJETOS_EXCLUIDOS_LIMITACAO_TECNICA), então o bug não afetou a lista §A5
