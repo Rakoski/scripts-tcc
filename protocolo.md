@@ -1879,3 +1879,17 @@ moda v1.8) é deliberada: substituir reabriria o levantamento
 `candidatos_expansao_v1.6.csv` num momento pós-pré-banca, configurando
 mudança de critério após observação parcial de resultados. Manter N=60
 preserva a sequência de decisões pré-registradas.
+
+## A34. Correção de §A1 v1.6 e referências subsequentes
+
+Em revisão de pré-banca (30/05/2026), constatou-se que a tag `pre-coleta-v1.5`
+referenciada em §A1 v1.6 e seções subsequentes **nunca foi criada** no
+repositório git. As menções a essa tag são incorretas. O pré-registro do
+protocolo v1.5 antes da coleta oficial é evidenciável pelo commit
+`<SHA>` (datado de `<data>`, contendo a versão final do protocolo v1.5),
+que precede o início da coleta em 17/05/2026.
+
+As referências a `pre-coleta-v1.5` nos adendos v1.6-v1.10 foram substituídas
+por referência ao commit SHA correspondente. A intenção declarada nos adendos
+(congelamento prévio do protocolo) é preservada pelo registro auditável do
+próprio commit, não pela tag.
