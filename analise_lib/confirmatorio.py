@@ -1,5 +1,3 @@
-"""Procedimento 3 do §8 — Brown-Forsythe + calibração de F-crítico empírico
-+ regra de decisão §8.2 (v1.5: C1 ∧ C2)."""
 from __future__ import annotations
 
 import logging
@@ -15,8 +13,6 @@ ALPHA = 0.05
 def calibrar_f_critico_empirico(df: pd.DataFrame, logger: logging.Logger,
                                 n_reps: int = N_REPS_NULL,
                                 seed: int = 42) -> dict:
-    """Gera distribuição nula empírica de Brown-Forsythe sob lognormal
-    calibrada na densidade observada."""
     rng = np.random.default_rng(seed)
 
     densidade = df["densidade_divida"].values
@@ -86,7 +82,6 @@ def calibrar_f_critico_empirico(df: pd.DataFrame, logger: logging.Logger,
         "n_reps": n_reps,
     }
 
-
 def brown_forsythe(df: pd.DataFrame, tabelas_dir: Path,
                    logger: logging.Logger) -> dict:
     g_apache = df.loc[df["arquetipo"] == "apache", "densidade_divida"].values
@@ -113,10 +108,8 @@ def brown_forsythe(df: pd.DataFrame, tabelas_dir: Path,
     logger.info("tab3 escrita")
     return out
 
-
 def aplicar_regra_decisao(bf: dict, calib: dict, tabelas_dir: Path,
                           logger: logging.Logger) -> dict:
-    """Regra §8.2 v1.5: H1 ⟺ C1 ∧ C2."""
     F_obs = bf["F_obs"]
     F_crit_emp = calib["F_crit_empirico"]
     F_crit_theo = calib["F_crit_teorico"]

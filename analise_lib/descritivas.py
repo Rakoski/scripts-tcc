@@ -1,4 +1,3 @@
-"""Procedimento 1 do §8 — descritivas por arquétipo e por subgrupo."""
 from __future__ import annotations
 
 import logging
@@ -21,7 +20,6 @@ def _resumo(serie: pd.Series) -> dict:
         "min": float(serie.min()),
         "max": float(serie.max()),
     }
-
 
 def descritivas_por_arquetipo(df: pd.DataFrame, tabelas_dir: Path,
                               logger: logging.Logger) -> pd.DataFrame:
@@ -46,7 +44,6 @@ def descritivas_por_arquetipo(df: pd.DataFrame, tabelas_dir: Path,
     logger.info("tab1 markdown escrita: %s", md_path)
     return out
 
-
 def descritivas_subgrupos_descentralizado(df: pd.DataFrame, tabelas_dir: Path,
                                           logger: logging.Logger) -> pd.DataFrame:
     desc = df[df["arquetipo"] == "descentralizado"]
@@ -66,7 +63,6 @@ def descritivas_subgrupos_descentralizado(df: pd.DataFrame, tabelas_dir: Path,
     if "spotify" not in out["instancia"].values:
         logger.info("Subgrupo Spotify ausente conforme §3.3 v1.4 (n=0)")
     return out
-
 
 def composicao_amostral(df: pd.DataFrame, logger: logging.Logger) -> pd.DataFrame:
     rows = []

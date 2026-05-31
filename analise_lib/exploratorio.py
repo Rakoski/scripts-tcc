@@ -1,4 +1,3 @@
-"""Procedimentos 5-6 do §8 (KW + JT) e §8.1 (Spearman parcial, ICC, robustez)."""
 from __future__ import annotations
 
 import logging
@@ -10,7 +9,6 @@ from scipy import stats
 
 from .descritivas import ARQUETIPOS_ORDEM
 from .tamanho_efeito import cliffs_delta_pares
-
 
 def kruskal_wallis_eta2(df: pd.DataFrame, tabelas_dir: Path,
                         logger: logging.Logger) -> dict:
@@ -34,12 +32,8 @@ def kruskal_wallis_eta2(df: pd.DataFrame, tabelas_dir: Path,
     logger.info("tab5 escrita: KW H=%.4f, p=%.4g, η²=%.4f", H, p, eta2)
     return out
 
-
 def jonckheere_terpstra(df: pd.DataFrame, tabelas_dir: Path,
                         logger: logging.Logger) -> dict:
-    """Implementação manual: ordem prevista google ≤ apache ≤ desc.
-    Estatística JT = Σ_{i<j} U(X_i, X_j) onde U é o número de pares
-    onde X_j > X_i. Aprox. normal com correção para ties."""
     ordem = ["google", "apache", "descentralizado"]
     grupos = [df.loc[df["arquetipo"] == a, "densidade_divida"].values
               for a in ordem]
@@ -87,7 +81,6 @@ def jonckheere_terpstra(df: pd.DataFrame, tabelas_dir: Path,
     logger.info("tab6 escrita: JT=%.4f, z=%.4f, p_unilat=%.4g", JT, z, p_unilateral)
     return out
 
-
 def spearman_parcial(df: pd.DataFrame, tabelas_dir: Path,
                      logger: logging.Logger) -> dict:
     import pingouin as pg
@@ -118,7 +111,6 @@ def spearman_parcial(df: pd.DataFrame, tabelas_dir: Path,
         logger.warning("Spearman parcial: resultado vazio")
     
     return res.to_dict(orient="records")[0] if not res.empty else {}
-
 
 def icc_descentralizado(df: pd.DataFrame, tabelas_dir: Path,
                         logger: logging.Logger) -> pd.DataFrame:
@@ -158,7 +150,6 @@ def icc_descentralizado(df: pd.DataFrame, tabelas_dir: Path,
     icc.to_csv(csv_path, index=False, float_format="%.6f")
     logger.info("tab8 escrita: ICC descentralizado calculado")
     return icc
-
 
 def robustez_10k_100k(df: pd.DataFrame, calib: dict, tabelas_dir: Path,
                      logger: logging.Logger) -> dict:

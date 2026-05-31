@@ -1,49 +1,4 @@
 #!/usr/bin/env python3
-"""Busca de candidatos para expansão amostral do TCC.
-
-OBJETIVO
-    Listar repositórios do GitHub que batem critérios objetivos PRÉ-DECLARADOS,
-    servindo de base para a curadoria manual da lista de expansão da amostra
-    (N=34 → N≈52). O script entrega a lista bruta filtrada; a decisão de quais
-    projetos incluir é exclusivamente manual.
-
-CRITÉRIOS OBJETIVOS PRÉ-DECLARADOS (ver CRITERIOS abaixo)
-    - linguagem primária Java;
-    - >= 1000 stars;
-    - atividade nos últimos 12 meses (pushed_at);
-    - não arquivado;
-    - não fork;
-    - tamanho do repo >= 1000 KB (aproxima >5k LOC).
-    Nenhum filtro de "facilidade técnica", toolchain ou prioridade subjetiva
-    é aplicado — isso é deliberado e metodológico.
-
-EXCLUSÕES
-    Duas fontes, unidas num conjunto único (match case-insensitive do nome
-    do repo):
-      1. projetos já analisados — dados/2026-05-17/consolidado.csv, coluna `nome`;
-      2. projetos descartados por limitação técnica de plataforma —
-         coleta_lib.io_utils.PROJETOS_EXCLUIDOS_LIMITACAO_TECNICA (ex.: j2objc,
-         macOS-only). Esses nunca chegam ao consolidado, mas não devem voltar
-         como candidatos: novos projetos podem ter problemas de toolchain
-         similares, e mantê-los fora é decisão metodológica pré-declarada.
-
-REGRA DE FAMÍLIAS
-    Para evitar sobre-representação de monorepos/famílias (ex.: apache/commons-*,
-    googleapis/java-*), mantém no máximo 3 candidatos por (org, família), onde
-    família = primeira palavra do nome do repo antes de qualquer hífen.
-
-OUTPUT
-    - CSV : scripts-tcc/candidatos_expansao_v1.6.csv
-    - Log : scripts-tcc/candidatos_expansao.log
-    - Resumo no terminal (totais por arquétipo + top 10 por arquétipo).
-
-AUTENTICAÇÃO
-    Token pessoal do GitHub em scripts-tcc/.env, variável GITHUB_TOKEN.
-    Crie em https://github.com/settings/tokens com escopo `public_repo`.
-
-COMO RODAR
-    python3 buscar_projetos_candidatos.py
-"""
 from __future__ import annotations
 
 import csv
@@ -58,8 +13,6 @@ from dotenv import dotenv_values
 
 from coleta_lib.io_utils import PROJETOS_EXCLUIDOS_LIMITACAO_TECNICA
 
-# ---------------- caminhos ----------------
-
 SCRIPTS_DIR = Path(__file__).resolve().parent
 BASE_DIR = SCRIPTS_DIR.parent
 ENV_PATH = SCRIPTS_DIR / ".env"
@@ -67,8 +20,6 @@ CONSOLIDADO_CSV = BASE_DIR / "dados" / "2026-05-17" / "consolidado.csv"
 PLANILHA_CSV = SCRIPTS_DIR / "projetos-tcc-dataset-3.csv"
 OUT_CSV = SCRIPTS_DIR / "candidatos_expansao_v1.6.csv"
 LOG_PATH = SCRIPTS_DIR / "candidatos_expansao.log"
-
-# ---------------- configuração ----------------
 
 ORGS_POR_ARQUETIPO: dict[str, list[str]] = {
     "apache": ["apache"],
@@ -83,7 +34,7 @@ CRITERIOS = {
     "max_meses_inativo": 12,
     "is_archived": False,
     "is_fork": False,
-    "min_size_kb": 1000,  # tamanho do repo em KB, aproxima >5k LOC
+    "min_size_kb": 1000,
 }
 
 MAX_POR_FAMILIA = 3
@@ -97,20 +48,14 @@ OUT_COLS = [
     "size_kb", "ultimo_commit_iso", "html_url", "descricao", "familia",
 ]
 
-
 class CandidatosError(RuntimeError):
-    """Erro fatal — aborta a busca."""
-
+    pass
 
 class RateLimitBaixo(RuntimeError):
-    """Rate limit do GitHub abaixo do mínimo seguro — para e salva parcial."""
 
     def __init__(self, restante: int):
         super().__init__(f"rate limit restante={restante}")
         self.restante = restante
-
-
-# ---------------- logger ----------------
 
 def setup_logger(log_path: Path) -> logging.Logger:
     logger = logging.getLogger("candidatos")
@@ -128,9 +73,6 @@ def setup_logger(log_path: Path) -> logging.Logger:
     logger.addHandler(sh)
     return logger
 
-
-# ---------------- token / exclusões ----------------
-
 def carregar_token(logger: logging.Logger) -> str:
     valores = dotenv_values(ENV_PATH) if ENV_PATH.exists() else {}
     token = (valores.get("GITHUB_TOKEN") or "").strip().strip('"').strip("'")
@@ -142,10 +84,7 @@ def carregar_token(logger: logging.Logger) -> str:
         )
     return token
 
-
 def _carregar_planilha_projetos(path: Path) -> dict[str, dict]:
-    """Mapa id -> linha {nome, empresa, ...} da planilha-fonte do TCC.
-    Vazio se a planilha não existir (resolução cai no fallback heurístico)."""
     out: dict[str, dict] = {}
     if not path.exists():
         return out
@@ -156,20 +95,10 @@ def _carregar_planilha_projetos(path: Path) -> dict[str, dict]:
                 out[pid] = row
     return out
 
-
-# id -> {nome, ...} dos projetos do TCC. Usado para resolver os ids de
-# PROJETOS_EXCLUIDOS_LIMITACAO_TECNICA em nomes de repo.
 PLANILHA_PROJETOS: dict[str, dict] = _carregar_planilha_projetos(PLANILHA_CSV)
-
 
 def extrair_nome_de_id(pid: str,
                        planilha: dict[str, dict] | None = None) -> str:
-    """Resolve id de projeto do TCC → nome do repositório.
-
-    Primeiro consulta a planilha (id -> {nome}). Se o id não estiver lá,
-    fallback heurístico: remove o prefixo '{empresa}-' e o sufixo '-{numero}'.
-    Ex.: 'google-j2objc-11' -> 'j2objc';
-         'uber-cadence-java-client-05' -> 'cadence-java-client'."""
     if planilha is None:
         planilha = PLANILHA_PROJETOS
     registro = planilha.get(pid)
@@ -177,17 +106,14 @@ def extrair_nome_de_id(pid: str,
         return registro["nome"].strip()
     partes = pid.split("-")
     if partes and partes[-1].isdigit():
-        partes = partes[:-1]            # remove sufixo -{numero}
+        partes = partes[:-1]
     if len(partes) > 1:
-        partes = partes[1:]            # remove prefixo {empresa}-
+        partes = partes[1:]
     return "-".join(partes)
-
 
 def nomes_de_limitacao_tecnica(excluidos_map: dict[str, str] | None = None,
                                planilha: dict[str, dict] | None = None
                                ) -> set[str]:
-    """Conjunto de nomes de repo (lowercased) descartados por limitação
-    técnica de plataforma, resolvidos via planilha + fallback heurístico."""
     if excluidos_map is None:
         excluidos_map = PROJETOS_EXCLUIDOS_LIMITACAO_TECNICA
     nomes: set[str] = set()
@@ -197,11 +123,7 @@ def nomes_de_limitacao_tecnica(excluidos_map: dict[str, str] | None = None,
             nomes.add(nome.lower())
     return nomes
 
-
 def carregar_excluidos(logger: logging.Logger) -> tuple[set[str], int, int]:
-    """Conjunto de nomes (lowercased) a excluir dos candidatos, de DUAS fontes:
-    consolidado.csv (projetos já analisados) e PROJETOS_EXCLUIDOS_LIMITACAO_
-    TECNICA (descartados por toolchain). Retorna (set, n_consolidado, n_tecnica)."""
     if not CONSOLIDADO_CSV.exists():
         raise CandidatosError(f"consolidado.csv não encontrado: {CONSOLIDADO_CSV}")
     nomes_consolidado: set[str] = set()
@@ -218,16 +140,10 @@ def carregar_excluidos(logger: logging.Logger) -> tuple[set[str], int, int]:
                 len(nomes_consolidado), len(nomes_tecnica), len(total))
     return total, len(nomes_consolidado), len(nomes_tecnica)
 
-
-# ---------------- funções puras (testáveis) ----------------
-
 def _parse_iso(s: str) -> datetime:
-    """Parse de timestamp ISO 8601 do GitHub (ex.: 2025-12-02T10:30:00Z)."""
     return datetime.fromisoformat(s.replace("Z", "+00:00"))
 
-
 def repo_bate_criterios(repo: dict, criterios: dict, agora: datetime) -> bool:
-    """True se o repo satisfaz TODOS os critérios objetivos pré-declarados."""
     if (repo.get("language") or "") != criterios["language"]:
         return False
     if (repo.get("stargazers_count") or 0) < criterios["min_stars"]:
@@ -247,16 +163,10 @@ def repo_bate_criterios(repo: dict, criterios: dict, agora: datetime) -> bool:
         return False
     return meses_inativo <= criterios["max_meses_inativo"]
 
-
 def extrair_familia(repo_name: str) -> str:
-    """Sub-família = primeira palavra do nome do repo antes de qualquer hífen.
-
-    'commons-lang' → 'commons'; 'java-storage' → 'java'; 'guava' → 'guava'."""
     return repo_name.split("-")[0].lower()
 
-
 def normalizar(arquetipo: str, org: str, repo: dict) -> dict:
-    """Projeta um repo bruto da API do GitHub no schema do CSV de saída."""
     nome = repo.get("name", "")
     return {
         "arquetipo":         arquetipo,
@@ -272,9 +182,7 @@ def normalizar(arquetipo: str, org: str, repo: dict) -> dict:
         "familia":           extrair_familia(nome),
     }
 
-
 def deduplicar(candidatos: list[dict]) -> list[dict]:
-    """Remove duplicatas por full_name, preservando a primeira ocorrência."""
     vistos: set[str] = set()
     out: list[dict] = []
     for c in candidatos:
@@ -285,18 +193,13 @@ def deduplicar(candidatos: list[dict]) -> list[dict]:
         out.append(c)
     return out
 
-
 def excluir_ja_coletados(candidatos: list[dict],
                          nomes_excluidos: set[str]) -> list[dict]:
-    """Remove candidatos cujo repo_name já está no consolidado N=34."""
     excl = {n.lower() for n in nomes_excluidos}
     return [c for c in candidatos if c["repo_name"].lower() not in excl]
 
-
 def limitar_por_familia(candidatos: list[dict],
                         max_por_familia: int = MAX_POR_FAMILIA) -> list[dict]:
-    """Mantém no máximo `max_por_familia` candidatos por (org, família),
-    escolhendo os de maior número de stars."""
     grupos: dict[tuple[str, str], list[dict]] = {}
     for c in candidatos:
         grupos.setdefault((c["org"], c["familia"]), []).append(c)
@@ -306,17 +209,11 @@ def limitar_por_familia(candidatos: list[dict],
         out.extend(lista_ord[:max_por_familia])
     return out
 
-
 def ordenar_final(candidatos: list[dict]) -> list[dict]:
-    """Ordena por arquétipo e, dentro do arquétipo, por stars descendente."""
     return sorted(candidatos, key=lambda c: (c["arquetipo"], -c["stars"]))
-
-
-# ---------------- GitHub API ----------------
 
 def _github_get(caminho: str, params: dict, token: str,
                 logger: logging.Logger) -> requests.Response:
-    """GET autenticado com retry+backoff (3 tentativas, sleep 2/4/8s)."""
     url = f"{GITHUB_API}{caminho}"
     headers = {
         "Authorization": f"token {token}",
@@ -330,12 +227,11 @@ def _github_get(caminho: str, params: dict, token: str,
         except requests.RequestException as e:
             ultimo_erro = e
             if tentativa < 3:
-                espera = 2 ** tentativa  # 2, 4, 8
+                espera = 2 ** tentativa
                 logger.warning("rede falhou em %s (%s) — retry em %ds (%d/3)",
                                url, e, espera, tentativa)
                 time.sleep(espera)
     raise CandidatosError(f"rede falhou após 3 tentativas em {url}: {ultimo_erro}")
-
 
 def _checar_rate_limit(resp: requests.Response, logger: logging.Logger) -> None:
     restante_raw = resp.headers.get("X-RateLimit-Remaining")
@@ -348,12 +244,8 @@ def _checar_rate_limit(resp: requests.Response, logger: logging.Logger) -> None:
     if restante < RATE_LIMIT_MINIMO:
         raise RateLimitBaixo(restante)
 
-
 def listar_repos_org(org: str, token: str,
                      logger: logging.Logger) -> list[dict]:
-    """Lista todos os repos de uma org, paginando per_page=100.
-
-    404/outros HTTP de erro → warning e retorna o que tiver. 401 → fatal."""
     repos: list[dict] = []
     page = 1
     while True:
@@ -387,16 +279,12 @@ def listar_repos_org(org: str, token: str,
         time.sleep(SLEEP_ENTRE_REQUESTS)
     return repos
 
-
-# ---------------- saída ----------------
-
 def escrever_csv(candidatos: list[dict], out_csv: Path) -> None:
     with out_csv.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=OUT_COLS)
         writer.writeheader()
         for c in candidatos:
             writer.writerow({col: c.get(col, "") for col in OUT_COLS})
-
 
 def imprimir_resumo(candidatos: list[dict], logger: logging.Logger) -> None:
     por_arq: dict[str, list[dict]] = {}
@@ -419,9 +307,6 @@ def imprimir_resumo(candidatos: list[dict], logger: logging.Logger) -> None:
         for c in lista[:10]:
             logger.info("  %6d★  %-40s %s",
                         c["stars"], c["full_name"], c["ultimo_commit_iso"])
-
-
-# ---------------- main ----------------
 
 def main() -> int:
     logger = setup_logger(LOG_PATH)
@@ -476,7 +361,6 @@ def main() -> int:
         return 2
     logger.info("Concluído.")
     return 0
-
 
 if __name__ == "__main__":
     sys.exit(main())

@@ -1,22 +1,4 @@
 #!/usr/bin/env python3
-"""Gera projetos-tcc-dataset-4.csv unificando v1.5 (dataset-3, 35 linhas) +
-v1.6 (clones_v17.csv, 30 linhas).
-
-Schema v4 (21 colunas) = 17 originais + 4 novas (§A13 v1.6):
-  - branch_principal, snapshot_type, subconjunto, idade_snapshot_dias
-
-Regras (briefing v4):
-  - 35 antigas (dataset-3): mantidas intactas; defaults retroativos
-    snapshot_type='release-tag-pre-2026', subconjunto='n34-v1.5',
-    branch_principal=''. google-j2objc-11 permanece no CSV; a exclusão
-    técnica continua em PROJETOS_EXCLUIDOS_LIMITACAO_TECNICA (load-time).
-  - 30 novas (clones_v17): mapeamento direto; campos ausentes (loc_*,
-    contribuidores, idade_anos, sonar_status, notas) ficam vazios;
-    sonar_project_key = id (convenção do v1.5).
-  - idade_snapshot_dias: vazio para todas (computado em consolidação).
-
-Rodar: python3 scripts-tcc/gerar_dataset_v4.py
-"""
 from __future__ import annotations
 
 import csv
@@ -29,17 +11,14 @@ CLONES_V17 = SCRIPTS / "clones_v17.csv"
 DATASET_V4 = SCRIPTS / "projetos-tcc-dataset-4.csv"
 
 SCHEMA_V4 = [
-    # 17 originais (ordem do v3)
     "id", "nome", "empresa", "arquetipo", "status", "url", "tag", "commit_sha",
     "data_commit", "loc_total", "loc_java", "pct_java", "contribuidores",
     "idade_anos", "sonar_status", "sonar_project_key", "notas",
-    # 4 novas (v1.6 §A13)
     "branch_principal", "snapshot_type", "subconjunto", "idade_snapshot_dias",
 ]
 
 SNAPSHOT_TYPES_VALIDOS = {"release-tag-pre-2026", "head-of-main"}
 SUBCONJUNTOS_VALIDOS = {"n34-v1.5", "n30-v1.6"}
-
 
 def _ler_csv(path: Path) -> list[dict]:
     if not path.exists():
@@ -47,9 +26,7 @@ def _ler_csv(path: Path) -> list[dict]:
     with path.open(encoding="utf-8", newline="") as f:
         return list(csv.DictReader(f))
 
-
 def linha_v3_para_v4(r: dict) -> dict:
-    """Linha do dataset-3 → schema v4 com defaults retroativos N=34."""
     out = {col: r.get(col, "") for col in SCHEMA_V4}
     out["branch_principal"] = ""
     out["snapshot_type"] = "release-tag-pre-2026"
@@ -57,18 +34,14 @@ def linha_v3_para_v4(r: dict) -> dict:
     out["idade_snapshot_dias"] = ""
     return out
 
-
 def linha_clones_para_v4(r: dict) -> dict:
-    """Linha do clones_v17.csv → schema v4. sonar_project_key=id."""
     out = {col: "" for col in SCHEMA_V4}
-    # campos diretos do clones_v17
     for col in ("id", "nome", "empresa", "arquetipo", "status", "url",
                 "tag", "commit_sha", "data_commit",
                 "branch_principal", "snapshot_type", "subconjunto"):
         out[col] = r.get(col, "")
     out["sonar_project_key"] = r.get("id", "")
     return out
-
 
 def validar(linhas: list[dict], n_v3: int, n_clones: int) -> None:
     erros: list[str] = []
@@ -92,7 +65,6 @@ def validar(linhas: list[dict], n_v3: int, n_clones: int) -> None:
         if sc not in SUBCONJUNTOS_VALIDOS:
             erros.append(f"linha {i} ({l.get('id','?')}): subconjunto inválido {sc!r}")
 
-    # Coerência cruzada: head-of-main exige branch_principal
     for l in linhas:
         if l["snapshot_type"] == "head-of-main" and not l["branch_principal"]:
             erros.append(f"{l['id']}: snapshot_type=head-of-main sem branch_principal")
@@ -103,12 +75,10 @@ def validar(linhas: list[dict], n_v3: int, n_clones: int) -> None:
         msg = "Validação falhou:\n  - " + "\n  - ".join(erros)
         raise ValueError(msg)
 
-
 def gerar(escrever: bool = True) -> list[dict]:
     rows_v3 = _ler_csv(DATASET_V3)
     rows_clones = _ler_csv(CLONES_V17)
 
-    # ordem: antigas (na ordem do v3) + novas (na ordem do clones_v17)
     unificado: list[dict] = [linha_v3_para_v4(r) for r in rows_v3]
     unificado += [linha_clones_para_v4(r) for r in rows_clones]
 
@@ -125,7 +95,6 @@ def gerar(escrever: bool = True) -> list[dict]:
               f"{len(unificado)} totais")
 
     return unificado
-
 
 if __name__ == "__main__":
     try:

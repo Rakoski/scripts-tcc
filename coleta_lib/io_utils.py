@@ -1,4 +1,3 @@
-"""Helpers comuns: .env, logging, HTTP com retry, leitura de planilha."""
 from __future__ import annotations
 
 import csv
@@ -14,27 +13,28 @@ from typing import Iterable
 
 import requests
 
+def get_scripts_dir() -> Path:
+    return Path(__file__).resolve().parent.parent
+
+def get_repo_root() -> Path:
+    return get_scripts_dir().parent
+
+def get_clones_dir() -> Path:
+    return get_repo_root() / "projetos-clonados"
+
+def get_dados_dir() -> Path:
+    return get_repo_root() / "dados"
+
 ARQUETIPOS_VALIDOS = {"apache", "google", "descentralizado"}
 
-# v1.10 (§A30): 60 = 64 (bruto após substituições v1.8/v1.9) - 4 limitação
-# técnica adicional. Os 4 excluídos passam §3.1 mas não buildam no ambiente
-# (bazel meta-build, google-java-format Tycho, java-docs-samples monorepo,
-# dexmaker NDK corrompido). Detalhes em §A29 do protocolo. Composição
-# resultante: Apache=24, Google=17, Descentralizado=19.
-# Histórico: v1.5 declarava 65; v1.6 (§A11) tirou j2objc → 64; v1.10 (§A29)
-# tira mais 3 google + 1 linkedin → 60.
 N_AMOSTRA = 60
 
-# Projetos excluídos da coleta por limitação técnica de plataforma.
-# Mapping id → motivo (logado no carregamento da planilha).
 PROJETOS_EXCLUIDOS_LIMITACAO_TECNICA: dict[str, str] = {
-    # ===== Plataforma incompatível =====
     "google-j2objc-11": (
         "Build exige macOS (xcodebuild, xcrun, Xcode). "
         "Incompatível com Linux Debian 12."
     ),
 
-    # ===== Violação de critério §3.1 (detectado v1.8) =====
     "apache-hadoop-18": (
         "Violação §3.1.2 (C2): NCLOC Sonar 1.028.933 > 1.000.000. "
         "Excluído pela §A17 do adendo v1.8."
@@ -70,7 +70,6 @@ PROJETOS_EXCLUIDOS_LIMITACAO_TECNICA: dict[str, str] = {
         "Netflix/Priam."
     ),
 
-    # ===== Limitação técnica de build (detectado v1.10) =====
     "google-bazel-12": (
         "Bazel meta-build (recursos): travou PC em primeira tentativa. "
         "Deferred para pós-banca. Excluído pela §A29 do adendo v1.10."
@@ -90,16 +89,11 @@ PROJETOS_EXCLUIDOS_LIMITACAO_TECNICA: dict[str, str] = {
     ),
 }
 
-
 class ColetaError(RuntimeError):
-    """Erro fatal — aborta toda a coleta sem fallback."""
-
+    pass
 
 class ProjetoError(RuntimeError):
-    """Erro nível-projeto — orquestrador deve pular este projeto e seguir."""
-
-
-# ---------------- .env ----------------
+    pass
 
 def carregar_env(path: Path) -> dict[str, str]:
     if not path.exists():
@@ -109,7 +103,6 @@ def carregar_env(path: Path) -> dict[str, str]:
         line = raw.strip()
         if not line or line.startswith("#"):
             continue
-        # token solto (sem '=') vira SONAR_TOKEN por convenção dos scripts antigos
         if "=" not in line:
             if line.startswith(("squ_", "sqa_", "sqp_")):
                 out.setdefault("SONAR_TOKEN", line)
@@ -130,14 +123,10 @@ def carregar_env(path: Path) -> dict[str, str]:
             out["DATA_COLETA"] = env_data
     return out
 
-
 def mask_token(t: str) -> str:
     if not t or len(t) < 12:
         return "<token>"
     return t[:6] + "…" + t[-4:]
-
-
-# ---------------- logger ----------------
 
 def setup_logger(log_path: Path) -> logging.Logger:
     log_path.parent.mkdir(parents=True, exist_ok=True)
@@ -156,9 +145,6 @@ def setup_logger(log_path: Path) -> logging.Logger:
     sh.setFormatter(fmt)
     logger.addHandler(sh)
     return logger
-
-
-# ---------------- planilha ----------------
 
 def carregar_planilha(csv_path: Path, logger: logging.Logger) -> list[dict]:
     if not csv_path.exists():
@@ -191,7 +177,6 @@ def carregar_planilha(csv_path: Path, logger: logging.Logger) -> list[dict]:
         )
     return rows
 
-
 def filtrar_planilha(rows: list[dict], only: str | None, limit: int) -> list[dict]:
     out = rows
     if only:
@@ -202,7 +187,6 @@ def filtrar_planilha(rows: list[dict], only: str | None, limit: int) -> list[dic
         out = out[:limit]
     return out
 
-
 def derivar_instancia(row: dict) -> str:
     arq = row["arquetipo"]
     if arq != "descentralizado":
@@ -210,11 +194,7 @@ def derivar_instancia(row: dict) -> str:
     empresa = (row.get("empresa") or "").strip().lower()
     return empresa or "desconhecida"
 
-
-# ---------------- HTTP com retry ----------------
-
 class SonarClient:
-    """Cliente HTTP com retry exponencial para 5xx, abort em 401/403."""
 
     def __init__(self, url: str, token: str, logger: logging.Logger):
         self.url = url.rstrip("/")
@@ -253,7 +233,7 @@ class SonarClient:
                 backoff *= 2
                 continue
             return resp
-        return resp  # type: ignore[return-value]
+        return resp
 
     def get(self, path: str, **params):
         return self._request("GET", path, params=params)
@@ -272,9 +252,6 @@ class SonarClient:
         except Exception:
             return False
 
-
-# ---------------- utils ----------------
-
 def hash_arquivo(path: Path) -> str:
     h = hashlib.sha256()
     with path.open("rb") as f:
@@ -282,14 +259,12 @@ def hash_arquivo(path: Path) -> str:
             h.update(chunk)
     return h.hexdigest()
 
-
 def dir_dados(base: Path, data_iso: str | None = None) -> Path:
     data = data_iso or datetime.now().strftime("%Y-%m-%d")
     p = base / "dados" / data
     p.mkdir(parents=True, exist_ok=True)
     (p / "issues").mkdir(exist_ok=True)
     return p
-
 
 def now_iso() -> str:
     return datetime.now().strftime("%Y-%m-%d %H:%M:%S")

@@ -1,4 +1,3 @@
-"""5 figuras obrigatórias do §8 (procedimento 2 + §8.1 + diagnósticos v1.4)."""
 from __future__ import annotations
 
 import logging
@@ -17,13 +16,11 @@ from .descritivas import ARQUETIPOS_ORDEM
 PALETTE = {"google": "#4285F4", "apache": "#D22128", "descentralizado": "#888888"}
 DPI = 300
 
-
 def _save(fig, path: Path, logger: logging.Logger):
     fig.tight_layout()
     fig.savefig(path, dpi=DPI, bbox_inches="tight")
     plt.close(fig)
     logger.info("Figura salva: %s", path)
-
 
 def fig1_boxplot_densidade(df: pd.DataFrame, figuras_dir: Path,
                            logger: logging.Logger):
@@ -43,7 +40,6 @@ def fig1_boxplot_densidade(df: pd.DataFrame, figuras_dir: Path,
     ax.set_title("Distribuição da densidade de dívida por arquétipo")
     _save(fig, figuras_dir / "fig1_boxplot_densidade_arquetipo.png", logger)
 
-
 def fig2_subgrupos_descentralizado(df: pd.DataFrame, figuras_dir: Path,
                                    logger: logging.Logger):
     desc = df[df["arquetipo"] == "descentralizado"]
@@ -62,7 +58,6 @@ def fig2_subgrupos_descentralizado(df: pd.DataFrame, figuras_dir: Path,
     ax.set_title("Descentralizado — densidade de dívida por organização\n"
                  "(Spotify ausente conforme §3.3 v1.4)")
     _save(fig, figuras_dir / "fig2_boxplot_subgrupos_descentralizado.png", logger)
-
 
 def fig3_scatter_idade_snapshot(df: pd.DataFrame, figuras_dir: Path,
                                 logger: logging.Logger):
@@ -85,7 +80,6 @@ def fig3_scatter_idade_snapshot(df: pd.DataFrame, figuras_dir: Path,
     ax.legend(title="Arquétipo")
     _save(fig, figuras_dir / "fig3_scatter_densidade_vs_idade_snapshot.png", logger)
 
-
 def fig4_composicao_amostral(df: pd.DataFrame, figuras_dir: Path,
                              logger: logging.Logger):
     fig, axes = plt.subplots(1, 3, figsize=(13, 4))
@@ -101,7 +95,6 @@ def fig4_composicao_amostral(df: pd.DataFrame, figuras_dir: Path,
         ax.set_xlabel("")
     fig.suptitle("Composição amostral por arquétipo (§8.1 #1)")
     _save(fig, figuras_dir / "fig4_dist_loc_idade_contribuidores.png", logger)
-
 
 def fig5_decomposicao_regras(df: pd.DataFrame,
                              tab9: pd.DataFrame,

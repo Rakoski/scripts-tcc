@@ -1,22 +1,11 @@
 #!/usr/bin/env python3
-"""
-Simulação Monte Carlo da regra de decisão §8.2 do protocolo v1.4.
-n = 14 (Apache) + 11 (Google) + 10 (Descentralizado) = 35.
-
-Regra conjuntiva (§8.2):
-  C1: Brown-Forsythe rejeita H0 a α=0.05
-  C2: var(Google) < var(Apache) < var(Descentralizado)
-  C3: pelo menos um Cliff's δ pareado |δ| ≥ 0.474
-H1 aceita ⟺ C1 ∧ C2 ∧ C3.
-
-Modelo gerador: lognormal(μ=2.5, σ específico ao arquétipo).
-F-crítico calibrado empiricamente sob H0 (10k réplicas).
-"""
 
 import csv
 import random
 import numpy as np
 from scipy import stats
+
+from coleta_lib.io_utils import get_scripts_dir
 
 random.seed(42)
 np.random.seed(42)
@@ -30,9 +19,8 @@ N_REPS = 10_000
 ALPHA = 0.05
 DELTA_LARGE = 0.474
 
-OUTPUT_CSV = "/home/mateus/Documentos/artigos-tcc/repos/tcc/scripts-tcc/simulacao_poder_v14.csv"
+OUTPUT_CSV = get_scripts_dir() / "simulacao_poder_v14.csv"
 
-# (name, sigma_apache, sigma_google, sigma_desc)
 SCENARIOS = [
     ("Nulo (H0)", 0.6,  0.6,  0.6),
     ("Pequeno",   0.78, 0.6,  1.02),
@@ -40,19 +28,15 @@ SCENARIOS = [
     ("Grande",    1.5,  0.6,  2.4),
 ]
 
-
 def gen_lognorm(sigma, n):
     return np.random.lognormal(mean=MU, sigma=sigma, size=n)
 
-
 def cliffs_delta(x, y):
-    """δ = P(X > Y) - P(X < Y), no intervalo [-1, 1]."""
     nx, ny = len(x), len(y)
     x_arr = np.asarray(x).reshape(-1, 1)
     y_arr = np.asarray(y).reshape(1, -1)
     diff = x_arr - y_arr
     return ((diff > 0).sum() - (diff < 0).sum()) / (nx * ny)
-
 
 def main():
     print("=" * 72)
@@ -63,7 +47,6 @@ def main():
     print(f"Seed: 42")
     print("=" * 72)
 
-    # === [1] Calibração F-crítico empírico sob H0 ===
     print("\n[1] Calibrando F-crítico empírico sob H0 (σ=0.6 para os três)...")
     F_null = np.empty(N_REPS)
     for i in range(N_REPS):
@@ -80,7 +63,6 @@ def main():
     print(f"  F_crit teórico F(2, {N_TOTAL-3}, 0.95):     {F_crit_theo:.4f}")
     print(f"  desvio relativo:                    {(F_crit_emp/F_crit_theo - 1)*100:+.2f}%")
 
-    # === [2] Diagnóstico KS ===
     ks_stat, ks_p = stats.kstest(F_null, lambda x: stats.f.cdf(x, 2, N_TOTAL - 3))
     print(f"\n[2] Diagnóstico: F sob H0 ~ F(2, {N_TOTAL-3})?")
     print(f"  KS statistic: {ks_stat:.4f}   KS p-valor: {ks_p:.4g}")
@@ -91,7 +73,6 @@ def main():
     else:
         print(f"  → não rejeita compatibilidade (p ≥ 0.05).")
 
-    # === [3] Loop sobre cenários ===
     print("\n[3] Rodando cenários (10k réplicas cada):")
     results = []
     for name, s_apache, s_google, s_desc in SCENARIOS:
@@ -139,7 +120,6 @@ def main():
             "type_I_error": round(type_I, 4) if type_I is not None else "",
         })
 
-    # === [4] Tabela ===
     print("\n[4] Tabela final:")
     cols = ["scenario", "sigma_apache", "sigma_google", "sigma_desc",
             "P_C1", "P_C2", "P_C3", "P_conjunctive", "type_I_error"]
@@ -150,7 +130,6 @@ def main():
     for r in results:
         print(" | ".join(f"{str(r[c]):<{w}}" for c, w in zip(cols, widths)))
 
-    # === [5] CSV ===
     with open(OUTPUT_CSV, "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=cols)
         w.writeheader()
@@ -158,7 +137,6 @@ def main():
             w.writerow(r)
     print(f"\n[5] CSV salvo em: {OUTPUT_CSV}")
 
-    # === [6] Validação ===
     print("\n[6] Validação (sob nulo):")
     nulo = next(r for r in results if "Nulo" in r["scenario"])
     checks = [
@@ -176,7 +154,6 @@ def main():
         print("  ⚠ Algum check falhou — investigar.")
     else:
         print("  Todos os checks passam.")
-
 
 if __name__ == "__main__":
     main()

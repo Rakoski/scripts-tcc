@@ -1,17 +1,11 @@
 #!/usr/bin/env python3
-"""
-Simulação Monte Carlo — cenários realistas para SQALE.
-Estende simulacao_poder_v14.py com razões de variância fisicamente
-plausíveis (2x a 10x), em vez de >100x dos cenários originais.
-
-Mesma calibração (seed=42, lognormal μ=2.5, n=14/11/10, 10000 réplicas).
-Reporta P(C1), P(C2), P(C3), P(C1∧C2), P(C1∧C2∧C3) para cada cenário.
-"""
 
 import csv
 import random
 import numpy as np
 from scipy import stats
+
+from coleta_lib.io_utils import get_scripts_dir
 
 random.seed(42)
 np.random.seed(42)
@@ -25,20 +19,16 @@ N_REPS = 10_000
 ALPHA = 0.05
 DELTA_LARGE = 0.474
 
-OUTPUT_CSV = "/home/mateus/Documentos/artigos-tcc/repos/tcc/scripts-tcc/simulacao_poder_v14_realistas.csv"
+OUTPUT_CSV = get_scripts_dir() / "simulacao_poder_v14_realistas.csv"
 
-# (name, sigma_apache, sigma_google, sigma_desc) — razões realistas
-# σ_desc²/σ_google² mostra a razão de variâncias σ² (não de σ)
 SCENARIOS = [
-    ("Realista_pequeno",  0.7,  0.6, 0.8),    # razão var: 1.36 / 1.78
-    ("Realista_moderado", 0.75, 0.6, 0.95),   # razão var: 1.56 / 2.51
-    ("Realista_grande",   0.85, 0.6, 1.1),    # razão var: 2.01 / 3.36
+    ("Realista_pequeno",  0.7,  0.6, 0.8),
+    ("Realista_moderado", 0.75, 0.6, 0.95),
+    ("Realista_grande",   0.85, 0.6, 1.1),
 ]
-
 
 def gen_lognorm(sigma, n):
     return np.random.lognormal(mean=MU, sigma=sigma, size=n)
-
 
 def cliffs_delta(x, y):
     nx, ny = len(x), len(y)
@@ -47,7 +37,6 @@ def cliffs_delta(x, y):
     diff = x_arr - y_arr
     return ((diff > 0).sum() - (diff < 0).sum()) / (nx * ny)
 
-
 def main():
     print("=" * 72)
     print("Simulação Monte Carlo — cenários realistas (v1.4 §8.2)")
@@ -55,7 +44,6 @@ def main():
     print(f"Réplicas por cenário: {N_REPS}, seed=42")
     print("=" * 72)
 
-    # === Calibração (mesma seed, mesma F_crit_emp do script original) ===
     print("\n[1] Calibrando F-crítico empírico sob H0 (σ=0.6 para os três)...")
     F_null = np.empty(N_REPS)
     for i in range(N_REPS):
@@ -67,11 +55,9 @@ def main():
     F_crit_emp = float(np.percentile(F_null, (1 - ALPHA) * 100))
     print(f"  F_crit empírico: {F_crit_emp:.4f} (idêntico ao script original)")
 
-    # === Loop sobre cenários ===
     print("\n[2] Rodando cenários realistas:")
     results = []
     for name, s_apache, s_google, s_desc in SCENARIOS:
-        # razão de variâncias σ² (mais interpretável que σ em SQALE)
         var_ratio_apache_google = (s_apache / s_google) ** 2
         var_ratio_desc_google = (s_desc / s_google) ** 2
 
@@ -123,7 +109,6 @@ def main():
             "P_conjunctive": round(p_conj, 4),
         })
 
-    # === Tabela ===
     print("\n[3] Tabela final:")
     cols = ["scenario", "sigma_apache", "sigma_google", "sigma_desc",
             "var_ratio_A_G", "var_ratio_D_G",
@@ -135,7 +120,6 @@ def main():
     for r in results:
         print(" | ".join(f"{str(r[c]):<{w}}" for c, w in zip(cols, widths)))
 
-    # === CSV ===
     with open(OUTPUT_CSV, "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=cols)
         w.writeheader()
@@ -143,7 +127,6 @@ def main():
             w.writerow(r)
     print(f"\n[4] CSV salvo: {OUTPUT_CSV}")
 
-    # === Análise do gargalo ===
     print("\n[5] Decomposição do poder por condição:")
     print("    (mostra onde a regra conjuntiva está perdendo poder)")
     for r in results:
@@ -151,7 +134,6 @@ def main():
             ratio_drop = r["P_conjunctive"] / r["P_C1_C2"]
             drop_from_c3 = (r["P_C1_C2"] - r["P_conjunctive"]) / r["P_C1_C2"] * 100
             print(f"  {r['scenario']:<20}: C3 'come' {drop_from_c3:.1f}% do que C1∧C2 já tinha (passa {ratio_drop*100:.1f}%)")
-
 
 if __name__ == "__main__":
     main()

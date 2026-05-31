@@ -43,7 +43,6 @@ from analise_lib import visualizacao as viz
 SEED = 42
 PROTOCOL_VERSION = "1.5"
 
-
 def parse_args(argv=None):
     p = argparse.ArgumentParser(description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -52,7 +51,6 @@ def parse_args(argv=None):
     p.add_argument("--data-coleta", default=None,
                    help="Data da coleta YYYY-MM-DD (default: hoje)")
     return p.parse_args(argv)
-
 
 def versoes_pacotes():
     pkgs = ["pandas", "numpy", "scipy", "pingouin", "matplotlib", "seaborn"]
@@ -65,10 +63,8 @@ def versoes_pacotes():
     out["python"] = platform.python_version()
     return out
 
-
 def _bool(b):
     return "Sim" if b else "Não"
-
 
 def gerar_relatorio(saida, out_dir):
     rel_path = out_dir / "relatorio.md"
@@ -208,7 +204,6 @@ def gerar_relatorio(saida, out_dir):
     rel_path.write_text("\n".join(md), encoding="utf-8")
     return rel_path
 
-
 def main(argv=None):
     args = parse_args(argv)
 
@@ -244,49 +239,36 @@ def main(argv=None):
     tabelas_dir = out_paths["tabelas"]
     figuras_dir = out_paths["figuras"]
 
-    # Etapa 1 — descrição
     composicao = composicao_amostral(df, logger)
     tab1 = descritivas_por_arquetipo(df, tabelas_dir, logger)
     tab2 = descritivas_subgrupos_descentralizado(df, tabelas_dir, logger)
 
-    # Etapa 2 — visualizações
     viz.fig1_boxplot_densidade(df, figuras_dir, logger)
     viz.fig2_subgrupos_descentralizado(df, figuras_dir, logger)
     viz.fig3_scatter_idade_snapshot(df, figuras_dir, logger)
     viz.fig4_composicao_amostral(df, figuras_dir, logger)
 
-    # Etapa 3 — calibração F-crítico empírico pro monte carlo
     logger.info("Calibrando F-crítico empírico (pode demorar ~10-30s)...")
     calib = calibrar_f_critico_empirico(df, logger, n_reps=10_000, seed=SEED)
 
-    # Etapa 4 — Brown-Forsythe (teste primario). vem da regra §8.2 v1.5
     bf = brown_forsythe(df, tabelas_dir, logger)
     regra = aplicar_regra_decisao(bf, calib, tabelas_dir, logger)
 
-    # Etapa 5 — Cliff's delta 
     tab4 = cliffs_delta_pares(df, tabelas_dir, logger)
 
-    
-    # Etapa 6 — testes secundarios e exploratorios 
-    # kruskal-wallis + eta squared e jonckheere-terpstra
     tab5 = kruskal_wallis_eta2(df, tabelas_dir, logger)
     tab6 = jonckheere_terpstra(df, tabelas_dir, logger)
 
-    # Etapa 7 — confundidores
     tab7 = spearman_parcial(df, tabelas_dir, logger)
 
-    # Etapa 8 — ICC descentralizado
     tab8 = icc_descentralizado(df, tabelas_dir, logger)
 
-    # Etapa 9 — decomposição A1 (por type e por tag)
     tab9 = decomposicao_por_type_arquetipo(df, issues, tabelas_dir, logger)
     tab9b = decomposicao_por_tag_arquetipo(df, issues, regras_meta, tabelas_dir, logger)
     viz.fig5_decomposicao_regras(df, tab9, figuras_dir, logger)
 
-    # Etapa 10 — top-10 regras (A4)
     tab10 = top10_regras_por_projeto(df, issues, regras_meta, tabelas_dir, logger)
 
-    # Etapa 11 — Robustez 10k-100k (descritiva, §8.1 #3)
     tab11 = robustez_10k_100k(df, calib, tabelas_dir, logger)
 
     saida = {
@@ -305,7 +287,6 @@ def main(argv=None):
     logger.info("Relatório gerado: %s", rel)
 
     return 0
-
 
 if __name__ == "__main__":
     sys.exit(main())

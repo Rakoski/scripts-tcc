@@ -4,7 +4,6 @@ set -euo pipefail
 SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BASE_DIR="$(dirname "$SCRIPTS_DIR")"
 CLONE_DIR="$BASE_DIR/projetos-clonados"
-SCRIPTS_DIR="$BASE_DIR/scripts-tcc"
 CSV_FILE="$SCRIPTS_DIR/projetos-tcc-dataset-3.csv"
 SONAR_URL="http://localhost:9000"
 SONAR_TOKEN="sqa_0c5cfbfcb1d5613b1743f31698aa8580a746d83f"
@@ -27,13 +26,11 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-
 if ! curl -sf "$SONAR_URL/api/system/status" -u "$SONAR_TOKEN:" > /dev/null 2>&1; then
     echo "[ERRO] SonarQube não está acessível em $SONAR_URL"
     exit 1
 fi
 echo "[OK] SonarQube acessível em $SONAR_URL"
-
 
 detect_build_type() {
     local dir="$1"
@@ -48,11 +45,9 @@ detect_build_type() {
     fi
 }
 
-
 find_java_sources() {
     local dir="$1"
     local sources=()
-    
     
     while IFS= read -r src_dir; do
         
@@ -75,11 +70,9 @@ find_java_sources() {
     fi
 }
 
-
 find_java_binaries() {
     local dir="$1"
     local bins=()
-    
     
     while IFS= read -r bin_dir; do
         bins+=("$bin_dir")
@@ -98,9 +91,6 @@ find_java_binaries() {
     fi
 }
 
-
-
-
 project_exists_in_sonar() {
     local key="$1"
     local http_code
@@ -109,7 +99,6 @@ project_exists_in_sonar() {
         "$SONAR_URL/api/measures/component?component=$key&metricKeys=ncloc" 2>/dev/null)
     [[ "$http_code" == "200" ]]
 }
-
 
 run_scanner() {
     local project_key="$1"
@@ -122,9 +111,6 @@ run_scanner() {
     local binaries
     binaries=$(find_java_binaries "$project_dir")
 
-    
-    
-    
     if [[ -z "$binaries" ]]; then
         local empty_bin="$LOG_DIR/_empty_bin_${project_key}"
         mkdir -p "$empty_bin"
@@ -147,7 +133,6 @@ run_scanner() {
         -Dsonar.exclusions=**/build/**,**/target/**,**/out/**,**/buildSrc/**,**/examples/**,**/example/**,**/samples/**,**/sample/**,**/test/data/**,**/testdata/**,**/.git/**,**/node_modules/**
     )
 
-    
     export SONAR_SCANNER_OPTS="-Xss64m -Xmx4g"
 
     echo "[SCANNER] Rodando sonar-scanner para $project_key..."
@@ -161,7 +146,6 @@ run_scanner() {
     fi
 }
 
-
 run_maven() {
     local project_key="$1"
     local project_name="$2"
@@ -172,8 +156,6 @@ run_maven() {
     echo "[MAVEN] Rodando mvn package + sonar:sonar para $project_key..."
     cd "$project_dir"
 
-    
-    
     if mvn package -DskipTests \
             -Dmaven.javadoc.skip=true \
             -Dcheckstyle.skip=true \
@@ -201,7 +183,6 @@ run_maven() {
     run_scanner "$project_key" "$project_name" "$project_dir"
 }
 
-
 run_gradle() {
     local project_key="$1"
     local project_name="$2"
@@ -217,7 +198,6 @@ run_gradle() {
         gradle_cmd="gradle"
     fi
 
-    
     if "$gradle_cmd" assemble -x test -x javadoc --no-daemon --warning-mode none \
             < /dev/null > "$build_log" 2>&1; then
         if "$gradle_cmd" sonar \
@@ -239,11 +219,9 @@ run_gradle() {
     run_scanner "$project_key" "$project_name" "$project_dir"
 }
 
-
 processed=0
 success=0
 failed=0
-
 
 while IFS=, read -r id nome empresa arquetipo status url tag commit_sha rest; do
     
@@ -252,12 +230,10 @@ while IFS=, read -r id nome empresa arquetipo status url tag commit_sha rest; do
         continue
     fi
 
-    
     if [[ -n "$ONLY" && "$nome" != "$ONLY" ]]; then
         continue
     fi
 
-    
     if (( LIMIT > 0 && processed >= LIMIT )); then
         break
     fi
@@ -272,20 +248,17 @@ while IFS=, read -r id nome empresa arquetipo status url tag commit_sha rest; do
     echo "[$processed] $empresa/$nome → $project_key"
     echo "============================================"
 
-    
     if [[ ! -d "$repo_dir/.git" ]]; then
         echo "[ERRO] Repo não encontrado: $repo_dir"
         failed=$(( failed + 1 ))
         continue
     fi
 
-    
     if $SKIP_EXISTING && project_exists_in_sonar "$project_key"; then
         echo "[SKIP] $project_key já existe no SonarQube"
         continue
     fi
 
-    
     cd "$repo_dir"
     if ! git checkout --force "$tag" --quiet 2>/dev/null; then
         echo "[ERRO] Falha no checkout da tag $tag para $nome"
@@ -295,7 +268,6 @@ while IFS=, read -r id nome empresa arquetipo status url tag commit_sha rest; do
     fi
     cd "$BASE_DIR"
 
-    
     build_type=$(detect_build_type "$repo_dir")
     echo "[BUILD] Tipo detectado: $build_type"
 
@@ -305,7 +277,6 @@ while IFS=, read -r id nome empresa arquetipo status url tag commit_sha rest; do
         *)      run_scanner "$project_key" "$nome" "$repo_dir" && success=$(( success + 1 )) || failed=$(( failed + 1 )) ;;
     esac
 
-    
     sleep 2
 done < <(tail -n+2 "$CSV_FILE")
 

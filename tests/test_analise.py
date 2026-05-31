@@ -1,13 +1,4 @@
 #!/usr/bin/env python3
-"""Smoke tests para analise_estatistica.py (protocolo v1.5).
-
-Não usa pytest. Roda com: python tests/test_analise.py
-Cria dados sintéticos compatíveis com a estrutura esperada e verifica:
-- antissimetria de Cliff's δ
-- pipeline não quebra com input válido
-- sob H0 simulada, H1_aceita=False na maioria das execuções
-- sob H1 forte simulada, H1_aceita=True com freq compatível com poder estimado
-"""
 from __future__ import annotations
 
 import json
@@ -22,13 +13,13 @@ import pandas as pd
 REPO = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO))
 
-from analise_lib.tamanho_efeito import cliffs_delta, magnitude  # noqa: E402
-from analise_lib.confirmatorio import (  # noqa: E402
+from analise_lib.tamanho_efeito import cliffs_delta, magnitude
+from analise_lib.confirmatorio import (
     aplicar_regra_decisao,
     brown_forsythe,
     calibrar_f_critico_empirico,
 )
-from analise_lib import io_utils  # noqa: E402
+from analise_lib import io_utils
 
 SEED = 42
 
@@ -40,7 +31,6 @@ INSTANCIAS = {
 
 N_PER = {"apache": 14, "google": 11, "descentralizado": 10}
 DESC_DIST = {"netflix": 5, "uber": 2, "linkedin": 3}
-
 
 def _gerar_consolidado_sintetico(sigma_apache: float, sigma_google: float,
                                  sigma_desc: float, mu: float = 2.5,
@@ -91,7 +81,6 @@ def _gerar_consolidado_sintetico(sigma_apache: float, sigma_google: float,
             })
     return pd.DataFrame(rows)
 
-
 def _criar_data_dir(df: pd.DataFrame, dir_path: Path,
                     com_issues: bool = True) -> Path:
     dir_path.mkdir(parents=True, exist_ok=True)
@@ -133,10 +122,6 @@ def _criar_data_dir(df: pd.DataFrame, dir_path: Path,
         (dir_path / "regras_metadata.json").write_text(json.dumps(regras_meta))
     return dir_path
 
-
-# ---------- TESTES ----------
-
-
 def test_cliffs_delta_antissimetria():
     rng = np.random.default_rng(0)
     x = rng.normal(0, 1, 20)
@@ -145,7 +130,6 @@ def test_cliffs_delta_antissimetria():
     d_yx = cliffs_delta(y, x)
     assert abs(d_xy + d_yx) < 1e-9, f"antissimetria falhou: {d_xy} + {d_yx} != 0"
     print(f"  ✓ antissimetria: δ(x,y)={d_xy:.4f}, δ(y,x)={d_yx:.4f}")
-
 
 def test_cliffs_delta_extremos():
     x = [10, 20, 30]
@@ -157,7 +141,6 @@ def test_cliffs_delta_extremos():
     assert magnitude(0.2) == "pequeno"
     assert magnitude(0.1) == "negligenciável"
     print("  ✓ extremos e magnitudes Romano (2006)")
-
 
 def test_pipeline_validacao_aborta_arquetipo_invalido():
     import logging
@@ -178,7 +161,6 @@ def test_pipeline_validacao_aborta_arquetipo_invalido():
             return
     raise AssertionError("não abortou")
 
-
 def test_pipeline_validacao_aborta_ncloc_zero():
     import logging
     logger = logging.getLogger("test")
@@ -197,7 +179,6 @@ def test_pipeline_validacao_aborta_ncloc_zero():
             print(f"  ✓ aborta em ncloc=0: {e}")
             return
     raise AssertionError("não abortou")
-
 
 def test_pipeline_completo_h0():
     import subprocess
@@ -223,10 +204,7 @@ def test_pipeline_completo_h0():
         h1 = bool(rd["H1_aceita"].iloc[0])
         print(f"  ✓ pipeline H0 completo, H1_aceita={h1}")
 
-
 def test_h0_majority_false():
-    """Sob H0, H1_aceita deve ser False na grande maioria das execuções
-    com seeds variadas. Tolerância: ≤ 10% de aceitação em 20 runs."""
     import logging
     logger = logging.getLogger("smoke_h0")
     logger.handlers.clear()
@@ -252,11 +230,7 @@ def test_h0_majority_false():
     print(f"  ✓ H0 simulada: {aceitas}/{n_runs} runs aceitaram H1 (≤ 10% esperado)")
     assert aceitas <= 3, f"Excessivo: {aceitas}/{n_runs} aceitam H1 sob H0"
 
-
 def test_h1_forte():
-    """Sob H1 muito forte (σ_desc=2.4 vs σ_google=0.6), H1_aceita deve aparecer
-    em frequência compatível com poder ~3-5%. Tolerância: pelo menos 1 em 30 runs.
-    Não é check de poder, só de que a regra é capaz de aceitar."""
     import logging
     logger = logging.getLogger("smoke_h1")
     logger.handlers.clear()
@@ -281,10 +255,6 @@ def test_h1_forte():
                 aceitas += 1
     print(f"  ✓ H1 forte: {aceitas}/{n_runs} runs aceitaram H1 (esperado ≥1)")
     assert aceitas >= 1, "regra nunca aceita H1 mesmo sob efeito grande — bug"
-
-
-# ---------- runner ----------
-
 
 def main():
     tests = [
@@ -312,7 +282,6 @@ def main():
         print(f"FAIL: {failed}/{len(tests)} testes falharam")
         sys.exit(1)
     print(f"OK: {len(tests)}/{len(tests)} testes passaram")
-
 
 if __name__ == "__main__":
     main()

@@ -3,7 +3,7 @@ set -e
 
 
 if [ -f .env ]; then
-    export $(grep -v '^
+    export $(grep -v '^#' .env | xargs)
 fi
 
 TOKEN="${SONAR_TOKEN}"

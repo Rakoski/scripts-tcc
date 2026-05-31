@@ -1,18 +1,4 @@
 #!/usr/bin/env python3
-"""Coleta oficial — TCC Paradoxo da Governança em Escala (protocolo v1.5).
-
-Modos:
-    ./coletar_dados_sonar.py
-    ./coletar_dados_sonar.py --only gson
-    ./coletar_dados_sonar.py --limit 3
-    ./coletar_dados_sonar.py --skip-existing
-    ./coletar_dados_sonar.py --phase scan|extract|validate|all
-    ./coletar_dados_sonar.py --data-coleta 2026-05-15
-
-Saída em dados/YYYY-MM-DD/:
-    consolidado.csv, issues/{id}.json, regras_metadata.json,
-    ambiente.txt, coleta.log
-"""
 from __future__ import annotations
 
 import argparse
@@ -23,18 +9,17 @@ from pathlib import Path
 from coleta_lib import consolidacao, extracao, scan
 from coleta_lib.io_utils import (
     ColetaError, N_AMOSTRA, ProjetoError, SonarClient, carregar_env,
-    carregar_planilha, dir_dados, filtrar_planilha, hash_arquivo, now_iso,
-    setup_logger,
+    carregar_planilha, dir_dados, filtrar_planilha, get_clones_dir,
+    get_repo_root, get_scripts_dir, hash_arquivo, now_iso, setup_logger,
 )
 
-BASE_DIR = Path("/home/mateus/Documentos/artigos-tcc/repos/tcc")
-SCRIPTS_DIR = BASE_DIR / "scripts-tcc"
+BASE_DIR = get_repo_root()
+SCRIPTS_DIR = get_scripts_dir()
 CSV_PATH = SCRIPTS_DIR / "projetos-tcc-dataset-4.csv"
 ENV_PATH = SCRIPTS_DIR / ".env"
-CLONES_DIR = BASE_DIR / "projetos-clonados"
+CLONES_DIR = get_clones_dir()
 
 PHASES = ["scan", "extract", "validate", "all"]
-
 
 def parse_args(argv=None):
     p = argparse.ArgumentParser(description=__doc__,
@@ -51,7 +36,6 @@ def parse_args(argv=None):
                    help="data ISO YYYY-MM-DD (default: hoje)")
     return p.parse_args(argv)
 
-
 def main(argv=None) -> int:
     args = parse_args(argv)
 
@@ -60,7 +44,6 @@ def main(argv=None) -> int:
     except ColetaError as e:
         print(f"[ERRO] {e}", file=sys.stderr); return 2
 
-    # Precedência: --data-coleta CLI > DATA_COLETA do .env > hoje
     data_coleta = args.data_coleta or env.get("DATA_COLETA")
 
     saida = dir_dados(BASE_DIR, data_coleta)
@@ -82,7 +65,6 @@ def main(argv=None) -> int:
         logger.error("Sonar não acessível em %s", sonar_url)
         return 3
 
-    # Planilha
     try:
         rows_full = carregar_planilha(CSV_PATH, logger)
         rows = filtrar_planilha(rows_full, args.only, args.limit)
@@ -102,7 +84,6 @@ def main(argv=None) -> int:
 
     t0 = time.time()
 
-    # ---------------- Fase 1: scan ----------------
     if args.phase in ("scan", "all"):
         logger.info("=" * 70); logger.info("FASE 1 — scan")
         for i, r in enumerate(rows, start=1):
@@ -121,7 +102,6 @@ def main(argv=None) -> int:
                 res = {"id": pid, "scan_ok": False, "build_caminho": f"erro: {e}"}
             scan_results.append(res)
 
-    # ---------------- Fase 2: extracao (métricas + issues) ----------------
     if args.phase in ("extract", "all"):
         logger.info("=" * 70); logger.info("FASE 2 — métricas (component) + issues")
         for r in rows:
@@ -138,7 +118,6 @@ def main(argv=None) -> int:
             except ColetaError as e:
                 logger.error("[ABORT] %s", e); return 5
 
-        # Fase 4 inline: regras
         logger.info("=" * 70); logger.info("FASE 4 — regras_metadata")
         rule_keys = extracao.carregar_issues_acumulado(issues_dir)
         try:
@@ -149,13 +128,9 @@ def main(argv=None) -> int:
         except ColetaError as e:
             logger.error("[ABORT] %s", e); return 5
 
-    # ---------------- Fase 5: consolidação ----------------
     if args.phase in ("validate", "all"):
         logger.info("=" * 70); logger.info("FASE 5 — consolidação + validação")
 
-        # Detecta execução parcial: --only ou --limit ou rows < 35.
-        # Nesse caso, faz MERGE com consolidado.csv pré-existente para
-        # preservar projetos não processados nesta execução.
         parcial = bool(args.only) or bool(args.limit) or len(rows) < len(rows_full)
 
         if not metricas_por_id:
@@ -163,9 +138,6 @@ def main(argv=None) -> int:
                 pid = r["id"]
                 metricas_por_id[pid] = extracao.extrair_metricas(client, pid, logger)
 
-        # data_coleta para idade_snapshot_dias (§A13). Usa o nome do dir
-        # de saída (já é YYYY-MM-DD) — assim valor é consistente com onde
-        # o consolidado está escrito, mesmo se a coleta levar dias.
         consolidacao.montar_consolidado(
             rows, metricas_por_id,
             saida / "consolidado.csv", logger,
@@ -176,7 +148,6 @@ def main(argv=None) -> int:
         consolidacao.escrever_ambiente(saida, BASE_DIR, sonar_url, sonar_token,
                                        h, logger)
 
-        # Validação usa o n efetivo do CSV em disco, não o da execução
         n_total_disco = sum(1 for _ in (saida / "consolidado.csv").open(encoding="utf-8")) - 1
         if parcial and n_total_disco != len(rows_full):
             logger.warning("Execução parcial (%d/%d projetos). Validação completa "
@@ -196,7 +167,6 @@ def main(argv=None) -> int:
                 sum(issues_count.values()))
     logger.info("Tempo total: %.1fs", elapsed)
     return 0
-
 
 if __name__ == "__main__":
     sys.exit(main())

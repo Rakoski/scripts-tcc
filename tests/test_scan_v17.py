@@ -1,15 +1,4 @@
 #!/usr/bin/env python3
-"""Smoke tests para suporte v1.6/v1.7 (snapshot_type=head-of-main).
-
-Não usa pytest. Roda com: python3 tests/test_scan_v17.py
-
-Cobre:
-  - git_checkout em modo release-tag-pre-2026 (compat v1.5)
-  - git_checkout em modo head-of-main (v1.7 §A10.4)
-  - validações de input (snapshot_type inválido, campos obrigatórios)
-  - detectar_branch_principal (main, master, indeterminado)
-  - montar_consolidado: novas colunas v1.6 §A13 no CSV
-"""
 from __future__ import annotations
 
 import csv
@@ -23,9 +12,9 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO))
 
-from coleta_lib import consolidacao  # noqa: E402
-from coleta_lib.io_utils import ColetaError  # noqa: E402
-from coleta_lib.scan import (  # noqa: E402
+from coleta_lib import consolidacao
+from coleta_lib.io_utils import ColetaError
+from coleta_lib.scan import (
     SNAPSHOT_TYPE_HEAD, SNAPSHOT_TYPE_RELEASE_TAG,
     detectar_branch_principal, git_checkout,
 )
@@ -33,19 +22,13 @@ from coleta_lib.scan import (  # noqa: E402
 LOG = logging.getLogger("test_scan_v17")
 LOG.addHandler(logging.NullHandler())
 
-
-# ---------------- helpers ----------------
-
 def _git(cwd: Path, *args: str) -> str:
     r = subprocess.run(["git", *args], cwd=str(cwd),
                        capture_output=True, text=True, check=True)
     return r.stdout.strip()
 
-
 def _criar_repo_remote(tmp: Path, branch: str = "main",
                        com_tag: str | None = None) -> Path:
-    """Cria um repo bare 'remoto' com 1+ commits e opcionalmente uma tag.
-    Retorna o path do bare (.git)."""
     work = tmp / f"work-{branch}"
     work.mkdir()
     _git(work, "init", "-q", "-b", branch)
@@ -64,13 +47,9 @@ def _criar_repo_remote(tmp: Path, branch: str = "main",
     _git(work, "clone", "--bare", "-q", str(work), str(bare))
     return bare
 
-
 def _clonar(bare: Path, dest: Path) -> Path:
     _git(dest.parent, "clone", "-q", str(bare), dest.name)
     return dest
-
-
-# ---------------- testes git_checkout ----------------
 
 def test_git_checkout_release_tag():
     with tempfile.TemporaryDirectory() as td:
@@ -79,22 +58,18 @@ def test_git_checkout_release_tag():
         clone = _clonar(bare, tmp / "clone")
         sha = git_checkout(clone, "v1.0", LOG)
         assert len(sha) == 7, f"sha7 esperado, veio {sha!r}"
-        # confere que HEAD aponta para o commit da tag
         head = _git(clone, "rev-parse", "HEAD")
         tagged = _git(clone, "rev-list", "-n", "1", "v1.0")
         assert head == tagged, f"HEAD={head} ≠ tag={tagged}"
         print("  ✓ release-tag-pre-2026 (modo v1.5) faz checkout literal da tag")
-
 
 def test_git_checkout_head_of_main():
     with tempfile.TemporaryDirectory() as td:
         tmp = Path(td)
         bare = _criar_repo_remote(tmp, branch="main", com_tag="v1.0")
         clone = _clonar(bare, tmp / "clone")
-        # primeiro vai pra tag antiga
         git_checkout(clone, "v1.0", LOG)
         head_v1 = _git(clone, "rev-parse", "HEAD")
-        # agora pula pro HEAD do main via modo v1.7
         sha = git_checkout(clone, "", LOG,
                            snapshot_type=SNAPSHOT_TYPE_HEAD,
                            branch_principal="main")
@@ -104,7 +79,6 @@ def test_git_checkout_head_of_main():
         assert head_now == tip, f"HEAD={head_now} ≠ origin/main={tip}"
         assert head_now != head_v1, "checkout HEAD não avançou da tag"
         print("  ✓ head-of-main (modo v1.7) faz checkout de origin/<branch>")
-
 
 def test_git_checkout_head_aceita_master():
     with tempfile.TemporaryDirectory() as td:
@@ -120,14 +94,12 @@ def test_git_checkout_head_aceita_master():
         assert head == tip
         print("  ✓ head-of-main funciona com branch=master")
 
-
 def test_git_checkout_validacao_input():
     with tempfile.TemporaryDirectory() as td:
         tmp = Path(td)
         bare = _criar_repo_remote(tmp, branch="main", com_tag="v1.0")
         clone = _clonar(bare, tmp / "clone")
 
-        # 1) snapshot_type inválido
         try:
             git_checkout(clone, "v1.0", LOG, snapshot_type="bogus")
         except ColetaError as e:
@@ -135,7 +107,6 @@ def test_git_checkout_validacao_input():
         else:
             raise AssertionError("snapshot_type inválido deveria ter falhado")
 
-        # 2) head-of-main sem branch_principal
         try:
             git_checkout(clone, "", LOG, snapshot_type=SNAPSHOT_TYPE_HEAD,
                          branch_principal=None)
@@ -144,7 +115,6 @@ def test_git_checkout_validacao_input():
         else:
             raise AssertionError("head-of-main sem branch deveria ter falhado")
 
-        # 3) release-tag-pre-2026 sem tag
         try:
             git_checkout(clone, "", LOG,
                          snapshot_type=SNAPSHOT_TYPE_RELEASE_TAG)
@@ -155,9 +125,6 @@ def test_git_checkout_validacao_input():
 
         print("  ✓ validação rejeita 3 combinações inválidas")
 
-
-# ---------------- testes detectar_branch_principal ----------------
-
 def test_detectar_branch_principal_main():
     with tempfile.TemporaryDirectory() as td:
         tmp = Path(td)
@@ -165,7 +132,6 @@ def test_detectar_branch_principal_main():
         clone = _clonar(bare, tmp / "clone")
         assert detectar_branch_principal(clone, LOG) == "main"
         print("  ✓ detecta 'main' via symbolic-ref")
-
 
 def test_detectar_branch_principal_master():
     with tempfile.TemporaryDirectory() as td:
@@ -175,26 +141,21 @@ def test_detectar_branch_principal_master():
         assert detectar_branch_principal(clone, LOG) == "master"
         print("  ✓ detecta 'master' via symbolic-ref")
 
-
 def test_detectar_branch_principal_fallback_show_ref():
-    """Quando origin/HEAD não está setado, fallback varre main/master."""
     with tempfile.TemporaryDirectory() as td:
         tmp = Path(td)
         bare = _criar_repo_remote(tmp, branch="main")
         clone = _clonar(bare, tmp / "clone")
-        # remove symbolic-ref para forçar fallback
         subprocess.run(["git", "symbolic-ref", "--delete",
                         "refs/remotes/origin/HEAD"], cwd=str(clone), check=True)
         assert detectar_branch_principal(clone, LOG) == "main"
         print("  ✓ fallback show-ref encontra 'main' quando symbolic-ref ausente")
-
 
 def test_detectar_branch_principal_falha():
     with tempfile.TemporaryDirectory() as td:
         tmp = Path(td)
         bare = _criar_repo_remote(tmp, branch="custom-default")
         clone = _clonar(bare, tmp / "clone")
-        # remove symbolic-ref + qualquer ref main/master (nenhum existe aqui)
         subprocess.run(["git", "symbolic-ref", "--delete",
                         "refs/remotes/origin/HEAD"], cwd=str(clone), check=False)
         try:
@@ -205,20 +166,15 @@ def test_detectar_branch_principal_falha():
             return
         raise AssertionError("deveria ter levantado ColetaError")
 
-
-# ---------------- teste consolidacao ----------------
-
 def test_montar_consolidado_inclui_novos_campos():
     with tempfile.TemporaryDirectory() as td:
         tmp = Path(td)
         rows = [
-            # N=34 retroativo: campos novos ausentes na planilha → defaults
             {"id": "apache-foo-99", "nome": "foo", "empresa": "Apache",
              "arquetipo": "apache", "status": "ativo",
              "tag": "v1.0", "commit_sha": "abc1234",
              "data_commit": "2025-12-02", "idade_anos": "5",
              "contribuidores": "10", "loc_total": "1000", "loc_java": "900"},
-            # N=30 v1.6: snapshot head-of-main com branch declarado
             {"id": "google-bar-50", "nome": "bar", "empresa": "Google",
              "arquetipo": "google", "status": "ativo",
              "tag": "HEAD-on-main-2026-05-24", "commit_sha": "def5678",
@@ -245,27 +201,21 @@ def test_montar_consolidado_inclui_novos_campos():
         retro = next(r for r in out if r["id"] == "apache-foo-99")
         novo = next(r for r in out if r["id"] == "google-bar-50")
 
-        # N=34 retroativo: defaults aplicados
         assert retro["snapshot_type"] == "release-tag-pre-2026"
         assert retro["subconjunto"] == "n34-v1.5"
         assert retro["branch_principal"] == ""
-        # 2025-12-02 → 2026-05-24
         assert retro["idade_snapshot_dias"] == "173", \
             f"idade esperada=173, veio={retro['idade_snapshot_dias']!r}"
 
-        # N=30 v1.6
         assert novo["snapshot_type"] == "head-of-main"
         assert novo["branch_principal"] == "main"
         assert novo["subconjunto"] == "n30-v1.6"
-        # 2026-05-20 → 2026-05-24
         assert novo["idade_snapshot_dias"] == "4"
 
         print("  ✓ consolidado.csv inclui snapshot_type, branch_principal, "
               "idade_snapshot_dias, subconjunto (com defaults retroativos)")
 
-
 def test_montar_consolidado_idade_sem_data_coleta():
-    """data_coleta=None ⇒ idade fica vazia (não quebra)."""
     with tempfile.TemporaryDirectory() as td:
         tmp = Path(td)
         rows = [{"id": "x", "nome": "x", "empresa": "Apache",
@@ -277,9 +227,6 @@ def test_montar_consolidado_idade_sem_data_coleta():
             out = list(csv.DictReader(f))
         assert out[0]["idade_snapshot_dias"] == ""
         print("  ✓ idade_snapshot_dias vazio quando data_coleta=None")
-
-
-# ---------------- runner ----------------
 
 def main() -> int:
     testes = [
@@ -311,7 +258,6 @@ def main() -> int:
         return 1
     print(f"OK: {len(testes)}/{len(testes)} passaram")
     return 0
-
 
 if __name__ == "__main__":
     sys.exit(main())

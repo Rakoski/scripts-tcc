@@ -1,34 +1,4 @@
 #!/usr/bin/env python3
-"""Valida candidatos de candidatos_expansao_v1.6.csv contra os 6 critérios
-objetivos do protocolo (§A5 / seleção amostral).
-
-Critérios (do protocolo):
-  C1. Linguagem: >= 70% Java via endpoint /languages (bytes).
-  C2. Tamanho: 10k <= NCLOC <= 1M (aproximação: tamanho Java em bytes / 30,
-      sendo 30 ~ média de bytes-por-linha Java; serve como heurística).
-  C3. Idade: >= 3 anos entre o primeiro commit e 2026-01-01
-      (aproximação: usa created_at do repo).
-  C4. Contribuidores: >= 25 distintos (via Link rel=last no /contributors).
-  C5. Release: >= 1 tag estável (não prerelease/draft) com published_at
-      anterior a 2026-01-01.
-  C6. Build: Maven OU Gradle na raiz (presença de pom.xml, build.gradle,
-      build.gradle.kts ou settings.gradle). Bazel-only é REPROVADO; outros
-      sistemas (sbt, make, etc.) também. Verificado via /contents/ na raiz.
-
-Limitações conhecidas:
-  - NCLOC é estimado por bytes_Java/30 (heurística — pode errar perto dos
-    limites de 10k/1M, mas confiável fora deles).
-  - Idade usa created_at do repo; repos importados/migrados podem ter
-    created_at posterior ao primeiro commit real.
-  - Contribuidores via Link rel=last vai até 500 (limite da API); para o
-    threshold >=25 não afeta, mas o número exato fica subestimado.
-  - C6 só checa presença de arquivo na raiz: monorepos com pom.xml em
-    subdiretórios podem dar falso-negativo.
-
-Uso:
-  python3 validar_candidatos_v17.py [csv_entrada [csv_saida]]
-  Defaults: candidatos_expansao_v1.6.csv → validacao_candidatos_v17.csv
-"""
 from __future__ import annotations
 
 import csv
@@ -52,14 +22,13 @@ GITHUB_API = "https://api.github.com"
 SLEEP_ENTRE_REQUESTS = 0.3
 RATE_LIMIT_MINIMO = 100
 
-# Limites do protocolo
 MIN_JAVA_PCT = 70.0
 MIN_NCLOC = 10_000
 MAX_NCLOC = 1_000_000
 MIN_IDADE_ANOS = 3.0
 MIN_CONTRIBUIDORES = 25
 DATA_CORTE = datetime(2026, 1, 1, tzinfo=timezone.utc)
-BYTES_POR_LINHA_JAVA = 30  # heurística para estimar NCLOC
+BYTES_POR_LINHA_JAVA = 30
 
 OUT_COLS = [
     "arquetipo", "full_name", "stars", "size_kb",
@@ -84,7 +53,6 @@ BUILD_FILES: list[tuple[str, str]] = [
     ("MODULE.bazel", "bazel"),
 ]
 
-
 def setup_logger() -> logging.Logger:
     logger = logging.getLogger("validar_v17")
     logger.handlers.clear()
@@ -100,7 +68,6 @@ def setup_logger() -> logging.Logger:
     logger.addHandler(sh)
     return logger
 
-
 def carregar_token() -> str:
     valores = dotenv_values(ENV_PATH) if ENV_PATH.exists() else {}
     token = (valores.get("GITHUB_TOKEN") or "").strip().strip('"').strip("'")
@@ -108,9 +75,7 @@ def carregar_token() -> str:
         raise SystemExit("GITHUB_TOKEN ausente em scripts-tcc/.env")
     return token
 
-
 def ja_no_v17() -> set[str]:
-    """Conjunto de URLs (lower) dos repos já presentes em clones_v17.csv."""
     if not CLONES_CSV.exists():
         return set()
     out: set[str] = set()
@@ -118,14 +83,11 @@ def ja_no_v17() -> set[str]:
         for row in csv.DictReader(f):
             url = (row.get("url") or "").strip().lower()
             if url:
-                # normaliza p/ comparar com html_url do candidatos
                 out.add(url.rstrip("/"))
     return out
 
-
 def gh_get(caminho: str, params: dict, token: str,
            logger: logging.Logger) -> requests.Response | None:
-    """GET autenticado com retry simples (3 tentativas). Retorna None em erro."""
     url = f"{GITHUB_API}{caminho}"
     headers = {
         "Authorization": f"token {token}",
@@ -135,7 +97,6 @@ def gh_get(caminho: str, params: dict, token: str,
     for tentativa in range(1, 4):
         try:
             resp = requests.get(url, headers=headers, params=params, timeout=30)
-            # checa rate limit
             rl = resp.headers.get("X-RateLimit-Remaining")
             if rl is not None and int(rl) < RATE_LIMIT_MINIMO:
                 logger.warning("rate limit baixo (%s) — parando", rl)
@@ -149,16 +110,12 @@ def gh_get(caminho: str, params: dict, token: str,
     logger.error("falhou 3x em %s", url)
     return None
 
-
 def parse_last_page(link_header: str | None) -> int | None:
-    """Extrai o número da última página do header Link do GitHub."""
     if not link_header:
         return None
-    # formato: <https://...&page=42>; rel="last", <...>; rel="next"
     for parte in link_header.split(","):
         if 'rel="last"' in parte:
             url = parte.strip().split(";")[0].strip().strip("<>")
-            # extrai page=N
             for kv in url.split("?", 1)[-1].split("&"):
                 if kv.startswith("page="):
                     try:
@@ -167,10 +124,8 @@ def parse_last_page(link_header: str | None) -> int | None:
                         return None
     return None
 
-
 def checar_linguagem(full_name: str, token: str,
                      logger: logging.Logger) -> tuple[float, int]:
-    """Retorna (java_pct, java_bytes). (0, 0) se falhar."""
     resp = gh_get(f"/repos/{full_name}/languages", {}, token, logger)
     if resp is None or resp.status_code != 200:
         return 0.0, 0
@@ -182,10 +137,8 @@ def checar_linguagem(full_name: str, token: str,
     java = data.get("Java", 0)
     return java * 100.0 / total, java
 
-
 def checar_contribuidores(full_name: str, token: str,
                           logger: logging.Logger) -> int:
-    """Retorna número de contribuidores (inclui anônimos). 0 se falhar."""
     resp = gh_get(f"/repos/{full_name}/contributors",
                   {"per_page": 1, "anon": 1}, token, logger)
     if resp is None or resp.status_code != 200:
@@ -193,17 +146,14 @@ def checar_contribuidores(full_name: str, token: str,
     last = parse_last_page(resp.headers.get("Link"))
     if last is not None:
         return last
-    # sem header Link → 0 ou 1 contribuidor
     try:
         data = resp.json()
         return len(data) if isinstance(data, list) else 0
     except ValueError:
         return 0
 
-
 def checar_repo(full_name: str, token: str,
                 logger: logging.Logger) -> tuple[str, float]:
-    """Retorna (created_at_iso, idade_em_anos). ('', 0) se falhar."""
     resp = gh_get(f"/repos/{full_name}", {}, token, logger)
     if resp is None or resp.status_code != 200:
         return "", 0.0
@@ -221,10 +171,8 @@ def checar_repo(full_name: str, token: str,
     delta = DATA_CORTE - dt
     return created, delta.days / 365.25
 
-
 def checar_release_estavel(full_name: str, token: str,
                            logger: logging.Logger) -> bool:
-    """True se houver release não-prerelease/não-draft published_at < 2026-01-01."""
     resp = gh_get(f"/repos/{full_name}/releases",
                   {"per_page": 30}, token, logger)
     if resp is None or resp.status_code != 200:
@@ -249,15 +197,8 @@ def checar_release_estavel(full_name: str, token: str,
             return True
     return False
 
-
 def checar_build_tool(full_name: str, token: str,
                       logger: logging.Logger) -> str:
-    """Identifica build system pela presença de arquivo na raiz.
-
-    Ordem de prioridade: maven > gradle > bazel > outro. Se ambos maven
-    e gradle existirem, retorna 'maven+gradle'. Bazel só é reportado se
-    nenhum dos dois principais estiver presente.
-    """
     encontrados: set[str] = set()
     for path, tipo in BUILD_FILES:
         resp = gh_get(f"/repos/{full_name}/contents/{path}", {}, token, logger)
@@ -273,7 +214,6 @@ def checar_build_tool(full_name: str, token: str,
     if "bazel" in encontrados:
         return "bazel"
     return "outro"
-
 
 def validar(row: dict, token: str, ja_clonados: set[str],
             logger: logging.Logger) -> dict:
@@ -328,7 +268,6 @@ def validar(row: dict, token: str, ja_clonados: set[str],
         "observacao": "",
     }
 
-
 def imprimir_resumo(resultados: list[dict], logger: logging.Logger) -> None:
     logger.info("=" * 70)
     logger.info("RESUMO POR ARQUÉTIPO (apenas APROVADOS e NÃO já em v17)")
@@ -339,7 +278,6 @@ def imprimir_resumo(resultados: list[dict], logger: logging.Logger) -> None:
     for arq in sorted(por_arq):
         candidatos = [r for r in por_arq[arq]
                       if r["aprovado"] == "sim" and r["ja_na_v17"] == "nao"]
-        # ordena por stars desc
         candidatos.sort(key=lambda r: int(r.get("stars") or 0), reverse=True)
         logger.info("[%s] %d aprovados disponíveis (não-v17):",
                     arq, len(candidatos))
@@ -347,7 +285,6 @@ def imprimir_resumo(resultados: list[dict], logger: logging.Logger) -> None:
             logger.info("  %-50s stars=%5s java=%5s%% ncloc≈%7d contribs=%4d",
                         r["full_name"], r["stars"], r["java_pct"],
                         r["ncloc_est"], r["contribuidores"])
-
 
 def main() -> int:
     logger = setup_logger()
@@ -392,7 +329,6 @@ def main() -> int:
     logger.info("CSV: %s", out_csv)
     imprimir_resumo(resultados, logger)
     return 0
-
 
 if __name__ == "__main__":
     sys.exit(main())

@@ -2,8 +2,8 @@
 
 set -euo pipefail
 
-BASE_DIR="/home/mateus/Documentos/artigos-tcc/repos/tcc"
-SCRIPTS_DIR="$BASE_DIR/scripts-tcc"
+SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BASE_DIR="$(dirname "$SCRIPTS_DIR")"
 CSV_FILE="$SCRIPTS_DIR/projetos-tcc-dataset-3.csv"
 SONAR_URL="${SONAR_URL:-http://localhost:9000}"
 SONAR_TOKEN="${SONAR_TOKEN:-sqa_0c5cfbfcb1d5613b1743f31698aa8580a746d83f}"
@@ -26,17 +26,10 @@ if [[ ! -f "$CSV_FILE" ]]; then
     exit 1
 fi
 
-
 if ! curl -sf "$SONAR_URL/api/system/status" -u "$SONAR_TOKEN:" > /dev/null 2>&1; then
     echo "[ERRO] SonarQube não acessível em $SONAR_URL" >&2
     exit 1
 fi
-
-
-
-
-
-
 
 mapfile -t LINHAS < <(python3 - "$CSV_FILE" <<'PY'
 import csv, sys
@@ -68,7 +61,6 @@ echo "Linhas elegíveis: ${#LINHAS[@]}"
 [[ "$DRY_RUN" == true ]] && echo "MODO: DRY-RUN (nada será apagado)" || echo "MODO: APAGAR"
 echo "============================================"
 
-
 divergiu=0
 for entry in "${LINHAS[@]}"; do
     IFS=$'\t' read -r pid spk arq div <<< "$entry"
@@ -78,7 +70,6 @@ for entry in "${LINHAS[@]}"; do
     fi
 done
 [[ "$divergiu" -gt 0 ]] && echo "[INFO] $divergiu divergências; id é a chave canônica."
-
 
 if [[ "$DRY_RUN" == false && "$YES" == false ]]; then
     echo ""
@@ -93,7 +84,6 @@ fi
 apagados=0
 falhas=0
 nao_encontrados=0
-
 
 projeto_existe() {
     local key="$1"
@@ -119,7 +109,6 @@ for entry in "${LINHAS[@]}"; do
         continue
     fi
 
-    
     response=$(curl -s -o /tmp/sonar_delete_resp.$$ -w "%{http_code}" \
         -X POST -u "$SONAR_TOKEN:" \
         --data-urlencode "project=$pid" \

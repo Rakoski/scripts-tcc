@@ -1,21 +1,3 @@
-"""Fases 2-4 — métricas (component), issues (search paginado), regras (rules/show).
-
-Issues são coletadas com segmentação em cascata para contornar o limite duro
-de 10000 itens por consulta da API Sonar:
-
-  1. por `type` (CODE_SMELL/BUG/VULNERABILITY);
-  2. se ainda truncar, por `severity` individual (BLOCKER/CRITICAL/MAJOR/MINOR/INFO);
-  3. se uma severity isolada ainda truncar, recursão temporal via
-     createdAfter/createdBefore (halving da janela até <10000 por bucket);
-  4. se a recursão temporal exceder TEMPORAL_MAX_DEPTH (gigantes como kafka,
-     flink, camel), a coleta segue como PARCIAL: salva o que conseguiu coletar,
-     marca o arquivo com `parciais: true`, e a análise estatística usa as
-     contagens agregadas de /api/measures/component (sempre completas, sem
-     limite de paginação).
-
-A tese de TCC usa apenas métricas agregadas; issues individuais são apoio à
-análise exploratória. Por isso paginação incompleta NÃO bloqueia o estudo.
-"""
 from __future__ import annotations
 
 import json
@@ -42,13 +24,8 @@ SONAR_PAGINATION_CAP = 10_000
 ISSUE_TYPES = ["CODE_SMELL", "BUG", "VULNERABILITY"]
 INDIVIDUAL_SEVERITIES = ["BLOCKER", "CRITICAL", "MAJOR", "MINOR", "INFO"]
 
-# Recursão temporal: profundidade máxima e janela inicial. 2^5 = 32 buckets
-# por severity é mais que suficiente para projetos com históricos longos
-# (kafka, flink, camel). Janela inicial cobre histórico de qualquer projeto
-# de software contemporâneo.
 TEMPORAL_MAX_DEPTH = 5
 TEMPORAL_INITIAL_AFTER = "2000-01-01"
-
 
 def extrair_metricas(client: SonarClient, project_key: str,
                      logger: logging.Logger) -> dict:
@@ -69,7 +46,6 @@ def extrair_metricas(client: SonarClient, project_key: str,
     out: dict[str, str] = {}
     for m in measures:
         out[m["metric"]] = m.get("value", "")
-    # parse loc_java
     dist = out.get("ncloc_language_distribution", "")
     loc_java = ""
     if dist:
@@ -80,15 +56,9 @@ def extrair_metricas(client: SonarClient, project_key: str,
     out["loc_java_sonar"] = loc_java
     return out
 
-
 def _paginar_issues(client: SonarClient, project_key: str,
                     params_extra: dict, logger: logging.Logger
                     ) -> tuple[list[dict], bool]:
-    """Pagina /api/issues/search com filtros adicionais.
-
-    Retorna (lista_de_issues, truncated_bool). truncated=True só quando
-    paging.total > SONAR_PAGINATION_CAP (i.e. existem issues além das 10k
-    que a API se recusa a paginar)."""
     todas: list[dict] = []
     page = 1
     truncated = False
@@ -125,21 +95,12 @@ def _paginar_issues(client: SonarClient, project_key: str,
         time.sleep(ISSUE_RATE_LIMIT_SLEEP)
     return todas, truncated
 
-
 def _segmentar_temporalmente(client: SonarClient, project_key: str,
                              base_params: dict, label: str,
                              after_iso: str, before_iso: str,
                              depth: int,
                              logger: logging.Logger
                              ) -> tuple[list[dict], bool]:
-    """Halving recursivo da janela createdAfter..createdBefore enquanto truncar.
-    Semântica Sonar: createdAfter inclusivo, createdBefore exclusivo →
-    intervalos [after, mid) e [mid, before) são disjuntos.
-
-    Retorna (issues, parcial). parcial=True quando profundidade máxima foi
-    atingida ou a janela ficou diária e ainda truncava — nesses casos,
-    devolve as primeiras 10000 issues que a API liberou e marca a flag para
-    o caller usar contagem agregada de /api/measures/component."""
     params = dict(base_params)
     params["createdAfter"] = after_iso
     params["createdBefore"] = before_iso
@@ -178,7 +139,6 @@ def _segmentar_temporalmente(client: SonarClient, project_key: str,
                                      label, mid_iso, before_iso, depth + 1, logger)
     return a + b, (pa or pb)
 
-
 def _agregado_int(metricas: dict | None, chave: str) -> int:
     v = (metricas or {}).get(chave, "")
     try:
@@ -186,18 +146,9 @@ def _agregado_int(metricas: dict | None, chave: str) -> int:
     except (ValueError, TypeError):
         return 0
 
-
 def extrair_issues(client: SonarClient, project_key: str,
                    issues_dir: Path, logger: logging.Logger,
                    metricas: dict | None = None) -> int:
-    """Coleta com cascata type → severity individual → recursão temporal.
-
-    Se a recursão temporal atinge TEMPORAL_MAX_DEPTH (gigantes tipo Kafka),
-    coleta segue como PARCIAL: salva o que conseguiu pegar com `parciais: true`
-    e logs apontam para uso da contagem agregada de /api/measures/component.
-    Não levanta exceção — análise estatística usa métricas agregadas (sempre
-    completas) e a paginação é apoio à exploração.
-    """
     issues_dir.mkdir(parents=True, exist_ok=True)
     todas: list[dict] = []
     contagens: dict[str, int] = {}
@@ -286,12 +237,9 @@ def extrair_issues(client: SonarClient, project_key: str,
                     len(todas))
     return len(todas)
 
-
 def coletar_regras_metadata(client: SonarClient, todas_rule_keys: set[str],
                             saida_path: Path,
                             logger: logging.Logger) -> dict:
-    """Carrega metadata existente (se houver), atualiza com regras novas,
-    grava merge. Idempotente para retomadas e --only/--limit."""
     out: dict[str, dict] = {}
     if saida_path.exists():
         try:
@@ -335,9 +283,7 @@ def coletar_regras_metadata(client: SonarClient, todas_rule_keys: set[str],
                 len(out), len(a_buscar))
     return out
 
-
 def carregar_issues_acumulado(issues_dir: Path) -> set[str]:
-    """Acumula rule_keys de todos os issues/{id}.json existentes."""
     out: set[str] = set()
     for p in issues_dir.glob("*.json"):
         try:

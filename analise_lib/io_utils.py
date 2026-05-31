@@ -1,4 +1,3 @@
-"""Carregamento, validação e logging."""
 from __future__ import annotations
 
 import hashlib
@@ -22,10 +21,8 @@ COLUNAS_OBRIGATORIAS = [
     "duplicated_lines_density", "comment_lines_density",
 ]
 
-
 class ValidationError(RuntimeError):
-    """Erro de validação na entrada — aborta sem fallback."""
-
+    pass
 
 def setup_logger(log_path: Path) -> logging.Logger:
     log_path.parent.mkdir(parents=True, exist_ok=True)
@@ -50,9 +47,7 @@ def setup_logger(log_path: Path) -> logging.Logger:
 
     return logger
 
-
 def parse_effort_minutes(s: object) -> int:
-    """Aceita "30min", "2h", "1d" (8h), "1h30min", inteiros, ou None."""
     if s is None or (isinstance(s, float) and pd.isna(s)):
         return 0
     if isinstance(s, (int,)):
@@ -74,7 +69,6 @@ def parse_effort_minutes(s: object) -> int:
         elif unit in ("min", "m"):
             total += amount
     return total
-
 
 def carregar_consolidado(data_dir: Path, logger: logging.Logger) -> pd.DataFrame:
     csv_path = data_dir / "consolidado.csv"
@@ -122,7 +116,6 @@ def carregar_consolidado(data_dir: Path, logger: logging.Logger) -> pd.DataFrame
                 df["densidade_divida"].max())
     return df
 
-
 def carregar_issues(data_dir: Path, projeto_ids: list[str],
                     logger: logging.Logger) -> dict[str, pd.DataFrame]:
     issues_dir = data_dir / "issues"
@@ -156,7 +149,6 @@ def carregar_issues(data_dir: Path, projeto_ids: list[str],
                 len(out), len(projeto_ids))
     return out
 
-
 def carregar_regras_metadata(data_dir: Path,
                              logger: logging.Logger) -> dict[str, dict]:
     path = data_dir / "regras_metadata.json"
@@ -170,14 +162,12 @@ def carregar_regras_metadata(data_dir: Path,
     logger.info("regras_metadata.json: %d regras", len(meta))
     return meta
 
-
 def carregar_ambiente(data_dir: Path, logger: logging.Logger) -> str:
     path = data_dir / "ambiente.txt"
     if not path.exists():
         logger.warning("ambiente.txt ausente — relatório sem cabeçalho de ambiente")
         return "(ambiente.txt ausente)"
     return path.read_text(encoding="utf-8")
-
 
 def hash_arquivo(path: Path) -> str:
     if not path.exists():
@@ -187,7 +177,6 @@ def hash_arquivo(path: Path) -> str:
         for chunk in iter(lambda: f.read(8192), b""):
             h.update(chunk)
     return h.hexdigest()
-
 
 def calcular_idade_snapshot(df: pd.DataFrame, data_coleta: str,
                             logger: logging.Logger) -> pd.DataFrame:
@@ -205,7 +194,6 @@ def calcular_idade_snapshot(df: pd.DataFrame, data_coleta: str,
                 int(df["idade_snapshot_dias"].median()), data_coleta)
     return df
 
-
 def garantir_arvore_saida(data_dir: Path) -> dict[str, Path]:
     base = data_dir / "analise"
     paths = {
@@ -216,7 +204,6 @@ def garantir_arvore_saida(data_dir: Path) -> dict[str, Path]:
     for p in paths.values():
         p.mkdir(parents=True, exist_ok=True)
     return paths
-
 
 def now_iso() -> str:
     return datetime.now().isoformat(timespec="seconds")

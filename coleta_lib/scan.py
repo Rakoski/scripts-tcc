@@ -1,16 +1,3 @@
-"""Fase 1 — checkout + análise Sonar via plugins nativos (mvn sonar:sonar / gradle sonar).
-
-Estratégia:
-- Maven  → uma única invocação `mvn package sonar:sonar` para que o plugin
-  Maven autodescubra `target/classes/` e injete em `sonar.java.binaries`.
-- Gradle → `./gradlew assemble sonar` com init-script (`sonar_init.gradle`)
-  que aplica o plugin SonarQube a todos os subprojetos.
-- Sem build file → `sonar-scanner` standalone com detecção de binários
-  pré-existentes (target/classes, build/classes/java/main, etc.); se não
-  houver `.class`, exclui Java da análise (modo degradado declarado).
-
-Fallbacks §7.2: JDK 17 → JDK declarado → standalone-degradado.
-"""
 from __future__ import annotations
 
 import logging
@@ -23,9 +10,6 @@ from pathlib import Path
 
 from .io_utils import ColetaError, ProjetoError, SonarClient
 
-# Ordem estrita de tentativa: mais recente primeiro. Razão: projetos modernos
-# (Gradle 9+, NullAway) exigem JDK 21+ para *rodar* o build tool, mesmo que
-# declarem sourceCompatibility=11. Detectar declaração não basta.
 JDK_FALLBACK_ORDER: list[int] = [21, 17, 11, 8]
 
 JDK_FALLBACKS: dict[int, str] = {
@@ -35,10 +19,7 @@ JDK_FALLBACKS: dict[int, str] = {
     21: "/usr/lib/jvm/temurin-21-jdk-amd64",
 }
 
-
 def _primeiro_jdk_disponivel() -> str:
-    """JDK genérico para tarefas que não dependem da versão (ex.: scanner
-    standalone). Mais recente primeiro."""
     for v in JDK_FALLBACK_ORDER:
         p = jdk_path_para(v)
         if p:
@@ -51,20 +32,12 @@ EXCLUSIONS = (
     "**/test/data/**,**/testdata/**,**/.git/**,**/node_modules/**"
 )
 
-# Exclusões aplicadas quando o scanner standalone usa src/main detectado.
-# Inclui **/test/** e **/tests/** pois sonar.sources passa a apontar para
-# diretórios concretos (não mais o repo inteiro): qualquer src/test/** que
-# eventualmente case com o glob de detecção precisa ficar fora da análise
-# para manter paridade com Maven/Gradle (apenas source set main).
 STANDALONE_EXCLUSIONS = (
     "**/test/**,**/tests/**,**/build/**,**/target/**,**/out/**,**/buildSrc/**,"
     "**/examples/**,**/example/**,**/samples/**,**/sample/**,"
     "**/.git/**,**/node_modules/**"
 )
 
-# Init-script unificado. Inclui AGP no classpath + afterEvaluate que pula
-# sub-projetos Android (NullAway, Dagger). Projetos sem Android ignoram AGP
-# sem custo; o único overhead é ~50MB no cache do Gradle (uma vez).
 GRADLE_INIT_SCRIPT = "sonar_init.gradle"
 
 BINARY_PATTERNS = [
@@ -73,58 +46,34 @@ BINARY_PATTERNS = [
     "**/build/classes/main",
     "**/build/classes",
     "**/out/production/classes",
-    "**/output/classes",  # Tomcat (Ant)
+    "**/output/classes",
 ]
 
-# Mapping projetos Ant → diretório de output esperado.
-# Confirmar empiricamente quando rodar.
 ANT_OUTPUT_DEFAULTS = {
     "cassandra": "build/classes/main",
     "tomcat":    "output/classes",
 }
 
-# Pipeline de invocações Ant por projeto. Cada elemento da lista externa
-# é uma chamada `ant <args...>` separada (Tomcat exige duas: download-compile
-# antes de deploy). Projetos não-mapeados usam ["build"] como default.
 ANT_BUILD_PIPELINE: dict[str, list[list[str]]] = {
     "cassandra": [["build"]],
     "tomcat":    [["download-compile"], ["deploy"]],
 }
 
-# Diretórios de build a limpar antes de cada tentativa de Ant (por JDK).
-# Razão: build parcial cached pode levar o scanner a pegar .class antigos
-# via glob de binários e mascarar uma falha de build como sucesso.
 ANT_BUILD_DIRS_TO_CLEAN: dict[str, list[str]] = {
     "apache-cassandra-04": ["build"],
     "apache-tomcat-01":    ["output"],
 }
 
-# Override de sonar.sources para projetos cuja estrutura não segue o layout
-# Maven (src/main/java). Comparabilidade da amostra exige analisar apenas o
-# código de produção principal — testes, exemplos e webapps de demonstração
-# ficam de fora via STANDALONE_EXCLUSIONS. Paths são relativos ao repo.
 SOURCE_PATHS_PROJETOS: dict[str, list[str]] = {
     "apache-cassandra-04": ["src/java"],
     "apache-tomcat-01":    ["java"],
 }
 
-# Targets Bazel customizados por projeto. Default é "//..." que funciona
-# em projetos Bazel "puros" (flogger, copybara). Projetos com macros
-# internas do Google ou monorepos quebrados via OSS precisam target
-# reduzido. Validado manualmente antes de hardcode.
 BAZEL_TARGETS_OVERRIDE: dict[str, list[str]] = {
-    # j2cl: //... falha por kotlin_and_j2cl_library / junit_test_suites.bzl
-    # (macros internas Google ausentes no repo público). //transpiler/java/...
-    # compila em ~125s e gera JARs com o código principal do projeto.
     "google-j2cl-18": ["//transpiler/java/..."],
 }
 
-# Dirs típicos de código de produção em projetos Bazel Google. Layout
-# canônico: `java/` ou `src/main/java/` na raiz, ou múltiplos `*/java/`
-# subdirs. Cada caminho é relativo ao repo. Excluímos `javatests/` e
-# `*/javatests/` (testes, paridade com Maven/Gradle main-only).
 BAZEL_SOURCE_HINTS: dict[str, list[str]] = {
-    # j2cl: múltiplos source roots em subdirs convencionais
     "google-j2cl-18": [
         "transpiler/java",
         "tools/java",
@@ -134,25 +83,11 @@ BAZEL_SOURCE_HINTS: dict[str, list[str]] = {
     ],
 }
 
-
-# Patches aplicados pós-checkout, antes de qualquer build. Mudanças
-# pontuais em build files para contornar incompatibilidades declaradas
-# (ex.: cadence-java-client v3.12.4 tem Thrift compiler/runtime mismatch
-# corrigido por bump de libthrift em build.gradle). Scripts ficam em
-# scripts-tcc/patches/ versionados para auditabilidade e reprodutibilidade.
 PATCHES_POST_CHECKOUT: dict[str, str] = {
     "uber-cadence-java-client-05": "cadence-libthrift.sh",
-    # tsunami: Gradle 8.10 detecta implicit-dep não-declarada entre
-    # :tsunami-proto:generateProto e :tsunami-proto:javadocJar.
-    # Solução: desativar withJavadocJar() na config de subprojects.
     "google-tsunami-14": "tsunami-skip-javadocjar.sh",
-    # genie: (1) gradle-daemon-jvm.properties exige toolchainVendor estrito
-    # (azul/adoptium) que pode não casar com o JDK do ambiente; (2) :genie-ui
-    # depende de npm 5.8.0 quebrado. Patch remove a linha vendor e desliga
-    # as deps npmInstall/bundle (Java do :genie-ui continua compilando).
     "netflix-genie-12": "genie-skip-vendor-and-ui-npm.sh",
 }
-
 
 def _run(cmd: list[str], cwd: Path, env: dict, log_path: Path,
          timeout: int = 2400) -> int:
@@ -169,27 +104,16 @@ def _run(cmd: list[str], cwd: Path, env: dict, log_path: Path,
             f.write(f"\n[TIMEOUT após {timeout}s]\n")
             return 124
 
-
 def detectar_build(repo: Path) -> tuple[str, str | None]:
-    """Retorna (build_type, pom_filename_se_nao_padrao).
-
-    pom_filename é None exceto para Maven com pom não-padrão (build-pom.xml,
-    parent-pom.xml), caso em que precisa ser passado via `mvn -f`.
-    """
     for special in ("build-pom.xml", "parent-pom.xml"):
         if (repo / special).exists():
             return "maven", special
     if (repo / "pom.xml").exists():
         return "maven", None
-    # Inclui settings.gradle{.kts} para projetos multi-módulo cuja raiz só
-    # declara settings e delega o build aos sub-módulos (ex.: Dagger).
     for marker in ("build.gradle", "build.gradle.kts",
                    "settings.gradle", "settings.gradle.kts"):
         if (repo / marker).exists():
             return "gradle", None
-    # Bazel: detectado por MODULE.bazel ou WORKSPACE; BUILD na raiz como
-    # último indicador (para projetos Bazel antigos sem MODULE/WORKSPACE
-    # explícitos).
     for marker in ("MODULE.bazel", "WORKSPACE", "WORKSPACE.bazel"):
         if (repo / marker).exists():
             return "bazel", None
@@ -199,7 +123,6 @@ def detectar_build(repo: Path) -> tuple[str, str | None]:
     if (repo / "build.xml").exists():
         return "ant", None
     return "scanner", None
-
 
 def detectar_jdk_declarado(repo: Path) -> int | None:
     pom = repo / "pom.xml"
@@ -236,7 +159,6 @@ def detectar_jdk_declarado(repo: Path) -> int | None:
                 pass
     return None
 
-
 def jdk_path_para(versao: int | None) -> str | None:
     if versao is None:
         return None
@@ -245,25 +167,18 @@ def jdk_path_para(versao: int | None) -> str | None:
         return cand
     return None
 
-
 def env_com_jdk(jdk_home: str) -> dict:
     env = os.environ.copy()
     env["JAVA_HOME"] = jdk_home
     env["PATH"] = f"{jdk_home}/bin:" + env.get("PATH", "")
     env.setdefault("SONAR_SCANNER_OPTS", "-Xss64m -Xmx4g")
-    # Garantir falha rápida em vez de prompt interativo quando build puxa
-    # deps via Git SSH/HTTPS sem credenciais (caso cadence-java-client-05,
-    # que travou 40min no prompt 'Enter passphrase for key id_rsa'). Coleta
-    # científica reproducible não pode depender de chave SSH local.
     env["GIT_TERMINAL_PROMPT"] = "0"
     env["GIT_SSH_COMMAND"] = "ssh -o BatchMode=yes -o StrictHostKeyChecking=no"
     env["GRADLE_OPTS"] = (env.get("GRADLE_OPTS", "")
                           + " -Dorg.gradle.console=plain").strip()
     return env
 
-
 def find_java_binaries(repo: Path) -> str:
-    """Localiza diretórios de bytecode pré-compilados. Vazio se nenhum."""
     found: list[str] = []
     for pat in BINARY_PATTERNS:
         for d in repo.glob(pat):
@@ -271,17 +186,7 @@ def find_java_binaries(repo: Path) -> str:
                 found.append(str(d.resolve()))
     return ",".join(found)
 
-
 def find_main_sources(repo: Path, project_key: str | None = None) -> str:
-    """Localiza diretórios de código de produção. CSV de absolutos; vazio se nenhum.
-
-    Se project_key estiver em SOURCE_PATHS_PROJETOS, usa os paths explícitos
-    declarados ali (estruturas Ant legadas tipo src/java ou java/). Só inclui
-    paths que existem e contêm pelo menos um .java.
-
-    Caso contrário, glob padrão Maven/Gradle: **/src/main/java e
-    **/src/main/kotlin (suporta multi-módulo).
-    """
     found: list[str] = []
     override = SOURCE_PATHS_PROJETOS.get(project_key) if project_key else None
     if override:
@@ -296,25 +201,7 @@ def find_main_sources(repo: Path, project_key: str | None = None) -> str:
                     found.append(str(d.resolve()))
     return ",".join(found)
 
-
 def find_bazel_sources(repo: Path, project_key: str | None = None) -> str:
-    """Localiza diretórios de código de produção em projetos Bazel.
-
-    Layout Bazel canônico (Google) NÃO segue Maven (`src/main/java`).
-    Variantes comuns:
-    - `java/com/...` na raiz (copybara, parte do flogger)
-    - `src/main/java/...` (bazel próprio, alguns híbridos)
-    - múltiplos `<subdir>/java/com/...` (j2cl tem 5+)
-
-    Estratégia:
-      1. Se `project_key` em `BAZEL_SOURCE_HINTS`, usa lista declarada.
-      2. Senão, tenta `find_main_sources` (caso flogger, com src/main).
-      3. Senão, busca `java/` na raiz (até 1 nível) e `*/java/` em subdirs
-         (até 2 níveis), excluindo `bazel-*/`, `external/`, `third_party/`,
-         `javatests/`, e dirs com nome contendo `test`.
-
-    Retorna CSV de paths absolutos, vazio se nada encontrado.
-    """
     found: list[str] = []
     hints = BAZEL_SOURCE_HINTS.get(project_key) if project_key else None
     if hints:
@@ -325,12 +212,10 @@ def find_bazel_sources(repo: Path, project_key: str | None = None) -> str:
         if found:
             return ",".join(found)
 
-    # Tenta layout Maven (caso o projeto Bazel tenha src/main/java)
     maven_like = find_main_sources(repo, project_key=project_key)
     if maven_like:
         return maven_like
 
-    # Busca `java/` em até 2 níveis, excluindo dirs Bazel/test/external
     EXCLUDED = {"bazel-bin", "bazel-out", "bazel-testlogs", "external",
                 "third_party", "javatests", "test", "tests", "node_modules",
                 ".git"}
@@ -347,12 +232,10 @@ def find_bazel_sources(repo: Path, project_key: str | None = None) -> str:
                 return True
         return False
 
-    # Nível 1: <repo>/java
     cand = repo / "java"
     if cand.is_dir() and not is_excluded(cand) and any(cand.rglob("*.java")):
         found.append(str(cand.resolve()))
 
-    # Nível 2: <repo>/<subdir>/java
     for sub in repo.iterdir():
         if not sub.is_dir():
             continue
@@ -364,26 +247,13 @@ def find_bazel_sources(repo: Path, project_key: str | None = None) -> str:
 
     return ",".join(found)
 
-
-# ---------------- git ----------------
-
 SNAPSHOT_TYPE_RELEASE_TAG = "release-tag-pre-2026"
 SNAPSHOT_TYPE_HEAD = "head-of-main"
 SNAPSHOT_TYPES_VALIDOS = {SNAPSHOT_TYPE_RELEASE_TAG, SNAPSHOT_TYPE_HEAD}
 
-
 def git_checkout(repo: Path, tag: str, logger: logging.Logger,
                  snapshot_type: str = SNAPSHOT_TYPE_RELEASE_TAG,
                  branch_principal: str | None = None) -> str:
-    """Faz checkout do snapshot definido pelo protocolo.
-
-    snapshot_type='release-tag-pre-2026' (v1.5 §4.4, N=34): checkout literal
-    da tag estável em `tag`.
-
-    snapshot_type='head-of-main' (v1.7 §A10.4, N=30): fetch + checkout do
-    HEAD de origin/<branch_principal>. O campo `tag` é usado apenas para
-    logging (pode estar vazio ou conter marcador `HEAD-on-<branch>-YYYY-MM-DD`).
-    """
     if not (repo / ".git").exists():
         raise ColetaError(f"Repo não inicializado: {repo}")
 
@@ -406,7 +276,7 @@ def git_checkout(repo: Path, tag: str, logger: logging.Logger,
         if r.returncode != 0:
             raise ColetaError(f"git checkout {tag} falhou em {repo}")
         rotulo = tag
-    else:  # SNAPSHOT_TYPE_HEAD
+    else:
         if not branch_principal:
             raise ColetaError(
                 f"snapshot_type=head-of-main requer branch_principal para {repo} "
@@ -429,18 +299,7 @@ def git_checkout(repo: Path, tag: str, logger: logging.Logger,
     logger.info("git checkout %s (sha=%s) em %s", rotulo, sha7, repo.name)
     return sha7
 
-
 def detectar_branch_principal(repo: Path, logger: logging.Logger) -> str:
-    """Identifica o branch principal do repositório clonado (protocolo v1.7 §A12).
-
-    Ordem de tentativa:
-      1. `git symbolic-ref refs/remotes/origin/HEAD` (preferência do remote)
-      2. fallback: `origin/main` existe → 'main'
-      3. fallback: `origin/master` existe → 'master'
-      4. raise ColetaError
-
-    Retorna apenas o nome do branch (sem prefixo 'origin/').
-    """
     if not (repo / ".git").exists():
         raise ColetaError(f"Repo não inicializado: {repo}")
 
@@ -473,12 +332,10 @@ def detectar_branch_principal(repo: Path, logger: logging.Logger) -> str:
         f"origin/main, origin/master encontrado (protocolo v1.7 §A12)"
     )
 
-
 def limpar_scannerwork(repo: Path) -> None:
     sw = repo / ".scannerwork"
     if sw.exists():
         shutil.rmtree(sw, ignore_errors=True)
-
 
 def aplicar_patch_post_checkout(project_key: str, repo: Path,
                                 base_dir: Path,
@@ -500,9 +357,6 @@ def aplicar_patch_post_checkout(project_key: str, repo: Path,
         ) from e
     logger.info("[%s] patch aplicado", project_key)
 
-
-# ---------------- análises com plugin nativo ----------------
-
 def _sonar_props(project_key: str, project_name: str, tag: str, sha7: str,
                  sonar_url: str, sonar_token: str) -> list[str]:
     return [
@@ -515,7 +369,6 @@ def _sonar_props(project_key: str, project_name: str, tag: str, sha7: str,
         "-Dsonar.qualitygate.wait=false",
         f"-Dsonar.exclusions={EXCLUSIONS}",
     ]
-
 
 def _maven_completo(repo: Path, props: list[str], env: dict,
                     log_path: Path, pom_filename: str | None = None) -> int:
@@ -533,13 +386,11 @@ def _maven_completo(repo: Path, props: list[str], env: dict,
     ]
     return _run(cmd, repo, env, log_path)
 
-
 def _resolver_init_gradle(base_dir: Path) -> Path:
     caminho = base_dir / "scripts-tcc" / GRADLE_INIT_SCRIPT
     if not caminho.exists():
         raise ColetaError(f"init-script Gradle ausente: {caminho}")
     return caminho
-
 
 def _gradle_completo(repo: Path, props: list[str], env: dict,
                      log_path: Path, init_script: Path) -> int:
@@ -552,20 +403,9 @@ def _gradle_completo(repo: Path, props: list[str], env: dict,
         "-x", "test", "-x", "javadoc",
         *props,
     ]
-    # 8min: build Gradle legítimo de qualquer projeto Java se completa em
-    # <5min. >10min é sinal de travamento (prompt SSH, daemon hung, etc.) —
-    # vale falhar rápido e o orquestrador tenta o próximo JDK.
     return _run(cmd, repo, env, log_path, timeout=480)
 
-
 def _gradle_assemble_only(repo: Path, env: dict, log_path: Path) -> int:
-    """Build-only: 'gradle assemble' sem plugin Sonar nem init-script.
-
-    Modo híbrido para Gradle 5.x/6.x onde o Plugin Sonar (compilado p/ JDK 17)
-    é incompatível com a JVM que roda esses Gradles antigos. O build em si
-    funciona com JDK 8/11; rodamos sonar depois via scanner standalone usando
-    os binários produzidos por este build.
-    """
     grad = repo / "gradlew"
     base = [str(grad)] if grad.exists() and os.access(grad, os.X_OK) else ["gradle"]
     cmd = [
@@ -575,21 +415,9 @@ def _gradle_assemble_only(repo: Path, env: dict, log_path: Path) -> int:
     ]
     return _run(cmd, repo, env, log_path, timeout=480)
 
-
 def _bazel_completo(repo: Path, props: list[str], env: dict,
                     scanner_bin: Path, log_path: Path,
                     logger: logging.Logger, project_key: str) -> int:
-    """Build Bazel via bazelisk + scanner standalone com binários gerados.
-
-    Bazel não tem plugin Sonar nativo, então usa modo híbrido:
-    1) bazelisk build <target> gera JARs em bazel-bin/
-    2) sonar-scanner com -Dsonar.java.binaries apontando pros JARs +
-       sonar.sources detectado via find_bazel_sources (layout Bazel).
-
-    Targets customizáveis por projeto via BAZEL_TARGETS_OVERRIDE; default //...
-    Timeout: 1800s (30min) para o build.
-    """
-    # Determinar target(s) — override por projeto, default //...
     targets = BAZEL_TARGETS_OVERRIDE.get(project_key, ["//..."])
 
     cmd_build = [
@@ -604,7 +432,6 @@ def _bazel_completo(repo: Path, props: list[str], env: dict,
         logger.warning("[%s] bazelisk build falhou (rc=%d) — usando JARs "
                        "parciais se houver", project_key, rc_build)
 
-    # Coletar JARs de bazel-bin (resolve symlinks)
     bazel_bin = repo / "bazel-bin"
     if not bazel_bin.exists():
         logger.error("[%s] bazel-bin não existe — build falhou completamente",
@@ -612,8 +439,6 @@ def _bazel_completo(repo: Path, props: list[str], env: dict,
         return rc_build or 1
 
     jars = []
-    # Path parts que indicam código de teste — paridade com STANDALONE_EXCLUSIONS.
-    # Bazel Google usa "javatests/" como convenção (j2cl tem mais de 1000 JARs lá).
     TEST_PATH_PARTS = {"javatests", "tests", "test"}
     skipped_test = 0
     skipped_stale = 0
@@ -626,10 +451,6 @@ def _bazel_completo(repo: Path, props: list[str], env: dict,
         if any(p in TEST_PATH_PARTS for p in jar.parts):
             skipped_test += 1
             continue
-        # bazel-bin é symlink para bazel-out (cache); um JAR resolvido para
-        # caminho inexistente faz sonar-scanner abortar com
-        # IllegalStateException "No files nor directories matching ..."
-        # — basta UM path inválido para invalidar a propriedade inteira.
         resolved = jar.resolve()
         if not resolved.exists():
             skipped_stale += 1
@@ -647,7 +468,6 @@ def _bazel_completo(repo: Path, props: list[str], env: dict,
                 project_key, len(jars))
     binaries = ",".join(jars)
 
-    # Detecta sources via heurística específica Bazel
     bazel_sources = find_bazel_sources(repo, project_key=project_key)
     extra = [f"-Dsonar.projectBaseDir={repo}"]
 
@@ -658,8 +478,6 @@ def _bazel_completo(repo: Path, props: list[str], env: dict,
         logger.info("[%s] Bazel: %d source dir(s) detectado(s)",
                     project_key, n_dirs)
     else:
-        # NÃO usa sources=. para evitar contaminação por third_party/bazel-bin/external.
-        # Se não detectou sources, registra como falha — better fail than inflated data.
         logger.error("[%s] Bazel: nenhum source dir detectado — "
                      "ABORTANDO scan (sources=. contaminaria com deps)",
                      project_key)
@@ -667,7 +485,6 @@ def _bazel_completo(repo: Path, props: list[str], env: dict,
 
     extra.append(f"-Dsonar.exclusions={excl}")
 
-    # sonar.java.binaries via properties file (cmdline limit ~128KB)
     props_file = repo / "sonar-project.properties"
     backup = (props_file.read_text(encoding="utf-8")
               if props_file.exists() else None)
@@ -683,7 +500,6 @@ def _bazel_completo(repo: Path, props: list[str], env: dict,
         else:
             props_file.unlink(missing_ok=True)
 
-
 def _limpar_build_dirs_ant(repo: Path, project_key: str,
                            logger: logging.Logger) -> None:
     dirs = ANT_BUILD_DIRS_TO_CLEAN.get(project_key, ["build"])
@@ -692,20 +508,9 @@ def _limpar_build_dirs_ant(repo: Path, project_key: str,
     for d in dirs:
         shutil.rmtree(repo / d, ignore_errors=True)
 
-
 def _ant_completo(repo: Path, props: list[str], scanner_bin: Path,
                   log_path: Path, logger: logging.Logger,
                   project_key: str) -> tuple[int, int | None]:
-    """Roda pipeline Ant (ANT_BUILD_PIPELINE) em ordem decrescente de JDKs.
-    Para cada JDK viável: limpa build dirs, tenta toda a pipeline; só prossegue
-    para o scanner se TODOS os passos retornaram 0. Falha definitivamente se
-    nenhum JDK consegue completar o build — NÃO cai para scanner com binários
-    cached (Cassandra 5.0.6 rejeita JDK 21 e o build precisa de JDK 11; rodar
-    o scanner sobre .class antigos de uma build local mascararia ncloc/issues
-    inválidos como sucesso).
-
-    Retorna (rc_scanner, jdk_version_usado). rc != 0 indica falha de todos JDKs.
-    """
     nome_repo = repo.name
     pipeline = ANT_BUILD_PIPELINE.get(nome_repo, [["build"]])
 
@@ -776,15 +581,10 @@ def _ant_completo(repo: Path, props: list[str], scanner_bin: Path,
                  project_key)
     return 1, None
 
-
 def _scanner_standalone(repo: Path, props: list[str], env: dict,
                         scanner_bin: Path, log_path: Path,
                         logger: logging.Logger,
                         project_key: str) -> int:
-    """Fallback: scanner direto. Detecta src/main/{java,kotlin} para apontar
-    sonar.sources (paridade com Maven/Gradle: só código de produção). Detecta
-    binários pré-existentes; se não houver, exclui *.java para evitar erro
-    fatal do SonarJava."""
     binaries = find_java_binaries(repo)
     main_sources = find_main_sources(repo, project_key=project_key)
 
@@ -812,13 +612,11 @@ def _scanner_standalone(repo: Path, props: list[str], env: dict,
     extra.append(f"-Dsonar.exclusions={excl}")
     return _run([str(scanner_bin), *props, *extra], repo, env, log_path)
 
-
 def _scanner_path(base_dir: Path) -> Path:
     p = base_dir / "sonarqube-docker" / "sonar-scanner-5.0.1.3006-linux" / "bin" / "sonar-scanner"
     if not p.exists():
         raise ColetaError(f"sonar-scanner não encontrado: {p}")
     return p
-
 
 def analisar_com_fallbacks(build_type: str, pom_filename: str | None,
                            repo: Path, project_key: str,
@@ -826,8 +624,6 @@ def analisar_com_fallbacks(build_type: str, pom_filename: str | None,
                            sonar_url: str, sonar_token: str,
                            base_dir: Path, log_dir: Path,
                            logger: logging.Logger) -> tuple[bool, str]:
-    """Tenta build+sonar via plugin nativo (ou ant+scanner), com fallbacks §7.2.
-    Retorna (sucesso, descricao_do_caminho_usado)."""
     props = _sonar_props(project_key, project_name, tag, sha7,
                          sonar_url, sonar_token)
     log_path = log_dir / f"{project_key}.scan.log"
@@ -835,9 +631,6 @@ def analisar_com_fallbacks(build_type: str, pom_filename: str | None,
     scanner_bin = _scanner_path(base_dir)
 
     if build_type == "ant":
-        # Ant tem fallback de JDKs internalizado em _ant_completo e NÃO cai
-        # para scanner standalone — rodar scanner sobre binários cached de
-        # uma build manual anterior mascararia falha como sucesso.
         rc, jdk_used = _ant_completo(repo, props, scanner_bin, log_path,
                                      logger, project_key)
         if rc == 0:
@@ -865,9 +658,6 @@ def analisar_com_fallbacks(build_type: str, pom_filename: str | None,
         nome = "scanner-standalone"
 
     if runner is not None:
-        # Iteração estrita JDK_FALLBACK_ORDER (mais recente primeiro).
-        # Declaração no pom.xml/build.gradle é só informativa — o JDK que
-        # roda o build tool importa mais que o sourceCompatibility.
         declarado = detectar_jdk_declarado(repo)
         if declarado is not None:
             logger.info("[%s] sourceCompatibility declarado=%d (informativo)",
@@ -893,11 +683,6 @@ def analisar_com_fallbacks(build_type: str, pom_filename: str | None,
             logger.warning("[%s] todos JDKs do fallback falharam para %s — caindo para scanner standalone",
                            project_key, nome)
 
-    # Modo híbrido Gradle: 'assemble sonar' falhou em todos JDKs (Plugin
-    # Sonar requer JDK 17, mas Gradle 5.x/6.x roda só em JDK 8/11). Tenta
-    # 'gradle assemble' (sem sonar) para produzir binários reais; se algum
-    # JDK conseguir compilar, roda sonar via scanner standalone com esses
-    # binários (não glob de .class antigos cached).
     if build_type == "gradle":
         for v in JDK_FALLBACK_ORDER:
             jpath = jdk_path_para(v)
@@ -930,7 +715,6 @@ def analisar_com_fallbacks(build_type: str, pom_filename: str | None,
         logger.warning("[%s] todos JDKs falharam até em build-only — "
                        "caindo para scanner standalone degradado", project_key)
 
-    # último recurso: scanner standalone (com detecção de binários)
     rc = _scanner_standalone(repo, props, env_com_jdk(_primeiro_jdk_disponivel()),
                              scanner_bin, log_path, logger, project_key)
     if rc == 0:
@@ -939,23 +723,10 @@ def analisar_com_fallbacks(build_type: str, pom_filename: str | None,
                       else "standalone DEGRADADO (Java excluído)")
     return False, "todos fallbacks falharam"
 
-
-# ---------------- aguardar processamento ----------------
-
 def aguardar_processamento(client: SonarClient, project_key: str,
                            logger: logging.Logger,
                            timeout: float = 180.0,
                            intervalo: float = 3.0) -> bool:
-    """Aguarda a fila do Compute Engine drenar antes de declarar análise pronta.
-
-    Antes verificávamos só ncloc via /api/measures/component, mas issues e
-    métricas derivadas demoram mais que ncloc para aparecer; resultado: o
-    extract subsequente pegava 0 issues em projetos com centenas (NullAway
-    chegou a reportar total=0 com ncloc=19099). Polling em /api/ce/component
-    resolve: só seguimos quando queue==[] e current não está em IN_PROGRESS/
-    PENDING. Sanity check final em ncloc para confirmar que o projeto existe
-    de fato no servidor.
-    """
     logger.info("[%s] aguardando processamento Sonar...", project_key)
     deadline = time.monotonic() + timeout
     proximo_log = time.monotonic() + 30.0
@@ -1003,9 +774,6 @@ def aguardar_processamento(client: SonarClient, project_key: str,
     logger.warning("[%s] fila drenou mas ncloc ausente — análise pode ter falhado",
                    project_key)
     return False
-
-
-# ---------------- pipeline por projeto ----------------
 
 def coletar_um_projeto(row: dict, repo: Path, base_dir: Path, log_dir: Path,
                        sonar_url: str, sonar_token: str,

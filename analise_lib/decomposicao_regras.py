@@ -1,4 +1,3 @@
-"""§8 v1.4 (A1, A4) — decomposição do sqale_index por type/tag e top-10 regras."""
 from __future__ import annotations
 
 import logging
@@ -10,7 +9,6 @@ import pandas as pd
 from .descritivas import ARQUETIPOS_ORDEM
 
 def decomposicao_por_tag_arquetipo(df, issues, regras_meta, tabelas_dir, logger):
-    """A1 — proporção do sqale_index por tag de regra, por arquétipo."""
     if not issues or not regras_meta:
         logger.warning("Sem issues ou regras_meta — A1 (decomposição por tag) pulada")
         return pd.DataFrame()
@@ -57,8 +55,6 @@ def decomposicao_por_type_arquetipo(df: pd.DataFrame,
                                     issues: dict[str, pd.DataFrame],
                                     tabelas_dir: Path,
                                     logger: logging.Logger) -> pd.DataFrame:
-    """A1 — proporção do sqale_index por type (CODE_SMELL/BUG/VULNERABILITY)
-    por arquétipo."""
     if not issues:
         logger.warning("Sem issues — A1 (decomposição por type) pulada")
         return pd.DataFrame()
@@ -110,13 +106,11 @@ def decomposicao_por_type_arquetipo(df: pd.DataFrame,
     logger.info("tab9 escrita: %s", csv_path)
     return out
 
-
 def top10_regras_por_projeto(df: pd.DataFrame,
                              issues: dict[str, pd.DataFrame],
                              regras_meta: dict[str, dict],
                              tabelas_dir: Path,
                              logger: logging.Logger) -> pd.DataFrame:
-    """A4 — top 10 regras por effort total em cada projeto."""
     if not issues:
         logger.warning("Sem issues — A4 (top-10 regras) pulada")
         return pd.DataFrame()

@@ -1,4 +1,3 @@
-"""Fase 5 — monta consolidado.csv, ambiente.txt e valida coerência."""
 from __future__ import annotations
 
 import csv
@@ -11,8 +10,6 @@ from pathlib import Path
 
 from .io_utils import ColetaError, derivar_instancia, hash_arquivo, mask_token
 
-# Defaults retroativos para projetos N=34 (v1.5) cujo CSV não traz os novos
-# campos do schema v1.6 (protocolo §A13).
 SNAPSHOT_TYPE_DEFAULT = "release-tag-pre-2026"
 SUBCONJUNTO_DEFAULT = "n34-v1.5"
 
@@ -24,7 +21,6 @@ CONSOLIDADO_COLS = [
     "sqale_debt_ratio", "code_smells", "bugs", "vulnerabilities",
     "complexity", "cognitive_complexity",
     "duplicated_lines_density", "comment_lines_density",
-    # v1.6 §A13 — snapshot type, branch, idade do snapshot e subconjunto
     "snapshot_type", "branch_principal", "idade_snapshot_dias", "subconjunto",
 ]
 
@@ -32,7 +28,6 @@ PROTOCOL_VERSION = "1.5"
 SONAR_VERSION = "Community Build v26.2.0.119303"
 SONAR_MODE = "MQR"
 SCANNER_VERSION = "sonar-scanner-5.0.1.3006-linux"
-
 
 def _parse_first_int(s: str) -> int | float:
     if s in (None, "", "NaN"):
@@ -45,10 +40,8 @@ def _parse_first_int(s: str) -> int | float:
         except ValueError:
             return float("nan")
 
-
 def _idade_snapshot_dias(data_commit_iso: str,
                          data_coleta: date | None) -> str:
-    """Dias entre data_commit (ISO YYYY-MM-DD) e data_coleta. '' se inválido."""
     if not data_commit_iso or data_coleta is None:
         return ""
     try:
@@ -56,7 +49,6 @@ def _idade_snapshot_dias(data_commit_iso: str,
     except ValueError:
         return ""
     return str((data_coleta - dc).days)
-
 
 def _build_row(r: dict, m: dict, data_coleta: date | None = None) -> dict:
     snapshot_type = (r.get("snapshot_type") or "").strip() or SNAPSHOT_TYPE_DEFAULT
@@ -93,19 +85,11 @@ def _build_row(r: dict, m: dict, data_coleta: date | None = None) -> dict:
         "subconjunto":              subconjunto,
     }
 
-
 def montar_consolidado(rows_planilha: list[dict],
                        metricas_por_id: dict[str, dict],
                        saida_csv: Path, logger: logging.Logger,
                        merge: bool = False,
                        data_coleta: date | str | None = None) -> None:
-    """Grava consolidado.csv. Se merge=True e o arquivo já existir, preserva
-    linhas para projetos NÃO incluídos em rows_planilha (usado com
-    --only/--limit). Modo padrão (merge=False) sobrescreve totalmente.
-
-    data_coleta (date ou ISO str) é usado para computar idade_snapshot_dias
-    (protocolo v1.6 §A13). Se None, idade fica vazia.
-    """
     if isinstance(data_coleta, str):
         try:
             data_coleta = date.fromisoformat(data_coleta)
@@ -122,12 +106,9 @@ def montar_consolidado(rows_planilha: list[dict],
         with saida_csv.open(encoding="utf-8") as f:
             reader = csv.DictReader(f)
             existentes = {row["id"]: row for row in reader}
-        # Garante que linhas pré-existentes têm todas as colunas v1.6 (vazias
-        # se não estavam no schema antigo); evita KeyError no DictWriter.
         for row in existentes.values():
             for col in CONSOLIDADO_COLS:
                 row.setdefault(col, "")
-        # Atualiza só as linhas dos IDs processados nesta execução
         existentes.update(novos)
         out_rows = list(existentes.values())
         logger.info("consolidado.csv merge: %d linhas pré-existentes, %d atualizadas",
@@ -143,14 +124,12 @@ def montar_consolidado(rows_planilha: list[dict],
             w.writerow(row)
     logger.info("consolidado.csv escrito: %s (%d linhas)", saida_csv, len(out_rows))
 
-
 def _java_version() -> str:
     try:
         r = subprocess.run(["java", "-version"], capture_output=True, text=True)
         return (r.stderr or r.stdout).splitlines()[0] if (r.stderr or r.stdout) else "?"
     except Exception:
         return "?"
-
 
 def _git_tag(base_dir: Path) -> str:
     try:
@@ -159,7 +138,6 @@ def _git_tag(base_dir: Path) -> str:
         return r.stdout.strip() or "?"
     except Exception:
         return "?"
-
 
 def escrever_ambiente(saida_dir: Path, base_dir: Path, sonar_url: str,
                       sonar_token: str, hash_consolidado: str,
@@ -183,9 +161,7 @@ def escrever_ambiente(saida_dir: Path, base_dir: Path, sonar_url: str,
     logger.info("ambiente.txt escrito: %s", p)
     return p
 
-
 def validar(saida_dir: Path, n_esperado: int, logger: logging.Logger) -> list[str]:
-    """Roda checagens de coerência. Retorna lista de erros (string vazia = OK)."""
     erros: list[str] = []
     cons_path = saida_dir / "consolidado.csv"
     if not cons_path.exists():
@@ -224,14 +200,10 @@ def validar(saida_dir: Path, n_esperado: int, logger: logging.Logger) -> list[st
             if rk:
                 rule_keys.add(rk)
         if parciais_flag:
-            # Paginação ficou aquém do total, mas as métricas agregadas em
-            # consolidado.csv vêm de /api/measures/component (sem limite) e
-            # são a fonte de verdade da análise estatística. Warning, não erro.
             tot = total_sonar if total_sonar is not None else "?"
             logger.warning("[VALID] %s: issues parciais (%d/%s capturadas — "
                            "usando contagem agregada). Métricas válidas no "
                            "consolidado.", pid, len(data), tot)
-        # ncloc / sqale_index não podem ser nulo/0
         for col in ("ncloc", "sqale_index"):
             v = (r.get(col) or "").strip()
             if v in ("", "0", "NaN", "nan"):

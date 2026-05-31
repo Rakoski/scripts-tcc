@@ -1,4 +1,3 @@
-"""Procedimento 4 do §8 — Cliff's δ pareado, Romano et al. (2006)."""
 from __future__ import annotations
 
 import logging
@@ -7,9 +6,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-
 def cliffs_delta(x, y) -> float:
-    """δ = P(X > Y) - P(X < Y), no intervalo [-1, 1]."""
     nx, ny = len(x), len(y)
     if nx == 0 or ny == 0:
         return float("nan")
@@ -18,9 +15,7 @@ def cliffs_delta(x, y) -> float:
     diff = x_arr - y_arr
     return float(((diff > 0).sum() - (diff < 0).sum()) / (nx * ny))
 
-
 def magnitude(delta: float) -> str:
-    """Romano et al. (2006)."""
     a = abs(delta)
     if a < 0.147:
         return "negligenciável"
@@ -30,13 +25,11 @@ def magnitude(delta: float) -> str:
         return "médio"
     return "grande"
 
-
 PARES = [
     ("apache", "google"),
     ("apache", "descentralizado"),
     ("google", "descentralizado"),
 ]
-
 
 def cliffs_delta_pares(df: pd.DataFrame, tabelas_dir: Path,
                        logger: logging.Logger) -> pd.DataFrame:

@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /home/mateus/Documentos/artigos-tcc/repos/tcc/scripts-tcc
+cd "$(dirname "${BASH_SOURCE[0]}")"
 
 PROJETOS=(
   google-tsunami-14
