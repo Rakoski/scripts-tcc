@@ -63,9 +63,7 @@ As tabelas podem ser encontradas em [`dados/n60-analise/analise/tabelas/`](dados
 4. **Heterogeneidade interna** do arquétipo Apache (7/24 projetos de
    origem chinesa via incubator), declarada em A18 v1.8
 
-Limitações são tratadas conforme 8.1 do protocolo
-(correlação parcial Spearman, ICC intra-organização), com análises
-detalhadas em material suplementar (não no corpo do paper resultante).
+Limitações são tratadas conforme 8.1 do protocolo (correlação parcial Spearman, ICC intra-organização), com análises detalhadas em material suplementar (não no corpo do paper resultante).
 
 ## Reprodução
 
@@ -120,23 +118,15 @@ clona os projetos da amostra em `../projetos-clonados/` (fora do repo
 público). Para reprodutibilidade exata, cada repositório recebe `git
 checkout` no `commit_sha` registrado na planilha.
 
-Por default, o script pula os 5 projetos presentes em
-`PROJETOS_EXCLUIDOS_LIMITACAO_TECNICA` (`coleta_lib/io_utils.py`) —
-`google-j2objc-11` (build exige macOS, A11) e os 4 da limitação técnica de
-build A29 v1.10 (bazel, google-java-format, java-docs-samples, dexmaker) —
-resultando na amostra efetiva **n=60** (Apache 24, Google 17,
-Descentralizado 19).
+Por default, o script pula os 5 projetos presentes em `PROJETOS_EXCLUIDOS_LIMITACAO_TECNICA` (`coleta_lib/io_utils.py`), o `google-j2objc-11` (build exige macOS, A11) e os 4 da limitação técnica de build A29 v1.10 (bazel, google-java-format, java-docs-samples, dexmaker), o que acaba resultando na amostra efetiva **n=60** (Apache 24, Google 17, Descentralizado 19).
 
 ```bash
-python3 clonar_v17.py                     # clona 60 (sem os excluídos)
+python3 clonar_v17.py                      # clona 60 (sem os excluídos)
 python3 clonar_v17.py --include-excluded   # clona 65 (reprodução total)
 python3 clonar_v17.py --subset n34-v1.5    # só o subconjunto v1.5 (34)
 python3 clonar_v17.py --subset n30-v1.6    # só o subconjunto v1.6 (26)
-python3 clonar_v17.py --dry-run            # lista o que seria feito, sem clonar
 ```
 
-Cada execução gera `clones_v17.csv` (auditoria, uma linha por projeto com a
-coluna `resultado`) e `clones_v17.log`. Tempo estimado: 30-60 minutos numa
-conexão decente — repositórios grandes (Apache cassandra, druid, kafka)
-podem demorar vários minutos cada.
+Cada execução gera `clones_v17.csv` (auditoria, uma linha por projeto com a coluna `resultado`) e `clones_v17.log`. Tempo estimado: 30-60 minutos numa
+conexão decente — repositórios grandes (Apache cassandra, druid, kafka) podem demorar vários minutos cada.
 
