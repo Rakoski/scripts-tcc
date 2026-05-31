@@ -1,7 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
-BASE_DIR="/home/mateus/Documentos/artigos-tcc/repos/tcc"
+SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BASE_DIR="$(dirname "$SCRIPTS_DIR")"
 CLONE_DIR="$BASE_DIR/projetos-clonados"
 SCRIPTS_DIR="$BASE_DIR/scripts-tcc"
 CSV_FILE="$SCRIPTS_DIR/projetos-tcc-dataset-3.csv"
