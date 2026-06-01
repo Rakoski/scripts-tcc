@@ -1,0 +1,4 @@
+grupo_x,grupo_y,n_x,n_y,cliff_delta_subamostra,magnitude_subamostra
+apache,google,6,12,0.833,grande
+apache,descentralizado,6,17,0.804,grande
+google,descentralizado,12,17,-0.333,média

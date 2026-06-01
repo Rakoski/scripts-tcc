@@ -82,8 +82,7 @@ def calibrar_f_critico_empirico(df: pd.DataFrame, logger: logging.Logger,
         "n_reps": n_reps,
     }
 
-def brown_forsythe(df: pd.DataFrame, tabelas_dir: Path,
-                   logger: logging.Logger) -> dict:
+def brown_forsythe(df: pd.DataFrame, tabelas_dir: Path, logger: logging.Logger) -> dict:
     g_apache = df.loc[df["arquetipo"] == "apache", "densidade_divida"].values
     g_google = df.loc[df["arquetipo"] == "google", "densidade_divida"].values
     g_desc = df.loc[df["arquetipo"] == "descentralizado", "densidade_divida"].values

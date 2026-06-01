@@ -1,0 +1,4 @@
+arquetipo,n_subamostra,n_total,mediana,Q1,Q3,variancia
+apache,6,24,0.74,0.625,0.914,0.031
+google,12,17,0.149,0.115,0.465,0.062
+descentralizado,17,19,0.413,0.252,0.512,0.051
