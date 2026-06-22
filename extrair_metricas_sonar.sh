@@ -7,7 +7,7 @@ BASE_DIR="$(dirname "$SCRIPTS_DIR")"
 CSV_FILE="$SCRIPTS_DIR"
 CSV_TMP="$SCRIPTS_DIR"
 SONAR_URL="${SONAR_URL}"
-SONAR_TOKEN="${SONAR_TOKEN}"
+SONAR_TOKEN="${SONAR_TOKEN:?defina SONAR_TOKEN no .env}"
 
 DRY_RUN=false
 [[ "${1:-}" == "--dry-run" ]] && DRY_RUN=true

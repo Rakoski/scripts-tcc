@@ -155,7 +155,7 @@ def escrever_ambiente(saida_dir: Path, base_dir: Path, sonar_url: str,
         f"SONAR_TOKEN (mask): {mask_token(sonar_token)}",
         f"Hash do consolidado.csv: {hash_consolidado}",
         f"Versão do protocolo: {PROTOCOL_VERSION}",
-        f"Tag git do repo TCC: {_git_tag(base_dir)}",
+        f"Tag git do repo: {_git_tag(base_dir)}",
     ]
     p.write_text("\n".join(lines) + "\n", encoding="utf-8")
     logger.info("ambiente.txt escrito: %s", p)

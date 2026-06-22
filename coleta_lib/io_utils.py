@@ -72,7 +72,7 @@ PROJETOS_EXCLUIDOS_LIMITACAO_TECNICA: dict[str, str] = {
 
     "google-bazel-12": (
         "Bazel meta-build (recursos): travou PC em primeira tentativa. "
-        "Deferred para pós-banca. Excluído pela §A29 do adendo v1.10."
+        "Deferred para pós-submissão. Excluído pela §A29 do adendo v1.10."
     ),
     "google-google-java-format-15": (
         "Maven Tycho 5.0.2: ProvisionException no "

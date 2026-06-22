@@ -9,4 +9,4 @@ SONAR_URL: http://localhost:9000
 SONAR_TOKEN (mask): squ_9b…a578
 Hash do consolidado.csv: b470579e7082d0e6a8067d69425327da50a43d90053a9b91fbcc8204099b7cda
 Versão do protocolo: 1.5
-Tag git do repo TCC: ?
+Tag git do repo: ?

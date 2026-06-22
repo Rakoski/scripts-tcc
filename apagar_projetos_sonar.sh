@@ -6,7 +6,7 @@ SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BASE_DIR="$(dirname "$SCRIPTS_DIR")"
 CSV_FILE="$SCRIPTS_DIR"
 SONAR_URL="${SONAR_URL}"
-SONAR_TOKEN="${SONAR_TOKEN}"
+SONAR_TOKEN="${SONAR_TOKEN:?defina SONAR_TOKEN no .env}"
 
 DRY_RUN=false
 YES=false

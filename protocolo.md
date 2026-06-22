@@ -442,16 +442,13 @@ sobre H1.
   N=35 e regra de decisão simplificada (C1 ∧ C2).
 - **Maio 2026:** coleta oficial Fase 1 completa sobre **N=35**.
 - **Junho 2026:** análise estatística, escrita das Seções 3-4.
-- **Julho 2026:** Seção 5, revisão do texto, submissão SBQS 2026 CTICQS.
+- **Julho 2026:** Seção 5, revisão do texto, submissão.
 - **Agosto 2026:** se tempo permitir, Fase 2 (Arcan) sobre subconjunto.
-- **Setembro 2026:** defesa.
+- **Setembro 2026:** marco final.
 
 ## 11. Venues alvo (ordem de ambição)
 
-1. SBQS 2026 CTICQS — primário.
-2. SBQS 2026 Trilha de Trabalhos Técnicos ou SBCARS 2026 — se Fase 2 entregar.
-3. ERES 2026 — soft landing para feedback.
-4. **Não alvo:** SBES Research Track.
+Os venues-alvo de submissão não são declarados nesta versão do protocolo para preservar a integridade da revisão double-blind.
 
 ---
 
@@ -1656,7 +1653,7 @@ ainda não foram coletados e serão coletados após a cascata servo→Priam.
 > **AVISO METODOLÓGICO:** Esta seção documenta 4 projetos que, mesmo após
 > esforço documentado de fix de build (patches pós-checkout, suporte Bazel
 > nativo no pipeline, fallbacks de JDK), não foram coletáveis no ambiente
-> da pré-banca. A exclusão é por **limitação técnica do ambiente de
+> da pré-submissão. A exclusão é por **limitação técnica do ambiente de
 > coleta**, não por inelegibilidade pelos critérios §3.1.
 
 ## A29. Limitação técnica adicional v1.10 (4 projetos)
@@ -1664,7 +1661,7 @@ ainda não foram coletados e serão coletados após a cascata servo→Priam.
 Os 4 projetos abaixo passam os critérios §3.1 (linguagem, tamanho,
 idade, contribuidores, release) mas falham na execução do pipeline de
 build local pré-Sonar. Cada um documenta a causa exata observada e a
-condição para reintrodução pós-banca.
+condição para reintrodução pós-submissão.
 
 ### A29.1. `google-bazel-12` (bazelbuild/bazel)
 
@@ -1675,7 +1672,7 @@ condição para reintrodução pós-banca.
   aprova nos 6 critérios (Java 83.5%, contribs 1.373, release tags
   contínuas, idade 11+ anos, NCLOC dentro da faixa real). É falha
   estritamente de recursos do ambiente de coleta.
-- **Reintrodução pós-banca**: tentar build com `bazel build //src/main/...`
+- **Reintrodução pós-submissão**: tentar build com `bazel build //src/main/...`
   (target reduzido via `BAZEL_TARGETS_OVERRIDE`) em ambiente com mais
   memória, ou aceitar análise apenas do subdiretório `src/main/java`
   via scanner standalone com binários pré-compilados de release oficial.
@@ -1689,7 +1686,7 @@ condição para reintrodução pós-banca.
 - **Diagnóstico**: não é falha de critério §3.1 — google-java-format
   aprova nos 6 critérios. Falha é toolchain-específica (Tycho requer
   Eclipse target platform; coleta Sonar não pode depender disso).
-- **Reintrodução pós-banca**: configurar Tycho com p2 repositories
+- **Reintrodução pós-submissão**: configurar Tycho com p2 repositories
   apontando para um Eclipse SDK local, ou desativar Tycho via
   `-Dtycho.mode=maven` se viável sem quebrar empacotamento.
 
@@ -1704,7 +1701,7 @@ condição para reintrodução pós-banca.
   o pipeline atual assume um build unificado por projeto. Análise por
   subdiretório individual quebraria comparabilidade (qual sample? por
   que esse e não outro?).
-- **Reintrodução pós-banca**: ou (a) escolher pré-declaradamente UM
+- **Reintrodução pós-submissão**: ou (a) escolher pré-declaradamente UM
   subdiretório-âncora representativo (ex.: `cloud-tasks`) e analisar
   esse, com nota explícita de que NÃO é o repo agregado; ou (b)
   rodar Sonar standalone sobre o repo todo aceitando inflação por
@@ -1721,7 +1718,7 @@ condição para reintrodução pós-banca.
   GitHub (87% Java, 55 contribs, stable releases). Falha é
   ambiente-específica (NDK package corrompido no repositório Google);
   outros projetos com NDK podem ter o mesmo problema.
-- **Reintrodução pós-banca**: tentar instalação manual do NDK via
+- **Reintrodução pós-submissão**: tentar instalação manual do NDK via
   download direto do Google (link oficial pula o SDK Manager), ou
   buildar com NDK mais antigo declarado no `build.gradle` como
   override.
@@ -1831,23 +1828,23 @@ Projetos Gradle coletados com sucesso via patches:
 | `google-tsunami-14` | `tsunami-skip-javadocjar.sh` | 11.015 |
 | `netflix-genie-12` | `genie-skip-vendor-and-ui-npm.sh` | 39.678 |
 
-## A32. Compromisso de tentativa pós-banca
+## A32. Compromisso de tentativa pós-submissão
 
 Os 4 projetos da §A29 NÃO são abandonados — são deferidos. Compromisso
-formal pós-banca:
+formal pós-submissão:
 
 1. **Tentar reintrodução** de cada um conforme protocolo de
    reintrodução específico declarado em §A29.1-A29.4.
 2. **Registrar resultado** de cada tentativa (sucesso → adição ao
    dataset, falha → manter exclusão com diagnóstico atualizado) em
-   adendo v1.11+ pós-banca.
-3. **Não alterar regra de decisão §8.2** se a coleta pós-banca dos 4
+   adendo v1.11+ pós-submissão.
+3. **Não alterar regra de decisão §8.2** se a coleta pós-submissão dos 4
    for bem-sucedida — análise principal deste estudo é fechada em N=60 e
    uma re-análise opcional em N=64 (com os 4 reincluídos) é
    apresentada como **análise de robustez** na seção de discussão.
 
 Esta postura preserva integridade do pré-registro: a análise primária
-em N=60 está formalmente fechada em v1.10. Reintrodução pós-banca não
+em N=60 está formalmente fechada em v1.10. Reintrodução pós-submissão não
 contamina a regra de decisão, apenas alimenta análise complementar.
 
 ## A33. Postura sobre pré-registro
@@ -1856,7 +1853,7 @@ Esta seção v1.10 documenta:
 
 - **Limitação técnica do ambiente de coleta** como categoria de
   exclusão distinta de violação §3.1 — coerente com §A11 v1.5 (j2objc).
-- **Critérios de reintrodução pós-banca pré-declarados** por projeto
+- **Critérios de reintrodução pós-submissão pré-declarados** por projeto
   individual (§A29.1-A29.4), não inventados após a tentativa.
 - **N=60 como amostra primária** — fixada antes da análise estatística
   primária. Qualquer reintrodução posterior é análise de robustez,
@@ -1871,13 +1868,13 @@ Esta seção v1.10 documenta:
 
 A escolha de declarar limitação técnica em vez de substituir os 4 (à
 moda v1.8) é deliberada: substituir reabriria o levantamento
-`candidatos_expansao_v1.6.csv` num momento pós-pré-banca, configurando
+`candidatos_expansao_v1.6.csv` num momento pós-pré-submissão, configurando
 mudança de critério após observação parcial de resultados. Manter N=60
 preserva a sequência de decisões pré-registradas.
 
 ## A34. Correção de §A1 v1.6 e referências subsequentes
 
-Em revisão de pré-banca (30/05/2026), constatou-se que a tag `pre-coleta-v1.5`
+Em revisão de pré-submissão (30/05/2026), constatou-se que a tag `pre-coleta-v1.5`
 referenciada em §A1 v1.6 e seções subsequentes **nunca foi criada** no
 repositório git. As menções a essa tag são incorretas. O pré-registro do
 protocolo v1.5 antes da coleta oficial é evidenciável pelo commit
