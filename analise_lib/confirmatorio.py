@@ -128,8 +128,7 @@ def aplicar_regra_decisao(bf: dict, calib: dict, tabelas_dir: Path,
                   "(Google < Apache < Descentralizado).")
     elif c1 and not c2:
         interp = ("Variâncias diferem mas não na ordem prevista — "
-                  "evidência contra H1. Discutir mecanismo causal "
-                  "alternativo em §5 do TCC.")
+                  "evidência contra H1. Discutir mecanismo causal")
     else:
         interp = ("Falha em detectar diferença de variâncias. "
                   "Sob poder de ~9% (v1.5), NÃO constitui evidência "
