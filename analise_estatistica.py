@@ -69,7 +69,7 @@ def _bool(b):
 def gerar_relatorio(saida, out_dir):
     rel_path = out_dir / "relatorio.md"
     md = []
-    md.append("# Relatório de Análise — TCC Paradoxo da Governança em Escala")
+    md.append("# Relatório de Análise")
     md.append("")
     md.append(f"**Data da análise:** {saida['data_execucao']}")
     md.append(f"**Versão do protocolo:** {PROTOCOL_VERSION}")
