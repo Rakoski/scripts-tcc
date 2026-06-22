@@ -1,7 +1,5 @@
 # O paradoxo da governança em escala: uma comparação quantitativa da dívida técnica em nível de código entre ecossistemas Java Apache, Google e de plataforma descentralizada
 
-**Trabalho de Conclusão de Curso — 2026**
-
 A força da governança arquitetural, em um nível de organização, se relaciona com a variância da dívida técnica, a nível de código?
 
 É isso que esse estudo quer descobrir.
