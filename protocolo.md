@@ -1,12 +1,9 @@
 # Protocolo de Pesquisa — Estudo do Paradoxo da Governança em Escala
 
-**Autor:** Mateus Rakoski
-**Orientadora:** Evanise A. C. Ruiz
-**Instituição:** IFPR — Campus Paranavaí
-**Versão:** 1.5 — atualizada em 05/05/2026
-**Status:** Fase 1 — aberta para coleta após congelamento
+Versão: 1.10 — atualizada em 29/05/2026
+Status: Coleta concluída sobre amostra N=60. Análise estatística primária fechada.
 
-> Este documento congela as decisões metodológicas do TCC. Alterações posteriores devem
+> Este documento congela as decisões metodológicas deste estudo. Alterações posteriores devem
 > ser registradas como versões sucessivas (1.2, 1.3, ...) com justificativa datada no
 > final do arquivo, não como reescrita silenciosa. Qualquer decisão tomada durante a
 > execução que não esteja aqui é ad-hoc e precisa ser promovida para este documento
@@ -92,7 +89,7 @@ governança é estabelecida **a priori** com a seguinte justificativa:
   times autônomos podem optar por sair. Decisões arquiteturais bottom-up.
 
 Esta ordem é a hipótese sobre a *variável independente* do estudo. Sua
-validade conceitual é defendida na Seção 2 do TCC e independe do resultado
+validade conceitual é defendida na Seção 2 deste estudo e independe do resultado
 empírico do teste primário.
 
 ### 3.2 Critério de atribuição
@@ -118,7 +115,7 @@ Java em cada organização — não como ruído amostral a ser corrigido — e s
 2. Discutida como achado substantivo: organizações descentralizadas diferem em
    quanto Java mantêm publicamente.
 3. Subgrupo Spotify (n=0) ausente da amostra final, com discussão substantiva
-   em §5 do TCC sobre o significado dessa ausência. Subgrupo Uber (n=2)
+   em §5 deste estudo sobre o significado dessa ausência. Subgrupo Uber (n=2)
    apresenta ponto único insuficiente para análise inferencial intra-subgrupo;
    Boxplots e estatísticas descritivas dentro do arquétipo descentralizado
    tratarão Uber como dois pontos individuais agregados ao subgrupo. Análises
@@ -204,7 +201,7 @@ SonarQube. Releases "estáveis" excluem alphas, betas, RCs, milestones e snapsho
   rigorosa dos critérios de inclusão (ver histórico de versões).
 
 - **Justificativa do tamanho:** convenience sample limitado pelo tempo
-  de TCC e pela necessidade de build local reprodutível. A composição
+  deste estudo e pela necessidade de build local reprodutível. A composição
   efetiva reflete a aplicação dos critérios à oferta pública de Java
   sob cada arquétipo, não otimização de poder.
 
@@ -216,7 +213,7 @@ SonarQube. Releases "estáveis" excluem alphas, betas, RCs, milestones e snapsho
 - **Implicação para interpretação:** resultado não-significativo no
   Brown-Forsythe **não constitui evidência de equivalência** entre
   arquétipos, sob poder limitado da amostra. Esta limitação é declarada
-  explicitamente em §5 do TCC.
+  explicitamente em §5 deste estudo.
 
 - **Tratamento de não-independência intra-arquétipo:** a análise primária
   (Brown-Forsythe one-way) trata os projetos de cada arquétipo como
@@ -307,7 +304,7 @@ complexity, cognitive_complexity, duplicated_lines_density, comment_lines_densit
 
 Justificativa de exclusões em relação à proposta inicial:
 
-- **`coverage`** removida definitivamente: requer instrumentação de testes incompatível com o pipeline -DskipTests da §7.2. Reintroduzir cobertura geraria três classes de dados (cobertura real, cobertura zero por testes pulados, cobertura ausente por falta de testes), missing-not-at-random entre arquétipos, poluindo qualquer comparação. A análise de cobertura é deixada como trabalho futuro com pipeline próprio (build com testes, ingestão de relatórios JaCoCo), fora do escopo deste TCC.
+- **`coverage`** removida definitivamente: requer instrumentação de testes incompatível com o pipeline -DskipTests da §7.2. Reintroduzir cobertura geraria três classes de dados (cobertura real, cobertura zero por testes pulados, cobertura ausente por falta de testes), missing-not-at-random entre arquétipos, poluindo qualquer comparação. A análise de cobertura é deixada como trabalho futuro com pipeline próprio (build com testes, ingestão de relatórios JaCoCo), fora do escopo deste estudo.
 
 - **`reliability_rating`, `security_rating`, `sqale_rating`** removidas: são
   métricas ordinais (A-E) derivadas dos contadores brutos já incluídos.
@@ -360,7 +357,7 @@ conforme §5.2.
 - **Ambiente:** Python 3.11+, `pandas`, `scipy.stats`, `pingouin`. R como
   backup se necessário.
 - **Descritivas por arquétipo:** mediana, IQR, variância, desvio-padrão,
-  mínimo, máximo, n. Tabela obrigatória na Seção 4 do TCC.
+  mínimo, máximo, n. Tabela obrigatória na Seção 4 deste estudo.
 - **Visualização obrigatória:** boxplot + strip plot por arquétipo, com subgrupo
   Netflix/Uber/Spotify/LinkedIn destacado dentro de descentralizado, e subgrupo
   ativo/manutenção/arquivado destacado dentro de Google.
@@ -380,7 +377,7 @@ conforme §5.2.
 | 10 | Correlação parcial Spearman estendida (NCLOC, idade do projeto, idade do snapshot) | Controle analítico de confundidores | Descritivo (v1.4) | Densidade |
 
 - **Pré-comprometimento:** o script `analise_estatistica.py` será commitado
-  no repositório do TCC **antes** da coleta oficial dos dados, para garantir
+  no repositório deste estudo **antes** da coleta oficial dos dados, para garantir
   que a análise não seja moldada pelos resultados.
 
 ### 8.1 Tratamento de confundidores (NCLOC e idade)
@@ -410,7 +407,7 @@ interpretação específica:
 
 - **C1 sem C2:** variâncias diferem mas não na ordem prevista — evidência
   contra H1, sugere mecanismo causal alternativo a ser discutido em §5
-  do TCC.
+  deste estudo.
 - **Ausência de C1:** falha em detectar diferença de variâncias — sob
   poder de ~9% (v1.5), não constitui evidência de equivalência entre
   arquétipos.
@@ -427,7 +424,7 @@ sobre H1.
 ## 9. Reprodutibilidade
 
 - Toda execução gera um diretório `dados/YYYY-MM-DD/` imutável.
-- A planilha mestre (`amostra.csv`) é versionada no repositório do TCC com cada
+- A planilha mestre (`amostra.csv`) é versionada no repositório deste estudo com cada
   mudança como commit.
 - O SHA de cada projeto analisado é registrado e conferido ao abrir cada análise.
 - Scripts fixam o commit **antes** de rodar o scanner (correção pendente dos
@@ -501,17 +498,17 @@ sobre H1.
     NCLOC). Confundidores tratados analiticamente em vez de via
     manipulação amostral. Existing decision rule on H1 reorganized as
     §8.2.
-  - Título do TCC ajustado para incluir "Code-Level Technical Debt" /
+  - Título deste estudo ajustado para incluir "Code-Level Technical Debt" /
     "Dívida Técnica em Nível de Código" e "Java", deixando explícito o
     nível de medição e o escopo de linguagem.
-  - Introdução do TCC: mecanismo causal "diversidade de contribuidores"
+  - Introdução deste estudo: mecanismo causal "diversidade de contribuidores"
     substituído por "ausência de mecanismos de enforcement organizacional",
     consistente com a distribuição observada de contribuidores
     (Apache mediana 289 > Google 131 > descentralizado 55).
-  - Introdução do TCC: parágrafo de disclosure de composição amostral
+  - Introdução deste estudo: parágrafo de disclosure de composição amostral
     adicionado antes de §1.1, declarando confundidores de tamanho e
     idade upfront e o compromisso de tratá-los analiticamente.
-  - Introdução do TCC: parágrafo SQALE estendido para declarar
+  - Introdução deste estudo: parágrafo SQALE estendido para declarar
     explicitamente que o estudo mede a assinatura código-nível das
     escolhas de governança, não degradação arquitetural; análise
     arquitetural via Arcan declarada como trabalho futuro fora do
@@ -529,7 +526,7 @@ sobre H1.
     riscos de implementação e facilita revisão metodológica.
   - §2: Jonckheere-Terpstra removido como teste confirmatório. Mantido
     apenas como procedimento exploratório sobre as densidades brutas
-    (não sobre variâncias), reportado na §4 do TCC apenas como suporte
+    (não sobre variâncias), reportado na §4 deste estudo apenas como suporte
     descritivo da ordenação.
   - §2: Cliff's δ pareado mantido como tamanho de efeito obrigatório,
     com limiares de Romano et al. (2006) explicitados.
@@ -632,7 +629,7 @@ sobre H1.
   compensação) e para manter a composição como reflexo direto da
   aplicação dos critérios à oferta pública de Java sob cada arquétipo.
 
-  **Achado descritivo declarado, a ser reportado em §3.3 e §4 do TCC:**
+  **Achado descritivo declarado, a ser reportado em §3.3 e §4 deste estudo:**
   A presença pública de projetos Java elegíveis aos critérios deste
   estudo é desigual entre as organizações do arquétipo descentralizado.
   Spotify desce de n=1 (v1.3) para n=0 (v1.4) com a perda de
@@ -672,7 +669,7 @@ sobre H1.
   - **§8 — Top-10 regras dominantes por projeto.** Para cada projeto,
     listagem das 10 regras com maior contribuição absoluta ao
     `sqale_index`. Material disponibilizado como suplemento online,
-    com análise qualitativa em §5 do TCC sobre potencial viés de
+    com análise qualitativa em §5 deste estudo sobre potencial viés de
     stack tecnológico (regras dedicadas a bibliotecas e frameworks
     específicos contribuem desproporcionalmente quando uma stack é
     predominante em um arquétipo).
@@ -682,7 +679,7 @@ sobre H1.
     log(NCLOC) e idade do projeto, a idade do snapshot (dias entre a
     data da última tag e a data efetiva da coleta). Inspeção visual
     da relação densidade × idade do snapshot por arquétipo será
-    reportada em §4 do TCC para diagnosticar potencial confounding
+    reportada em §4 deste estudo para diagnosticar potencial confounding
     residual com idade de snapshot.
 
   - **§8.1 — ICC intra-arquétipo descentralizado.** Para o subconjunto
@@ -810,7 +807,7 @@ sobre H1.
   Resultado não-significativo, sob poder de 9%, **não constitui
   evidência de equivalência** entre arquétipos. É consistente com:
   (a) ausência real de diferença substantiva, (b) efeito real
-  presente mas não detectado pela amostra. A Seção 5 do TCC discute
+  presente mas não detectado pela amostra. A Seção 5 deste estudo discute
   ambas interpretações.
   
   ### Postura sobre o pré-registro
@@ -907,8 +904,6 @@ adicionada após coleta e análise primária em densidade.
 
 ### A2.3 Reporte transparente de cronologia
 
-O paper resultante (TCC e submissão VEM) reportará:
-
 1. Análise primária em densidade conforme protocolo v1.5 com todos os
    resultados, **independentemente da direção**
 2. Análise complementar em log-densidade com declaração explícita de
@@ -954,7 +949,7 @@ nenhuma exceção foi feita à regra pré-declarada.
 ## A4. Critério de seleção dos novos projetos
 
 Após aplicação dos critérios objetivos via GitHub API (script
-`scripts-tcc/buscar_projetos_candidatos.py`), seleção dos novos projetos
+`buscar_projetos_candidatos.py`), seleção dos novos projetos
 foi feita por critério mecânico declarado:
 
 - **Apache:** top 10 por número de stars entre candidatos elegíveis
@@ -1049,7 +1044,7 @@ foi feita por critério mecânico declarado:
   composição reflete a maior representação pública de Java sob Netflix
   em comparação com LinkedIn e Uber, e é declarada como possível
   confundidor entre "arquétipo descentralizado" e "cultura técnica
-  Netflix" para discussão substantiva em §5 do TCC.
+  Netflix" para discussão substantiva em §5 deste estudo.
 
 ## A7. Regra de decisão sobre H1 (v1.6)
 
@@ -1382,7 +1377,7 @@ inconsistências em projetos individuais (NCLOC absurdamente baixo,
 falhas estruturais de build). Para verificar se as falhas eram técnicas
 (pipeline) ou estruturais (projeto inelegível), aplicamos retroativamente
 o script `validar_candidatos_v17.py` (commitado em
-`scripts-tcc/validar_candidatos_v17.py`) sobre os 30 projetos da §A5.
+`validar_candidatos_v17.py`) sobre os 30 projetos da §A5.
 
 O script verifica 6 critérios mecanicamente:
 - **C1:** ≥70% Java via `/repos/{owner}/{repo}/languages` (bytes)
@@ -1407,7 +1402,7 @@ Documentadas para registro:
 
 ### A16.3 Aplicação aos 30 projetos da §A5
 
-Resultado salvo em `scripts-tcc/validacao_candidatos_v17.csv` (commit
+Resultado salvo em `validacao_candidatos_v17.csv` (commit
 deste adendo). Falhas registradas categorizadas em:
 
 **Falsos positivos C2 (NCLOC estimado vs NCLOC Sonar real)** — mantidos:
@@ -1634,7 +1629,7 @@ A coleta de Priam será conduzida APÓS:
 2. Tag git `cascata-v1.9-predeclarada`
 3. Remoção de servo do consolidado v1.6 (`dados/2026-05-24/consolidado.csv`)
 4. Remoção de servo do SonarQube (HTTP DELETE)
-5. Substituição de servo por Priam em `projetos-tcc-dataset-4.csv`,
+5. Substituição de servo por Priam em `dataset-4.csv`,
    `clones_v17.csv` e `clonar_v17.py`
 6. Clone de Priam em `projetos-clonados/Priam`
 
@@ -1773,7 +1768,7 @@ auditabilidade — não alteram critérios §3.1 nem método estatístico.
 ### A31.1. Patches pós-checkout Gradle
 
 Registrados em `PATCHES_POST_CHECKOUT: dict[str, str]` em
-`coleta_lib/scan.py`. Scripts em `scripts-tcc/patches/`.
+`coleta_lib/scan.py`. Scripts em `patches/`.
 
 | Projeto | Script | Motivo |
 |---|---|---|
@@ -1847,7 +1842,7 @@ formal pós-banca:
    dataset, falha → manter exclusão com diagnóstico atualizado) em
    adendo v1.11+ pós-banca.
 3. **Não alterar regra de decisão §8.2** se a coleta pós-banca dos 4
-   for bem-sucedida — análise principal do TCC é fechada em N=60 e
+   for bem-sucedida — análise principal deste estudo é fechada em N=60 e
    uma re-análise opcional em N=64 (com os 4 reincluídos) é
    apresentada como **análise de robustez** na seção de discussão.
 
