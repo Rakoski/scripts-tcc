@@ -4,9 +4,9 @@ set -euo pipefail
 
 SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BASE_DIR="$(dirname "$SCRIPTS_DIR")"
-CSV_FILE="$SCRIPTS_DIR/projetos-tcc-dataset-3.csv"
-SONAR_URL="${SONAR_URL:-http://localhost:9000}"
-SONAR_TOKEN="${SONAR_TOKEN:-sqa_0c5cfbfcb1d5613b1743f31698aa8580a746d83f}"
+CSV_FILE="$SCRIPTS_DIR"
+SONAR_URL="${SONAR_URL}"
+SONAR_TOKEN="${SONAR_TOKEN}"
 
 DRY_RUN=false
 YES=false
